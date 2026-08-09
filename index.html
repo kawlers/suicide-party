@@ -1,107 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>suicide party</title>
 
-    <title>suicideparty.com/kys</title>
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Courier New", monospace;
+}
 
-        body {
-            margin: 0;
-            background: #000;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+.home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
 
-        .page {
-            min-height: 100vh;
-            padding: 40px;
-        }
+.logo {
+    width: 430px;
+    max-width: 90vw;
+    height: auto;
+    margin-bottom: 55px;
+}
 
-        h1 {
-            margin: 0;
-            font-size: 30px;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
 
-        .sub {
-            margin-top: 8px;
-            color: #555;
-            font-size: 11px;
-        }
+.nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 8px;
+}
 
-        .line {
-            width: 100%;
-            height: 1px;
-            background: #333;
-            margin: 35px 0;
-        }
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 1px;
+    background: #7d0000;
+}
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+.nav a:hover {
+    color: #fff;
+}
 
-        .menu a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            width: fit-content;
-        }
+.tagline {
+    margin-top: 65px;
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
 
-        .menu a:hover {
-            opacity: 0.45;
-        }
+@media (max-width: 600px) {
+    .logo {
+        width: 320px;
+        margin-bottom: 45px;
+    }
 
-        .bottom {
-            position: fixed;
-            bottom: 25px;
-            left: 40px;
-            color: #444;
-            font-size: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .page {
-                padding: 25px;
-            }
-
-            .bottom {
-                left: 25px;
-            }
-        }
-    </style>
+    .nav a {
+        font-size: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="page">
+<div class="home">
 
-    <h1>suicide party</h1>
+    <img
+        class="logo"
+        src="suicide-party-logo.png"
+        alt="suicide party"
+    >
 
-    <div class="sub">
-        @kawlrs
-    </div>
-
-    <div class="line"></div>
-
-    <div class="menu">
-
+    <div class="nav">
         <a href="archive.html">archive</a>
-
-        <a href="audio.html">mp3files</a>
-
+        <a href="audio.html">audio files</a>
+        <a href="photos.html">photos</a>
     </div>
 
-    <div class="bottom">
-        suicideparty.com/kys
+    <div class="tagline">
+        just end it then.
     </div>
 
 </div>
