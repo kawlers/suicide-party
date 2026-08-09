@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>photos</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Courier New", monospace;
+}
+
+.page {
+    width: min(900px, 92%);
+    margin: auto;
+    padding: 35px 0 70px;
+}
+
+.back {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.header {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.logo {
+    width: 220px;
+    max-width: 60vw;
+}
+
+.title {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: -8px;
+}
+
+.line {
+    height: 1px;
+    background: #333;
+    margin: 18px 0 45px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.photo {
+    aspect-ratio: 4 / 5;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 12px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 70px;
+    color: #555;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <a class="back" href="index.html">← back</a>
+
+    <div class="header">
+        <img
+            class="logo"
+            src="suicide-party-logo.png"
+            alt="suicide party"
+        >
+
+        <div class="title">photos</div>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="grid">
+
+        <div class="photo">empty</div>
+        <div class="photo">empty</div>
+        <div class="photo">empty</div>
+        <div class="photo">empty</div>
+        <div class="photo">empty</div>
+        <div class="photo">empty</div>
+
+    </div>
+
+    <div class="footer">
+        just end it then_
+    </div>
+
+</div>
+
+</body>
+</html>
