@@ -78,7 +78,7 @@ body {
 }
 
 
-/* VIDEO FILE LIST */
+/* VIDEO LIST */
 
 .video-list {
     width: 500px;
@@ -89,16 +89,11 @@ body {
     display: flex;
     align-items: center;
     gap: 22px;
-
     padding: 14px 4px;
-
     border-top: 1px solid #222;
-
     color: #aaa;
     font-size: 13px;
-
     cursor: pointer;
-
     transition: 0.15s;
 }
 
@@ -124,20 +119,15 @@ body {
 
 .video-player {
     display: none;
-
     width: 500px;
     max-width: 100%;
-
     margin: 12px 0 18px;
 }
 
 .video-player video {
     display: block;
-
     width: 100%;
-
     background: #000;
-
     border: 1px solid #222;
 }
 
@@ -146,12 +136,9 @@ body {
 
 .footer {
     margin-top: 80px;
-
     color: #555;
-
     font-size: 11px;
     line-height: 1.8;
-
     white-space: pre-line;
 }
 
@@ -175,7 +162,6 @@ body {
 }
 
 </style>
-
 </head>
 
 
@@ -219,28 +205,16 @@ body {
     <div class="video-list">
 
 
-        <!-- FILE 01 -->
+        <!-- 01 -->
 
-        <div
-            class="video-file"
-            onclick="toggleVideo('video01')"
-        >
+        <div class="video-file" onclick="toggleVideo('video01')">
             <span class="number">01</span>
             <span>scenebitch-lcut.mp4</span>
         </div>
 
+        <div id="video01" class="video-player">
 
-        <!-- VIDEO 01 PLAYER -->
-
-        <div
-            id="video01"
-            class="video-player"
-        >
-
-            <video
-                controls
-                preload="metadata"
-            >
+            <video controls preload="metadata">
 
                 <source
                     src="scenebitch-lcut.mp4"
@@ -254,7 +228,7 @@ body {
         </div>
 
 
-        <!-- FILE 02 -->
+        <!-- 02 -->
 
         <div class="video-file">
             <span class="number">02</span>
@@ -262,7 +236,7 @@ body {
         </div>
 
 
-        <!-- FILE 03 -->
+        <!-- 03 -->
 
         <div class="video-file">
             <span class="number">03</span>
@@ -270,7 +244,7 @@ body {
         </div>
 
 
-        <!-- FILE 04 -->
+        <!-- 04 -->
 
         <div class="video-file">
             <span class="number">04</span>
@@ -278,7 +252,7 @@ body {
         </div>
 
 
-        <!-- FILE 05 -->
+        <!-- 05 -->
 
         <div class="video-file">
             <span class="number">05</span>
@@ -286,7 +260,7 @@ body {
         </div>
 
 
-        <!-- FILE 06 -->
+        <!-- 06 -->
 
         <div class="video-file">
             <span class="number">06</span>
@@ -294,7 +268,7 @@ body {
         </div>
 
 
-        <!-- FILE 07 -->
+        <!-- 07 -->
 
         <div class="video-file">
             <span class="number">07</span>
@@ -302,7 +276,7 @@ body {
         </div>
 
 
-        <!-- FILE 08 -->
+        <!-- 08 -->
 
         <div class="video-file">
             <span class="number">08</span>
@@ -310,7 +284,7 @@ body {
         </div>
 
 
-        <!-- FILE 09 -->
+        <!-- 09 -->
 
         <div class="video-file">
             <span class="number">09</span>
@@ -318,7 +292,7 @@ body {
         </div>
 
 
-        <!-- FILE 10 -->
+        <!-- 10 -->
 
         <div class="video-file">
             <span class="number">10</span>
@@ -338,8 +312,6 @@ unknown client</div>
 
 </div>
 
-
-<!-- VIDEO OPEN / CLOSE -->
 
 <script>
 
