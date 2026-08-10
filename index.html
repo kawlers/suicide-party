@@ -1,113 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>suicide party</title>
+<img
+    class="logo"
+    src="suicide-party-logo.png"
+    alt="suicide party"
+>
 
-<style>
-* {
-    box-sizing: border-box;
-}
+<div class="nav">
+    <a href="archive.html">files</a>
+    <a href="audio.html">audio files</a>
+</div>
 
-body {
-    margin: 0;
-    background: #000;
-    color: #fff;
-    font-family: "Courier New", monospace;
-}
 
-.home {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-}
+<div class="tagline">
 
-.logo {
-    width: 675px;
-    max-width: 90vw;
-    height: auto;
-    margin-bottom: 55px;
-}
-
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-.nav a {
-    color: #ddd;
-    text-decoration: none;
-    font-size: 18px;
-    letter-spacing: 3px;
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.nav a::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 110px;
-    height: 1px;
-    background: #7d0000;
-}
-
-.nav a:hover {
-    color: #fff;
-}
-
-.tagline {
-    margin-top: 65px;
-    color: #555;
-    font-size: 13px;
-    letter-spacing: 1px;
-}
-
-@media (max-width: 600px) {
-    .logo {
-        width: 320px;
-        margin-bottom: 45px;
-    }
-
-    .nav a {
-        font-size: 16px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<div class="home">
-
-    <img
-        class="logo"
-        src="suicide-party-logo.png"
-        alt="suicide party"
-    >
-
-    <div class="nav">
-        <a href="archive.html">files</a>
-        <a href="audio.html">audio files</a>
-    
+    <div>
+        your connection has been logged.
     </div>
 
-    <div class="tagline">
-        your connection has been logged.
+    <div>
         session ID: [unbound]
+    </div>
+
+    <div>
+        route: <span id="encryptedRoute">ENC::---- ---- ----</span>
+    </div>
+
+    <div>
+        date: <span id="currentDate">--.--.----</span>
+    </div>
+
+    <div>
+        time: <span id="currentTime">--:--:--</span>
+    </div>
+
+    <div>
         unknown client
-        
     </div>
 
 </div>
 
-</body>
-</html>
+
+<style>
+
+/* ENCRYPTED ROUTE EFFECT */
+
+#encryptedRoute {
+    transition: opacity 0.08s;
+}
+
+#encryptedRoute.changing {
+    opacity: 0.25;
+}
+
+</style>
+
+
+<script>
+
+
+/* CURRENT REAL DATE + TIME */
+
+function updateDateTime() {
+
+    const now = new Date();
+
+
+    /* DATE */
+
+    const month =
+        String(now.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(now.getDate()).padStart(2, "0");
+
+    const year =
+        now.getFullYear();
+
+
+    document.getElementById("currentDate").textContent =
+        month + "." + day + "." + year;
+
+
+    /* TIME */
+
+    const hours =
+        String(now.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+
+    document.getElementById("currentTime").textContent =
+        hours + ":" + minutes + ":" + seconds;
+
+}
+
+
+
+/* CREATE FAKE ENCRYPTED ROUTE */
+
+function generateEncryptedRoute() {
+
+    const characters =
+        "0123456789ABCDEF";
+
+    let part1 = "";
+    let part2 = "";
+    let part3 = "";
+
+
+    for (let i = 0; i < 4; i++) {
+
+        part1 +=
+            characters[
+                Math.floor(
+                    Math.random() * characters.length
+                )
+            ];
+
+        part2 +=
+            characters[
+                Math.floor(
+                    Math.random() * characters.length
+                )
+            ];
+
+        part3 +=
+            characters[
+                Math.floor(
+                    Math.random() * characters.length
+                )
+            ];
+
+    }
+
+
+    return (
+        "ENC::"
+        + part1
+        + "-"
+        + part2
+        + "-"
+        + part3
+    );
+
+}
+
+
+
+/* UPDATE ENCRYPTED ROUTE */
+
+function updateEncryptedRoute() {
+
+    const route =
+        document.getElementById("encryptedRoute");
+
+
+    route.classList.add("changing");
+
+
+    setTimeout(function() {
+
+        route.textContent =
+            generateEncryptedRoute();
+
+        route.classList.remove("changing");
+
+    }, 80);
+
+}
+
+
+
+/* START IMMEDIATELY */
+
+updateDateTime();
+updateEncryptedRoute();
+
+
+
+/* UPDATE CLOCK EVERY SECOND */
+
+setInterval(function() {
+
+    updateDateTime();
+
+}, 1000);
+
+
+
+/* CHANGE ENCRYPTED ROUTE */
+
+setInterval(function() {
+
+    updateEncryptedRoute();
+
+}, 650);
+
+
+</script>
