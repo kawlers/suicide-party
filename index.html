@@ -42,7 +42,6 @@ body {
 
     padding: 30px;
 
-    /* moves whole cluster slightly below center */
     transform: translateY(35px);
 }
 
@@ -56,8 +55,8 @@ body {
 
     display: block;
 
-    /* smaller gap between logo and links */
-    margin-bottom: 30px;
+    /* LINKS MUCH CLOSER TO LOGO */
+    margin-bottom: 5px;
 }
 
 
@@ -67,9 +66,12 @@ body {
     display: flex;
     flex-direction: column;
 
-    gap: 20px;
+    gap: 14px;
 
     align-items: center;
+
+    /* PULL LINKS UP EVEN MORE */
+    transform: translateY(-20px);
 }
 
 .nav a {
@@ -106,12 +108,14 @@ body {
 }
 
 
-/* FOOTER / TRACKING TEXT */
+/* FOOTER */
 
 .tagline {
 
-    /* brings tracking text closer to links */
-    margin-top: 32px;
+    /* compensates for links being moved upward
+       so footer stays where it was */
+
+    margin-top: 52px;
 
     color: #555;
 
@@ -136,7 +140,11 @@ body {
         width: 450px;
         max-width: 95vw;
 
-        margin-bottom: 25px;
+        margin-bottom: 5px;
+    }
+
+    .nav {
+        transform: translateY(-15px);
     }
 
     .nav a {
@@ -144,7 +152,7 @@ body {
     }
 
     .tagline {
-        margin-top: 28px;
+        margin-top: 47px;
     }
 
 }
@@ -232,48 +240,28 @@ function updateClock() {
 }
 
 
-/* GENERATE FAKE IP */
+/* FAKE IP */
 
 function updateRoute() {
 
-    const part1 =
-        Math.floor(Math.random() * 256);
-
-    const part2 =
-        Math.floor(Math.random() * 256);
-
-    const part3 =
-        Math.floor(Math.random() * 256);
-
-    const part4 =
-        Math.floor(Math.random() * 256);
-
+    const part1 = Math.floor(Math.random() * 256);
+    const part2 = Math.floor(Math.random() * 256);
+    const part3 = Math.floor(Math.random() * 256);
+    const part4 = Math.floor(Math.random() * 256);
 
     document.getElementById("route").textContent =
-        part1
-        + "."
-        + part2
-        + "."
-        + part3
-        + "."
-        + part4;
+        part1 + "." +
+        part2 + "." +
+        part3 + "." +
+        part4;
 
 }
 
 
-/* START */
-
 updateClock();
 updateRoute();
 
-
-/* CLOCK */
-
 setInterval(updateClock, 1000);
-
-
-/* FAKE IP */
-
 setInterval(updateRoute, 350);
 
 
