@@ -1,270 +1,367 @@
-<!-- BACK -->
+<!DOCTYPE html>
+<html lang="en">
 
-<a class="back" href="index.html">← back</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<!-- HEADER -->
-
-<div class="header">
-
-    <img
-        class="logo"
-        src="suicide-party-logo.png"
-        alt="suicide party"
-    >
-
-    <div class="title">
-        files
-    </div>
-
-</div>
-
-
-<div class="line"></div>
-
-
-<!-- VIDEO FILES -->
-
-<div class="section-title">
-    video files (.mp4)
-</div>
-
-
-<div class="video-list">
-
-
-    <!-- 01 -->
-
-    <div class="video-file" onclick="openVideo()">
-        <span class="number">01</span>
-        <span>scenebitch-lcut.mp4</span>
-    </div>
-
-
-    <!-- 02 -->
-
-    <div class="video-file">
-        <span class="number">02</span>
-        <span>957229577.mp4</span>
-    </div>
-
-
-    <!-- 03 -->
-
-    <div class="video-file">
-        <span class="number">03</span>
-        <span>purge-xtra2k25.mp4</span>
-    </div>
-
-
-    <!-- 04 -->
-
-    <div class="video-file">
-        <span class="number">04</span>
-        <span>untitled_04.mp4</span>
-    </div>
-
-
-    <!-- 05 -->
-
-    <div class="video-file">
-        <span class="number">05</span>
-        <span>sp_005.mp4</span>
-    </div>
-
-
-    <!-- 06 -->
-
-    <div class="video-file">
-        <span class="number">06</span>
-        <span>footage_02.mp4</span>
-    </div>
-
-
-    <!-- 07 -->
-
-    <div class="video-file">
-        <span class="number">07</span>
-        <span>recovered.mp4</span>
-    </div>
-
-
-    <!-- 08 -->
-
-    <div class="video-file">
-        <span class="number">08</span>
-        <span>unknown.mp4</span>
-    </div>
-
-
-    <!-- 09 -->
-
-    <div class="video-file">
-        <span class="number">09</span>
-        <span>clip_09.mp4</span>
-    </div>
-
-
-    <!-- 10 -->
-
-    <div class="video-file">
-        <span class="number">10</span>
-        <span>??????.mp4</span>
-    </div>
-
-
-</div>
-
-
-<!-- FOOTER -->
-
-<div class="footer">your connection has been logged.
-session ID: [unbound]
-unknown client</div>
-
-
-<!-- FLOATING VIDEO WINDOW -->
-
-<div id="videoOverlay" class="video-overlay" onclick="closeVideoFromBackground(event)">
-
-    <div class="floating-player">
-
-        <button class="close-video" onclick="closeVideo()">×</button>
-
-        <video id="mainVideo" controls preload="metadata">
-            <source src="scenebitch-lcut.mp4" type="video/mp4">
-            your browser does not support video playback.
-        </video>
-
-    </div>
-
-</div>
-
+<title>files</title>
 
 <style>
 
-.video-overlay {
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0, 0, 0, 0.72);
-
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 9999;
-
-    opacity: 0;
-
-    transition: opacity 0.2s ease;
+* {
+    box-sizing: border-box;
 }
 
-.video-overlay.open {
-    display: flex;
-    opacity: 1;
-}
-
-.floating-player {
-    position: relative;
-
-    width: 760px;
-    max-width: 82vw;
-
-    transform: translateY(25px) scale(0.97);
-    opacity: 0;
-
-    transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
-}
-
-.video-overlay.open .floating-player {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
-
-.floating-player video {
-    display: block;
-
-    width: 100%;
-    max-height: 75vh;
-
+body {
+    margin: 0;
     background: #000;
-
-    border: 1px solid #333;
-}
-
-.close-video {
-    position: absolute;
-
-    top: -30px;
-    right: 0;
-
-    background: none;
-    border: 0;
-
-    color: #aaa;
-
+    color: #fff;
     font-family: "Courier New", monospace;
-    font-size: 24px;
-
-    cursor: pointer;
 }
 
-.close-video:hover {
+.page {
+    width: min(900px, 92%);
+    margin: auto;
+    padding: 35px 0 70px;
+}
+
+
+/* BACK BUTTON */
+
+.back {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.back:hover {
     color: #fff;
 }
 
-@media (max-width: 700px) {
 
-    .floating-player {
-        width: 92vw;
-        max-width: 92vw;
+/* HEADER */
+
+.header {
+    text-align: center;
+    margin-top: -10px;
+}
+
+.logo {
+    width: 220px;
+    max-width: 60vw;
+}
+
+.title {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-top: -8px;
+}
+
+
+/* LINE */
+
+.line {
+    height: 1px;
+    background: #333;
+    margin: 18px 0 45px;
+}
+
+
+/* SECTION TITLE */
+
+.section-title {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+
+/* VIDEO FILE LIST */
+
+.video-list {
+    width: 500px;
+    max-width: 100%;
+}
+
+.video-file {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    padding: 14px 4px;
+
+    border-top: 1px solid #222;
+
+    color: #aaa;
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+.video-file:last-of-type {
+    border-bottom: 1px solid #222;
+}
+
+.video-file:hover {
+    color: #fff;
+    padding-left: 10px;
+}
+
+
+/* RED NUMBERS */
+
+.number {
+    color: #d00000;
+    width: 24px;
+}
+
+
+/* VIDEO PLAYER */
+
+.video-player {
+    display: none;
+
+    width: 500px;
+    max-width: 100%;
+
+    margin: 12px 0 18px;
+}
+
+.video-player video {
+    display: block;
+
+    width: 100%;
+
+    background: #000;
+
+    border: 1px solid #222;
+}
+
+
+/* FOOTER */
+
+.footer {
+    margin-top: 80px;
+
+    color: #555;
+
+    font-size: 11px;
+    line-height: 1.8;
+
+    white-space: pre-line;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .page {
+        width: 90%;
+    }
+
+    .video-list {
+        width: 100%;
+    }
+
+    .video-player {
+        width: 100%;
     }
 
 }
 
 </style>
 
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- BACK -->
+
+    <a class="back" href="index.html">← back</a>
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <img
+            class="logo"
+            src="suicide-party-logo.png"
+            alt="suicide party"
+        >
+
+        <div class="title">
+            files
+        </div>
+
+    </div>
+
+
+    <div class="line"></div>
+
+
+    <!-- VIDEO FILES -->
+
+    <div class="section-title">
+        video files (.mp4)
+    </div>
+
+
+    <div class="video-list">
+
+
+        <!-- FILE 01 -->
+
+        <div
+            class="video-file"
+            onclick="toggleVideo('video01')"
+        >
+            <span class="number">01</span>
+            <span>scenebitch-lcut.mp4</span>
+        </div>
+
+
+        <!-- VIDEO 01 PLAYER -->
+
+        <div
+            id="video01"
+            class="video-player"
+        >
+
+            <video
+                controls
+                preload="metadata"
+            >
+
+                <source
+                    src="scenebitch-lcut.mp4"
+                    type="video/mp4"
+                >
+
+                your browser does not support video playback.
+
+            </video>
+
+        </div>
+
+
+        <!-- FILE 02 -->
+
+        <div class="video-file">
+            <span class="number">02</span>
+            <span>957229577.mp4</span>
+        </div>
+
+
+        <!-- FILE 03 -->
+
+        <div class="video-file">
+            <span class="number">03</span>
+            <span>purge-xtra2k25.mp4</span>
+        </div>
+
+
+        <!-- FILE 04 -->
+
+        <div class="video-file">
+            <span class="number">04</span>
+            <span>untitled_04.mp4</span>
+        </div>
+
+
+        <!-- FILE 05 -->
+
+        <div class="video-file">
+            <span class="number">05</span>
+            <span>sp_005.mp4</span>
+        </div>
+
+
+        <!-- FILE 06 -->
+
+        <div class="video-file">
+            <span class="number">06</span>
+            <span>footage_02.mp4</span>
+        </div>
+
+
+        <!-- FILE 07 -->
+
+        <div class="video-file">
+            <span class="number">07</span>
+            <span>recovered.mp4</span>
+        </div>
+
+
+        <!-- FILE 08 -->
+
+        <div class="video-file">
+            <span class="number">08</span>
+            <span>unknown.mp4</span>
+        </div>
+
+
+        <!-- FILE 09 -->
+
+        <div class="video-file">
+            <span class="number">09</span>
+            <span>clip_09.mp4</span>
+        </div>
+
+
+        <!-- FILE 10 -->
+
+        <div class="video-file">
+            <span class="number">10</span>
+            <span>??????.mp4</span>
+        </div>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">your connection has been logged.
+session ID: [unbound]
+unknown client</div>
+
+
+</div>
+
+
+<!-- VIDEO OPEN / CLOSE -->
 
 <script>
 
-function openVideo() {
+function toggleVideo(id) {
 
-    const overlay = document.getElementById("videoOverlay");
+    const player = document.getElementById(id);
 
-    overlay.style.display = "flex";
+    if (player.style.display === "block") {
 
-    requestAnimationFrame(() => {
-        overlay.classList.add("open");
-    });
+        player.style.display = "none";
 
-}
+    } else {
 
+        player.style.display = "block";
 
-function closeVideo() {
-
-    const overlay = document.getElementById("videoOverlay");
-    const video = document.getElementById("mainVideo");
-
-    overlay.classList.remove("open");
-
-    video.pause();
-
-    setTimeout(() => {
-        overlay.style.display = "none";
-    }, 200);
-
-}
-
-
-function closeVideoFromBackground(event) {
-
-    if (event.target.id === "videoOverlay") {
-        closeVideo();
     }
 
 }
 
 </script>
+
+
+</body>
+
+</html>
