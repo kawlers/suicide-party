@@ -6,9 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>suicide party</title>
+<title>suicideparty.com</title>
 
 <style>
+
+
+/* =========================================
+   RESET
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -18,130 +23,414 @@ html,
 body {
     margin: 0;
     padding: 0;
+
     min-height: 100%;
+
+    background: #000;
 }
 
 body {
-    background: #000;
-    color: #fff;
-    font-family: "Courier New", monospace;
-}
+    color: #d8d0e5;
 
+    font-family:
+        "Courier New",
+        monospace;
 
-/* =========================================
-   HOME
-========================================= */
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #150529 0%,
+            #07000e 35%,
+            #000 75%
+        );
 
-.home {
     min-height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 30px;
-}
-
-
-/* LOGO */
-
-.logo {
-    width: 650px;
-    max-width: 90vw;
-    height: auto;
-
-    display: block;
-
-    margin-bottom: 0;
-}
-
-
-/* TEXT AREA */
-
-.text-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    transform: translateY(-45px);
+    padding: 20px;
 }
 
 
 /* =========================================
-   NAVIGATION
+   MAIN WEBSITE FRAME
 ========================================= */
 
-.nav {
+.site-frame {
+
+    width: min(1320px, 96vw);
+
+    min-height: calc(100vh - 40px);
+
+    margin: 0 auto;
+
+    border: 1px solid #542b87;
+
+    background:
+        linear-gradient(
+            rgba(8, 1, 15, 0.94),
+            rgba(3, 0, 8, 0.97)
+        );
+
+    box-shadow:
+        0 0 22px rgba(89, 34, 145, 0.20);
+
+}
+
+
+/* =========================================
+   TOP BAR
+========================================= */
+
+.topbar {
+
+    height: 54px;
+
     display: flex;
-    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 24px;
+
+    border-bottom: 1px solid #542b87;
+
+    background:
+        linear-gradient(
+            90deg,
+            #17072e,
+            #0c0217,
+            #18082f
+        );
+
+}
+
+
+/* SITE NAME */
+
+.site-name {
+
+    color: #ddd6e8;
+
+    font-size: 18px;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+}
+
+
+/* TOP NAV */
+
+.top-nav {
+
+    display: flex;
+
+    align-items: center;
 
     gap: 14px;
 
-    align-items: center;
+    font-size: 13px;
+
 }
 
-.nav a {
-    color: #ddd;
 
-    text-decoration: none;
+.top-nav a {
 
-    font-size: 18px;
-    letter-spacing: 3px;
+    color: #b887e9;
+
+    text-decoration: underline;
+
+    cursor: pointer;
+
+}
+
+
+.top-nav a:hover {
+
+    color: #fff;
+
+}
+
+
+.divider {
+
+    color: #4c3460;
+
+}
+
+
+/* =========================================
+   HERO AREA
+========================================= */
+
+.hero {
 
     position: relative;
 
-    padding-bottom: 8px;
+    min-height: 480px;
 
-    cursor: pointer;
+    overflow: hidden;
+
+    border-bottom: 1px solid #542b87;
+
+    background:
+
+        radial-gradient(
+            circle at 28% 42%,
+            rgba(88, 30, 160, 0.22),
+            transparent 34%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(83, 19, 150, 0.18),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            130deg,
+            #050008,
+            #11031d 52%,
+            #030005
+        );
+
 }
 
-.nav a::after {
+
+/* OLD-WEB TEXTURE */
+
+.hero::before {
+
     content: "";
 
     position: absolute;
 
-    left: 50%;
-    bottom: 0;
+    inset: 0;
 
-    transform: translateX(-50%);
+    pointer-events: none;
 
-    width: 110px;
-    height: 1px;
+    opacity: 0.14;
 
-    background: #7d0000;
+    background-image:
+
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(121, 63, 170, 0.18) 3px
+        );
+
 }
 
-.nav a:hover {
-    color: #fff;
+
+/* PURPLE GLOW / GRUNGE SHAPES */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse at 72% 24%,
+            rgba(102, 33, 190, 0.21),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            ellipse at 20% 85%,
+            rgba(77, 11, 142, 0.17),
+            transparent 30%
+        );
+
 }
 
 
 /* =========================================
-   TRACKING TEXT
+   LOGO AREA
 ========================================= */
 
-.tagline {
-    margin-top: 25px;
+.logo-zone {
 
-    color: #555;
+    position: relative;
 
-    font-size: 11px;
+    z-index: 2;
 
-    line-height: 1.8;
+    min-height: 300px;
 
-    letter-spacing: 0.5px;
+    display: flex;
 
-    text-align: center;
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 34px 20px 10px;
+
 }
 
 
-/* RED CHANGING FAKE IP */
+.logo {
+
+    width: min(650px, 72vw);
+
+    max-height: 295px;
+
+    object-fit: contain;
+
+    display: block;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(88, 18, 142, 0.20)
+        );
+
+}
+
+
+/* =========================================
+   CONNECTION PANEL
+========================================= */
+
+.connection-wrap {
+
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    justify-content: center;
+
+    padding:
+        0 30px 28px;
+
+}
+
+
+.connection-panel {
+
+    width: min(900px, 88%);
+
+    border: 1px solid #5c2a91;
+
+    background:
+        rgba(3, 0, 8, 0.92);
+
+    padding:
+        20px 22px;
+
+    box-shadow:
+        inset 0 0 18px
+        rgba(75, 23, 123, 0.10);
+
+}
+
+
+.connection-title {
+
+    color: #a26bd5;
+
+    font-size: 12px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.connection-line {
+
+    height: 1px;
+
+    background:
+        #42215f;
+
+    margin-bottom: 14px;
+
+}
+
+
+/* CONNECTION INFO */
+
+.connection-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr auto;
+
+    gap: 7px 35px;
+
+    align-items: center;
+
+    color: #9c8cae;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+}
+
+
+.connection-left {
+
+    text-align: left;
+
+}
+
+
+.connection-right {
+
+    text-align: right;
+
+}
+
+
+/* FAKE IP */
 
 #route {
-    color: #b00000;
+
+    color: #c00018;
+
+}
+
+
+/* =========================================
+   BOTTOM STRIP
+========================================= */
+
+.site-footer {
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-top: 1px solid #32174d;
+
+    background:
+        linear-gradient(
+            90deg,
+            #10031e,
+            #19052e,
+            #10031e
+        );
+
+    color: #7e55a6;
+
+    font-size: 10px;
+
+    letter-spacing: 0.5px;
+
 }
 
 
@@ -150,146 +439,211 @@ body {
 ========================================= */
 
 .encrypt-overlay {
+
     position: fixed;
+
     inset: 0;
-
-    background: rgba(0, 0, 0, 0.97);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     z-index: 9999;
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(0, 0, 0, 0.97);
+
     opacity: 0;
+
     visibility: hidden;
 
     transition:
         opacity 0.2s ease,
         visibility 0.2s ease;
+
 }
+
 
 .encrypt-overlay.active {
+
     opacity: 1;
+
     visibility: visible;
+
 }
 
 
-/* LARGE PANEL */
+/* BIG PANEL */
 
 .encrypt-panel {
-    width: min(900px, 88vw);
 
-    border: 1px solid #252525;
-
-    background: #020202;
+    width: min(
+        900px,
+        88vw
+    );
 
     padding: 42px;
 
-    transform: scale(0.96);
+    border:
+        1px solid #49236e;
+
+    background:
+        #030006;
+
+    box-shadow:
+        0 0 35px
+        rgba(96, 34, 157, 0.12);
 
     opacity: 0;
 
+    transform:
+        scale(0.96);
+
     transition:
-        transform 0.25s ease,
-        opacity 0.25s ease;
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
 }
 
-.encrypt-overlay.active .encrypt-panel {
-    transform: scale(1);
+
+.encrypt-overlay.active
+.encrypt-panel {
+
     opacity: 1;
+
+    transform:
+        scale(1);
+
 }
 
 
-/* HEADER */
+/* ENCRYPTION TITLE */
 
 .encrypt-title {
-    color: #777;
+
+    color: #826195;
 
     font-size: 12px;
+
     letter-spacing: 2px;
 
     margin-bottom: 28px;
 
-    text-align: left;
 }
 
 
-/* 16 CHARACTER CHANGING CODE */
+/* CHANGING CODE */
 
 .encrypt-code {
-    color: #b00000;
-
-    font-size: clamp(22px, 4vw, 46px);
-
-    letter-spacing: 5px;
-
-    word-break: break-all;
-
-    text-align: left;
 
     min-height: 110px;
 
     display: flex;
+
     align-items: center;
 
-    border-top: 1px solid #1d1d1d;
-    border-bottom: 1px solid #1d1d1d;
+    padding:
+        25px 0;
 
-    padding: 25px 0;
+    border-top:
+        1px solid #29143b;
+
+    border-bottom:
+        1px solid #29143b;
 
     margin-bottom: 28px;
+
+    color: #b4001b;
+
+    font-size:
+        clamp(
+            22px,
+            4vw,
+            46px
+        );
+
+    letter-spacing:
+        5px;
+
+    word-break:
+        break-all;
+
 }
 
 
-/* STATUS */
+/* STATUS ROW */
 
 .encrypt-status {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
 
     gap: 20px;
 
-    color: #555;
+    margin-bottom:
+        14px;
 
-    font-size: 10px;
-    letter-spacing: 1px;
+    color:
+        #5e5068;
 
-    margin-bottom: 14px;
+    font-size:
+        10px;
+
+    letter-spacing:
+        1px;
+
 }
 
 
-/* PROGRESS BAR */
+/* LOAD BAR */
 
 .encrypt-bar {
+
     width: 100%;
+
     height: 4px;
 
-    background: #151515;
+    background:
+        #13091c;
 
-    overflow: hidden;
+    overflow:
+        hidden;
+
 }
+
 
 .encrypt-progress {
+
     width: 0%;
+
     height: 100%;
 
-    background: #8d0000;
+    background:
+        #791228;
 
-    transition: width 0.06s linear;
+    transition:
+        width 0.06s linear;
+
 }
 
 
-/* BOTTOM TEXT */
+/* BOTTOM ENCRYPTION TEXT */
 
 .encrypt-bottom {
-    margin-top: 14px;
 
-    color: #333;
+    margin-top:
+        14px;
 
-    font-size: 9px;
+    color:
+        #392d41;
 
-    text-align: left;
+    font-size:
+        9px;
+
 }
 
 
@@ -297,38 +651,136 @@ body {
    MOBILE
 ========================================= */
 
-@media (max-width: 600px) {
+@media
+(max-width: 700px) {
 
-    .home {
-        padding: 20px;
+
+    body {
+
+        padding:
+            8px;
+
     }
+
+
+    .site-frame {
+
+        width:
+            100%;
+
+        min-height:
+            calc(
+                100vh - 16px
+            );
+
+    }
+
+
+    .topbar {
+
+        height:
+            auto;
+
+        min-height:
+            54px;
+
+        padding:
+            12px 15px;
+
+        gap:
+            12px;
+
+    }
+
+
+    .site-name {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .top-nav {
+
+        gap:
+            7px;
+
+        font-size:
+            10px;
+
+    }
+
 
     .logo {
-        width: 450px;
-        max-width: 95vw;
+
+        width:
+            88vw;
+
     }
 
-    .text-area {
-        transform: translateY(-35px);
+
+    .hero {
+
+        min-height:
+            430px;
+
     }
 
-    .nav a {
-        font-size: 16px;
+
+    .connection-wrap {
+
+        padding:
+            0 15px 22px;
+
     }
 
-    .tagline {
-        margin-top: 22px;
+
+    .connection-panel {
+
+        width:
+            100%;
+
     }
+
+
+    .connection-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .connection-right {
+
+        text-align:
+            left;
+
+    }
+
 
     .encrypt-panel {
-        width: 92vw;
-        padding: 25px;
+
+        width:
+            92vw;
+
+        padding:
+            25px;
+
     }
 
+
     .encrypt-code {
-        min-height: 90px;
-        letter-spacing: 3px;
+
+        min-height:
+            90px;
+
+        letter-spacing:
+            3px;
+
     }
+
 
 }
 
@@ -340,40 +792,65 @@ body {
 <body>
 
 
+
 <!-- =========================================
-     HOME
+     WEBSITE FRAME
 ========================================= -->
 
-<div class="home">
+<div class="site-frame">
 
 
-    <!-- LOGO -->
 
-    <img
-        class="logo"
-        src="suicide-party-logo.png"
-        alt="suicide party"
-    >
+    <!-- =====================================
+         TOP BAR
+    ====================================== -->
 
-
-    <div class="text-area">
+    <div class="topbar">
 
 
-        <!-- NAVIGATION -->
+        <div class="site-name">
+            suicideparty.com
+        </div>
 
-        <div class="nav">
+
+        <div class="top-nav">
 
 
-            <!-- FILES -->
+            <a href="index.html">
+                home
+            </a>
 
-            <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
+
+            <span class="divider">
+                |
+            </span>
+
+
+            <a
+                onclick="
+                openEncryptedPage(
+                    'archive.html',
+                    'FILE DIRECTORY'
+                )
+                "
+            >
                 files
             </a>
 
 
-            <!-- AUDIO FILES -->
+            <span class="divider">
+                |
+            </span>
 
-            <a onclick="openEncryptedPage('audio.html', 'AUDIO DIRECTORY')">
+
+            <a
+                onclick="
+                openEncryptedPage(
+                    'audio.html',
+                    'AUDIO DIRECTORY'
+                )
+                "
+            >
                 audio files
             </a>
 
@@ -381,38 +858,116 @@ body {
         </div>
 
 
-        <!-- TRACKING TEXT -->
+    </div>
 
-        <div class="tagline">
 
-            <div>
-                your connection has been logged.
-            </div>
 
-            <div>
-                session ID: [unbound]
-            </div>
+    <!-- =====================================
+         HERO
+    ====================================== -->
 
-            <div>
-                route:
-                <span id="route">
-                    192.168.---.---
-                </span>
-            </div>
+    <div class="hero">
 
-            <div>
-                time:
-                <span id="time">
-                    --:--:-- --
-                </span>
-            </div>
 
-            <div>
-                unknown client
-            </div>
+
+        <!-- LOGO -->
+
+        <div class="logo-zone">
+
+
+            <img
+                class="logo"
+                src="suicide-party-logo.png"
+                alt="suicide party"
+            >
+
 
         </div>
 
+
+
+        <!-- CONNECTION PANEL -->
+
+        <div class="connection-wrap">
+
+
+            <div class="connection-panel">
+
+
+                <div class="connection-title">
+
+                    your connection
+                    has been logged.
+
+                </div>
+
+
+                <div class="connection-line">
+                </div>
+
+
+
+                <div class="connection-grid">
+
+
+
+                    <div class="connection-left">
+
+                        session ID:
+                        [unbound]
+
+                    </div>
+
+
+                    <div class="connection-right">
+
+                        time:
+                        <span id="time">
+                            --:--:-- --
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="connection-left">
+
+                        route:
+
+                        <span id="route">
+                            192.168.---.---
+                        </span>
+
+                    </div>
+
+
+                    <div class="connection-right">
+
+                        unknown client
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
+    <div class="site-footer">
+
+        © 2004 suicideparty.com
 
     </div>
 
@@ -434,21 +989,27 @@ body {
     <div class="encrypt-panel">
 
 
+
         <!-- TITLE -->
 
         <div class="encrypt-title">
-            establishing channel
+
+            establishing
+            encrypted channel_
+
         </div>
 
 
 
-        <!-- 16 CHARACTER CODE -->
+        <!-- CODE -->
 
         <div
             id="encryptCode"
             class="encrypt-code"
         >
+
             0000 0000 0000 0000
+
         </div>
 
 
@@ -457,13 +1018,20 @@ body {
 
         <div class="encrypt-status">
 
+
             <span id="encryptStatus">
+
                 negotiating key...
+
             </span>
 
+
             <span id="encryptPercent">
+
                 0%
+
             </span>
+
 
         </div>
 
@@ -473,10 +1041,13 @@ body {
 
         <div class="encrypt-bar">
 
+
             <div
                 id="encryptProgress"
                 class="encrypt-progress"
-            ></div>
+            >
+            </div>
+
 
         </div>
 
@@ -488,7 +1059,9 @@ body {
             id="encryptBottom"
             class="encrypt-bottom"
         >
+
             access request pending
+
         </div>
 
 
@@ -502,14 +1075,16 @@ body {
 <script>
 
 
+
 /* =========================================
-   CURRENT LOCAL 12-HOUR TIME
+   CURRENT 12-HOUR TIME
 ========================================= */
 
 function updateClock() {
 
 
-    const now = new Date();
+    const now =
+        new Date();
 
 
     let hours =
@@ -519,13 +1094,19 @@ function updateClock() {
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const seconds =
         String(
             now.getSeconds()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const ampm =
@@ -533,8 +1114,6 @@ function updateClock() {
         ? "PM"
         : "AM";
 
-
-    /* CONVERT TO 12-HOUR TIME */
 
     hours =
         hours % 12;
@@ -546,9 +1125,11 @@ function updateClock() {
         : 12;
 
 
-    document.getElementById(
-        "time"
-    ).textContent =
+    document
+        .getElementById(
+            "time"
+        )
+        .textContent =
 
         hours +
         ":" +
@@ -572,35 +1153,48 @@ function updateRoute() {
 
     const part1 =
         Math.floor(
-            Math.random() * 256
+            Math.random()
+            *
+            256
         );
 
 
     const part2 =
         Math.floor(
-            Math.random() * 256
+            Math.random()
+            *
+            256
         );
 
 
     const part3 =
         Math.floor(
-            Math.random() * 256
+            Math.random()
+            *
+            256
         );
 
 
     const part4 =
         Math.floor(
-            Math.random() * 256
+            Math.random()
+            *
+            256
         );
 
 
-    document.getElementById(
-        "route"
-    ).textContent =
+    document
+        .getElementById(
+            "route"
+        )
+        .textContent =
 
-        part1 + "." +
-        part2 + "." +
-        part3 + "." +
+        part1 +
+        "." +
+        part2 +
+        "." +
+        part3 +
+        "." +
         part4;
 
 
@@ -608,22 +1202,18 @@ function updateRoute() {
 
 
 
-/* START CLOCK + ROUTE */
+/* START */
 
 updateClock();
 
 updateRoute();
 
 
-/* UPDATE TIME EVERY SECOND */
-
 setInterval(
     updateClock,
     1000
 );
 
-
-/* CHANGE FAKE IP */
 
 setInterval(
     updateRoute,
@@ -633,7 +1223,7 @@ setInterval(
 
 
 /* =========================================
-   16 CHARACTER ENCRYPTION CODE
+   16 CHARACTER CODE
 ========================================= */
 
 function makeEncryptionCode() {
@@ -643,10 +1233,9 @@ function makeEncryptionCode() {
         "0123456789ABCDEF";
 
 
-    let output = "";
+    let output =
+        "";
 
-
-    /* EXACTLY 16 CHARACTERS */
 
     for (
         let i = 0;
@@ -668,15 +1257,16 @@ function makeEncryptionCode() {
             ];
 
 
-        /* SPACE AFTER EVERY 4 */
-
         if (
             (i + 1) % 4 === 0
             &&
             i < 15
         ) {
 
-            output += " ";
+
+            output +=
+                " ";
+
 
         }
 
@@ -738,9 +1328,7 @@ function openEncryptedPage(
 
 
 
-    /* =====================================
-       RESET
-    ===================================== */
+    /* RESET */
 
     progress.style.width =
         "0%";
@@ -764,9 +1352,7 @@ function openEncryptedPage(
 
 
 
-    /* =====================================
-       SHOW SCREEN IMMEDIATELY
-    ===================================== */
+    /* SHOW SCREEN */
 
     overlay.classList.add(
         "active"
@@ -774,132 +1360,161 @@ function openEncryptedPage(
 
 
 
-    /*
-       NUMBERS START MOVING IMMEDIATELY
-    */
+    /* CODE MOVES IMMEDIATELY */
 
     const codeInterval =
 
-        setInterval(function() {
+        setInterval(
+            function() {
 
 
-            code.textContent =
-                makeEncryptionCode();
+                code.textContent =
+                    makeEncryptionCode();
 
 
-        }, 100);
+            },
+            100
+        );
 
 
 
     /* =====================================
-       WAIT 2 SECONDS BEFORE BAR MOVES
+       WAIT 2 SECONDS
     ===================================== */
 
-    setTimeout(function() {
-
-
-        let value = 0;
-
-
-
-        /* =================================
-           ABOUT 4 SECOND LOAD
-        ================================= */
-
-        const progressInterval =
-
-            setInterval(function() {
-
-
-                value++;
-
-
-                progress.style.width =
-                    value + "%";
-
-
-                percent.textContent =
-                    value + "%";
+    setTimeout(
+        function() {
 
 
 
-                /* 0 - 24% */
-
-                if (
-                    value < 25
-                ) {
-
-                    status.textContent =
-                        "negotiating key...";
-
-                }
-
-
-                /* 25 - 49% */
-
-                else if (
-                    value < 50
-                ) {
-
-                    status.textContent =
-                        "searching for path...";
-
-                }
-
-
-                /* 50 - 74% */
-
-                else if (
-                    value < 75
-                ) {
-
-                    status.textContent =
-                        "binding client...";
-
-                }
-
-
-                /* 75 - 100% */
-
-                else {
-
-                    status.textContent =
-                        "path found...";
-
-                }
+            let value =
+                0;
 
 
 
-                /* =================================
-                   OPEN PAGE AT 100%
-                ================================= */
+            /*
+               THEN LOAD FOR
+               ABOUT 4 SECONDS
+            */
 
-                if (
-                    value >= 100
-                ) {
+            const progressInterval =
 
-
-                    clearInterval(
-                        progressInterval
-                    );
+                setInterval(
+                    function() {
 
 
-                    clearInterval(
-                        codeInterval
-                    );
+
+                        value++;
 
 
-                    window.location.href =
-                        destination;
+
+                        progress
+                            .style
+                            .width =
+
+                            value +
+                            "%";
 
 
-                }
+
+                        percent
+                            .textContent =
+
+                            value +
+                            "%";
 
 
-            }, 40);
+
+                        /* STAGE 1 */
+
+                        if (
+                            value < 25
+                        ) {
 
 
-    }, 2000);
+                            status.textContent =
+                                "negotiating key...";
+
+
+                        }
+
+
+
+                        /* STAGE 2 */
+
+                        else if (
+                            value < 50
+                        ) {
+
+
+                            status.textContent =
+                                "masking route...";
+
+
+                        }
+
+
+
+                        /* STAGE 3 */
+
+                        else if (
+                            value < 75
+                        ) {
+
+
+                            status.textContent =
+                                "verifying access...";
+
+
+                        }
+
+
+
+                        /* STAGE 4 */
+
+                        else {
+
+
+                            status.textContent =
+                                "reconstructing path...";
+
+
+                        }
+
+
+
+                        /* COMPLETE */
+
+                        if (
+                            value >= 100
+                        ) {
+
+
+                            clearInterval(
+                                progressInterval
+                            );
+
+
+                            clearInterval(
+                                codeInterval
+                            );
+
+
+                            window.location.href =
+                                destination;
+
+
+                        }
+
+
+                    },
+                    40
+                );
+
+
+        },
+        2000
+    );
 
 
 }
