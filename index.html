@@ -335,8 +335,6 @@ body {
 <div class="home">
 
 
-    <!-- LOGO -->
-
     <img
         class="logo"
         src="suicide-party-logo.png"
@@ -346,8 +344,6 @@ body {
 
     <div class="text-area">
 
-
-        <!-- NAVIGATION -->
 
         <div class="nav">
 
@@ -361,8 +357,6 @@ body {
 
         </div>
 
-
-        <!-- TRACKING TEXT -->
 
         <div class="tagline">
 
@@ -402,9 +396,7 @@ body {
 
 
 
-<!-- =====================================
-     ENCRYPTION OVERLAY
-===================================== -->
+<!-- ENCRYPTION SCREEN -->
 
 <div
     id="encryptOverlay"
@@ -415,11 +407,9 @@ body {
 
 
         <div class="encrypt-title">
-            establishing channel
+            establishing encrypted channel_
         </div>
 
-
-        <!-- 16 CHARACTER CODE -->
 
         <div
             id="encryptCode"
@@ -428,8 +418,6 @@ body {
             0000 0000 0000 0000
         </div>
 
-
-        <!-- STATUS -->
 
         <div class="encrypt-status">
 
@@ -444,8 +432,6 @@ body {
         </div>
 
 
-        <!-- PROGRESS BAR -->
-
         <div class="encrypt-bar">
 
             <div
@@ -455,8 +441,6 @@ body {
 
         </div>
 
-
-        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -492,6 +476,7 @@ function updateClock() {
     const seconds =
         String(now.getSeconds()).padStart(2, "0");
 
+
     document.getElementById("time").textContent =
         hours + ":" + minutes + ":" + seconds;
 
@@ -519,7 +504,6 @@ function updateRoute() {
 
 
     document.getElementById("route").textContent =
-
         part1 + "." +
         part2 + "." +
         part3 + "." +
@@ -531,22 +515,14 @@ function updateRoute() {
 updateClock();
 updateRoute();
 
+setInterval(updateClock, 1000);
 
-setInterval(
-    updateClock,
-    1000
-);
-
-
-setInterval(
-    updateRoute,
-    350
-);
+setInterval(updateRoute, 350);
 
 
 
 /* =========================================
-   16 CHARACTER ENCRYPTION CODE
+   16 CHARACTER CODE
 ========================================= */
 
 function makeEncryptionCode() {
@@ -557,23 +533,16 @@ function makeEncryptionCode() {
     let output = "";
 
 
-    /* EXACTLY 16 CHARACTERS */
-
     for (let i = 0; i < 16; i++) {
 
         output +=
-
             characters[
-
                 Math.floor(
                     Math.random() *
                     characters.length
                 )
-
             ];
 
-
-        /* SPACE AFTER EVERY 4 CHARACTERS */
 
         if (
             (i + 1) % 4 === 0
@@ -595,47 +564,29 @@ function makeEncryptionCode() {
 
 
 /* =========================================
-   OPEN PAGE
+   OPEN ENCRYPTED PAGE
 ========================================= */
 
 function openEncryptedPage(destination, directoryName) {
 
 
     const overlay =
-        document.getElementById(
-            "encryptOverlay"
-        );
-
+        document.getElementById("encryptOverlay");
 
     const code =
-        document.getElementById(
-            "encryptCode"
-        );
-
+        document.getElementById("encryptCode");
 
     const progress =
-        document.getElementById(
-            "encryptProgress"
-        );
-
+        document.getElementById("encryptProgress");
 
     const percent =
-        document.getElementById(
-            "encryptPercent"
-        );
-
+        document.getElementById("encryptPercent");
 
     const status =
-        document.getElementById(
-            "encryptStatus"
-        );
-
+        document.getElementById("encryptStatus");
 
     const bottom =
-        document.getElementById(
-            "encryptBottom"
-        );
-
+        document.getElementById("encryptBottom");
 
 
     /* RESET */
@@ -643,40 +594,31 @@ function openEncryptedPage(destination, directoryName) {
     progress.style.width =
         "0%";
 
-
     percent.textContent =
         "0%";
-
 
     code.textContent =
         makeEncryptionCode();
 
-
     status.textContent =
         "negotiating key...";
-
 
     bottom.textContent =
         directoryName +
         " / access request pending";
 
 
+    /* SHOW SCREEN IMMEDIATELY */
 
-    /* SHOW ENCRYPTION SCREEN */
-
-    overlay.classList.add(
-        "active"
-    );
+    overlay.classList.add("active");
 
 
-    let value = 0;
-
-
-
-    /* CHANGE CODE RAPIDLY */
+    /*
+       CODE STARTS MOVING IMMEDIATELY
+       BUT PROGRESS DOES NOT
+    */
 
     const codeInterval =
-
         setInterval(function() {
 
             code.textContent =
@@ -687,89 +629,97 @@ function openEncryptedPage(destination, directoryName) {
 
 
     /* =====================================
-       4 SECOND PROGRESS
+       WAIT 2 SECONDS BEFORE LOADING
     ===================================== */
 
-    const progressInterval =
-
-        setInterval(function() {
+    setTimeout(function() {
 
 
-            value++;
+        let value = 0;
 
 
-            progress.style.width =
-                value + "%";
+        const progressInterval =
+            setInterval(function() {
 
 
-            percent.textContent =
-                value + "%";
+                value++;
 
 
-
-            /* 0 - 24% */
-
-            if (value < 25) {
-
-                status.textContent =
-                    "negotiating key...";
-
-            }
+                progress.style.width =
+                    value + "%";
 
 
-            /* 25 - 49% */
-
-            else if (value < 50) {
-
-                status.textContent =
-                    "masking route...";
-
-            }
-
-
-            /* 50 - 74% */
-
-            else if (value < 75) {
-
-                status.textContent =
-                    "source path found...";
-
-            }
-
-
-            /* 75 - 100% */
-
-            else {
-
-                status.textContent =
-                    "binding client...";
-
-            }
+                percent.textContent =
+                    value + "%";
 
 
 
-            /* OPEN PAGE AT 100% */
+                /* 0 - 24% */
 
-            if (value >= 100) {
+                if (value < 25) {
 
+                    status.textContent =
+                        "negotiating key...";
 
-                clearInterval(
-                    progressInterval
-                );
-
-
-                clearInterval(
-                    codeInterval
-                );
+                }
 
 
-                window.location.href =
-                    destination;
+                /* 25 - 49% */
 
-            }
+                else if (value < 50) {
+
+                    status.textContent =
+                        "masking route...";
+
+                }
 
 
-        }, 40);
+                /* 50 - 74% */
+
+                else if (value < 75) {
+
+                    status.textContent =
+                        "verifying access...";
+
+                }
+
+
+                /* 75 - 100% */
+
+                else {
+
+                    status.textContent =
+                        "reconstructing path...";
+
+                }
+
+
+
+                /* OPEN PAGE */
+
+                if (value >= 100) {
+
+
+                    clearInterval(
+                        progressInterval
+                    );
+
+
+                    clearInterval(
+                        codeInterval
+                    );
+
+
+                    window.location.href =
+                        destination;
+
+                }
+
+
+            }, 40);
+
+
+    }, 2000);
 
 
 }
