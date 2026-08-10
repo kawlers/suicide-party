@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>files</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -23,11 +28,21 @@ body {
     padding: 35px 0 70px;
 }
 
+
+/* BACK BUTTON */
+
 .back {
     color: #aaa;
     text-decoration: none;
     font-size: 12px;
 }
+
+.back:hover {
+    color: #fff;
+}
+
+
+/* HEADER */
 
 .header {
     text-align: center;
@@ -46,78 +61,211 @@ body {
     margin-top: -8px;
 }
 
+
+/* LINE */
+
 .line {
     height: 1px;
     background: #333;
-    margin: 18px 0 36px;
+    margin: 18px 0 45px;
 }
+
+
+/* SECTION TITLE */
 
 .section-title {
-    font-size: 14px;
-    color: #ddd;
-    margin-bottom: 14px;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 18px;
 }
 
-.section-title::before {
-    content: "/";
-    color: #b00000;
-    margin-right: 10px;
+
+/* VIDEO FILE LIST */
+
+.video-list {
+    width: 500px;
+    max-width: 100%;
 }
 
-.video-box {
-    width: 400px;
-    aspect-ratio: 16 / 9;
-    border: 1px solid #333;
+.video-file {
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: #777;
+    gap: 22px;
+
+    padding: 14px 4px;
+
+    border-top: 1px solid #222;
+
+    color: #aaa;
     font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.15s;
 }
 
-.footer {
-    text-align: center;
-    margin-top: 65px;
-    color: #555;
-    font-size: 12px;
+.video-file:last-child {
+    border-bottom: 1px solid #222;
 }
+
+.video-file:hover {
+    color: #fff;
+    padding-left: 10px;
+}
+
+
+/* RED FILE NUMBERS */
+
+.number {
+    color: #d00000;
+    width: 24px;
+}
+
+
+/* FOOTER */
+
+.footer {
+    margin-top: 80px;
+
+    color: #555;
+
+    font-size: 11px;
+    line-height: 1.8;
+    white-space: pre-line;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .page {
+        width: 90%;
+    }
+
+    .video-list {
+        width: 100%;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="page">
 
+
+    <!-- BACK -->
+
     <a class="back" href="index.html">← back</a>
 
+
+    <!-- HEADER -->
+
     <div class="header">
+
         <img
             class="logo"
             src="suicide-party-logo.png"
             alt="suicide party"
         >
 
-        <div class="title">files</div>
+        <div class="title">
+            files
+        </div>
+
     </div>
 
+
     <div class="line"></div>
+
+
+    <!-- VIDEO FILES -->
 
     <div class="section-title">
         video files (.mp4)
     </div>
 
-    <div class="video-box">
-        empty
+
+    <div class="video-list">
+
+
+        <div class="video-file">
+            <span class="number">01</span>
+            <span>scenebitch-lcut.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">02</span>
+            <span>957229577.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">03</span>
+            <span>purge-xtra2k25.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">04</span>
+            <span>untitled_04.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">05</span>
+            <span>sp_005.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">06</span>
+            <span>footage_02.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">07</span>
+            <span>recovered.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">08</span>
+            <span>unknown.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">09</span>
+            <span>clip_09.mp4</span>
+        </div>
+
+
+        <div class="video-file">
+            <span class="number">10</span>
+            <span>??????.mp4</span>
+        </div>
+
+
     </div>
 
-    <div class="footer">
-        your connection has been logged.
-        session ID: [unbound]
-        unknown client 
-        
-    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">your connection has been logged.
+session ID: [unbound]
+unknown client</div>
+
 
 </div>
 
 </body>
+
 </html>
