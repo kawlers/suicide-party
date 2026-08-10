@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>files</title>
@@ -26,6 +28,9 @@ body {
     padding: 35px 0 70px;
 }
 
+
+/* BACK BUTTON */
+
 .back {
     color: #aaa;
     text-decoration: none;
@@ -35,6 +40,9 @@ body {
 .back:hover {
     color: #fff;
 }
+
+
+/* HEADER */
 
 .header {
     text-align: center;
@@ -53,17 +61,26 @@ body {
     margin-top: -8px;
 }
 
+
+/* LINE */
+
 .line {
     height: 1px;
     background: #333;
     margin: 18px 0 45px;
 }
 
+
+/* SECTION TITLE */
+
 .section-title {
     color: #aaa;
     font-size: 13px;
     margin-bottom: 18px;
 }
+
+
+/* VIDEO FILE LIST */
 
 .video-list {
     width: 500px;
@@ -74,15 +91,20 @@ body {
     display: flex;
     align-items: center;
     gap: 22px;
+
     padding: 14px 4px;
+
     border-top: 1px solid #222;
+
     color: #aaa;
     font-size: 13px;
+
     cursor: pointer;
+
     transition: 0.15s;
 }
 
-.video-file:last-of-type {
+.video-file:last-child {
     border-bottom: 1px solid #222;
 }
 
@@ -91,34 +113,32 @@ body {
     padding-left: 10px;
 }
 
+
+/* RED FILE NUMBERS */
+
 .number {
     color: #d00000;
     width: 24px;
 }
 
-.video-player {
-    display: none;
-    width: 500px;
-    max-width: 100%;
-    margin: 12px 0 18px;
-}
 
-.video-player video {
-    width: 100%;
-    display: block;
-    border: 1px solid #222;
-    background: #000;
-}
+/* FOOTER */
 
 .footer {
     margin-top: 80px;
+
     color: #555;
+
     font-size: 11px;
     line-height: 1.8;
     white-space: pre-line;
 }
 
+
+/* MOBILE */
+
 @media (max-width: 600px) {
+
     .page {
         width: 90%;
     }
@@ -127,20 +147,24 @@ body {
         width: 100%;
     }
 
-    .video-player {
-        width: 100%;
-    }
 }
 
 </style>
 
 </head>
 
+
 <body>
 
 <div class="page">
 
+
+    <!-- BACK -->
+
     <a class="back" href="index.html">← back</a>
+
+
+    <!-- HEADER -->
 
     <div class="header">
 
@@ -156,49 +180,47 @@ body {
 
     </div>
 
+
     <div class="line"></div>
+
+
+    <!-- VIDEO FILES -->
 
     <div class="section-title">
         video files (.mp4)
     </div>
 
+
     <div class="video-list">
 
 
-        <div class="video-file" onclick="toggleVideo('video01')">
+        <div class="video-file">
             <span class="number">01</span>
-            <span>scenebitch-lcut.mp4</span>
-        </div>
-
-        <div id="video01" class="video-player">
-            <video controls preload="metadata">
-                <source src="scenebitch-lcut.mp4" type="video/mp4">
-                your browser does not support video playback.
-            </video>
+            <span>final.mp4</span>
         </div>
 
 
         <div class="video-file">
             <span class="number">02</span>
-            <span>957229577.mp4</span>
+            <span>camera_01.mp4</span>
         </div>
 
 
         <div class="video-file">
             <span class="number">03</span>
-            <span>purge-xtra2k25.mp4</span>
+            <span>052926.mp4</span>
         </div>
 
 
         <div class="video-file">
             <span class="number">04</span>
-            <span>untitled_04.mp4</span>
+            <span>untitled_01.mp4</span>
         </div>
 
 
         <div class="video-file">
             <span class="number">05</span>
-            <span>sp_005.mp4</span>
+            <span>sp_004.mp4</span>
         </div>
 
 
@@ -231,29 +253,18 @@ body {
             <span>??????.mp4</span>
         </div>
 
+
     </div>
 
+
+    <!-- FOOTER -->
 
     <div class="footer">your connection has been logged.
 session ID: [unbound]
 unknown client</div>
 
+
 </div>
-
-
-<script>
-
-function toggleVideo(id) {
-    const player = document.getElementById(id);
-
-    if (player.style.display === "block") {
-        player.style.display = "none";
-    } else {
-        player.style.display = "block";
-    }
-}
-
-</script>
 
 </body>
 
