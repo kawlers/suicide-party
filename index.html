@@ -180,11 +180,7 @@ body {
         </div>
 
         <div>
-            route: <span id="route">ENC::0000-0000-0000</span>
-        </div>
-
-        <div>
-            date: <span id="date">--.--.----</span>
+            route: <span id="route">192.168.---.---</span>
         </div>
 
         <div>
@@ -203,20 +199,12 @@ body {
 
 <script>
 
-/* REAL DATE + TIME */
+
+/* REAL CURRENT TIME */
 
 function updateClock() {
 
     const now = new Date();
-
-    const month =
-        String(now.getMonth() + 1).padStart(2, "0");
-
-    const day =
-        String(now.getDate()).padStart(2, "0");
-
-    const year =
-        now.getFullYear();
 
     const hours =
         String(now.getHours()).padStart(2, "0");
@@ -227,46 +215,37 @@ function updateClock() {
     const seconds =
         String(now.getSeconds()).padStart(2, "0");
 
-
-    document.getElementById("date").textContent =
-        month + "." + day + "." + year;
-
     document.getElementById("time").textContent =
         hours + ":" + minutes + ":" + seconds;
 
 }
 
 
-/* FAKE ENCRYPTED ROUTE */
-
-function randomCode() {
-
-    const characters = "0123456789ABCDEF";
-
-    let code = "";
-
-    for (let i = 0; i < 4; i++) {
-
-        code += characters[
-            Math.floor(Math.random() * characters.length)
-        ];
-
-    }
-
-    return code;
-
-}
-
+/* GENERATE FAKE IP */
 
 function updateRoute() {
 
+    const part1 =
+        Math.floor(Math.random() * 256);
+
+    const part2 =
+        Math.floor(Math.random() * 256);
+
+    const part3 =
+        Math.floor(Math.random() * 256);
+
+    const part4 =
+        Math.floor(Math.random() * 256);
+
+
     document.getElementById("route").textContent =
-        "ENC::"
-        + randomCode()
-        + "-"
-        + randomCode()
-        + "-"
-        + randomCode();
+        part1
+        + "."
+        + part2
+        + "."
+        + part3
+        + "."
+        + part4;
 
 }
 
@@ -277,14 +256,15 @@ updateClock();
 updateRoute();
 
 
-/* CLOCK */
+/* CLOCK UPDATES EVERY SECOND */
 
 setInterval(updateClock, 1000);
 
 
-/* ENCRYPTED ROUTE */
+/* FAKE IP CHANGES RAPIDLY */
 
-setInterval(updateRoute, 700);
+setInterval(updateRoute, 350);
+
 
 </script>
 
