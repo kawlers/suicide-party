@@ -114,8 +114,6 @@ body {
     line-height: 1.8;
 
     letter-spacing: 0.5px;
-
-    white-space: pre-line;
 }
 
 
@@ -171,12 +169,124 @@ body {
     </div>
 
 
-    <div class="tagline">your connection has been logged.
-session ID: [unbound]
-unknown client</div>
+    <div class="tagline">
+
+        <div>
+            your connection has been logged.
+        </div>
+
+        <div>
+            session ID: [unbound]
+        </div>
+
+        <div>
+            route: <span id="route">ENC::0000-0000-0000</span>
+        </div>
+
+        <div>
+            date: <span id="date">--.--.----</span>
+        </div>
+
+        <div>
+            time: <span id="time">--:--:--</span>
+        </div>
+
+        <div>
+            unknown client
+        </div>
+
+    </div>
 
 
 </div>
+
+
+<script>
+
+/* REAL DATE + TIME */
+
+function updateClock() {
+
+    const now = new Date();
+
+    const month =
+        String(now.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(now.getDate()).padStart(2, "0");
+
+    const year =
+        now.getFullYear();
+
+    const hours =
+        String(now.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(now.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(now.getSeconds()).padStart(2, "0");
+
+
+    document.getElementById("date").textContent =
+        month + "." + day + "." + year;
+
+    document.getElementById("time").textContent =
+        hours + ":" + minutes + ":" + seconds;
+
+}
+
+
+/* FAKE ENCRYPTED ROUTE */
+
+function randomCode() {
+
+    const characters = "0123456789ABCDEF";
+
+    let code = "";
+
+    for (let i = 0; i < 4; i++) {
+
+        code += characters[
+            Math.floor(Math.random() * characters.length)
+        ];
+
+    }
+
+    return code;
+
+}
+
+
+function updateRoute() {
+
+    document.getElementById("route").textContent =
+        "ENC::"
+        + randomCode()
+        + "-"
+        + randomCode()
+        + "-"
+        + randomCode();
+
+}
+
+
+/* START */
+
+updateClock();
+updateRoute();
+
+
+/* CLOCK */
+
+setInterval(updateClock, 1000);
+
+
+/* ENCRYPTED ROUTE */
+
+setInterval(updateRoute, 700);
+
+</script>
 
 
 </body>
