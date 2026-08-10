@@ -41,6 +41,9 @@ body {
     text-align: center;
 
     padding: 30px;
+
+    /* moves whole cluster slightly below center */
+    transform: translateY(35px);
 }
 
 
@@ -53,7 +56,8 @@ body {
 
     display: block;
 
-    margin-bottom: 55px;
+    /* smaller gap between logo and links */
+    margin-bottom: 30px;
 }
 
 
@@ -63,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    gap: 28px;
+    gap: 20px;
 
     align-items: center;
 }
@@ -102,10 +106,12 @@ body {
 }
 
 
-/* FOOTER */
+/* FOOTER / TRACKING TEXT */
 
 .tagline {
-    margin-top: 65px;
+
+    /* brings tracking text closer to links */
+    margin-top: 32px;
 
     color: #555;
 
@@ -123,17 +129,22 @@ body {
 
     .home {
         padding: 20px;
+        transform: translateY(20px);
     }
 
     .logo {
         width: 450px;
         max-width: 95vw;
 
-        margin-bottom: 45px;
+        margin-bottom: 25px;
     }
 
     .nav a {
         font-size: 16px;
+    }
+
+    .tagline {
+        margin-top: 28px;
     }
 
 }
@@ -256,12 +267,12 @@ updateClock();
 updateRoute();
 
 
-/* CLOCK UPDATES EVERY SECOND */
+/* CLOCK */
 
 setInterval(updateClock, 1000);
 
 
-/* FAKE IP CHANGES RAPIDLY */
+/* FAKE IP */
 
 setInterval(updateRoute, 350);
 
