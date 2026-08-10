@@ -1,16 +1,184 @@
-<img
-    class="logo"
-    src="suicide-party-logo.png"
-    alt="suicide party"
->
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="nav">
-    <a href="archive.html">files</a>
-    <a href="audio.html">audio files</a>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>suicide party</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    font-family: "Courier New", monospace;
+}
+
+
+/* HOME */
+
+.home {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+
+/* LOGO */
+
+.logo {
+    width: 650px;
+    max-width: 90vw;
+    height: auto;
+
+    display: block;
+
+    margin-bottom: 55px;
+}
+
+
+/* NAVIGATION */
+
+.nav {
+    display: flex;
+    flex-direction: column;
+
+    gap: 28px;
+
+    align-items: center;
+}
+
+.nav a {
+    color: #ddd;
+
+    text-decoration: none;
+
+    font-size: 18px;
+    letter-spacing: 3px;
+
+    position: relative;
+
+    padding-bottom: 8px;
+}
+
+.nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    width: 110px;
+    height: 1px;
+
+    background: #7d0000;
+}
+
+.nav a:hover {
+    color: #fff;
+}
+
+
+/* FOOTER */
+
+.tagline {
+    margin-top: 65px;
+
+    color: #555;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    letter-spacing: 0.5px;
+
+    white-space: pre-line;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .home {
+        padding: 20px;
+    }
+
+    .logo {
+        width: 450px;
+        max-width: 95vw;
+
+        margin-bottom: 45px;
+    }
+
+    .nav a {
+        font-size: 16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="home">
+
+
+    <img
+        class="logo"
+        src="suicide-party-logo.png"
+        alt="suicide party"
+    >
+
+
+    <div class="nav">
+
+        <a href="archive.html">
+            files
+        </a>
+
+        <a href="audio.html">
+            audio files
+        </a>
+
+    </div>
+
+
+    <div class="tagline">your connection has been logged.
+session ID: [unbound]
+unknown client</div>
+
+
 </div>
 
-<div class="tagline">
-    your connection has been logged.
-    session ID: [unbound]
-    unknown client
-</div>
+
+</body>
+
+</html>
