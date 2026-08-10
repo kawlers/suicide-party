@@ -185,7 +185,7 @@ body {
     position: relative;
 
     width: 1000px;
-    max-width: 82vw;
+    max-width: 90vw;
 
     opacity: 0;
 
@@ -381,7 +381,7 @@ body {
 
         <div
             class="video-file"
-            onclick="openVideo('purge-xtra2k25.mp4')"
+            onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
             <span class="number">
@@ -400,7 +400,7 @@ body {
 
         <div
             class="video-file"
-            onclick="openVideo('scenebitch-lcut.mp4')"
+            onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
             <span class="number">
@@ -435,7 +435,7 @@ body {
 
         <div
             class="video-file"
-            onclick="openVideo('untitled_04.mp4')"
+            onclick="openVideo('untitled_04.mp4', false)"
         >
 
             <span class="number">
@@ -454,7 +454,7 @@ body {
 
         <div
             class="video-file"
-            onclick="openVideo('sp_005.mp4')"
+            onclick="openVideo('sp_005.mp4', false)"
         >
 
             <span class="number">
@@ -501,11 +501,11 @@ body {
 
 
 
-        <!-- 08 -->
+        <!-- 08 - STALLS DURING LOADING -->
 
         <div
             class="video-file"
-            onclick="openVideo('957229577.mp4')"
+            onclick="openVideo('957229577.mp4', true)"
         >
 
             <span class="number">
@@ -525,7 +525,9 @@ body {
 
     <!-- FOOTER -->
 
-    <div class="footer"></div>
+    <div class="footer">your connection has been logged.
+session ID: [unbound]
+unknown client</div>
 
 
 </div>
@@ -564,7 +566,10 @@ body {
             class="loading-screen"
         >
 
-            <div class="loading-text">
+            <div
+                id="loadingText"
+                class="loading-text"
+            >
                 loading file...
             </div>
 
@@ -620,13 +625,14 @@ body {
 <script>
 
 let loadingInterval;
+let stallTimeout;
 
 
 /* =========================================
    OPEN VIDEO
 ========================================= */
 
-function openVideo(fileName) {
+function openVideo(fileName, shouldStall) {
 
 
     const overlay =
@@ -653,6 +659,12 @@ function openVideo(fileName) {
         );
 
 
+    const loadingText =
+        document.getElementById(
+            "loadingText"
+        );
+
+
     const progress =
         document.getElementById(
             "loadingProgress"
@@ -670,6 +682,10 @@ function openVideo(fileName) {
 
     clearInterval(
         loadingInterval
+    );
+
+    clearTimeout(
+        stallTimeout
     );
 
 
@@ -691,6 +707,10 @@ function openVideo(fileName) {
         "flex";
 
 
+    loadingText.textContent =
+        "loading file...";
+
+
     progress.style.width =
         "0%";
 
@@ -708,12 +728,14 @@ function openVideo(fileName) {
 
 
 
-    /* =====================================
-       2 SECOND LOAD
-    ===================================== */
-
     let value = 0;
+    let hasStalled = false;
 
+
+
+    /* =====================================
+       LOADING
+    ===================================== */
 
     loadingInterval =
         setInterval(function() {
@@ -731,6 +753,82 @@ function openVideo(fileName) {
 
 
 
+            /* =================================
+               ONLY FILE 08 STALLS AT 82%
+            ================================= */
+
+            if (
+                shouldStall === true
+                &&
+                value === 82
+                &&
+                hasStalled === false
+            ) {
+
+
+                hasStalled =
+                    true;
+
+
+                clearInterval(
+                    loadingInterval
+                );
+
+
+                /*
+                   BAR STAYS FROZEN AT 82%
+                   FOR 2 SECONDS
+                */
+
+                stallTimeout =
+                    setTimeout(function() {
+
+
+                        /* RESUME */
+
+                        loadingInterval =
+                            setInterval(function() {
+
+
+                                value++;
+
+
+                                progress.style.width =
+                                    value + "%";
+
+
+                                percent.textContent =
+                                    value + "%";
+
+
+                                if (value >= 100) {
+
+
+                                    clearInterval(
+                                        loadingInterval
+                                    );
+
+
+                                    showVideo();
+
+
+                                }
+
+
+                            }, 20);
+
+
+                    }, 2000);
+
+
+                return;
+
+            }
+
+
+
+            /* NORMAL COMPLETION */
+
             if (value >= 100) {
 
 
@@ -739,27 +837,53 @@ function openVideo(fileName) {
                 );
 
 
-                setTimeout(function() {
-
-
-                    loadingScreen.style.display =
-                        "none";
-
-
-                    video.style.display =
-                        "block";
-
-
-                    video.play();
-
-
-                }, 100);
+                showVideo();
 
 
             }
 
 
         }, 20);
+
+
+}
+
+
+
+/* =========================================
+   SHOW VIDEO
+========================================= */
+
+function showVideo() {
+
+
+    const video =
+        document.getElementById(
+            "videoPlayer"
+        );
+
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+
+    setTimeout(function() {
+
+
+        loadingScreen.style.display =
+            "none";
+
+
+        video.style.display =
+            "block";
+
+
+        video.play();
+
+
+    }, 100);
 
 
 }
@@ -787,6 +911,11 @@ function closeVideo() {
 
     clearInterval(
         loadingInterval
+    );
+
+
+    clearTimeout(
+        stallTimeout
     );
 
 
