@@ -294,84 +294,90 @@ body {
     <div class="video-list">
 
 
-        <!-- 01 -->
-
-        <div class="video-file" onclick="openVideo('scenebitch-lcut.mp4')">
-            <span class="number">01</span>
-            <span>scenebitch-lcut.mp4</span>
-        </div>
+        <div class="video-list">
 
 
-        <!-- 02 -->
+    <!-- 01 -->
 
-        <div class="video-file" onclick="openVideo('957229577.mp4')">
-            <span class="number">02</span>
-            <span>957229577.mp4</span>
-        </div>
-
-
-        <!-- 03 -->
-
-        <div class="video-file" onclick="openVideo('purge-xtra2k25.mp4')">
-            <span class="number">03</span>
-            <span>purge-xtra2k25.mp4</span>
-        </div>
+    <div class="video-file" onclick="openVideo('purge-xtra2k25.mp4')">
+        <span class="number">01</span>
+        <span>purge-xtra2k25.mp4</span>
+    </div>
 
 
-        <!-- 04 -->
+    <!-- 02 -->
 
-        <div class="video-file" onclick="openVideo('untitled_04.mp4')">
-            <span class="number">04</span>
-            <span>untitled_04.mp4</span>
-        </div>
-
-
-        <!-- 05 -->
-
-        <div class="video-file" onclick="openVideo('sp_005.mp4')">
-            <span class="number">05</span>
-            <span>sp_005.mp4</span>
-        </div>
+    <div class="video-file" onclick="openVideo('scenebitch-lcut.mp4')">
+        <span class="number">02</span>
+        <span>scenebitch-lcut.mp4</span>
+    </div>
 
 
-        <!-- 06 -->
+    <!-- 03 -->
 
-        <div class="video-file">
-            <span class="number">06</span>
-            <span>footage_02.mp4</span>
-        </div>
-
-
-        <!-- 07 -->
-
-        <div class="video-file">
-            <span class="number">07</span>
-            <span>recovered.mp4</span>
-        </div>
+    <div class="video-file" onclick="openVideo('untitled_04.mp4')">
+        <span class="number">03</span>
+        <span>untitled_04.mp4</span>
+    </div>
 
 
-        <!-- 08 -->
+    <!-- 04 -->
 
-        <div class="video-file">
-            <span class="number">08</span>
-            <span>unknown.mp4</span>
-        </div>
-
-
-        <!-- 09 -->
-
-        <div class="video-file">
-            <span class="number">09</span>
-            <span>clip_09.mp4</span>
-        </div>
+    <div class="video-file" onclick="openVideo('sp_005.mp4')">
+        <span class="number">04</span>
+        <span>sp_005.mp4</span>
+    </div>
 
 
-        <!-- 10 -->
+    <!-- 05 -->
 
-        <div class="video-file">
-            <span class="number">10</span>
-            <span>??????.mp4</span>
-        </div>
+    <div class="video-file">
+        <span class="number">05</span>
+        <span>footage_02.mp4</span>
+    </div>
+
+
+    <!-- 06 -->
+
+    <div class="video-file">
+        <span class="number">06</span>
+        <span>recovered.mp4</span>
+    </div>
+
+
+    <!-- 07 -->
+
+    <div class="video-file">
+        <span class="number">07</span>
+        <span>unknown.mp4</span>
+    </div>
+
+
+    <!-- 08 -->
+
+    <div class="video-file">
+        <span class="number">08</span>
+        <span>clip_09.mp4</span>
+    </div>
+
+
+    <!-- 09 -->
+
+    <div class="video-file" onclick="openVideo('957229577.mp4')">
+        <span class="number">09</span>
+        <span>957229577.mp4</span>
+    </div>
+
+
+    <!-- 10 -->
+
+    <div class="video-file">
+        <span class="number">10</span>
+        <span>??????.mp4</span>
+    </div>
+
+
+</div>
 
 
     </div>
@@ -398,7 +404,6 @@ unknown client</div>
 
     <div class="video-window">
 
-
         <!-- CLOSE BUTTON -->
 
         <button
@@ -407,6 +412,31 @@ unknown client</div>
         >
             ×
         </button>
+
+
+        <!-- LOADING SCREEN -->
+
+        <div id="loadingScreen" class="loading-screen">
+
+            <div class="loading-text">
+                loading file...
+            </div>
+
+            <div class="loading-bar">
+                <div
+                    id="loadingProgress"
+                    class="loading-progress"
+                ></div>
+            </div>
+
+            <div
+                id="loadingPercent"
+                class="loading-percent"
+            >
+                0%
+            </div>
+
+        </div>
 
 
         <!-- VIDEO -->
@@ -426,7 +456,6 @@ unknown client</div>
             your browser does not support video playback.
 
         </video>
-
 
     </div>
 
