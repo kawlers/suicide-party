@@ -73,7 +73,9 @@ body {
 .nav {
     display: flex;
     flex-direction: column;
+
     gap: 14px;
+
     align-items: center;
 }
 
@@ -179,6 +181,7 @@ body {
     padding: 42px;
 
     transform: scale(0.96);
+
     opacity: 0;
 
     transition:
@@ -206,7 +209,7 @@ body {
 }
 
 
-/* LARGE CHANGING CODE */
+/* 16 CHARACTER CHANGING CODE */
 
 .encrypt-code {
     color: #b00000;
@@ -332,6 +335,8 @@ body {
 <div class="home">
 
 
+    <!-- LOGO -->
+
     <img
         class="logo"
         src="suicide-party-logo.png"
@@ -341,6 +346,8 @@ body {
 
     <div class="text-area">
 
+
+        <!-- NAVIGATION -->
 
         <div class="nav">
 
@@ -354,6 +361,8 @@ body {
 
         </div>
 
+
+        <!-- TRACKING TEXT -->
 
         <div class="tagline">
 
@@ -393,7 +402,9 @@ body {
 
 
 
-<!-- ENCRYPTION OVERLAY -->
+<!-- =====================================
+     ENCRYPTION OVERLAY
+===================================== -->
 
 <div
     id="encryptOverlay"
@@ -408,6 +419,8 @@ body {
         </div>
 
 
+        <!-- 16 CHARACTER CODE -->
+
         <div
             id="encryptCode"
             class="encrypt-code"
@@ -415,6 +428,8 @@ body {
             0000 0000 0000 0000
         </div>
 
+
+        <!-- STATUS -->
 
         <div class="encrypt-status">
 
@@ -429,6 +444,8 @@ body {
         </div>
 
 
+        <!-- PROGRESS BAR -->
+
         <div class="encrypt-bar">
 
             <div
@@ -438,6 +455,8 @@ body {
 
         </div>
 
+
+        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -456,7 +475,9 @@ body {
 <script>
 
 
-/* CURRENT TIME */
+/* =========================================
+   CURRENT TIME
+========================================= */
 
 function updateClock() {
 
@@ -477,7 +498,10 @@ function updateClock() {
 }
 
 
-/* FAKE CHANGING IP */
+
+/* =========================================
+   FAKE CHANGING IP
+========================================= */
 
 function updateRoute() {
 
@@ -493,7 +517,9 @@ function updateRoute() {
     const part4 =
         Math.floor(Math.random() * 256);
 
+
     document.getElementById("route").textContent =
+
         part1 + "." +
         part2 + "." +
         part3 + "." +
@@ -505,12 +531,23 @@ function updateRoute() {
 updateClock();
 updateRoute();
 
-setInterval(updateClock, 1000);
-setInterval(updateRoute, 350);
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+setInterval(
+    updateRoute,
+    350
+);
 
 
 
-/* RANDOM ENCRYPTION CODE */
+/* =========================================
+   16 CHARACTER ENCRYPTION CODE
+========================================= */
 
 function makeEncryptionCode() {
 
@@ -520,19 +557,32 @@ function makeEncryptionCode() {
     let output = "";
 
 
-    for (let i = 0; i < 24; i++) {
+    /* EXACTLY 16 CHARACTERS */
+
+    for (let i = 0; i < 16; i++) {
 
         output +=
+
             characters[
+
                 Math.floor(
                     Math.random() *
                     characters.length
                 )
+
             ];
 
 
-        if ((i + 1) % 4 === 0 && i < 23) {
+        /* SPACE AFTER EVERY 4 CHARACTERS */
+
+        if (
+            (i + 1) % 4 === 0
+            &&
+            i < 15
+        ) {
+
             output += " ";
+
         }
 
     }
@@ -544,69 +594,104 @@ function makeEncryptionCode() {
 
 
 
-/* OPEN PAGE */
+/* =========================================
+   OPEN PAGE
+========================================= */
 
 function openEncryptedPage(destination, directoryName) {
 
 
     const overlay =
-        document.getElementById("encryptOverlay");
+        document.getElementById(
+            "encryptOverlay"
+        );
+
 
     const code =
-        document.getElementById("encryptCode");
+        document.getElementById(
+            "encryptCode"
+        );
+
 
     const progress =
-        document.getElementById("encryptProgress");
+        document.getElementById(
+            "encryptProgress"
+        );
+
 
     const percent =
-        document.getElementById("encryptPercent");
+        document.getElementById(
+            "encryptPercent"
+        );
+
 
     const status =
-        document.getElementById("encryptStatus");
+        document.getElementById(
+            "encryptStatus"
+        );
+
 
     const bottom =
-        document.getElementById("encryptBottom");
+        document.getElementById(
+            "encryptBottom"
+        );
+
 
 
     /* RESET */
 
-    progress.style.width = "0%";
+    progress.style.width =
+        "0%";
 
-    percent.textContent = "0%";
+
+    percent.textContent =
+        "0%";
+
 
     code.textContent =
         makeEncryptionCode();
 
+
     status.textContent =
         "negotiating key...";
+
 
     bottom.textContent =
         directoryName +
         " / access request pending";
 
 
-    /* SHOW */
 
-    overlay.classList.add("active");
+    /* SHOW ENCRYPTION SCREEN */
+
+    overlay.classList.add(
+        "active"
+    );
 
 
     let value = 0;
 
 
-    /* RAPID CODE */
+
+    /* CHANGE CODE RAPIDLY */
 
     const codeInterval =
+
         setInterval(function() {
 
             code.textContent =
                 makeEncryptionCode();
 
-        }, 75);
+        }, 100);
 
 
-    /* PROGRESS */
+
+    /* =====================================
+       4 SECOND PROGRESS
+    ===================================== */
 
     const progressInterval =
+
         setInterval(function() {
 
 
@@ -621,12 +706,18 @@ function openEncryptedPage(destination, directoryName) {
                 value + "%";
 
 
+
+            /* 0 - 24% */
+
             if (value < 25) {
 
                 status.textContent =
                     "negotiating key...";
 
             }
+
+
+            /* 25 - 49% */
 
             else if (value < 50) {
 
@@ -635,12 +726,18 @@ function openEncryptedPage(destination, directoryName) {
 
             }
 
+
+            /* 50 - 74% */
+
             else if (value < 75) {
 
                 status.textContent =
-                    "verifying access...";
+                    "source path found...";
 
             }
+
+
+            /* 75 - 100% */
 
             else {
 
@@ -650,13 +747,16 @@ function openEncryptedPage(destination, directoryName) {
             }
 
 
-            /* AT 100%, JUST OPEN PAGE */
+
+            /* OPEN PAGE AT 100% */
 
             if (value >= 100) {
+
 
                 clearInterval(
                     progressInterval
                 );
+
 
                 clearInterval(
                     codeInterval
@@ -669,7 +769,7 @@ function openEncryptedPage(destination, directoryName) {
             }
 
 
-        }, 22);
+        }, 40);
 
 
 }
