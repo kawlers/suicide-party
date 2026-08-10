@@ -57,7 +57,7 @@ body {
 }
 
 
-/* ALL TEXT UNDER LOGO */
+/* TEXT AREA */
 
 .text-area {
     display: flex;
@@ -88,6 +88,8 @@ body {
     position: relative;
 
     padding-bottom: 8px;
+
+    cursor: pointer;
 }
 
 .nav a::after {
@@ -128,10 +130,157 @@ body {
 }
 
 
-/* RED CHANGING IP */
+/* RED CHANGING FAKE IP */
 
 #route {
     color: #b00000;
+}
+
+
+/* =========================================
+   ENCRYPTION SCREEN
+========================================= */
+
+.encrypt-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.97);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.encrypt-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* LARGE PANEL */
+
+.encrypt-panel {
+    width: min(900px, 88vw);
+
+    border: 1px solid #252525;
+
+    background: #020202;
+
+    padding: 42px;
+
+    transform: scale(0.96);
+    opacity: 0;
+
+    transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.encrypt-overlay.active .encrypt-panel {
+    transform: scale(1);
+    opacity: 1;
+}
+
+
+/* HEADER */
+
+.encrypt-title {
+    color: #777;
+
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    margin-bottom: 28px;
+
+    text-align: left;
+}
+
+
+/* LARGE CHANGING CODE */
+
+.encrypt-code {
+    color: #b00000;
+
+    font-size: clamp(22px, 4vw, 46px);
+
+    letter-spacing: 5px;
+
+    word-break: break-all;
+
+    text-align: left;
+
+    min-height: 110px;
+
+    display: flex;
+    align-items: center;
+
+    border-top: 1px solid #1d1d1d;
+    border-bottom: 1px solid #1d1d1d;
+
+    padding: 25px 0;
+
+    margin-bottom: 28px;
+}
+
+
+/* STATUS */
+
+.encrypt-status {
+    display: flex;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #555;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+
+    margin-bottom: 14px;
+}
+
+
+/* PROGRESS BAR */
+
+.encrypt-bar {
+    width: 100%;
+    height: 4px;
+
+    background: #151515;
+
+    overflow: hidden;
+}
+
+.encrypt-progress {
+    width: 0%;
+    height: 100%;
+
+    background: #8d0000;
+
+    transition: width 0.06s linear;
+}
+
+
+/* BOTTOM TEXT */
+
+.encrypt-bottom {
+    margin-top: 14px;
+
+    color: #333;
+
+    font-size: 9px;
+
+    text-align: left;
 }
 
 
@@ -160,6 +309,16 @@ body {
         margin-top: 22px;
     }
 
+    .encrypt-panel {
+        width: 92vw;
+        padding: 25px;
+    }
+
+    .encrypt-code {
+        min-height: 90px;
+        letter-spacing: 3px;
+    }
+
 }
 
 </style>
@@ -185,11 +344,11 @@ body {
 
         <div class="nav">
 
-            <a href="archive.html">
+            <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
                 files
             </a>
 
-            <a href="audio.html">
+            <a onclick="openEncryptedPage('audio.html', 'AUDIO DIRECTORY')">
                 audio files
             </a>
 
@@ -207,11 +366,17 @@ body {
             </div>
 
             <div>
-                route: <span id="route">192.168.---.---</span>
+                route:
+                <span id="route">
+                    192.168.---.---
+                </span>
             </div>
 
             <div>
-                time: <span id="time">--:--:--</span>
+                time:
+                <span id="time">
+                    --:--:--
+                </span>
             </div>
 
             <div>
@@ -227,10 +392,71 @@ body {
 </div>
 
 
+
+<!-- ENCRYPTION OVERLAY -->
+
+<div
+    id="encryptOverlay"
+    class="encrypt-overlay"
+>
+
+    <div class="encrypt-panel">
+
+
+        <div class="encrypt-title">
+            establishing encrypted channel_
+        </div>
+
+
+        <div
+            id="encryptCode"
+            class="encrypt-code"
+        >
+            0000 0000 0000 0000
+        </div>
+
+
+        <div class="encrypt-status">
+
+            <span id="encryptStatus">
+                negotiating key...
+            </span>
+
+            <span id="encryptPercent">
+                0%
+            </span>
+
+        </div>
+
+
+        <div class="encrypt-bar">
+
+            <div
+                id="encryptProgress"
+                class="encrypt-progress"
+            ></div>
+
+        </div>
+
+
+        <div
+            id="encryptBottom"
+            class="encrypt-bottom"
+        >
+            access request pending
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
 <script>
 
 
-/* REAL CURRENT TIME */
+/* CURRENT TIME */
 
 function updateClock() {
 
@@ -255,10 +481,17 @@ function updateClock() {
 
 function updateRoute() {
 
-    const part1 = Math.floor(Math.random() * 256);
-    const part2 = Math.floor(Math.random() * 256);
-    const part3 = Math.floor(Math.random() * 256);
-    const part4 = Math.floor(Math.random() * 256);
+    const part1 =
+        Math.floor(Math.random() * 256);
+
+    const part2 =
+        Math.floor(Math.random() * 256);
+
+    const part3 =
+        Math.floor(Math.random() * 256);
+
+    const part4 =
+        Math.floor(Math.random() * 256);
 
     document.getElementById("route").textContent =
         part1 + "." +
@@ -273,11 +506,173 @@ updateClock();
 updateRoute();
 
 setInterval(updateClock, 1000);
-
-/* IP CHANGES EVERY 0.35 SECONDS */
-
 setInterval(updateRoute, 350);
 
+
+
+/* RANDOM ENCRYPTION CODE */
+
+function makeEncryptionCode() {
+
+    const characters =
+        "0123456789ABCDEF";
+
+    let output = "";
+
+
+    for (let i = 0; i < 24; i++) {
+
+        output +=
+            characters[
+                Math.floor(
+                    Math.random() *
+                    characters.length
+                )
+            ];
+
+
+        if ((i + 1) % 4 === 0 && i < 23) {
+            output += " ";
+        }
+
+    }
+
+
+    return output;
+
+}
+
+
+
+/* OPEN PAGE */
+
+function openEncryptedPage(destination, directoryName) {
+
+
+    const overlay =
+        document.getElementById("encryptOverlay");
+
+    const code =
+        document.getElementById("encryptCode");
+
+    const progress =
+        document.getElementById("encryptProgress");
+
+    const percent =
+        document.getElementById("encryptPercent");
+
+    const status =
+        document.getElementById("encryptStatus");
+
+    const bottom =
+        document.getElementById("encryptBottom");
+
+
+    /* RESET */
+
+    progress.style.width = "0%";
+
+    percent.textContent = "0%";
+
+    code.textContent =
+        makeEncryptionCode();
+
+    status.textContent =
+        "negotiating key...";
+
+    bottom.textContent =
+        directoryName +
+        " / access request pending";
+
+
+    /* SHOW */
+
+    overlay.classList.add("active");
+
+
+    let value = 0;
+
+
+    /* RAPID CODE */
+
+    const codeInterval =
+        setInterval(function() {
+
+            code.textContent =
+                makeEncryptionCode();
+
+        }, 75);
+
+
+    /* PROGRESS */
+
+    const progressInterval =
+        setInterval(function() {
+
+
+            value++;
+
+
+            progress.style.width =
+                value + "%";
+
+
+            percent.textContent =
+                value + "%";
+
+
+            if (value < 25) {
+
+                status.textContent =
+                    "negotiating key...";
+
+            }
+
+            else if (value < 50) {
+
+                status.textContent =
+                    "masking route...";
+
+            }
+
+            else if (value < 75) {
+
+                status.textContent =
+                    "verifying access...";
+
+            }
+
+            else {
+
+                status.textContent =
+                    "binding client...";
+
+            }
+
+
+            /* AT 100%, JUST OPEN PAGE */
+
+            if (value >= 100) {
+
+                clearInterval(
+                    progressInterval
+                );
+
+                clearInterval(
+                    codeInterval
+                );
+
+
+                window.location.href =
+                    destination;
+
+            }
+
+
+        }, 22);
+
+
+}
 
 </script>
 
