@@ -2,9 +2,7 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>files</title>
@@ -80,7 +78,7 @@ body {
 }
 
 
-/* VIDEO FILE LIST */
+/* VIDEO LIST */
 
 .video-list {
     width: 500px;
@@ -91,20 +89,15 @@ body {
     display: flex;
     align-items: center;
     gap: 22px;
-
     padding: 14px 4px;
-
     border-top: 1px solid #222;
-
     color: #aaa;
     font-size: 13px;
-
     cursor: pointer;
-
     transition: 0.15s;
 }
 
-.video-file:last-child {
+.video-file:last-of-type {
     border-bottom: 1px solid #222;
 }
 
@@ -114,7 +107,7 @@ body {
 }
 
 
-/* RED FILE NUMBERS */
+/* RED NUMBERS */
 
 .number {
     color: #d00000;
@@ -122,13 +115,28 @@ body {
 }
 
 
+/* VIDEO PLAYER */
+
+.video-player {
+    display: none;
+    width: 500px;
+    max-width: 100%;
+    margin: 12px 0 18px;
+}
+
+.video-player video {
+    display: block;
+    width: 100%;
+    background: #000;
+    border: 1px solid #222;
+}
+
+
 /* FOOTER */
 
 .footer {
     margin-top: 80px;
-
     color: #555;
-
     font-size: 11px;
     line-height: 1.8;
     white-space: pre-line;
@@ -147,10 +155,13 @@ body {
         width: 100%;
     }
 
+    .video-player {
+        width: 100%;
+    }
+
 }
 
 </style>
-
 </head>
 
 
@@ -194,35 +205,62 @@ body {
     <div class="video-list">
 
 
-        <div class="video-file">
+        <!-- 01 -->
+
+        <div class="video-file" onclick="toggleVideo('video01')">
             <span class="number">01</span>
-            <span>final.mp4</span>
+            <span>scenebitch-lcut.mp4</span>
         </div>
 
+        <div id="video01" class="video-player">
+
+            <video controls preload="metadata">
+
+                <source
+                    src="scenebitch-lcut.mp4"
+                    type="video/mp4"
+                >
+
+                your browser does not support video playback.
+
+            </video>
+
+        </div>
+
+
+        <!-- 02 -->
 
         <div class="video-file">
             <span class="number">02</span>
-            <span>camera_01.mp4</span>
+            <span>957229577.mp4</span>
         </div>
 
+
+        <!-- 03 -->
 
         <div class="video-file">
             <span class="number">03</span>
-            <span>052926.mp4</span>
+            <span>purge-xtra2k25.mp4</span>
         </div>
 
+
+        <!-- 04 -->
 
         <div class="video-file">
             <span class="number">04</span>
-            <span>untitled_01.mp4</span>
+            <span>untitled_04.mp4</span>
         </div>
 
+
+        <!-- 05 -->
 
         <div class="video-file">
             <span class="number">05</span>
-            <span>sp_004.mp4</span>
+            <span>sp_005.mp4</span>
         </div>
 
+
+        <!-- 06 -->
 
         <div class="video-file">
             <span class="number">06</span>
@@ -230,11 +268,15 @@ body {
         </div>
 
 
+        <!-- 07 -->
+
         <div class="video-file">
             <span class="number">07</span>
             <span>recovered.mp4</span>
         </div>
 
+
+        <!-- 08 -->
 
         <div class="video-file">
             <span class="number">08</span>
@@ -242,11 +284,15 @@ body {
         </div>
 
 
+        <!-- 09 -->
+
         <div class="video-file">
             <span class="number">09</span>
             <span>clip_09.mp4</span>
         </div>
 
+
+        <!-- 10 -->
 
         <div class="video-file">
             <span class="number">10</span>
@@ -265,6 +311,28 @@ unknown client</div>
 
 
 </div>
+
+
+<script>
+
+function toggleVideo(id) {
+
+    const player = document.getElementById(id);
+
+    if (player.style.display === "block") {
+
+        player.style.display = "none";
+
+    } else {
+
+        player.style.display = "block";
+
+    }
+
+}
+
+</script>
+
 
 </body>
 
