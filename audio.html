@@ -64,16 +64,6 @@ body {
 }
 
 
-/* SECTION */
-
-.section-title {
-    color: #666;
-    font-size: 11px;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-}
-
-
 /* AUDIO LIST */
 
 .audio-list {
@@ -104,11 +94,10 @@ body {
 }
 
 
-/* TOP FILE INFORMATION */
+/* FILE INFORMATION */
 
 .file-top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 
     margin-bottom: 15px;
@@ -125,16 +114,6 @@ body {
 
 .number {
     color: #b00000;
-}
-
-.status {
-    color: #444;
-    font-size: 9px;
-    letter-spacing: 1px;
-}
-
-.audio-entry.playing .status {
-    color: #8b0000;
 }
 
 
@@ -177,14 +156,14 @@ body {
 }
 
 
-/* CENTER PLAYER AREA */
+/* CENTER PLAYER */
 
 .player-center {
     flex: 1;
 }
 
 
-/* FAKE WAVEFORM */
+/* WAVEFORM */
 
 .waveform {
     height: 18px;
@@ -234,7 +213,7 @@ body {
 .waveform span:nth-child(24) { height: 5px; }
 
 
-/* WAVEFORM MOVES SLIGHTLY WHEN PLAYING */
+/* WAVEFORM ANIMATION */
 
 .audio-entry.playing .waveform {
     opacity: 0.8;
@@ -304,23 +283,6 @@ body {
 }
 
 
-/* LOWER INFORMATION */
-
-.file-data {
-    display: flex;
-    justify-content: space-between;
-
-    margin-top: 10px;
-    margin-left: 42px;
-
-    color: #333;
-
-    font-size: 8px;
-
-    letter-spacing: 0.5px;
-}
-
-
 /* HIDDEN AUDIO */
 
 audio {
@@ -354,17 +316,9 @@ audio {
         width: 100%;
     }
 
-    .status {
-        display: none;
-    }
-
     .time {
         width: 70px;
         font-size: 8px;
-    }
-
-    .file-data {
-        margin-left: 42px;
     }
 
 }
@@ -401,10 +355,6 @@ audio {
     <div class="line"></div>
 
 
-    <div class="section-title">
-        recovered audio (.mp3)
-    </div>
-
 
     <div class="audio-list">
 
@@ -424,11 +374,6 @@ audio {
 
                 </div>
 
-
-                <div class="status" id="status01">
-                    [IDLE]
-                </div>
-
             </div>
 
 
@@ -437,7 +382,7 @@ audio {
 
                 <button
                     class="play"
-                    onclick="toggleAudio('audio01', this, 'entry01', 'status01')"
+                    onclick="toggleAudio('audio01', this, 'entry01')"
                 >
                     ▶
                 </button>
@@ -482,21 +427,11 @@ audio {
             </div>
 
 
-            <div class="file-data">
-
-                <span>CHANNEL: 01</span>
-
-                <span>STATUS: RECOVERED</span>
-
-            </div>
-
-
             <audio
                 id="audio01"
                 data-progress="progress01"
                 data-time="time01"
                 data-entry="entry01"
-                data-status="status01"
             >
 
                 <source
@@ -526,11 +461,6 @@ audio {
 
                 </div>
 
-
-                <div class="status" id="status02">
-                    [IDLE]
-                </div>
-
             </div>
 
 
@@ -539,7 +469,7 @@ audio {
 
                 <button
                     class="play"
-                    onclick="toggleAudio('audio02', this, 'entry02', 'status02')"
+                    onclick="toggleAudio('audio02', this, 'entry02')"
                 >
                     ▶
                 </button>
@@ -584,21 +514,11 @@ audio {
             </div>
 
 
-            <div class="file-data">
-
-                <span>CHANNEL: 02</span>
-
-                <span>STATUS: PARTIAL</span>
-
-            </div>
-
-
             <audio
                 id="audio02"
                 data-progress="progress02"
                 data-time="time02"
                 data-entry="entry02"
-                data-status="status02"
             >
 
                 <source
@@ -630,7 +550,7 @@ unknown client</div>
 <script>
 
 
-function toggleAudio(audioId, button, entryId, statusId) {
+function toggleAudio(audioId, button, entryId) {
 
     const selectedAudio =
         document.getElementById(audioId);
@@ -638,11 +558,8 @@ function toggleAudio(audioId, button, entryId, statusId) {
     const selectedEntry =
         document.getElementById(entryId);
 
-    const selectedStatus =
-        document.getElementById(statusId);
 
-
-    /* STOP OTHER FILE */
+    /* STOP OTHER AUDIO */
 
     document.querySelectorAll("audio").forEach(function(audio) {
 
@@ -653,17 +570,13 @@ function toggleAudio(audioId, button, entryId, statusId) {
             const entry =
                 document.getElementById(audio.dataset.entry);
 
-            const status =
-                document.getElementById(audio.dataset.status);
-
             const otherButton =
                 entry.querySelector(".play");
+
 
             entry.classList.remove("playing");
 
             otherButton.textContent = "▶";
-
-            status.textContent = "[IDLE]";
 
         }
 
@@ -680,8 +593,6 @@ function toggleAudio(audioId, button, entryId, statusId) {
 
         selectedEntry.classList.add("playing");
 
-        selectedStatus.textContent = "[PLAYING]";
-
     }
 
 
@@ -694,8 +605,6 @@ function toggleAudio(audioId, button, entryId, statusId) {
         button.textContent = "▶";
 
         selectedEntry.classList.remove("playing");
-
-        selectedStatus.textContent = "[PAUSED]";
 
     }
 
@@ -757,9 +666,6 @@ document.querySelectorAll("audio").forEach(function(audio) {
         const entry =
             document.getElementById(audio.dataset.entry);
 
-        const status =
-            document.getElementById(audio.dataset.status);
-
         const button =
             entry.querySelector(".play");
 
@@ -767,8 +673,6 @@ document.querySelectorAll("audio").forEach(function(audio) {
         entry.classList.remove("playing");
 
         button.textContent = "▶";
-
-        status.textContent = "[ENDED]";
 
     });
 
@@ -810,7 +714,7 @@ function seekAudio(event, audioId, progressBar) {
 
 
 
-/* TIME FORMAT */
+/* TIME */
 
 function formatTime(seconds) {
 
