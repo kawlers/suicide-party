@@ -41,8 +41,6 @@ body {
     text-align: center;
 
     padding: 30px;
-
-    transform: translateY(35px);
 }
 
 
@@ -55,8 +53,18 @@ body {
 
     display: block;
 
-    /* LINKS MUCH CLOSER TO LOGO */
-    margin-bottom: 5px;
+    margin-bottom: 0;
+}
+
+
+/* ALL TEXT UNDER LOGO */
+
+.text-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transform: translateY(-45px);
 }
 
 
@@ -65,13 +73,8 @@ body {
 .nav {
     display: flex;
     flex-direction: column;
-
     gap: 14px;
-
     align-items: center;
-
-    /* PULL LINKS UP EVEN MORE */
-    transform: translateY(-20px);
 }
 
 .nav a {
@@ -108,14 +111,10 @@ body {
 }
 
 
-/* FOOTER */
+/* TRACKING TEXT */
 
 .tagline {
-
-    /* compensates for links being moved upward
-       so footer stays where it was */
-
-    margin-top: 52px;
+    margin-top: 25px;
 
     color: #555;
 
@@ -124,6 +123,15 @@ body {
     line-height: 1.8;
 
     letter-spacing: 0.5px;
+
+    text-align: center;
+}
+
+
+/* RED CHANGING IP */
+
+#route {
+    color: #b00000;
 }
 
 
@@ -133,18 +141,15 @@ body {
 
     .home {
         padding: 20px;
-        transform: translateY(20px);
     }
 
     .logo {
         width: 450px;
         max-width: 95vw;
-
-        margin-bottom: 5px;
     }
 
-    .nav {
-        transform: translateY(-15px);
+    .text-area {
+        transform: translateY(-35px);
     }
 
     .nav a {
@@ -152,7 +157,7 @@ body {
     }
 
     .tagline {
-        margin-top: 47px;
+        margin-top: 22px;
     }
 
 }
@@ -175,40 +180,46 @@ body {
     >
 
 
-    <div class="nav">
-
-        <a href="archive.html">
-            files
-        </a>
-
-        <a href="audio.html">
-            audio files
-        </a>
-
-    </div>
+    <div class="text-area">
 
 
-    <div class="tagline">
+        <div class="nav">
 
-        <div>
-            your connection has been logged.
+            <a href="archive.html">
+                files
+            </a>
+
+            <a href="audio.html">
+                audio files
+            </a>
+
         </div>
 
-        <div>
-            session ID: [unbound]
+
+        <div class="tagline">
+
+            <div>
+                your connection has been logged.
+            </div>
+
+            <div>
+                session ID: [unbound]
+            </div>
+
+            <div>
+                route: <span id="route">192.168.---.---</span>
+            </div>
+
+            <div>
+                time: <span id="time">--:--:--</span>
+            </div>
+
+            <div>
+                unknown client
+            </div>
+
         </div>
 
-        <div>
-            route: <span id="route">192.168.---.---</span>
-        </div>
-
-        <div>
-            time: <span id="time">--:--:--</span>
-        </div>
-
-        <div>
-            unknown client
-        </div>
 
     </div>
 
@@ -240,7 +251,7 @@ function updateClock() {
 }
 
 
-/* FAKE IP */
+/* FAKE CHANGING IP */
 
 function updateRoute() {
 
@@ -262,6 +273,9 @@ updateClock();
 updateRoute();
 
 setInterval(updateClock, 1000);
+
+/* IP CHANGES EVERY 0.35 SECONDS */
+
 setInterval(updateRoute, 350);
 
 
