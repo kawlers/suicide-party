@@ -1,16 +1,110 @@
-<img
-    class="logo"
-    src="suicide-party-logo.png"
-    alt="suicide party"
-    style="width: 650px; max-width: 95vw; height: auto;"
->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>suicide party</title>
 
-<div class="nav">
-    <a href="archive.html">archive</a>
-    <a href="audio.html">audio files</a>
-    <a href="photos.html">photos</a>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Courier New", monospace;
+}
+
+.home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.logo {
+    width: 430px;
+    max-width: 90vw;
+    height: auto;
+    margin-bottom: 55px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.nav a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 18px;
+    letter-spacing: 3px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 1px;
+    background: #7d0000;
+}
+
+.nav a:hover {
+    color: #fff;
+}
+
+.tagline {
+    margin-top: 65px;
+    color: #555;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        width: 320px;
+        margin-bottom: 45px;
+    }
+
+    .nav a {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="home">
+
+    <img
+        class="logo"
+        src="suicide-party-logo.png"
+        alt="suicide party"
+    >
+
+    <div class="nav">
+        <a href="archive.html">archive</a>
+        <a href="audio.html">audio files</a>
+        <a href="photos.html">photos</a>
+    </div>
+
+    <div class="tagline">
+        just end it then.
+    </div>
+
 </div>
 
-<div class="tagline">
-    just end it then.
-</div>
+</body>
+</html>
