@@ -204,6 +204,255 @@ body {
 
 
 /* =========================================
+   AUTHORIZATION OVERLAY
+========================================= */
+
+.auth-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.96);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 20000;
+}
+
+
+/* =========================================
+   AUTH BOX
+========================================= */
+
+.auth-box {
+    width: min(430px, 88vw);
+
+    padding: 0;
+
+    background: #050505;
+
+    border:
+        1px solid #3a0000;
+
+    box-shadow:
+        0 0 0 1px #111,
+        0 18px 60px rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================
+   AUTH TOP STRIP
+========================================= */
+
+.auth-strip {
+    height: 6px;
+
+    background: #700000;
+
+    border-bottom:
+        1px solid #1c0000;
+}
+
+
+/* =========================================
+   AUTH CONTENT
+========================================= */
+
+.auth-content {
+    padding: 30px 30px 26px;
+}
+
+
+/* =========================================
+   AUTH TITLE
+========================================= */
+
+.auth-title {
+    color: #cfcfcf;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    text-transform: lowercase;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================
+   AUTH SUBTEXT
+========================================= */
+
+.auth-subtext {
+    color: #444;
+
+    font-size: 9px;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 22px;
+}
+
+
+/* =========================================
+   PASSWORD INPUT
+========================================= */
+
+.auth-input {
+    width: 100%;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    background: #000;
+
+    color: #aaa;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+
+    letter-spacing: 3px;
+
+    outline: none;
+
+    border-top:
+        1px solid #0b0b0b;
+
+    border-left:
+        1px solid #0b0b0b;
+
+    border-right:
+        1px solid #333;
+
+    border-bottom:
+        1px solid #333;
+}
+
+.auth-input:focus {
+    border-right-color:
+        #5b0000;
+
+    border-bottom-color:
+        #5b0000;
+}
+
+
+/* =========================================
+   AUTH BOTTOM ROW
+========================================= */
+
+.auth-bottom {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 16px;
+
+    min-height: 26px;
+}
+
+
+/* =========================================
+   AUTH STATUS
+========================================= */
+
+.auth-status {
+    color: #3e3e3e;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.auth-status.error {
+    color: #b00000;
+}
+
+
+/* =========================================
+   AUTH BUTTON
+========================================= */
+
+.auth-button {
+    padding: 7px 15px;
+
+    background: #0b0b0b;
+
+    color: #777;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+
+    border:
+        1px solid #292929;
+
+    cursor: pointer;
+}
+
+.auth-button:hover {
+    color: #ddd;
+
+    border-color:
+        #540000;
+}
+
+.auth-button:active {
+    background: #140000;
+}
+
+
+/* =========================================
+   SHAKE ON ERROR
+========================================= */
+
+.auth-box.shake {
+    animation:
+        authShake 0.22s linear;
+}
+
+@keyframes authShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-3px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================
    VIDEO OVERLAY
 ========================================= */
 
@@ -215,7 +464,8 @@ body {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.94);
+    background:
+        rgba(0, 0, 0, 0.94);
 
     display: flex;
 
@@ -287,7 +537,9 @@ body {
 
     color: #666;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
 
     font-size: 22px;
 
@@ -320,7 +572,8 @@ body {
 
     background: #000;
 
-    border: 1px solid #292929;
+    border:
+        1px solid #292929;
 }
 
 .loading-text {
@@ -376,7 +629,8 @@ body {
 
     background: #000;
 
-    border: 1px solid #252525;
+    border:
+        1px solid #252525;
 
     box-shadow:
         0 0 30px rgba(0, 0, 0, 0.9);
@@ -431,6 +685,11 @@ body {
         max-width: 94vw;
     }
 
+    .auth-content {
+        padding:
+            26px 22px 22px;
+    }
+
 }
 
 </style>
@@ -439,6 +698,81 @@ body {
 
 
 <body>
+
+
+<!-- =========================================
+     AUTHORIZATION
+========================================= -->
+
+<div
+    id="authOverlay"
+    class="auth-overlay"
+>
+
+
+    <div
+        id="authBox"
+        class="auth-box"
+    >
+
+
+        <div class="auth-strip"></div>
+
+
+        <div class="auth-content">
+
+
+            <div class="auth-title">
+                authorization required
+            </div>
+
+
+            <div class="auth-subtext">
+                protected directory / credentials required
+            </div>
+
+
+            <input
+                id="passwordInput"
+                class="auth-input"
+                type="password"
+                autocomplete="off"
+                spellcheck="false"
+                maxlength="20"
+                aria-label="password"
+            >
+
+
+            <div class="auth-bottom">
+
+
+                <div
+                    id="authStatus"
+                    class="auth-status"
+                >
+                    awaiting authorization
+                </div>
+
+
+                <button
+                    class="auth-button"
+                    onclick="submitPassword()"
+                >
+                    submit
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
 
 
 <!-- =========================================
@@ -484,11 +818,15 @@ body {
             onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">01</span>
+                <span class="number">
+                    01
+                </span>
 
                 purge-xtra2k25.mp4
 
@@ -505,11 +843,15 @@ body {
             onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">02</span>
+                <span class="number">
+                    02
+                </span>
 
                 scenebitch-lcut.mp4
 
@@ -523,11 +865,15 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">03</span>
+                <span class="number">
+                    03
+                </span>
 
                 ------
 
@@ -544,11 +890,15 @@ body {
             onclick="openVideo('untitled_04.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">04</span>
+                <span class="number">
+                    04
+                </span>
 
                 untitled_04.mp4
 
@@ -565,11 +915,15 @@ body {
             onclick="openVideo('sp_005.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">05</span>
+                <span class="number">
+                    05
+                </span>
 
                 sp_005.mp4
 
@@ -583,11 +937,15 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">06</span>
+                <span class="number">
+                    06
+                </span>
 
                 ------
 
@@ -601,11 +959,15 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">07</span>
+                <span class="number">
+                    07
+                </span>
 
                 ------
 
@@ -622,11 +984,15 @@ body {
             onclick="openVideo('957229577.mp4', true)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">08</span>
+                <span class="number">
+                    08
+                </span>
 
                 957229577.mp4
 
@@ -681,7 +1047,7 @@ body {
                 id="loadingText"
                 class="loading-text"
             >
-                searching for path..
+                loading file...
             </div>
 
 
@@ -749,6 +1115,276 @@ body {
 <script>
 
 
+/* =========================================
+   AUTHORIZATION
+========================================= */
+
+let failedAttempts =
+    0;
+
+
+const maxAttempts =
+    3;
+
+
+const correctPassword =
+    "notmyblood";
+
+
+const passwordInput =
+    document.getElementById(
+        "passwordInput"
+    );
+
+
+const authStatus =
+    document.getElementById(
+        "authStatus"
+    );
+
+
+const authBox =
+    document.getElementById(
+        "authBox"
+    );
+
+
+const authOverlay =
+    document.getElementById(
+        "authOverlay"
+    );
+
+
+
+/* =========================================
+   AUTO FOCUS PASSWORD
+========================================= */
+
+window.addEventListener(
+    "load",
+    function() {
+
+
+        setTimeout(
+            function() {
+
+
+                passwordInput.focus();
+
+
+            },
+            100
+        );
+
+
+    }
+);
+
+
+
+/* =========================================
+   DO NOT ALLOW SPACES
+========================================= */
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === " "
+        ) {
+
+
+            event.preventDefault();
+
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================
+   REMOVE SPACES FROM PASTE / INPUT
+========================================= */
+
+passwordInput.addEventListener(
+    "input",
+    function() {
+
+
+        passwordInput.value =
+            passwordInput.value.replace(
+                /\s/g,
+                ""
+            );
+
+
+    }
+);
+
+
+
+/* =========================================
+   PRESS ENTER TO SUBMIT
+========================================= */
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === "Enter"
+        ) {
+
+
+            event.preventDefault();
+
+
+            submitPassword();
+
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================
+   SUBMIT PASSWORD
+========================================= */
+
+function submitPassword() {
+
+
+    const enteredPassword =
+        passwordInput.value;
+
+
+
+    /* =====================================
+       CORRECT PASSWORD
+    ===================================== */
+
+    if (
+        enteredPassword ===
+        correctPassword
+    ) {
+
+
+        authStatus.classList.remove(
+            "error"
+        );
+
+
+        authStatus.textContent =
+            "authorization accepted";
+
+
+        setTimeout(
+            function() {
+
+
+                authOverlay.style.display =
+                    "none";
+
+
+            },
+            300
+        );
+
+
+        return;
+
+
+    }
+
+
+
+    /* =====================================
+       WRONG PASSWORD
+    ===================================== */
+
+    failedAttempts++;
+
+
+    authStatus.textContent =
+        "authorization error";
+
+
+    authStatus.classList.add(
+        "error"
+    );
+
+
+    passwordInput.value =
+        "";
+
+
+    passwordInput.focus();
+
+
+
+    /* SHAKE BOX */
+
+    authBox.classList.remove(
+        "shake"
+    );
+
+
+    void authBox.offsetWidth;
+
+
+    authBox.classList.add(
+        "shake"
+    );
+
+
+
+    /* =====================================
+       THIRD FAILED ATTEMPT
+    ===================================== */
+
+    if (
+        failedAttempts >=
+        maxAttempts
+    ) {
+
+
+        passwordInput.disabled =
+            true;
+
+
+        setTimeout(
+            function() {
+
+
+                window.location.href =
+                    "index.html";
+
+
+            },
+            700
+        );
+
+
+    }
+
+
+}
+
+
+
+/* =========================================
+   VIDEO LOADING
+========================================= */
+
 let loadingInterval;
 
 let stallTimeout;
@@ -769,74 +1405,6 @@ const videoSource =
     document.getElementById(
         "videoSource"
     );
-
-
-
-/* =========================================
-   SET NORMAL LOADING TEXT
-========================================= */
-
-function setLoadingMessage(
-    value,
-    loadingText
-) {
-
-
-    /* 0 - 24% */
-
-    if (
-        value < 25
-    ) {
-
-
-        loadingText.textContent =
-            "searching for path..";
-
-
-    }
-
-
-    /* 25 - 54% */
-
-    else if (
-        value < 55
-    ) {
-
-
-        loadingText.textContent =
-            "loading file..";
-
-
-    }
-
-
-    /* 55 - 84% */
-
-    else if (
-        value < 85
-    ) {
-
-
-        loadingText.textContent =
-            "path found..";
-
-
-    }
-
-
-    /* 85 - 100% */
-
-    else {
-
-
-        loadingText.textContent =
-            "file ready..";
-
-
-    }
-
-
-}
 
 
 
@@ -924,7 +1492,7 @@ function openVideo(
 
 
     loadingText.textContent =
-        "searching for path..";
+        "loading file...";
 
 
     progress.style.width =
@@ -959,172 +1527,133 @@ function openVideo(
 
     loadingInterval =
 
-        setInterval(function() {
+        setInterval(
+            function() {
 
 
-            value++;
-
-
-            progress.style.width =
-                value + "%";
-
-
-            percent.textContent =
-                value + "%";
-
-
-            /* NORMAL STATUS */
-
-            setLoadingMessage(
-                value,
-                loadingText
-            );
-
-
-
-            /* =================================
-               FILE 08 STALL
-            ================================= */
-
-            if (
-                shouldStall === true
-                &&
-                value === 82
-                &&
-                hasStalled === false
-            ) {
-
-
-                hasStalled =
-                    true;
-
-
-                /* STOP BAR AT 82% */
-
-                clearInterval(
-                    loadingInterval
-                );
-
-
-                /* SHOW BUFFERING ONLY
-                   DURING THE STALL */
-
-                loadingText.textContent =
-                    "buffering..";
-
-
-                /* =================================
-                   STALL FOR 2 SECONDS
-                   NO BACKWARDS JUMP
-                ================================= */
-
-                stallTimeout =
-
-                    setTimeout(function() {
-
-
-                        /* RESUME FROM 82 */
-
-                        loadingInterval =
-
-                            setInterval(function() {
-
-
-                                value++;
-
-
-                                progress.style.width =
-                                    value + "%";
-
-
-                                percent.textContent =
-                                    value + "%";
-
-
-                                /* GO BACK TO NORMAL TEXT */
-
-                                setLoadingMessage(
-                                    value,
-                                    loadingText
-                                );
-
-
-                                /* FINISH */
-
-                                if (
-                                    value >= 100
-                                ) {
-
-
-                                    clearInterval(
-                                        loadingInterval
-                                    );
-
-
-                                    progress.style.width =
-                                        "100%";
-
-
-                                    percent.textContent =
-                                        "100%";
-
-
-                                    loadingText.textContent =
-                                        "file ready..";
-
-
-                                    showVideo();
-
-
-                                }
-
-
-                            }, 20);
-
-
-                    }, 2000);
-
-
-                return;
-
-
-            }
-
-
-
-            /* =================================
-               NORMAL FINISH
-            ================================= */
-
-            if (
-                value >= 100
-            ) {
-
-
-                clearInterval(
-                    loadingInterval
-                );
+                value++;
 
 
                 progress.style.width =
-                    "100%";
+                    value + "%";
 
 
                 percent.textContent =
-                    "100%";
+                    value + "%";
 
 
-                loadingText.textContent =
-                    "file ready..";
+
+                /* =================================
+                   FILE 08 STALL
+                ================================= */
+
+                if (
+                    shouldStall === true
+                    &&
+                    value === 82
+                    &&
+                    hasStalled === false
+                ) {
 
 
-                showVideo();
+                    hasStalled =
+                        true;
 
 
-            }
+                    clearInterval(
+                        loadingInterval
+                    );
 
 
-        }, 20);
+                    loadingText.textContent =
+                        "loading file...";
+
+
+
+                    /* =================================
+                       STALL
+                       NO BACKWARDS JUMP
+                    ================================= */
+
+                    stallTimeout =
+
+                        setTimeout(
+                            function() {
+
+
+                                loadingInterval =
+
+                                    setInterval(
+                                        function() {
+
+
+                                            value++;
+
+
+                                            progress.style.width =
+                                                value + "%";
+
+
+                                            percent.textContent =
+                                                value + "%";
+
+
+                                            if (
+                                                value >= 100
+                                            ) {
+
+
+                                                clearInterval(
+                                                    loadingInterval
+                                                );
+
+
+                                                showVideo();
+
+
+                                            }
+
+
+                                        },
+                                        20
+                                    );
+
+
+                            },
+                            2000
+                        );
+
+
+                    return;
+
+
+                }
+
+
+
+                /* =================================
+                   NORMAL FINISH
+                ================================= */
+
+                if (
+                    value >= 100
+                ) {
+
+
+                    clearInterval(
+                        loadingInterval
+                    );
+
+
+                    showVideo();
+
+
+                }
+
+
+            },
+            20
+        );
 
 
 }
@@ -1150,47 +1679,45 @@ function showVideo() {
         );
 
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
 
-        loadingScreen.style.display =
-            "none";
+            loadingScreen.style.display =
+                "none";
 
 
-        videoContainer.style.display =
-            "block";
+            videoContainer.style.display =
+                "block";
 
 
-        /*
-        Attempt autoplay.
 
-        Browser may require the user
-        to press play depending on
-        autoplay policy.
-        */
+            /* ATTEMPT AUTOPLAY */
 
-        const playAttempt =
-            videoPlayer.play();
+            const playAttempt =
+                videoPlayer.play();
 
 
-        if (
-            playAttempt !== undefined
-        ) {
+            if (
+                playAttempt !== undefined
+            ) {
 
 
-            playAttempt.catch(
-                function() {
+                playAttempt.catch(
+                    function() {
 
-                    /* browser blocked autoplay */
+                        /* browser blocked autoplay */
 
-                }
-            );
-
-
-        }
+                    }
+                );
 
 
-    }, 100);
+            }
+
+
+        },
+        100
+    );
 
 
 }
@@ -1270,9 +1797,20 @@ document.addEventListener(
     function(event) {
 
 
+        /*
+           ESC ONLY CLOSES VIDEO.
+
+           IT DOES NOT BYPASS
+           AUTHORIZATION.
+        */
+
+
         if (
             event.key ===
             "Escape"
+            &&
+            authOverlay.style.display ===
+            "none"
         ) {
 
 
