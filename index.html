@@ -29,7 +29,7 @@ body {
 
 
 /* =========================================================
-   FULL SCREEN WEBSITE
+   FULL PAGE
 ========================================================= */
 
 .site-frame {
@@ -40,11 +40,85 @@ body {
 
     overflow: hidden;
 
-    background: #030005;
+    background: #000;
+}
 
-    border: none;
 
-    box-shadow: none;
+/* =========================================================
+   ARTWORK BACKGROUND
+========================================================= */
+
+.artwork-bg {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 72vw;
+    height: 100vh;
+
+    z-index: 0;
+
+    background-image:
+        url("SP-COVER-OFFICIAL-FINISHED(3).png");
+
+    background-size: contain;
+
+    background-repeat: no-repeat;
+
+    background-position:
+        left center;
+}
+
+
+/* FADE ART INTO RIGHT SIDE */
+
+.artwork-bg::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            rgba(0,0,0,0.00) 0%,
+            rgba(0,0,0,0.00) 55%,
+            rgba(0,0,0,0.08) 68%,
+            rgba(0,0,0,0.40) 85%,
+            rgba(0,0,0,0.92) 100%
+        );
+}
+
+
+/* =========================================================
+   DARK RIGHT AREA
+========================================================= */
+
+.site-frame::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 46vw;
+    height: 100%;
+
+    z-index: 0;
+
+    background:
+        radial-gradient(
+            circle at 35% 45%,
+            rgba(54, 15, 96, 0.23),
+            transparent 48%
+        ),
+        #020003;
 }
 
 
@@ -59,7 +133,8 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 22px;
+    padding:
+        0 22px;
 
     position: absolute;
 
@@ -70,21 +145,21 @@ body {
     z-index: 20;
 
     border-bottom:
-        1px solid rgba(107, 44, 160, 0.85);
+        1px solid rgba(105, 42, 160, 0.85);
 
     background:
         linear-gradient(
             180deg,
-            rgba(38, 8, 72, 0.95),
-            rgba(16, 2, 29, 0.92)
+            rgba(44, 10, 80, 0.96),
+            rgba(18, 2, 32, 0.93)
         );
 }
 
 
-/* LEFT TITLE */
+/* SITE NAME */
 
 .site-name {
-    color: #e2d7ea;
+    color: #e2d8e9;
 
     font-size: 17px;
 
@@ -95,7 +170,7 @@ body {
 }
 
 
-/* TOP NAV */
+/* NAVIGATION */
 
 .top-nav {
     display: flex;
@@ -125,104 +200,30 @@ body {
 
 
 /* =========================================================
-   FULL PAGE ARTWORK
-========================================================= */
-
-.main-content {
-    width: 100vw;
-    min-height: 100vh;
-
-    position: relative;
-
-    overflow: hidden;
-
-    background-image:
-        url("SPNEWBACKROUNDINDEX.png");
-
-    background-size: cover;
-
-    background-position: center center;
-
-    background-repeat: no-repeat;
-}
-
-
-/* DARKEN RIGHT SIDE ONLY */
-
-.main-content::before {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 1;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            90deg,
-
-            rgba(0,0,0,0.00) 0%,
-            rgba(0,0,0,0.00) 46%,
-            rgba(0,0,0,0.08) 58%,
-            rgba(0,0,0,0.18) 70%,
-            rgba(0,0,0,0.34) 100%
-        );
-}
-
-
-/* SLIGHT CRT TEXTURE */
-
-.main-content::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-
-    opacity: 0.045;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            transparent 0px,
-            transparent 3px,
-            rgba(255,255,255,0.06) 4px
-        );
-}
-
-
-/* =========================================================
-   CONNECTION PANEL
+   CONNECTION BOX
 ========================================================= */
 
 .connection-box {
     position: absolute;
 
-    z-index: 5;
+    z-index: 10;
 
     top: 50%;
-    right: 7%;
+    right: 7.5%;
 
     transform:
-        translateY(-45%);
+        translateY(-43%);
 
     width: 500px;
-    max-width: 38vw;
+    max-width: 34vw;
 
-    min-height: 285px;
+    min-height: 295px;
 
     padding:
         27px 28px;
 
     background:
-        rgba(2,0,6,0.90);
+        rgba(2, 0, 6, 0.91);
 
     border:
         1px solid #63319a;
@@ -379,7 +380,7 @@ body {
 }
 
 
-/* TITLE */
+/* ENCRYPTION TITLE */
 
 .encrypt-title {
     color: #95849e;
@@ -491,6 +492,31 @@ body {
 
 @media (max-width: 800px) {
 
+    .artwork-bg {
+        width: 100vw;
+        height: 60vh;
+
+        background-size: contain;
+
+        background-position:
+            center top;
+    }
+
+
+    .site-frame::before {
+        width: 100vw;
+        height: 100vh;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(0,0,0,0.00) 0%,
+                rgba(0,0,0,0.20) 45%,
+                rgba(0,0,0,0.95) 75%
+            );
+    }
+
+
     .topbar {
         height: auto;
 
@@ -500,9 +526,11 @@ body {
             10px 12px;
     }
 
+
     .site-name {
         font-size: 12px;
     }
+
 
     .top-nav {
         gap: 6px;
@@ -510,17 +538,11 @@ body {
         font-size: 9px;
     }
 
-    .main-content {
-        min-height: 100vh;
-
-        background-position:
-            center center;
-    }
 
     .connection-box {
         top: auto;
 
-        bottom: 25px;
+        bottom: 24px;
 
         left: 50%;
         right: auto;
@@ -537,6 +559,7 @@ body {
             22px 20px;
     }
 
+
     .info-row {
         grid-template-columns:
             100px 1fr;
@@ -546,12 +569,14 @@ body {
         font-size: 10px;
     }
 
+
     .encrypt-panel {
         width: 92vw;
 
         padding:
             28px 24px;
     }
+
 
     .encrypt-code {
         min-height: 90px;
@@ -580,110 +605,111 @@ body {
 
 
     <!-- =====================================================
-         FULL PAGE ARTWORK
+         ARTWORK
     ====================================================== -->
 
-    <div class="main-content">
+    <div class="artwork-bg">
+    </div>
 
 
-        <!-- CONNECTION BOX -->
 
-        <div class="connection-box">
+    <!-- =====================================================
+         CONNECTION BOX
+    ====================================================== -->
+
+    <div class="connection-box">
 
 
-            <div class="connection-title">
+        <div class="connection-title">
 
-                your connection has been logged.
+            your connection has been logged.
 
+        </div>
+
+
+        <div class="system-line">
+        </div>
+
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                session ID:
             </div>
 
-
-            <div class="system-line">
+            <div class="info-value">
+                [unbound]
             </div>
 
+        </div>
 
 
-            <div class="info-row">
 
-                <div class="info-label">
-                    session ID:
-                </div>
+        <div class="info-row">
 
-                <div class="info-value">
-                    [unbound]
-                </div>
-
+            <div class="info-label">
+                route:
             </div>
-
-
-
-            <div class="info-row">
-
-                <div class="info-label">
-                    route:
-                </div>
-
-                <div
-                    class="info-value"
-                    id="route"
-                >
-                    192.168.---.---
-                </div>
-
-            </div>
-
-
-
-            <div class="info-row">
-
-                <div class="info-label">
-                    time:
-                </div>
-
-                <div
-                    class="info-value"
-                    id="time"
-                >
-                    --:--:-- --
-                </div>
-
-            </div>
-
-
-
-            <div class="info-row">
-
-                <div class="info-label">
-                </div>
-
-                <div class="info-value">
-                    unknown client
-                </div>
-
-            </div>
-
-
 
             <div
-                class="system-line"
-                style="margin-top:20px;"
+                class="info-value"
+                id="route"
             >
+                192.168.---.---
             </div>
 
+        </div>
 
 
-            <div class="info-row">
 
-                <div class="info-label">
-                    connection status:
-                </div>
+        <div class="info-row">
 
-                <div class="info-value online">
-                    online
-                </div>
-
+            <div class="info-label">
+                time:
             </div>
 
+            <div
+                class="info-value"
+                id="time"
+            >
+                --:--:-- --
+            </div>
+
+        </div>
+
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+            </div>
+
+            <div class="info-value">
+                unknown client
+            </div>
+
+        </div>
+
+
+
+        <div
+            class="system-line"
+            style="margin-top:20px;"
+        >
+        </div>
+
+
+
+        <div class="info-row">
+
+            <div class="info-label">
+                connection status:
+            </div>
+
+            <div class="info-value online">
+                online
+            </div>
 
         </div>
 
@@ -693,7 +719,7 @@ body {
 
 
     <!-- =====================================================
-         TOP BAR FLOATING OVER ART
+         TOP BAR
     ====================================================== -->
 
     <div class="topbar">
@@ -979,7 +1005,6 @@ function makeEncryptionCode() {
     ) {
 
         output +=
-
             characters[
                 Math.floor(
                     Math.random()
@@ -1049,26 +1074,26 @@ function openEncryptedPage(
         );
 
 
-    /* RESET */
-
     progress.style.width =
         "0%";
+
 
     percent.textContent =
         "0%";
 
+
     code.textContent =
         makeEncryptionCode();
 
+
     status.textContent =
         "negotiating key...";
+
 
     bottom.textContent =
         directoryName +
         " / access request pending";
 
-
-    /* SHOW */
 
     overlay
         .classList
@@ -1076,8 +1101,6 @@ function openEncryptedPage(
             "active"
         );
 
-
-    /* CODE MOVES IMMEDIATELY */
 
     const codeInterval =
 
@@ -1169,9 +1192,11 @@ function openEncryptedPage(
                                 progressInterval
                             );
 
+
                             clearInterval(
                                 codeInterval
                             );
+
 
                             window.location.href =
                                 destination;
