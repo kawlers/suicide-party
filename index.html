@@ -181,7 +181,9 @@ body {
 }
 
 
-/* LARGE PANEL */
+/* =========================================
+   ENCRYPTION PANEL
+========================================= */
 
 .encrypt-panel {
     width: min(900px, 88vw);
@@ -207,7 +209,9 @@ body {
 }
 
 
-/* HEADER */
+/* =========================================
+   ENCRYPTION HEADER
+========================================= */
 
 .encrypt-title {
     color: #777;
@@ -221,7 +225,9 @@ body {
 }
 
 
-/* 16 CHARACTER CHANGING CODE */
+/* =========================================
+   13 CHARACTER CHANGING CODE
+========================================= */
 
 .encrypt-code {
     color: #b00000;
@@ -248,7 +254,9 @@ body {
 }
 
 
-/* STATUS */
+/* =========================================
+   STATUS
+========================================= */
 
 .encrypt-status {
     display: flex;
@@ -265,7 +273,9 @@ body {
 }
 
 
-/* PROGRESS BAR */
+/* =========================================
+   PROGRESS BAR
+========================================= */
 
 .encrypt-bar {
     width: 100%;
@@ -286,7 +296,9 @@ body {
 }
 
 
-/* BOTTOM TEXT */
+/* =========================================
+   BOTTOM TEXT
+========================================= */
 
 .encrypt-bottom {
     margin-top: 14px;
@@ -370,10 +382,14 @@ body {
         <div class="nav">
 
 
+            <!-- FILES -->
+
             <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
                 files
             </a>
 
+
+            <!-- AUDIO FILES -->
 
             <a onclick="openEncryptedPage('audio.html', 'AUDIO DIRECTORY')">
                 audio files
@@ -436,18 +452,24 @@ body {
     <div class="encrypt-panel">
 
 
+        <!-- TITLE -->
+
         <div class="encrypt-title">
             establishing channel
         </div>
 
 
+        <!-- CHANGING CODE -->
+
         <div
             id="encryptCode"
             class="encrypt-code"
         >
-            0000 0000 0000 0000
+            0000000000000
         </div>
 
+
+        <!-- STATUS -->
 
         <div class="encrypt-status">
 
@@ -462,6 +484,8 @@ body {
         </div>
 
 
+        <!-- PROGRESS BAR -->
+
         <div class="encrypt-bar">
 
             <div
@@ -471,6 +495,8 @@ body {
 
         </div>
 
+
+        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -581,7 +607,9 @@ function updateRoute() {
 
 
 
-/* START CLOCK + ROUTE */
+/* =========================================
+   START CLOCK + ROUTE
+========================================= */
 
 updateClock();
 
@@ -602,20 +630,25 @@ setInterval(
 
 
 /* =========================================
-   16 CHARACTER ENCRYPTION CODE
+   13 CHARACTER ENCRYPTION CODE
+
+   LETTERS + NUMBERS
 ========================================= */
 
 function makeEncryptionCode() {
 
     const characters =
-        "0123456789ABCDEF";
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    let output = "";
+    let output =
+        "";
 
+
+    /* EXACTLY 13 CHARACTERS */
 
     for (
         let i = 0;
-        i < 16;
+        i < 13;
         i++
     ) {
 
@@ -630,17 +663,6 @@ function makeEncryptionCode() {
                 )
 
             ];
-
-
-        if (
-            (i + 1) % 4 === 0
-            &&
-            i < 15
-        ) {
-
-            output += " ";
-
-        }
 
     }
 
@@ -691,6 +713,11 @@ function openEncryptedPage(
         );
 
 
+
+    /* =====================================
+       RESET
+    ===================================== */
+
     progress.style.width =
         "0%";
 
@@ -708,12 +735,22 @@ function openEncryptedPage(
         " / access request pending";
 
 
+
+    /* =====================================
+       SHOW ENCRYPTION SCREEN
+    ===================================== */
+
     overlay.classList.add(
         "active"
     );
 
 
-    /* FASTER MOVING ENCRYPTION CODE */
+
+    /* =====================================
+       FAST RANDOM LETTERS + NUMBERS
+
+       CHANGES EVERY 35MS
+    ===================================== */
 
     const codeInterval =
 
@@ -725,15 +762,20 @@ function openEncryptedPage(
         }, 35);
 
 
-    /*
-       STILL WAITS 2 SECONDS
-       BEFORE LOADING BAR STARTS
-    */
+
+    /* =====================================
+       WAIT 2 SECONDS BEFORE BAR STARTS
+    ===================================== */
 
     setTimeout(function() {
 
-        let value = 0;
+        let value =
+            0;
 
+
+        /* =================================
+           PROGRESS BAR
+        ================================= */
 
         const progressInterval =
 
@@ -750,6 +792,9 @@ function openEncryptedPage(
                     value + "%";
 
 
+
+                /* 0 - 24% */
+
                 if (
                     value < 25
                 ) {
@@ -758,6 +803,9 @@ function openEncryptedPage(
                         "negotiating key...";
 
                 }
+
+
+                /* 25 - 49% */
 
                 else if (
                     value < 50
@@ -768,6 +816,9 @@ function openEncryptedPage(
 
                 }
 
+
+                /* 50 - 74% */
+
                 else if (
                     value < 75
                 ) {
@@ -777,6 +828,9 @@ function openEncryptedPage(
 
                 }
 
+
+                /* 75 - 99% */
+
                 else {
 
                     status.textContent =
@@ -785,22 +839,69 @@ function openEncryptedPage(
                 }
 
 
+
+                /* =================================
+                   LOAD COMPLETE
+                ================================= */
+
                 if (
                     value >= 100
                 ) {
+
+
+                    /* STOP PROGRESS */
 
                     clearInterval(
                         progressInterval
                     );
 
 
+                    /* STOP SCRAMBLING */
+
                     clearInterval(
                         codeInterval
                     );
 
 
-                    window.location.href =
-                        destination;
+                    /* FORCE COMPLETE */
+
+                    progress.style.width =
+                        "100%";
+
+
+                    percent.textContent =
+                        "100%";
+
+
+                    /* =================================
+                       LOCK INTO FINAL CODE
+                    ================================= */
+
+                    code.textContent =
+                        "KYSORDIETRYIN";
+
+
+                    status.textContent =
+                        "path found...";
+
+
+                    bottom.textContent =
+                        directoryName +
+                        " / channel established";
+
+
+
+                    /* =================================
+                       HOLD FINAL CODE FOR 1 SECOND
+                    ================================= */
+
+                    setTimeout(function() {
+
+                        window.location.href =
+                            destination;
+
+                    }, 1000);
+
 
                 }
 
