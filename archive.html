@@ -63,9 +63,6 @@ body {
     margin-bottom: 32px;
 }
 
-
-/* /FILES */
-
 .directory-path {
     display: inline-block;
 
@@ -81,9 +78,6 @@ body {
     margin-bottom: 24px;
 }
 
-
-/* SECTION TITLE */
-
 .section-title {
     color: #666;
 
@@ -93,7 +87,7 @@ body {
 
 
 /* =========================================
-   DIRECTORY LIST
+   DIRECTORY
 ========================================= */
 
 .directory-list {
@@ -105,20 +99,16 @@ body {
 }
 
 
-/* FILE ROW */
+/* =========================================
+   FILE ROW
+========================================= */
 
 .directory-file {
-    display: grid;
-
-    grid-template-columns:
-        22px
-        minmax(0, auto)
-        1fr
-        auto;
+    display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    gap: 14px;
 
     min-height: 46px;
 
@@ -138,66 +128,52 @@ body {
         background 0.15s ease;
 }
 
-
 .directory-file:hover {
     color: #fff;
 
     padding-left: 14px;
 
-    background:
-        rgba(120, 0, 0, 0.04);
+    background: rgba(120, 0, 0, 0.04);
 }
 
 
-/* FILE ICON */
+/* =========================================
+   FILE SYMBOL
+========================================= */
 
 .file-icon {
-    color: #555;
-    font-size: 12px;
+    color: #666;
+
+    width: 18px;
+
+    font-size: 15px;
+
+    text-align: center;
+
+    flex-shrink: 0;
 }
 
 
-/* FILE NAME */
-
-.file-name {
-    white-space: nowrap;
-}
-
-
-/* NUMBER */
+/* =========================================
+   NUMBER
+========================================= */
 
 .number {
+    display: inline-block;
+
+    width: 28px;
+
     color: #d00000;
 
-    margin-right: 4px;
+    margin-right: 8px;
 }
 
 
-/* DOTS */
+/* =========================================
+   FILE NAME
+========================================= */
 
-.file-dots {
-    min-width: 20px;
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    color: #292929;
-}
-
-.file-dots::after {
-    content:
-        "................................................................................................................................................................................";
-}
-
-
-/* RIGHT STATUS */
-
-.file-status {
-    color: #8f0000;
-
-    font-size: 11px;
-
+.file-name {
     white-space: nowrap;
 }
 
@@ -212,26 +188,13 @@ body {
     cursor: default;
 }
 
-
 .directory-file.empty .number {
     color: #650000;
 }
 
-
 .directory-file.empty .file-icon {
-    color: #222;
-}
-
-
-.directory-file.empty .file-dots {
-    color: #171717;
-}
-
-
-.directory-file.empty .file-status {
     color: #292929;
 }
-
 
 .directory-file.empty:hover {
     color: #333;
@@ -243,35 +206,13 @@ body {
 
 
 /* =========================================
-   FOOTER
-========================================= */
-
-.footer {
-    margin-top: 55px;
-
-    padding-top: 18px;
-
-    border-top: 1px solid #191919;
-
-    color: #3d3d3d;
-
-    font-size: 10px;
-
-    line-height: 1.8;
-
-    text-align: center;
-}
-
-
-/* =========================================
    VIDEO OVERLAY
 ========================================= */
 
 .video-overlay {
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100%;
     height: 100%;
@@ -293,7 +234,6 @@ body {
         visibility 0.25s ease;
 }
 
-
 .video-overlay.active {
     opacity: 1;
     visibility: visible;
@@ -308,6 +248,7 @@ body {
     position: relative;
 
     width: 1000px;
+
     max-width: 90vw;
 
     opacity: 0;
@@ -320,7 +261,6 @@ body {
         transform 0.3s ease,
         opacity 0.3s ease;
 }
-
 
 .video-overlay.active .video-window {
     opacity: 1;
@@ -344,16 +284,17 @@ body {
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: #888;
 
     font-family: "Courier New", monospace;
+
     font-size: 24px;
 
     cursor: pointer;
 }
-
 
 .close-video:hover {
     color: #fff;
@@ -361,7 +302,7 @@ body {
 
 
 /* =========================================
-   VIDEO LOADING SCREEN
+   LOADING SCREEN
 ========================================= */
 
 .loading-screen {
@@ -381,7 +322,6 @@ body {
     border: 1px solid #333;
 }
 
-
 .loading-text {
     color: #777;
 
@@ -391,7 +331,9 @@ body {
 }
 
 
-/* LOADING BAR */
+/* =========================================
+   LOADING BAR
+========================================= */
 
 .loading-bar {
     width: 100%;
@@ -402,16 +344,12 @@ body {
     overflow: hidden;
 }
 
-
 .loading-progress {
     width: 0%;
     height: 100%;
 
     background: #b00000;
 }
-
-
-/* PERCENT */
 
 .loading-percent {
     margin-top: 10px;
@@ -449,6 +387,7 @@ body {
 
     .page {
         width: 90%;
+
         padding-top: 28px;
     }
 
@@ -457,24 +396,24 @@ body {
     }
 
     .directory-file {
-        grid-template-columns:
-            18px
-            minmax(0, auto)
-            1fr;
-
         font-size: 11px;
-    }
 
-    .file-status {
-        display: none;
+        gap: 8px;
     }
 
     .directory-path {
         font-size: 16px;
     }
 
+    .number {
+        width: 24px;
+
+        margin-right: 4px;
+    }
+
     .video-window {
         width: 90vw;
+
         max-width: 90vw;
     }
 
@@ -502,7 +441,7 @@ body {
 
 
 
-    <!-- DIRECTORY HEADER -->
+    <!-- HEADER -->
 
     <div class="directory-header">
 
@@ -521,7 +460,7 @@ body {
 
 
 
-    <!-- DIRECTORY -->
+    <!-- FILE LIST -->
 
     <div class="directory-list">
 
@@ -533,19 +472,11 @@ body {
             onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
-            <span class="file-icon">
-                ▣
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">01</span>
                 purge-xtra2k25.mp4
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                [open]
             </span>
 
         </div>
@@ -559,19 +490,11 @@ body {
             onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
-            <span class="file-icon">
-                ▣
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">02</span>
                 scenebitch-lcut.mp4
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                [open]
             </span>
 
         </div>
@@ -582,19 +505,11 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                □
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">03</span>
                 ------
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                --
             </span>
 
         </div>
@@ -608,19 +523,11 @@ body {
             onclick="openVideo('untitled_04.mp4', false)"
         >
 
-            <span class="file-icon">
-                ▣
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">04</span>
                 untitled_04.mp4
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                [open]
             </span>
 
         </div>
@@ -634,19 +541,11 @@ body {
             onclick="openVideo('sp_005.mp4', false)"
         >
 
-            <span class="file-icon">
-                ▣
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">05</span>
                 sp_005.mp4
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                [open]
             </span>
 
         </div>
@@ -657,19 +556,11 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                □
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">06</span>
                 ------
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                --
             </span>
 
         </div>
@@ -680,19 +571,11 @@ body {
 
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                □
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">07</span>
                 ------
-            </span>
-
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                --
             </span>
 
         </div>
@@ -706,35 +589,15 @@ body {
             onclick="openVideo('957229577.mp4', true)"
         >
 
-            <span class="file-icon">
-                ▣
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
                 <span class="number">08</span>
                 957229577.mp4
             </span>
 
-            <span class="file-dots"></span>
-
-            <span class="file-status">
-                [open]
-            </span>
-
         </div>
 
-
-    </div>
-
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        your connection has been logged.
-        <br>
-        session ID: [unbound]
 
     </div>
 
@@ -744,7 +607,7 @@ body {
 
 
 <!-- =========================================
-     FLOATING VIDEO
+     VIDEO OVERLAY
 ========================================= -->
 
 <div
@@ -756,8 +619,6 @@ body {
 
     <div class="video-window">
 
-
-        <!-- CLOSE -->
 
         <button
             class="close-video"
@@ -786,12 +647,10 @@ body {
 
             <div class="loading-bar">
 
-
                 <div
                     id="loadingProgress"
                     class="loading-progress"
                 ></div>
-
 
             </div>
 
@@ -816,16 +675,13 @@ body {
             preload="metadata"
         >
 
-
             <source
                 id="videoSource"
                 src=""
                 type="video/mp4"
             >
 
-
             your browser does not support video playback.
-
 
         </video>
 
@@ -940,8 +796,6 @@ function openVideo(
 
 
 
-    /* OPEN WINDOW */
-
     overlay.classList.add(
         "active"
     );
@@ -975,7 +829,7 @@ function openVideo(
 
 
             /* =================================
-               FILE 08 STALLS AT 82%
+               FILE 08 STALL
             ================================= */
 
             if (
@@ -1045,8 +899,6 @@ function openVideo(
             }
 
 
-
-            /* NORMAL COMPLETION */
 
             if (
                 value >= 100
@@ -1153,7 +1005,7 @@ function closeVideo() {
 
 
 /* =========================================
-   CLICK OUTSIDE TO CLOSE
+   BACKGROUND CLOSE
 ========================================= */
 
 function backgroundClose(event) {
@@ -1176,7 +1028,7 @@ function backgroundClose(event) {
 
 
 /* =========================================
-   ESC TO CLOSE
+   ESC CLOSE
 ========================================= */
 
 document.addEventListener(
