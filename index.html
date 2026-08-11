@@ -164,6 +164,27 @@ body {
 
 
 /* =========================================
+   UNKNOWN CLIENT
+========================================= */
+
+#unknownClient {
+    color: #b00000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: opacity 0.35s ease;
+}
+
+#unknownClient.visible {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================
    ENCRYPTION OVERLAY
 ========================================= */
 
@@ -239,8 +260,6 @@ body {
 
 /* =========================================
    SCRAMBLING / KYSORDIETRYIN
-
-   SAME FONT AS ENTER
 ========================================= */
 
 .encrypt-code {
@@ -455,7 +474,9 @@ body {
             </div>
 
 
-            <div>
+            <!-- APPEARS AFTER 2 SECONDS -->
+
+            <div id="unknownClient">
                 unknown client
             </div>
 
@@ -483,14 +504,10 @@ body {
     <div class="encrypt-panel">
 
 
-        <!-- TITLE -->
-
         <div class="encrypt-title">
             establishing channel
         </div>
 
-
-        <!-- SCRAMBLING CODE -->
 
         <div
             id="encryptCode"
@@ -500,10 +517,7 @@ body {
         </div>
 
 
-        <!-- STATUS -->
-
         <div class="encrypt-status">
-
 
             <span id="encryptStatus">
                 negotiating key...
@@ -514,25 +528,18 @@ body {
                 0%
             </span>
 
-
         </div>
 
 
-        <!-- PROGRESS -->
-
         <div class="encrypt-bar">
-
 
             <div
                 id="encryptProgress"
                 class="encrypt-progress"
             ></div>
 
-
         </div>
 
-
-        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -677,8 +684,6 @@ function updateRoute() {
 
 /* =========================================
    RANDOM SESSION ID
-
-   NEW ID GENERATED ON EVERY PAGE LOAD
 ========================================= */
 
 function createSessionID() {
@@ -690,14 +695,6 @@ function createSessionID() {
     let sessionID =
         "";
 
-
-    /*
-       CREATE THREE GROUPS
-       OF FOUR CHARACTERS
-
-       EXAMPLE:
-       7F3A-91C2-D8E4
-    */
 
     for (
         let group = 0;
@@ -730,11 +727,6 @@ function createSessionID() {
         }
 
 
-        /*
-           ADD DASH BETWEEN GROUPS
-           BUT NOT AFTER LAST GROUP
-        */
-
         if (
             group < 2
         ) {
@@ -764,6 +756,32 @@ function createSessionID() {
 
 
 /* =========================================
+   UNKNOWN CLIENT REVEAL
+
+   APPEARS AFTER 2 SECONDS
+========================================= */
+
+function revealUnknownClient() {
+
+    const unknownClient =
+        document.getElementById(
+            "unknownClient"
+        );
+
+
+    if (unknownClient) {
+
+        unknownClient.classList.add(
+            "visible"
+        );
+
+    }
+
+}
+
+
+
+/* =========================================
    INITIALIZE HOMEPAGE
 ========================================= */
 
@@ -774,8 +792,15 @@ updateRoute();
 createSessionID();
 
 
+/* REVEAL UNKNOWN CLIENT AFTER 2 SECONDS */
 
-/* CLOCK UPDATES EVERY SECOND */
+setTimeout(
+    revealUnknownClient,
+    2000
+);
+
+
+/* CLOCK */
 
 setInterval(
     updateClock,
@@ -783,8 +808,7 @@ setInterval(
 );
 
 
-
-/* ROUTE CHANGES QUICKLY */
+/* ROUTE */
 
 setInterval(
     updateRoute,
@@ -827,7 +851,7 @@ function randomCharacter() {
    COMPLETELY RANDOM
 
    40 - 100%
-   KYSORDIETRYIN SLOWLY REVEALS
+   KYSORDIETRYIN REVEALS
 ========================================= */
 
 function makeRevealCode(
@@ -843,9 +867,6 @@ function makeRevealCode(
         0;
 
 
-
-    /* START REVEAL AT 40% */
-
     if (
         progressValue >= 40
     ) {
@@ -858,7 +879,6 @@ function makeRevealCode(
             )
             /
             60;
-
 
 
         lockedLetters =
@@ -874,13 +894,9 @@ function makeRevealCode(
     }
 
 
-
     let output =
         "";
 
-
-
-    /* BUILD ALL 13 CHARACTERS */
 
     for (
         let i = 0;
@@ -888,8 +904,6 @@ function makeRevealCode(
         i++
     ) {
 
-
-        /* ALREADY REVEALED */
 
         if (
             i < lockedLetters
@@ -901,8 +915,6 @@ function makeRevealCode(
 
         }
 
-
-        /* STILL SCRAMBLING */
 
         else {
 
@@ -968,9 +980,7 @@ function openEncryptedPage(
 
 
 
-    /* =====================================
-       RESET ENCRYPTION SCREEN
-    ===================================== */
+    /* RESET */
 
     progress.style.width =
         "0%";
@@ -995,7 +1005,6 @@ function openEncryptedPage(
         " / access request pending";
 
 
-
     /* SHOW OVERLAY */
 
     overlay.classList.add(
@@ -1003,15 +1012,12 @@ function openEncryptedPage(
     );
 
 
-
     let currentProgress =
         0;
 
 
 
-    /* =====================================
-       FAST RANDOM CHARACTERS
-    ===================================== */
+    /* FAST SCRAMBLING */
 
     const codeInterval =
 
@@ -1043,7 +1049,6 @@ function openEncryptedPage(
                 0;
 
 
-
             const progressInterval =
 
                 setInterval(
@@ -1066,9 +1071,7 @@ function openEncryptedPage(
 
 
 
-                        /* =================================
-                           STATUS MESSAGES
-                        ================================= */
+                        /* STATUS */
 
                         if (
                             value < 25
@@ -1114,7 +1117,7 @@ function openEncryptedPage(
 
 
                         /* =================================
-                           FINISHED
+                           COMPLETE
                         ================================= */
 
                         if (
@@ -1131,9 +1134,6 @@ function openEncryptedPage(
                                 codeInterval
                             );
 
-
-
-                            /* FORCE FINAL STATE */
 
                             progress.style.width =
                                 "100%";
@@ -1157,10 +1157,7 @@ function openEncryptedPage(
 
 
 
-                            /* =================================
-                               HOLD KYSORDIETRYIN
-                               FOR 2 SECONDS
-                            ================================= */
+                            /* HOLD FOR 2 SECONDS */
 
                             setTimeout(
                                 function() {
