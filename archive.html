@@ -241,7 +241,7 @@ body {
 
 
 /* =========================================
-   AUTH TOP STRIP
+   TOP RED STRIP
 ========================================= */
 
 .auth-strip {
@@ -263,7 +263,7 @@ body {
 
 
 /* =========================================
-   AUTH TITLE
+   TITLE
 ========================================= */
 
 .auth-title {
@@ -273,14 +273,12 @@ body {
 
     letter-spacing: 2px;
 
-    text-transform: lowercase;
-
     margin-bottom: 8px;
 }
 
 
 /* =========================================
-   AUTH SUBTEXT
+   SUBTEXT
 ========================================= */
 
 .auth-subtext {
@@ -349,7 +347,7 @@ body {
 
 
 /* =========================================
-   AUTH STATUS
+   STATUS
 ========================================= */
 
 .auth-status {
@@ -358,27 +356,15 @@ body {
     font-size: 9px;
 
     letter-spacing: 1px;
-
-    transition: color 0.2s ease;
 }
-
-
-/* WRONG PASSWORD */
 
 .auth-status.error {
     color: #b00000;
 }
 
 
-/* CORRECT PASSWORD */
-
-.auth-status.accepted {
-    color: #4f9a4f;
-}
-
-
 /* =========================================
-   AUTH BUTTON
+   SUBMIT BUTTON
 ========================================= */
 
 .auth-button {
@@ -411,17 +397,72 @@ body {
 
 .auth-button:disabled {
     cursor: default;
-    opacity: 0.35;
+
+    opacity: 0.3;
 }
 
 
 /* =========================================
-   SHAKE ON ERROR
+   AUTH LOADING STATE
+========================================= */
+
+.auth-loader {
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+
+    margin-top: 15px;
+}
+
+.auth-loader.visible {
+    display: flex;
+}
+
+
+/* =========================================
+   LOADING SYMBOL
+========================================= */
+
+.loader-symbol {
+    width: 18px;
+    height: 18px;
+
+    border: 1px solid #292929;
+
+    border-top-color: #8d0000;
+
+    border-radius: 50%;
+
+    animation:
+        authSpin 0.55s linear infinite;
+}
+
+
+@keyframes authSpin {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================
+   ERROR SHAKE
 ========================================= */
 
 .auth-box.shake {
-    animation: authShake 0.22s linear;
+    animation:
+        authShake 0.22s linear;
 }
+
 
 @keyframes authShake {
 
@@ -547,7 +588,7 @@ body {
 
 
 /* =========================================
-   LOADING SCREEN
+   FILE LOADING SCREEN
 ========================================= */
 
 .loading-screen {
@@ -578,7 +619,7 @@ body {
 
 
 /* =========================================
-   LOADING BAR
+   FILE LOADING BAR
 ========================================= */
 
 .loading-bar {
@@ -756,6 +797,18 @@ body {
             </div>
 
 
+            <!-- LOADING SYMBOL -->
+
+            <div
+                id="authLoader"
+                class="auth-loader"
+            >
+
+                <div class="loader-symbol"></div>
+
+            </div>
+
+
         </div>
 
 
@@ -767,7 +820,7 @@ body {
 
 
 <!-- =========================================
-     ARCHIVE PAGE
+     ARCHIVE
 ========================================= -->
 
 <div class="page">
@@ -1083,6 +1136,12 @@ const authButton =
     );
 
 
+const authLoader =
+    document.getElementById(
+        "authLoader"
+    );
+
+
 
 /* =========================================
    AUTO FOCUS
@@ -1206,6 +1265,8 @@ function submitPassword() {
     ) {
 
 
+        /* LOCK INPUT */
+
         passwordInput.disabled =
             true;
 
@@ -1214,24 +1275,29 @@ function submitPassword() {
             true;
 
 
+
+        /* REMOVE ERROR TEXT */
+
         authStatus.classList.remove(
             "error"
         );
 
 
-        authStatus.classList.add(
-            "accepted"
-        );
-
-
         authStatus.textContent =
-            "authorization accepted";
+            "";
+
+
+
+        /* SHOW LOADING SYMBOL */
+
+        authLoader.classList.add(
+            "visible"
+        );
 
 
 
         /* =================================
-           HOLD GREEN TEXT
-           FOR 2 SECONDS
+           LOAD FOR 2 SECONDS
         ================================= */
 
         setTimeout(
@@ -1263,11 +1329,6 @@ function submitPassword() {
 
     authStatus.textContent =
         "authorization error";
-
-
-    authStatus.classList.remove(
-        "accepted"
-    );
 
 
     authStatus.classList.add(
@@ -1456,6 +1517,7 @@ function openVideo(
 
     let hasStalled =
         false;
+
 
 
     loadingInterval =
