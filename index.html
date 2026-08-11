@@ -8,6 +8,20 @@
 
 <title>suicide party</title>
 
+
+<!-- =========================================
+     WEB FONT
+========================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+>
+
+
 <style>
 
 * {
@@ -224,12 +238,20 @@ body {
 
 /* =========================================
    ENCRYPTION CODE
+
+   IBM PLEX MONO
 ========================================= */
 
 .encrypt-code {
     color: #b00000;
 
+    font-family:
+        "IBM Plex Mono",
+        monospace;
+
     font-size: clamp(22px, 4vw, 46px);
+
+    font-weight: 500;
 
     letter-spacing: 5px;
 
@@ -248,6 +270,9 @@ body {
     padding: 25px 0;
 
     margin-bottom: 28px;
+
+    text-shadow:
+        0 0 2px rgba(176, 0, 0, 0.45);
 }
 
 
@@ -342,7 +367,14 @@ body {
 
     .encrypt-code {
         min-height: 90px;
+
         letter-spacing: 3px;
+
+        font-size: clamp(
+            20px,
+            6vw,
+            34px
+        );
     }
 
 }
@@ -405,17 +437,23 @@ body {
             </div>
 
             <div>
+
                 route:
+
                 <span id="route">
                     192.168.---.---
                 </span>
+
             </div>
 
             <div>
+
                 time:
+
                 <span id="time">
                     --:--:-- --
                 </span>
+
             </div>
 
             <div>
@@ -466,13 +504,16 @@ body {
 
         <div class="encrypt-status">
 
+
             <span id="encryptStatus">
                 negotiating key...
             </span>
 
+
             <span id="encryptPercent">
                 0%
             </span>
+
 
         </div>
 
@@ -481,10 +522,12 @@ body {
 
         <div class="encrypt-bar">
 
+
             <div
                 id="encryptProgress"
                 class="encrypt-progress"
             ></div>
+
 
         </div>
 
@@ -515,6 +558,7 @@ body {
 
 function updateClock() {
 
+
     const now =
         new Date();
 
@@ -526,13 +570,19 @@ function updateClock() {
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const seconds =
         String(
             now.getSeconds()
-        ).padStart(2, "0");
+        ).padStart(
+            2,
+            "0"
+        );
 
 
     const ampm =
@@ -563,6 +613,7 @@ function updateClock() {
         " " +
         ampm;
 
+
 }
 
 
@@ -573,27 +624,32 @@ function updateClock() {
 
 function updateRoute() {
 
+
     const part1 =
         Math.floor(
-            Math.random() * 256
+            Math.random() *
+            256
         );
 
 
     const part2 =
         Math.floor(
-            Math.random() * 256
+            Math.random() *
+            256
         );
 
 
     const part3 =
         Math.floor(
-            Math.random() * 256
+            Math.random() *
+            256
         );
 
 
     const part4 =
         Math.floor(
-            Math.random() * 256
+            Math.random() *
+            256
         );
 
 
@@ -605,6 +661,7 @@ function updateRoute() {
         part2 + "." +
         part3 + "." +
         part4;
+
 
 }
 
@@ -638,6 +695,7 @@ setInterval(
 
 function randomCharacter() {
 
+
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -652,6 +710,7 @@ function randomCharacter() {
 
     ];
 
+
 }
 
 
@@ -663,7 +722,7 @@ function randomCharacter() {
    COMPLETELY SCRAMBLED
 
    40 - 100%:
-   KYSORDIETRYIN REVEALS
+   FINAL WORD REVEALS
 ========================================= */
 
 function makeRevealCode(
@@ -776,6 +835,7 @@ function makeRevealCode(
 
     return output;
 
+
 }
 
 
@@ -840,7 +900,9 @@ function openEncryptedPage(
 
 
     code.textContent =
-        makeRevealCode(0);
+        makeRevealCode(
+            0
+        );
 
 
     status.textContent =
@@ -884,16 +946,19 @@ function openEncryptedPage(
 
     const codeInterval =
 
-        setInterval(function() {
+        setInterval(
+            function() {
 
 
-            code.textContent =
-                makeRevealCode(
-                    currentProgress
-                );
+                code.textContent =
+                    makeRevealCode(
+                        currentProgress
+                    );
 
 
-        }, 35);
+            },
+            35
+        );
 
 
 
@@ -902,178 +967,187 @@ function openEncryptedPage(
        PROGRESS BAR STARTS
     ===================================== */
 
-    setTimeout(function() {
+    setTimeout(
+        function() {
 
 
-        let value =
-            0;
+            let value =
+                0;
 
 
 
-        /* =================================
-           PROGRESS
-        ================================= */
+            /* =================================
+               PROGRESS
+            ================================= */
 
-        const progressInterval =
+            const progressInterval =
 
-            setInterval(function() {
+                setInterval(
+                    function() {
 
 
-                value++;
+                        value++;
 
 
-                currentProgress =
-                    value;
+                        currentProgress =
+                            value;
 
 
-                progress.style.width =
-                    value + "%";
+                        progress.style.width =
+                            value + "%";
 
 
-                percent.textContent =
-                    value + "%";
+                        percent.textContent =
+                            value + "%";
 
 
 
-                /* =================================
-                   0 - 24%
-                ================================= */
+                        /* =================================
+                           0 - 24%
+                        ================================= */
 
-                if (
-                    value < 25
-                ) {
+                        if (
+                            value < 25
+                        ) {
 
 
-                    status.textContent =
-                        "negotiating key...";
+                            status.textContent =
+                                "negotiating key...";
 
 
-                }
+                        }
 
 
 
-                /* =================================
-                   25 - 49%
-                ================================= */
+                        /* =================================
+                           25 - 49%
+                        ================================= */
 
-                else if (
-                    value < 50
-                ) {
+                        else if (
+                            value < 50
+                        ) {
 
 
-                    status.textContent =
-                        "searching for path...";
+                            status.textContent =
+                                "searching for path...";
 
 
-                }
+                        }
 
 
 
-                /* =================================
-                   50 - 74%
-                ================================= */
+                        /* =================================
+                           50 - 74%
+                        ================================= */
 
-                else if (
-                    value < 75
-                ) {
+                        else if (
+                            value < 75
+                        ) {
 
 
-                    status.textContent =
-                        "binding client...";
+                            status.textContent =
+                                "binding client...";
 
 
-                }
+                        }
 
 
 
-                /* =================================
-                   75 - 100%
-                ================================= */
+                        /* =================================
+                           75 - 100%
+                        ================================= */
 
-                else {
+                        else {
 
 
-                    status.textContent =
-                        "path found...";
+                            status.textContent =
+                                "path found...";
 
 
-                }
+                        }
 
 
 
-                /* =================================
-                   COMPLETE
-                ================================= */
+                        /* =================================
+                           COMPLETE
+                        ================================= */
 
-                if (
-                    value >= 100
-                ) {
+                        if (
+                            value >= 100
+                        ) {
 
 
-                    /* STOP PROGRESS */
+                            /* STOP PROGRESS */
 
-                    clearInterval(
-                        progressInterval
-                    );
+                            clearInterval(
+                                progressInterval
+                            );
 
 
-                    /* STOP SCRAMBLING */
+                            /* STOP SCRAMBLING */
 
-                    clearInterval(
-                        codeInterval
-                    );
+                            clearInterval(
+                                codeInterval
+                            );
 
 
-                    /* FORCE 100% */
+                            /* FORCE 100% */
 
-                    progress.style.width =
-                        "100%";
+                            progress.style.width =
+                                "100%";
 
 
-                    percent.textContent =
-                        "100%";
+                            percent.textContent =
+                                "100%";
 
 
-                    /* =================================
-                       FINAL REVEAL
-                    ================================= */
+                            /* =================================
+                               FINAL REVEAL
+                            ================================= */
 
-                    code.textContent =
-                        "KYSORDIETRYIN";
+                            code.textContent =
+                                "KYSORDIETRYIN";
 
 
-                    status.textContent =
-                        "path found...";
+                            status.textContent =
+                                "path found...";
 
 
-                    bottom.textContent =
-                        directoryName +
-                        " / channel established";
+                            bottom.textContent =
+                                directoryName +
+                                " / channel established";
 
 
 
-                    /* =================================
-                       HOLD FINAL WORD
-                       FOR 2 FULL SECONDS
-                    ================================= */
+                            /* =================================
+                               HOLD FINAL WORD
+                               FOR 2 FULL SECONDS
+                            ================================= */
 
-                    setTimeout(function() {
+                            setTimeout(
+                                function() {
 
 
-                        window.location.href =
-                            destination;
+                                    window.location.href =
+                                        destination;
 
 
-                    }, 2000);
+                                },
+                                2000
+                            );
 
 
-                }
+                        }
 
 
-            }, 40);
+                    },
+                    40
+                );
 
 
-    }, 2000);
+        },
+        2000
+    );
 
 
 }
