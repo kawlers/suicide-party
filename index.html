@@ -155,6 +155,25 @@ body {
 
 
 /* =========================================
+   BLURRED SESSION ID
+========================================= */
+
+#sessionID {
+    display: inline-block;
+
+    color: #777;
+
+    filter: blur(3px);
+
+    user-select: none;
+
+    opacity: 0.8;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
    ENCRYPTION SCREEN
 ========================================= */
 
@@ -230,7 +249,6 @@ body {
 
 /* =========================================
    ENCRYPTION CODE
-
    SAME FONT AS ENTER
 ========================================= */
 
@@ -380,8 +398,6 @@ body {
 <div class="home">
 
 
-    <!-- LOGO -->
-
     <img
         class="logo"
         src="suicide-party-logo.png"
@@ -392,24 +408,18 @@ body {
     <div class="text-area">
 
 
-        <!-- =================================
-             ENTER
-        ================================== -->
+        <!-- ENTER -->
 
         <div class="nav">
-
 
             <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
                 ENTER
             </a>
 
-
         </div>
 
 
-        <!-- =================================
-             TRACKING TEXT
-        ================================== -->
+        <!-- TRACKING TEXT -->
 
         <div class="tagline">
 
@@ -420,7 +430,10 @@ body {
 
 
             <div>
-                session ID: [unbound]
+                session ID:
+                <span id="sessionID">
+                    0000-0000-0000
+                </span>
             </div>
 
 
@@ -474,14 +487,10 @@ body {
     <div class="encrypt-panel">
 
 
-        <!-- TITLE -->
-
         <div class="encrypt-title">
             establishing channel
         </div>
 
-
-        <!-- CODE -->
 
         <div
             id="encryptCode"
@@ -491,39 +500,28 @@ body {
         </div>
 
 
-        <!-- STATUS -->
-
         <div class="encrypt-status">
-
 
             <span id="encryptStatus">
                 negotiating key...
             </span>
 
-
             <span id="encryptPercent">
                 0%
             </span>
 
-
         </div>
 
 
-        <!-- PROGRESS BAR -->
-
         <div class="encrypt-bar">
-
 
             <div
                 id="encryptProgress"
                 class="encrypt-progress"
             ></div>
 
-
         </div>
 
-
-        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -549,14 +547,11 @@ body {
 
 function updateClock() {
 
-
     const now =
         new Date();
 
-
     let hours =
         now.getHours();
-
 
     const minutes =
         String(
@@ -566,7 +561,6 @@ function updateClock() {
             "0"
         );
 
-
     const seconds =
         String(
             now.getSeconds()
@@ -575,16 +569,13 @@ function updateClock() {
             "0"
         );
 
-
     const ampm =
         hours >= 12
         ? "PM"
         : "AM";
 
-
     hours =
         hours % 12;
-
 
     hours =
         hours
@@ -604,7 +595,6 @@ function updateClock() {
         " " +
         ampm;
 
-
 }
 
 
@@ -615,32 +605,24 @@ function updateClock() {
 
 function updateRoute() {
 
-
     const part1 =
         Math.floor(
-            Math.random() *
-            256
+            Math.random() * 256
         );
-
 
     const part2 =
         Math.floor(
-            Math.random() *
-            256
+            Math.random() * 256
         );
-
 
     const part3 =
         Math.floor(
-            Math.random() *
-            256
+            Math.random() * 256
         );
-
 
     const part4 =
         Math.floor(
-            Math.random() *
-            256
+            Math.random() * 256
         );
 
 
@@ -653,18 +635,74 @@ function updateRoute() {
         part3 + "." +
         part4;
 
+}
+
+
+
+/* =========================================
+   RANDOM BLURRED SESSION ID
+========================================= */
+
+function createSessionID() {
+
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+    let output =
+        "";
+
+    for (
+        let group = 0;
+        group < 3;
+        group++
+    ) {
+
+        for (
+            let i = 0;
+            i < 4;
+            i++
+        ) {
+
+            output +=
+                characters[
+                    Math.floor(
+                        Math.random() *
+                        characters.length
+                    )
+                ];
+
+        }
+
+
+        if (
+            group < 2
+        ) {
+
+            output += "-";
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "sessionID"
+    ).textContent =
+        output;
 
 }
 
 
 
 /* =========================================
-   START CLOCK + ROUTE
+   START PAGE DATA
 ========================================= */
 
 updateClock();
 
 updateRoute();
+
+createSessionID();
 
 
 setInterval(
@@ -686,7 +724,6 @@ setInterval(
 
 function randomCharacter() {
 
-
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -700,7 +737,6 @@ function randomCharacter() {
         )
 
     ];
-
 
 }
 
@@ -720,7 +756,6 @@ function makeRevealCode(
     progressValue
 ) {
 
-
     const finalWord =
         "KYSORDIETRYIN";
 
@@ -729,15 +764,9 @@ function makeRevealCode(
         0;
 
 
-
-    /* =====================================
-       START REVEAL AT 40%
-    ===================================== */
-
     if (
         progressValue >= 40
     ) {
-
 
         const revealProgress =
 
@@ -758,19 +787,12 @@ function makeRevealCode(
 
             );
 
-
     }
-
 
 
     let output =
         "";
 
-
-
-    /* =====================================
-       BUILD 13 CHARACTER STRING
-    ===================================== */
 
     for (
         let i = 0;
@@ -778,38 +800,26 @@ function makeRevealCode(
         i++
     ) {
 
-
-        /* REVEALED LETTER */
-
         if (
             i < lockedLetters
         ) {
 
-
             output +=
                 finalWord[i];
 
-
         }
 
-
-        /* SCRAMBLING CHARACTER */
-
         else {
-
 
             output +=
                 randomCharacter();
 
-
         }
-
 
     }
 
 
     return output;
-
 
 }
 
@@ -824,36 +834,30 @@ function openEncryptedPage(
     directoryName
 ) {
 
-
     const overlay =
         document.getElementById(
             "encryptOverlay"
         );
-
 
     const code =
         document.getElementById(
             "encryptCode"
         );
 
-
     const progress =
         document.getElementById(
             "encryptProgress"
         );
-
 
     const percent =
         document.getElementById(
             "encryptPercent"
         );
 
-
     const status =
         document.getElementById(
             "encryptStatus"
         );
-
 
     const bottom =
         document.getElementById(
@@ -861,38 +865,28 @@ function openEncryptedPage(
         );
 
 
-
-    /* =====================================
-       RESET
-    ===================================== */
+    /* RESET */
 
     progress.style.width =
         "0%";
 
-
     percent.textContent =
         "0%";
-
 
     code.textContent =
         makeRevealCode(
             0
         );
 
-
     status.textContent =
         "negotiating key...";
-
 
     bottom.textContent =
         directoryName +
         " / access request pending";
 
 
-
-    /* =====================================
-       SHOW ENCRYPTION SCREEN
-    ===================================== */
+    /* SHOW SCREEN */
 
     overlay.classList.add(
         "active"
@@ -903,41 +897,30 @@ function openEncryptedPage(
         0;
 
 
-
-    /* =====================================
-       FAST SCRAMBLING
-    ===================================== */
+    /* FAST SCRAMBLING */
 
     const codeInterval =
 
         setInterval(
             function() {
 
-
                 code.textContent =
                     makeRevealCode(
                         currentProgress
                     );
-
 
             },
             35
         );
 
 
-
-    /* =====================================
-       WAIT 2 SECONDS
-       BEFORE LOADING STARTS
-    ===================================== */
+    /* 2 SECOND INITIAL WAIT */
 
     setTimeout(
         function() {
 
-
             let value =
                 0;
-
 
 
             const progressInterval =
@@ -945,102 +928,62 @@ function openEncryptedPage(
                 setInterval(
                     function() {
 
-
                         value++;
-
 
                         currentProgress =
                             value;
 
-
                         progress.style.width =
                             value + "%";
-
 
                         percent.textContent =
                             value + "%";
 
 
-
-                        /* =================================
-                           0 - 24%
-                        ================================= */
-
                         if (
                             value < 25
                         ) {
 
-
                             status.textContent =
                                 "negotiating key...";
 
-
                         }
-
-
-
-                        /* =================================
-                           25 - 49%
-                        ================================= */
 
                         else if (
                             value < 50
                         ) {
 
-
                             status.textContent =
                                 "searching for path...";
 
-
                         }
-
-
-
-                        /* =================================
-                           50 - 74%
-                        ================================= */
 
                         else if (
                             value < 75
                         ) {
 
-
                             status.textContent =
                                 "binding client...";
 
-
                         }
 
-
-
-                        /* =================================
-                           75 - 100%
-                        ================================= */
-
                         else {
-
 
                             status.textContent =
                                 "path found...";
 
-
                         }
 
 
-
-                        /* =================================
-                           COMPLETE
-                        ================================= */
+                        /* COMPLETE */
 
                         if (
                             value >= 100
                         ) {
 
-
                             clearInterval(
                                 progressInterval
                             );
-
 
                             clearInterval(
                                 codeInterval
@@ -1050,59 +993,44 @@ function openEncryptedPage(
                             progress.style.width =
                                 "100%";
 
-
                             percent.textContent =
                                 "100%";
 
 
-                            /* =================================
-                               FINAL WORD
-                            ================================= */
+                            /* FINAL WORD */
 
                             code.textContent =
                                 "KYSORDIETRYIN";
 
-
                             status.textContent =
                                 "path found...";
-
 
                             bottom.textContent =
                                 directoryName +
                                 " / channel established";
 
 
-
-                            /* =================================
-                               HOLD FINAL WORD
-                               FOR 2 SECONDS
-                            ================================= */
+                            /* HOLD FOR 2 SECONDS */
 
                             setTimeout(
                                 function() {
 
-
                                     window.location.href =
                                         destination;
-
 
                                 },
                                 2000
                             );
 
-
                         }
-
 
                     },
                     40
                 );
 
-
         },
         2000
     );
-
 
 }
 
