@@ -92,9 +92,7 @@ body {
 
 .directory-list {
     width: 100%;
-
     margin-top: 18px;
-
     border-top: 1px solid #1d1d1d;
 }
 
@@ -105,9 +103,7 @@ body {
 
 .directory-file {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
 
     min-height: 46px;
@@ -184,7 +180,6 @@ body {
 
 .directory-file.empty {
     color: #333;
-
     cursor: default;
 }
 
@@ -198,9 +193,7 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
-
     padding-left: 8px;
-
     background: none;
 }
 
@@ -211,16 +204,14 @@ body {
 
 .video-overlay {
     position: fixed;
-
     inset: 0;
 
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(0, 0, 0, 0.9);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -248,13 +239,12 @@ body {
     position: relative;
 
     width: 1000px;
-
     max-width: 92vw;
 
     opacity: 0;
 
     transform:
-        translateY(16px)
+        translateY(14px)
         scale(0.98);
 
     transition:
@@ -289,7 +279,6 @@ body {
     color: #666;
 
     font-family: "Courier New", monospace;
-
     font-size: 22px;
 
     cursor: pointer;
@@ -309,9 +298,7 @@ body {
     height: 180px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     padding: 30px;
@@ -362,7 +349,7 @@ body {
 
 
 /* =========================================================
-   RETRO PLAYER
+   2004 STYLE PLAYER
 ========================================================= */
 
 .retro-player {
@@ -370,22 +357,29 @@ body {
 
     width: 100%;
 
-    background: #161616;
+    padding: 7px;
 
-    border-top: 1px solid #4e4e4e;
-    border-left: 1px solid #454545;
+    background:
+        linear-gradient(
+            to bottom,
+            #282828,
+            #111
+        );
 
-    border-right: 1px solid #050505;
-    border-bottom: 1px solid #050505;
+    border-top: 2px solid #555;
+    border-left: 2px solid #4b4b4b;
+
+    border-right: 2px solid #050505;
+    border-bottom: 2px solid #050505;
 
     box-shadow:
         0 0 0 1px #000,
-        0 12px 35px rgba(0, 0, 0, 0.8);
+        0 12px 35px rgba(0, 0, 0, 0.9);
 }
 
 
 /* =========================================================
-   VIDEO FRAME
+   VIDEO SCREEN
 ========================================================= */
 
 .player-screen {
@@ -393,11 +387,15 @@ body {
 
     width: 100%;
 
-    padding: 5px;
+    overflow: hidden;
 
-    background: #0a0a0a;
+    background: #000;
 
-    border-bottom: 1px solid #500000;
+    border-top: 2px solid #050505;
+    border-left: 2px solid #050505;
+
+    border-right: 1px solid #555;
+    border-bottom: 1px solid #555;
 }
 
 #videoPlayer {
@@ -411,14 +409,13 @@ body {
 }
 
 
-/* CRT EFFECT */
+/* CRT TEXTURE */
 
 .player-screen::after {
     content: "";
 
     position: absolute;
-
-    inset: 5px;
+    inset: 0;
 
     pointer-events: none;
 
@@ -427,8 +424,8 @@ body {
             to bottom,
             rgba(255, 255, 255, 0.012) 0px,
             rgba(255, 255, 255, 0.012) 1px,
-            rgba(0, 0, 0, 0.028) 1px,
-            rgba(0, 0, 0, 0.028) 3px
+            rgba(0, 0, 0, 0.025) 1px,
+            rgba(0, 0, 0, 0.025) 3px
         );
 }
 
@@ -438,24 +435,21 @@ body {
 ========================================================= */
 
 .player-controls {
-    min-height: 58px;
+    min-height: 64px;
 
     display: flex;
-
     align-items: center;
 
-    gap: 8px;
+    gap: 12px;
 
-    padding: 8px;
+    padding: 9px 8px 3px;
 
     background:
         linear-gradient(
             to bottom,
-            #2c2c2c,
-            #171717
+            #252525,
+            #111
         );
-
-    border-top: 1px solid #3e3e3e;
 }
 
 
@@ -464,11 +458,10 @@ body {
 ========================================================= */
 
 .toggle-button {
-    width: 38px;
-    height: 31px;
+    width: 58px;
+    height: 36px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -479,74 +472,70 @@ body {
     background:
         linear-gradient(
             to bottom,
-            #777,
-            #4f4f4f
+            #d2d2d2 0%,
+            #8b8b8b 45%,
+            #555 55%,
+            #aaa 100%
         );
 
-    border-top: 1px solid #aaa;
-    border-left: 1px solid #999;
+    border-top: 2px solid #eee;
+    border-left: 2px solid #d0d0d0;
 
-    border-right: 1px solid #222;
-    border-bottom: 1px solid #222;
+    border-right: 2px solid #292929;
+    border-bottom: 2px solid #292929;
 
     cursor: pointer;
+
+    box-shadow:
+        inset 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
 .toggle-button:hover {
-    background:
-        linear-gradient(
-            to bottom,
-            #888,
-            #5d5d5d
-        );
+    filter: brightness(1.1);
 }
 
 .toggle-button:active {
-    border-top: 1px solid #222;
-    border-left: 1px solid #222;
+    border-top: 2px solid #292929;
+    border-left: 2px solid #292929;
 
-    border-right: 1px solid #999;
-    border-bottom: 1px solid #999;
+    border-right: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
 
-/* =========================================================
-   PLAY SYMBOL
-========================================================= */
+/* PLAY */
 
 .play-symbol {
     width: 0;
     height: 0;
 
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
 
-    border-left: 10px solid #111;
+    border-left: 13px solid #111;
 
-    margin-left: 2px;
+    margin-left: 3px;
 }
 
 
-/* =========================================================
-   PAUSE SYMBOL
-========================================================= */
+/* PAUSE */
 
 .pause-symbol {
     display: none;
 
-    gap: 3px;
+    gap: 4px;
 }
 
 .pause-symbol span {
-    width: 4px;
-    height: 13px;
+    width: 5px;
+    height: 16px;
 
     background: #111;
 }
 
 
 /* =========================================================
-   TIMELINE
+   SEEK / FORWARD / REVERSE SLIDER
 ========================================================= */
 
 .timeline-area {
@@ -555,28 +544,26 @@ body {
     min-width: 0;
 
     display: flex;
-
     align-items: center;
-
-    gap: 9px;
-
-    margin-left: 3px;
 }
 
 #seekBar {
-    flex: 1;
-
-    min-width: 80px;
+    width: 100%;
 
     appearance: none;
     -webkit-appearance: none;
 
-    height: 13px;
+    height: 12px;
 
-    background: #090909;
+    background:
+        linear-gradient(
+            to bottom,
+            #050505,
+            #111
+        );
 
-    border-top: 1px solid #000;
-    border-left: 1px solid #000;
+    border-top: 2px solid #000;
+    border-left: 2px solid #000;
 
     border-right: 1px solid #555;
     border-bottom: 1px solid #555;
@@ -584,17 +571,26 @@ body {
     cursor: pointer;
 }
 
+
+/* SEEK THUMB */
+
 #seekBar::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
 
-    width: 10px;
-    height: 19px;
+    width: 14px;
+    height: 24px;
 
-    background: #6a6a6a;
+    background:
+        linear-gradient(
+            to right,
+            #555,
+            #bbb,
+            #555
+        );
 
-    border-top: 1px solid #aaa;
-    border-left: 1px solid #999;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #aaa;
 
     border-right: 1px solid #222;
     border-bottom: 1px solid #222;
@@ -603,15 +599,21 @@ body {
 }
 
 #seekBar::-moz-range-thumb {
-    width: 9px;
-    height: 18px;
+    width: 12px;
+    height: 22px;
 
     border-radius: 0;
 
-    background: #6a6a6a;
+    background:
+        linear-gradient(
+            to right,
+            #555,
+            #bbb,
+            #555
+        );
 
-    border-top: 1px solid #aaa;
-    border-left: 1px solid #999;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #aaa;
 
     border-right: 1px solid #222;
     border-bottom: 1px solid #222;
@@ -621,29 +623,168 @@ body {
 
 
 /* =========================================================
-   TIME
+   SPEAKER / VOLUME BUTTON
 ========================================================= */
 
-.player-time {
+.volume-button {
+    position: relative;
+
+    width: 42px;
+    height: 34px;
+
     flex-shrink: 0;
 
-    min-width: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding: 6px 7px;
+    padding: 0;
 
-    background: #050505;
+    background:
+        linear-gradient(
+            to bottom,
+            #777,
+            #444
+        );
 
-    border-top: 1px solid #000;
-    border-left: 1px solid #000;
+    border-top: 1px solid #aaa;
+    border-left: 1px solid #999;
 
-    border-right: 1px solid #444;
-    border-bottom: 1px solid #444;
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
 
-    color: #969696;
+    cursor: pointer;
+}
 
-    font-size: 10px;
+.volume-button:hover {
+    filter: brightness(1.1);
+}
 
-    text-align: center;
+
+/* SPEAKER */
+
+.speaker-icon {
+    position: relative;
+
+    width: 20px;
+    height: 18px;
+}
+
+.speaker-icon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 1px;
+    top: 6px;
+
+    width: 7px;
+    height: 7px;
+
+    background: #111;
+}
+
+.speaker-icon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    top: 3px;
+
+    width: 0;
+    height: 0;
+
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+
+    border-right: 8px solid #111;
+}
+
+
+/* SOUND WAVE 1 */
+
+.wave-one {
+    position: absolute;
+
+    right: 1px;
+    top: 5px;
+
+    width: 6px;
+    height: 8px;
+
+    border-right: 2px solid #111;
+
+    border-radius: 50%;
+}
+
+
+/* SOUND WAVE 2 */
+
+.wave-two {
+    position: absolute;
+
+    right: -3px;
+    top: 2px;
+
+    width: 9px;
+    height: 14px;
+
+    border-right: 2px solid #111;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   VOLUME STATES
+========================================================= */
+
+
+/* 70% */
+
+.volume-button.medium .wave-two {
+    display: none;
+}
+
+
+/* 35% */
+
+.volume-button.low .wave-two {
+    display: none;
+}
+
+.volume-button.low .wave-one {
+    opacity: 0.45;
+}
+
+
+/* MUTED */
+
+.volume-button.muted .wave-one,
+.volume-button.muted .wave-two {
+    display: none;
+}
+
+.volume-button.muted .speaker-icon {
+    opacity: 0.35;
+}
+
+
+/* LITTLE RED VOLUME INDICATOR */
+
+.volume-light {
+    position: absolute;
+
+    bottom: 3px;
+    left: 5px;
+
+    width: 30px;
+    height: 2px;
+
+    background: #7d0000;
+
+    transition: width 0.15s ease;
 }
 
 
@@ -682,21 +823,17 @@ body {
     }
 
     .player-controls {
-        gap: 5px;
-        padding: 6px;
+        gap: 8px;
     }
 
     .toggle-button {
-        width: 32px;
-        height: 28px;
+        width: 48px;
+        height: 32px;
     }
 
-    .player-time {
-        min-width: 82px;
-
-        font-size: 9px;
-
-        padding: 5px 3px;
+    .volume-button {
+        width: 38px;
+        height: 31px;
     }
 
 }
@@ -712,6 +849,8 @@ body {
 <div class="page">
 
 
+    <!-- BACK -->
+
     <a
         class="back"
         href="index.html"
@@ -720,18 +859,27 @@ body {
     </a>
 
 
+
+    <!-- HEADER -->
+
     <div class="directory-header">
+
 
         <div class="directory-path">
             /files
         </div>
 
+
         <div class="section-title">
             video files (.mp4)
         </div>
 
+
     </div>
 
+
+
+    <!-- DIRECTORY -->
 
     <div class="directory-list">
 
@@ -756,6 +904,7 @@ body {
         </div>
 
 
+
         <!-- 02 -->
 
         <div
@@ -776,6 +925,7 @@ body {
         </div>
 
 
+
         <!-- 03 -->
 
         <div class="directory-file empty">
@@ -791,6 +941,7 @@ body {
             </span>
 
         </div>
+
 
 
         <!-- 04 -->
@@ -813,6 +964,7 @@ body {
         </div>
 
 
+
         <!-- 05 -->
 
         <div
@@ -833,6 +985,7 @@ body {
         </div>
 
 
+
         <!-- 06 -->
 
         <div class="directory-file empty">
@@ -850,6 +1003,7 @@ body {
         </div>
 
 
+
         <!-- 07 -->
 
         <div class="directory-file empty">
@@ -865,6 +1019,7 @@ body {
             </span>
 
         </div>
+
 
 
         <!-- 08 -->
@@ -908,6 +1063,8 @@ body {
     <div class="video-window">
 
 
+        <!-- CLOSE -->
+
         <button
             class="close-video"
             onclick="closeVideo()"
@@ -917,7 +1074,9 @@ body {
 
 
 
-        <!-- LOADING -->
+        <!-- =================================================
+             LOADING
+        ================================================== -->
 
         <div
             id="loadingScreen"
@@ -955,7 +1114,9 @@ body {
 
 
 
-        <!-- PLAYER -->
+        <!-- =================================================
+             PLAYER
+        ================================================== -->
 
         <div
             id="retroPlayer"
@@ -994,7 +1155,7 @@ body {
             <div class="player-controls">
 
 
-                <!-- PLAY / PAUSE SWITCH -->
+                <!-- PLAY / PAUSE -->
 
                 <button
                     id="playPauseButton"
@@ -1025,7 +1186,7 @@ body {
 
 
 
-                <!-- TIMELINE -->
+                <!-- SEEK / FORWARD / REVERSE -->
 
                 <div class="timeline-area">
 
@@ -1037,18 +1198,40 @@ body {
                         max="100"
                         value="0"
                         step="0.1"
+                        title="seek"
                     >
-
-
-                    <div
-                        id="playerTime"
-                        class="player-time"
-                    >
-                        00:00 / 00:00
-                    </div>
 
 
                 </div>
+
+
+
+                <!-- VOLUME BUTTON -->
+
+                <button
+                    id="volumeButton"
+                    class="volume-button"
+                    onclick="cycleVolume()"
+                    title="volume"
+                >
+
+
+                    <span class="speaker-icon">
+
+                        <span class="wave-one"></span>
+
+                        <span class="wave-two"></span>
+
+                    </span>
+
+
+                    <span
+                        id="volumeLight"
+                        class="volume-light"
+                    ></span>
+
+
+                </button>
 
 
             </div>
@@ -1068,7 +1251,51 @@ body {
 
 
 let loadingInterval;
+
 let stallTimeout;
+
+
+/* =========================================================
+   VIDEO REFERENCES
+========================================================= */
+
+const videoPlayer =
+    document.getElementById(
+        "videoPlayer"
+    );
+
+
+const seekBar =
+    document.getElementById(
+        "seekBar"
+    );
+
+
+const volumeButton =
+    document.getElementById(
+        "volumeButton"
+    );
+
+
+const volumeLight =
+    document.getElementById(
+        "volumeLight"
+    );
+
+
+
+/* =========================================================
+   VOLUME LEVEL
+
+   0 = 100%
+   1 = 70%
+   2 = 35%
+   3 = MUTED
+========================================================= */
+
+let volumeState =
+    0;
+
 
 
 /* =========================================================
@@ -1084,12 +1311,6 @@ function openVideo(
     const overlay =
         document.getElementById(
             "videoOverlay"
-        );
-
-
-    const video =
-        document.getElementById(
-            "videoPlayer"
         );
 
 
@@ -1129,12 +1350,6 @@ function openVideo(
         );
 
 
-    const seekBar =
-        document.getElementById(
-            "seekBar"
-        );
-
-
 
     clearInterval(
         loadingInterval
@@ -1146,14 +1361,14 @@ function openVideo(
     );
 
 
-    video.pause();
+    videoPlayer.pause();
 
 
     source.src =
         fileName;
 
 
-    video.load();
+    videoPlayer.load();
 
 
     seekBar.value =
@@ -1161,6 +1376,16 @@ function openVideo(
 
 
     updatePlayPauseIcon();
+
+
+    /* DEFAULT VOLUME */
+
+    volumeState =
+        0;
+
+
+    setVolumeState();
+
 
 
     retroPlayer.style.display =
@@ -1196,6 +1421,7 @@ function openVideo(
         false;
 
 
+
     loadingInterval =
 
         setInterval(function() {
@@ -1213,7 +1439,9 @@ function openVideo(
 
 
 
-            /* FILE 08 STALL */
+            /* =================================================
+               FILE 08 STALL
+            ================================================= */
 
             if (
                 shouldStall === true
@@ -1282,6 +1510,7 @@ function openVideo(
             }
 
 
+
             if (
                 value >= 100
             ) {
@@ -1312,12 +1541,6 @@ function openVideo(
 function showVideoPlayer() {
 
 
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
@@ -1341,13 +1564,7 @@ function showVideoPlayer() {
             "block";
 
 
-        updateTimeDisplay();
-
-
-        video.play();
-
-
-        updatePlayPauseIcon();
+        videoPlayer.play();
 
 
     }, 100);
@@ -1358,24 +1575,18 @@ function showVideoPlayer() {
 
 
 /* =========================================================
-   PLAY / PAUSE TOGGLE
+   PLAY / PAUSE
 ========================================================= */
 
 function togglePlay() {
 
 
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
     if (
-        video.paused
+        videoPlayer.paused
     ) {
 
 
-        video.play();
+        videoPlayer.play();
 
 
     }
@@ -1384,7 +1595,7 @@ function togglePlay() {
     else {
 
 
-        video.pause();
+        videoPlayer.pause();
 
 
     }
@@ -1395,16 +1606,10 @@ function togglePlay() {
 
 
 /* =========================================================
-   SWITCH ICON
+   PLAY / PAUSE ICON
 ========================================================= */
 
 function updatePlayPauseIcon() {
-
-
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
 
 
     const playIcon =
@@ -1420,7 +1625,7 @@ function updatePlayPauseIcon() {
 
 
     if (
-        video.paused
+        videoPlayer.paused
     ) {
 
 
@@ -1454,170 +1659,35 @@ function updatePlayPauseIcon() {
 
 
 /* =========================================================
-   FORMAT TIME
-========================================================= */
-
-function formatTime(
-    seconds
-) {
-
-
-    if (
-        !Number.isFinite(
-            seconds
-        )
-    ) {
-
-
-        return "00:00";
-
-
-    }
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-
-    const remainingSeconds =
-        Math.floor(
-            seconds % 60
-        );
-
-
-    return (
-
-        String(
-            minutes
-        ).padStart(
-            2,
-            "0"
-        )
-
-        +
-
-        ":"
-
-        +
-
-        String(
-            remainingSeconds
-        ).padStart(
-            2,
-            "0"
-        )
-
-    );
-
-
-}
-
-
-
-/* =========================================================
-   TIME DISPLAY
-========================================================= */
-
-function updateTimeDisplay() {
-
-
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
-    const display =
-        document.getElementById(
-            "playerTime"
-        );
-
-
-    display.textContent =
-
-        formatTime(
-            video.currentTime
-        )
-
-        +
-
-        " / "
-
-        +
-
-        formatTime(
-            video.duration
-        );
-
-
-}
-
-
-
-/* =========================================================
    PLAYER EVENTS
 ========================================================= */
 
-const videoPlayer =
-    document.getElementById(
-        "videoPlayer"
-    );
-
-
-const seekBar =
-    document.getElementById(
-        "seekBar"
-    );
-
-
-
 videoPlayer.addEventListener(
     "play",
-    function() {
-
-
-        updatePlayPauseIcon();
-
-
-    }
+    updatePlayPauseIcon
 );
-
 
 
 videoPlayer.addEventListener(
     "pause",
-    function() {
-
-
-        updatePlayPauseIcon();
-
-
-    }
+    updatePlayPauseIcon
 );
-
 
 
 videoPlayer.addEventListener(
     "ended",
-    function() {
-
-
-        updatePlayPauseIcon();
-
-
-    }
+    updatePlayPauseIcon
 );
 
 
 
+/* =========================================================
+   UPDATE SEEK POSITION
+========================================================= */
+
 videoPlayer.addEventListener(
     "timeupdate",
     function() {
-
-
-        updateTimeDisplay();
 
 
         if (
@@ -1649,21 +1719,8 @@ videoPlayer.addEventListener(
 
 
 
-videoPlayer.addEventListener(
-    "loadedmetadata",
-    function() {
-
-
-        updateTimeDisplay();
-
-
-    }
-);
-
-
-
 /* =========================================================
-   SEEK
+   SEEK FORWARD / REVERSE
 ========================================================= */
 
 seekBar.addEventListener(
@@ -1681,7 +1738,9 @@ seekBar.addEventListener(
             videoPlayer.currentTime =
 
                 (
-                    seekBar.value
+                    Number(
+                        seekBar.value
+                    )
                     /
                     100
                 )
@@ -1699,7 +1758,161 @@ seekBar.addEventListener(
 
 
 /* =========================================================
-   CLOSE
+   CYCLE VOLUME
+
+   100%
+   70%
+   35%
+   MUTE
+   BACK TO 100%
+========================================================= */
+
+function cycleVolume() {
+
+
+    volumeState++;
+
+
+    if (
+        volumeState > 3
+    ) {
+
+
+        volumeState =
+            0;
+
+
+    }
+
+
+    setVolumeState();
+
+
+}
+
+
+
+/* =========================================================
+   APPLY VOLUME STATE
+========================================================= */
+
+function setVolumeState() {
+
+
+    volumeButton.classList.remove(
+        "medium",
+        "low",
+        "muted"
+    );
+
+
+
+    /* 100% */
+
+    if (
+        volumeState === 0
+    ) {
+
+
+        videoPlayer.muted =
+            false;
+
+
+        videoPlayer.volume =
+            1;
+
+
+        volumeLight.style.width =
+            "30px";
+
+
+    }
+
+
+
+    /* 70% */
+
+    else if (
+        volumeState === 1
+    ) {
+
+
+        videoPlayer.muted =
+            false;
+
+
+        videoPlayer.volume =
+            0.7;
+
+
+        volumeButton.classList.add(
+            "medium"
+        );
+
+
+        volumeLight.style.width =
+            "22px";
+
+
+    }
+
+
+
+    /* 35% */
+
+    else if (
+        volumeState === 2
+    ) {
+
+
+        videoPlayer.muted =
+            false;
+
+
+        videoPlayer.volume =
+            0.35;
+
+
+        volumeButton.classList.add(
+            "low"
+        );
+
+
+        volumeLight.style.width =
+            "12px";
+
+
+    }
+
+
+
+    /* MUTE */
+
+    else {
+
+
+        videoPlayer.muted =
+            true;
+
+
+        volumeButton.classList.add(
+            "muted"
+        );
+
+
+        volumeLight.style.width =
+            "0px";
+
+
+    }
+
+
+}
+
+
+
+/* =========================================================
+   CLOSE VIDEO
 ========================================================= */
 
 function closeVideo() {
@@ -1708,12 +1921,6 @@ function closeVideo() {
     const overlay =
         document.getElementById(
             "videoOverlay"
-        );
-
-
-    const video =
-        document.getElementById(
-            "videoPlayer"
         );
 
 
@@ -1727,12 +1934,12 @@ function closeVideo() {
     );
 
 
+    videoPlayer.pause();
+
+
     overlay.classList.remove(
         "active"
     );
-
-
-    video.pause();
 
 
 }
@@ -1740,7 +1947,7 @@ function closeVideo() {
 
 
 /* =========================================================
-   OUTSIDE CLICK
+   CLICK OUTSIDE
 ========================================================= */
 
 function backgroundClose(
