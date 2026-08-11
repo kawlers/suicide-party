@@ -713,6 +713,8 @@ function openEncryptedPage(
     );
 
 
+    /* FASTER MOVING ENCRYPTION CODE */
+
     const codeInterval =
 
         setInterval(function() {
@@ -720,8 +722,13 @@ function openEncryptedPage(
             code.textContent =
                 makeEncryptionCode();
 
-        }, 100);
+        }, 35);
 
+
+    /*
+       STILL WAITS 2 SECONDS
+       BEFORE LOADING BAR STARTS
+    */
 
     setTimeout(function() {
 
