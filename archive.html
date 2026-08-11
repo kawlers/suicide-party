@@ -14,27 +14,37 @@
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
     background: #000;
     color: #fff;
     font-family: "Courier New", monospace;
 }
 
 
-/* PAGE */
+/* =========================================
+   PAGE
+========================================= */
 
 .page {
     width: min(900px, 92%);
     margin: auto;
-    padding: 35px 0 70px;
+    padding: 40px 0 80px;
 }
 
 
-/* BACK */
+/* =========================================
+   BACK
+========================================= */
 
 .back {
-    color: #aaa;
+    color: #777;
     text-decoration: none;
     font-size: 12px;
 }
@@ -44,103 +54,152 @@ body {
 }
 
 
-/* HEADER */
+/* =========================================
+   DIRECTORY HEADER
+========================================= */
 
-.header {
-    text-align: center;
+.directory-header {
+    margin-top: 48px;
+    margin-bottom: 32px;
 }
 
-.title {
-    color: #aaa;
-    font-size: 13px;
+.directory-path {
+    display: inline-block;
+
+    color: #d00000;
+
+    border: 1px solid #520000;
+
+    padding: 8px 16px;
+
+    font-size: 18px;
     letter-spacing: 2px;
+
+    margin-bottom: 24px;
 }
-
-
-/* LINE */
-
-.line {
-    height: 1px;
-    background: #333;
-    margin: 18px 0 45px;
-}
-
-
-/* SECTION TITLE */
 
 .section-title {
-    color: #aaa;
-    font-size: 13px;
-    margin-bottom: 18px;
+    color: #666;
+
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 
-/* VIDEO LIST */
+/* =========================================
+   DIRECTORY LIST
+========================================= */
 
-.video-list {
-    width: 500px;
-    max-width: 100%;
+.directory-list {
+    width: 100%;
+
+    margin-top: 18px;
+
+    border-top: 1px solid #1d1d1d;
 }
 
-.video-file {
+
+/* =========================================
+   FILE ROW
+========================================= */
+
+.directory-file {
     display: flex;
     align-items: center;
-    gap: 22px;
 
-    padding: 14px 4px;
+    gap: 14px;
 
-    border-top: 1px solid #222;
+    min-height: 46px;
 
-    color: #aaa;
+    padding: 0 8px;
+
+    border-bottom: 1px solid #161616;
+
+    color: #999;
+
     font-size: 13px;
 
     cursor: pointer;
 
-    transition: 0.15s;
+    transition:
+        color 0.15s ease,
+        padding-left 0.15s ease,
+        background 0.15s ease;
 }
 
-.video-file:last-child {
-    border-bottom: 1px solid #222;
-}
-
-.video-file:hover {
+.directory-file:hover {
     color: #fff;
-    padding-left: 10px;
+
+    padding-left: 14px;
+
+    background: rgba(120, 0, 0, 0.04);
 }
 
 
-/* EMPTY FILES */
+/* =========================================
+   FILE SYMBOL
+========================================= */
 
-.video-file.empty {
-    cursor: default;
-    color: #333;
+.file-icon {
+    color: #666;
+
+    width: 18px;
+
+    font-size: 15px;
+
+    text-align: center;
+
+    flex-shrink: 0;
 }
 
-.video-file.empty:hover {
-    color: #333;
-    padding-left: 4px;
-}
 
-
-/* RED NUMBERS */
+/* =========================================
+   NUMBER
+========================================= */
 
 .number {
+    display: inline-block;
+
+    width: 28px;
+
     color: #d00000;
-    width: 24px;
+
+    margin-right: 8px;
 }
 
 
-/* FOOTER */
+/* =========================================
+   FILE NAME
+========================================= */
 
-.footer {
-    margin-top: 80px;
+.file-name {
+    white-space: nowrap;
+}
 
-    color: #555;
 
-    font-size: 11px;
-    line-height: 1.8;
+/* =========================================
+   EMPTY FILES
+========================================= */
 
-    white-space: pre-line;
+.directory-file.empty {
+    color: #333;
+    cursor: default;
+}
+
+.directory-file.empty .number {
+    color: #650000;
+}
+
+.directory-file.empty .file-icon {
+    color: #292929;
+}
+
+.directory-file.empty:hover {
+    color: #333;
+
+    padding-left: 8px;
+
+    background: none;
 }
 
 
@@ -151,15 +210,15 @@ body {
 .video-overlay {
     position: fixed;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.94);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -169,8 +228,8 @@ body {
     visibility: hidden;
 
     transition:
-        opacity 0.25s ease,
-        visibility 0.25s ease;
+        opacity 0.2s ease,
+        visibility 0.2s ease;
 }
 
 .video-overlay.active {
@@ -179,56 +238,62 @@ body {
 }
 
 
-/* VIDEO WINDOW */
+/* =========================================
+   VIDEO WINDOW
+========================================= */
 
 .video-window {
     position: relative;
 
     width: 1000px;
-    max-width: 90vw;
+
+    max-width: 92vw;
 
     opacity: 0;
 
     transform:
-        translateX(80px)
-        scale(0.96);
+        translateY(10px)
+        scale(0.99);
 
     transition:
-        transform 0.3s ease,
-        opacity 0.3s ease;
+        opacity 0.2s ease,
+        transform 0.2s ease;
 }
-
-
-/* OPEN ANIMATION */
 
 .video-overlay.active .video-window {
     opacity: 1;
 
     transform:
-        translateX(0)
+        translateY(0)
         scale(1);
 }
 
 
-/* CLOSE */
+/* =========================================
+   CLOSE
+========================================= */
 
 .close-video {
     position: absolute;
 
-    top: -32px;
+    top: -34px;
     right: 0;
 
     padding: 0;
 
     border: none;
+
     background: none;
 
-    color: #888;
+    color: #666;
 
     font-family: "Courier New", monospace;
-    font-size: 24px;
+
+    font-size: 22px;
 
     cursor: pointer;
+
+    z-index: 20;
 }
 
 .close-video:hover {
@@ -237,24 +302,26 @@ body {
 
 
 /* =========================================
-   VIDEO LOADING SCREEN
+   LOADING SCREEN
 ========================================= */
 
 .loading-screen {
     width: 100%;
+
     height: 180px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     padding: 30px;
 
     background: #000;
 
-    border: 1px solid #333;
+    border: 1px solid #292929;
 }
-
 
 .loading-text {
     color: #777;
@@ -265,27 +332,27 @@ body {
 }
 
 
-/* BAR */
+/* =========================================
+   LOADING BAR
+========================================= */
 
 .loading-bar {
     width: 100%;
+
     height: 2px;
 
-    background: #222;
+    background: #181818;
 
     overflow: hidden;
 }
 
-
 .loading-progress {
     width: 0%;
+
     height: 100%;
 
-    background: #b00000;
+    background: #a00000;
 }
-
-
-/* PERCENT */
 
 .loading-percent {
     margin-top: 10px;
@@ -298,36 +365,70 @@ body {
 }
 
 
-/* VIDEO */
+/* =========================================
+   RAW VIDEO
+========================================= */
 
-#videoPlayer {
+.video-container {
     display: none;
 
     width: 100%;
 
-    max-height: 72vh;
-
     background: #000;
 
-    border: 1px solid #333;
+    border: 1px solid #252525;
+
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.9);
+}
+
+#videoPlayer {
+    display: block;
+
+    width: 100%;
+
+    max-height: 82vh;
+
+    background: #000;
 }
 
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
 
     .page {
         width: 90%;
+
+        padding-top: 28px;
     }
 
-    .video-list {
-        width: 100%;
+    .directory-header {
+        margin-top: 35px;
+    }
+
+    .directory-file {
+        font-size: 11px;
+
+        gap: 8px;
+    }
+
+    .directory-path {
+        font-size: 16px;
+    }
+
+    .number {
+        width: 24px;
+
+        margin-right: 4px;
     }
 
     .video-window {
-        width: 90vw;
-        max-width: 90vw;
+        width: 94vw;
+
+        max-width: 94vw;
     }
 
 }
@@ -340,10 +441,12 @@ body {
 <body>
 
 
+<!-- =========================================
+     ARCHIVE PAGE
+========================================= -->
+
 <div class="page">
 
-
-    <!-- BACK -->
 
     <a
         class="back"
@@ -353,43 +456,42 @@ body {
     </a>
 
 
-    <!-- HEADER -->
 
-    <div class="header">
+    <div class="directory-header">
 
-        <div class="title">
-            files
+
+        <div class="directory-path">
+            /files
         </div>
 
+
+        <div class="section-title">
+            video files (.mp4)
+        </div>
+
+
     </div>
 
 
-    <div class="line"></div>
 
-
-    <!-- VIDEO FILES -->
-
-    <div class="section-title">
-        video files (.mp4)
-    </div>
-
-
-    <div class="video-list">
+    <div class="directory-list">
 
 
         <!-- 01 -->
 
         <div
-            class="video-file"
+            class="directory-file"
             onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
-            <span class="number">
-                01
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">01</span>
+
                 purge-xtra2k25.mp4
+
             </span>
 
         </div>
@@ -399,32 +501,36 @@ body {
         <!-- 02 -->
 
         <div
-            class="video-file"
+            class="directory-file"
             onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
-            <span class="number">
-                02
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">02</span>
+
                 scenebitch-lcut.mp4
+
             </span>
 
         </div>
 
 
 
-        <!-- 03 EMPTY -->
+        <!-- 03 -->
 
-        <div class="video-file empty">
+        <div class="directory-file empty">
 
-            <span class="number">
-                03
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">03</span>
+
                 ------
+
             </span>
 
         </div>
@@ -434,16 +540,18 @@ body {
         <!-- 04 -->
 
         <div
-            class="video-file"
+            class="directory-file"
             onclick="openVideo('untitled_04.mp4', false)"
         >
 
-            <span class="number">
-                04
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">04</span>
+
                 untitled_04.mp4
+
             </span>
 
         </div>
@@ -453,67 +561,75 @@ body {
         <!-- 05 -->
 
         <div
-            class="video-file"
+            class="directory-file"
             onclick="openVideo('sp_005.mp4', false)"
         >
 
-            <span class="number">
-                05
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">05</span>
+
                 sp_005.mp4
+
             </span>
 
         </div>
 
 
 
-        <!-- 06 EMPTY -->
+        <!-- 06 -->
 
-        <div class="video-file empty">
+        <div class="directory-file empty">
 
-            <span class="number">
-                06
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">06</span>
+
                 ------
+
             </span>
 
         </div>
 
 
 
-        <!-- 07 EMPTY -->
+        <!-- 07 -->
 
-        <div class="video-file empty">
+        <div class="directory-file empty">
 
-            <span class="number">
-                07
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">07</span>
+
                 ------
+
             </span>
 
         </div>
 
 
 
-        <!-- 08 - STALLS DURING LOADING -->
+        <!-- 08 -->
 
         <div
-            class="video-file"
+            class="directory-file"
             onclick="openVideo('957229577.mp4', true)"
         >
 
-            <span class="number">
-                08
-            </span>
+            <span class="file-icon">⌑</span>
 
-            <span>
+            <span class="file-name">
+
+                <span class="number">08</span>
+
                 957229577.mp4
+
             </span>
 
         </div>
@@ -522,18 +638,12 @@ body {
     </div>
 
 
-
-    <!-- FOOTER -->
-
-    <div class="footer"></div>
-
-
 </div>
 
 
 
 <!-- =========================================
-     FLOATING VIDEO
+     VIDEO OVERLAY
 ========================================= -->
 
 <div
@@ -557,12 +667,15 @@ body {
 
 
 
-        <!-- LOADING -->
+        <!-- =================================
+             LOADING SCREEN
+        ================================== -->
 
         <div
             id="loadingScreen"
             class="loading-screen"
         >
+
 
             <div
                 id="loadingText"
@@ -574,10 +687,12 @@ body {
 
             <div class="loading-bar">
 
+
                 <div
                     id="loadingProgress"
                     class="loading-progress"
                 ></div>
+
 
             </div>
 
@@ -594,23 +709,34 @@ body {
 
 
 
-        <!-- VIDEO -->
+        <!-- =================================
+             RAW VIDEO
+        ================================== -->
 
-        <video
-            id="videoPlayer"
-            controls
-            preload="metadata"
+        <div
+            id="videoContainer"
+            class="video-container"
         >
 
-            <source
-                id="videoSource"
-                src=""
-                type="video/mp4"
+
+            <video
+                id="videoPlayer"
+                controls
+                preload="metadata"
             >
 
-            your browser does not support video playback.
 
-        </video>
+                <source
+                    id="videoSource"
+                    src=""
+                    type="video/mp4"
+                >
+
+
+            </video>
+
+
+        </div>
 
 
     </div>
@@ -622,15 +748,38 @@ body {
 
 <script>
 
+
 let loadingInterval;
+
 let stallTimeout;
+
+
+
+/* =========================================
+   VIDEO REFERENCES
+========================================= */
+
+const videoPlayer =
+    document.getElementById(
+        "videoPlayer"
+    );
+
+
+const videoSource =
+    document.getElementById(
+        "videoSource"
+    );
+
 
 
 /* =========================================
    OPEN VIDEO
 ========================================= */
 
-function openVideo(fileName, shouldStall) {
+function openVideo(
+    fileName,
+    shouldStall
+) {
 
 
     const overlay =
@@ -639,21 +788,15 @@ function openVideo(fileName, shouldStall) {
         );
 
 
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
-    const source =
-        document.getElementById(
-            "videoSource"
-        );
-
-
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
+        );
+
+
+    const videoContainer =
+        document.getElementById(
+            "videoContainer"
         );
 
 
@@ -676,28 +819,35 @@ function openVideo(fileName, shouldStall) {
 
 
 
-    /* RESET */
+    /* CLEAR OLD LOADING */
 
     clearInterval(
         loadingInterval
     );
+
 
     clearTimeout(
         stallTimeout
     );
 
 
-    video.pause();
+
+    /* RESET VIDEO */
+
+    videoPlayer.pause();
 
 
-    source.src =
+    videoSource.src =
         fileName;
 
 
-    video.load();
+    videoPlayer.load();
 
 
-    video.style.display =
+
+    /* RESET DISPLAY */
+
+    videoContainer.style.display =
         "none";
 
 
@@ -718,7 +868,7 @@ function openVideo(fileName, shouldStall) {
 
 
 
-    /* OPEN WINDOW */
+    /* OPEN OVERLAY */
 
     overlay.classList.add(
         "active"
@@ -726,16 +876,21 @@ function openVideo(fileName, shouldStall) {
 
 
 
-    let value = 0;
-    let hasStalled = false;
+    let value =
+        0;
+
+
+    let hasStalled =
+        false;
 
 
 
     /* =====================================
-       LOADING
+       LOADING LOOP
     ===================================== */
 
     loadingInterval =
+
         setInterval(function() {
 
 
@@ -752,7 +907,7 @@ function openVideo(fileName, shouldStall) {
 
 
             /* =================================
-               ONLY FILE 08 STALLS AT 82%
+               FILE 08 STALL
             ================================= */
 
             if (
@@ -773,18 +928,19 @@ function openVideo(fileName, shouldStall) {
                 );
 
 
-                /*
-                   BAR STAYS FROZEN AT 82%
-                   FOR 2 SECONDS
-                */
+                loadingText.textContent =
+                    "loading file...";
+
+
+                /* STALL — NO BACKWARDS JUMP */
 
                 stallTimeout =
+
                     setTimeout(function() {
 
 
-                        /* RESUME */
-
                         loadingInterval =
+
                             setInterval(function() {
 
 
@@ -799,7 +955,9 @@ function openVideo(fileName, shouldStall) {
                                     value + "%";
 
 
-                                if (value >= 100) {
+                                if (
+                                    value >= 100
+                                ) {
 
 
                                     clearInterval(
@@ -821,13 +979,16 @@ function openVideo(fileName, shouldStall) {
 
                 return;
 
+
             }
 
 
 
-            /* NORMAL COMPLETION */
+            /* NORMAL FINISH */
 
-            if (value >= 100) {
+            if (
+                value >= 100
+            ) {
 
 
                 clearInterval(
@@ -849,21 +1010,21 @@ function openVideo(fileName, shouldStall) {
 
 
 /* =========================================
-   SHOW VIDEO
+   SHOW RAW VIDEO
 ========================================= */
 
 function showVideo() {
 
 
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
+        );
+
+
+    const videoContainer =
+        document.getElementById(
+            "videoContainer"
         );
 
 
@@ -874,11 +1035,37 @@ function showVideo() {
             "none";
 
 
-        video.style.display =
+        videoContainer.style.display =
             "block";
 
 
-        video.play();
+        /*
+        Attempt autoplay.
+
+        Browser may require the user
+        to press play depending on
+        autoplay policy.
+        */
+
+        const playAttempt =
+            videoPlayer.play();
+
+
+        if (
+            playAttempt !== undefined
+        ) {
+
+
+            playAttempt.catch(
+                function() {
+
+                    /* browser blocked autoplay */
+
+                }
+            );
+
+
+        }
 
 
     }, 100);
@@ -901,12 +1088,6 @@ function closeVideo() {
         );
 
 
-    const video =
-        document.getElementById(
-            "videoPlayer"
-        );
-
-
     clearInterval(
         loadingInterval
     );
@@ -917,21 +1098,29 @@ function closeVideo() {
     );
 
 
+    videoPlayer.pause();
+
+
+    videoPlayer.currentTime =
+        0;
+
+
     overlay.classList.remove(
         "active"
     );
-
-
-    video.pause();
 
 
 }
 
 
 
-/* CLICK OUTSIDE */
+/* =========================================
+   CLICK OUTSIDE VIDEO
+========================================= */
 
-function backgroundClose(event) {
+function backgroundClose(
+    event
+) {
 
 
     if (
@@ -939,7 +1128,9 @@ function backgroundClose(event) {
         "videoOverlay"
     ) {
 
+
         closeVideo();
+
 
     }
 
@@ -948,7 +1139,9 @@ function backgroundClose(event) {
 
 
 
-/* ESC CLOSE */
+/* =========================================
+   ESC CLOSE
+========================================= */
 
 document.addEventListener(
     "keydown",
@@ -960,13 +1153,16 @@ document.addEventListener(
             "Escape"
         ) {
 
+
             closeVideo();
+
 
         }
 
 
     }
 );
+
 
 </script>
 
