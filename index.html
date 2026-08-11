@@ -62,12 +62,12 @@ body {
     margin-bottom: 0;
 
     animation:
-        logoFlicker 7.2s infinite;
+        logoFlicker 2.8s infinite;
 }
 
 
 /* =========================================
-   MORE REALISTIC / UNSTABLE FLICKER
+   FASTER / MORE UNSTABLE FLICKER
 ========================================= */
 
 @keyframes logoFlicker {
@@ -75,125 +75,136 @@ body {
     0% {
         opacity: 1;
         transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
+        filter: brightness(1) contrast(1);
     }
 
-    8% {
+    6% {
         opacity: 1;
-        transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
     }
 
-    8.4% {
-        opacity: 0.60;
+    6.4% {
+        opacity: 0.55;
         transform: translateX(-2px);
-        filter:
-            brightness(1.55)
-            contrast(1.15);
+        filter: brightness(1.6) contrast(1.2);
     }
 
-    8.8% {
+    6.8% {
         opacity: 1;
         transform: translateX(2px);
-        filter:
-            brightness(0.88)
-            contrast(1.08);
+        filter: brightness(0.9) contrast(1.1);
     }
 
-    9.1% {
-        opacity: 0.78;
-        transform: translateX(-1px);
-        filter:
-            brightness(1.25)
-            contrast(1.2);
-    }
-
-    9.5% {
-        opacity: 1;
-        transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
-    }
-
-    37% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    37.3% {
-        opacity: 0.35;
-        transform: translateX(3px);
-        filter:
-            brightness(1.75)
-            contrast(1.3);
-    }
-
-    37.6% {
-        opacity: 0.95;
-        transform: translateX(-2px);
-        filter:
-            brightness(0.78)
-            contrast(1.2);
-    }
-
-    38% {
-        opacity: 1;
-        transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
-    }
-
-    66% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    66.3% {
+    7.2% {
         opacity: 0.72;
         transform: translateX(-1px);
-        filter:
-            brightness(1.35)
-            contrast(1.2);
+        filter: brightness(1.3) contrast(1.2);
     }
 
-    66.6% {
+    7.6% {
         opacity: 1;
-        transform: translateX(1px);
+        transform: translateX(0);
+        filter: brightness(1) contrast(1);
     }
 
-    66.9% {
-        opacity: 0.48;
+    18% {
+        opacity: 1;
+    }
+
+    18.3% {
+        opacity: 0.30;
+        transform: translateX(3px);
+        filter: brightness(1.8) contrast(1.35);
+    }
+
+    18.6% {
+        opacity: 0.95;
         transform: translateX(-2px);
-        filter:
-            brightness(1.65)
-            contrast(1.3);
+        filter: brightness(0.8) contrast(1.2);
     }
 
-    67.2% {
+    19% {
         opacity: 1;
         transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
+        filter: brightness(1) contrast(1);
     }
 
-    91% {
+    35% {
         opacity: 1;
-        transform: translateX(0);
     }
 
-    91.2% {
-        opacity: 0.82;
+    35.2% {
+        opacity: 0.65;
+        transform: translateX(-1px);
+        filter: brightness(1.4) contrast(1.2);
+    }
+
+    35.5% {
+        opacity: 1;
         transform: translateX(1px);
     }
 
-    91.4% {
+    35.8% {
+        opacity: 0.42;
+        transform: translateX(-2px);
+        filter: brightness(1.7) contrast(1.3);
+    }
+
+    36.2% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: brightness(1) contrast(1);
+    }
+
+    52% {
+        opacity: 1;
+    }
+
+    52.3% {
+        opacity: 0.80;
+        transform: translateX(1px);
+    }
+
+    52.6% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    68% {
+        opacity: 1;
+    }
+
+    68.3% {
+        opacity: 0.35;
+        transform: translateX(-3px);
+        filter: brightness(1.9) contrast(1.4);
+    }
+
+    68.6% {
+        opacity: 1;
+        transform: translateX(2px);
+    }
+
+    68.9% {
+        opacity: 0.65;
+        transform: translateX(-1px);
+    }
+
+    69.2% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: brightness(1) contrast(1);
+    }
+
+    84% {
+        opacity: 1;
+    }
+
+    84.2% {
+        opacity: 0.75;
+        transform: translateX(1px);
+    }
+
+    84.4% {
         opacity: 1;
         transform: translateX(0);
     }
@@ -201,9 +212,7 @@ body {
     100% {
         opacity: 1;
         transform: translateX(0);
-        filter:
-            brightness(1)
-            contrast(1);
+        filter: brightness(1) contrast(1);
     }
 
 }
@@ -218,11 +227,9 @@ body {
     flex-direction: column;
     align-items: center;
 
-    /*
-       MOVED UP MUCH CLOSER TO LOGO
-    */
+    /* MOVED ABOUT 2 INCHES HIGHER */
 
-    transform: translateY(-105px);
+    transform: translateY(-250px);
 }
 
 
@@ -465,7 +472,7 @@ body {
     }
 
     .text-area {
-        transform: translateY(-70px);
+        transform: translateY(-135px);
     }
 
     .nav a {
@@ -520,14 +527,10 @@ body {
         <div class="nav">
 
 
-            <!-- FILES -->
-
             <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
                 files
             </a>
 
-
-            <!-- AUDIO FILES -->
 
             <a onclick="openEncryptedPage('audio.html', 'AUDIO DIRECTORY')">
                 audio files
@@ -845,8 +848,6 @@ function openEncryptedPage(
         );
 
 
-    /* RESET */
-
     progress.style.width =
         "0%";
 
@@ -864,14 +865,10 @@ function openEncryptedPage(
         " / access request pending";
 
 
-    /* SHOW SCREEN */
-
     overlay.classList.add(
         "active"
     );
 
-
-    /* MOVING CODE */
 
     const codeInterval =
 
@@ -883,14 +880,10 @@ function openEncryptedPage(
         }, 100);
 
 
-    /* WAIT 2 SECONDS */
-
     setTimeout(function() {
 
         let value = 0;
 
-
-        /* ABOUT 4 SECOND LOAD */
 
         const progressInterval =
 
