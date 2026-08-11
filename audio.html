@@ -14,21 +14,34 @@
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
     background: #000;
-    color: #aaa;
+    color: #fff;
     font-family: "Courier New", monospace;
 }
+
+
+/* =========================================
+   PAGE
+========================================= */
 
 .page {
     width: min(900px, 92%);
     margin: auto;
-    padding: 35px 0 70px;
+    padding: 40px 0 80px;
 }
 
 
-/* BACK */
+/* =========================================
+   BACK
+========================================= */
 
 .back {
     color: #777;
@@ -41,284 +54,380 @@ body {
 }
 
 
-/* HEADER */
+/* =========================================
+   DIRECTORY HEADER
+========================================= */
 
-.header {
-    text-align: center;
-    margin-top: 5px;
+.directory-header {
+    margin-top: 48px;
+    margin-bottom: 32px;
 }
 
-.title {
-    color: #aaa;
-    font-size: 13px;
+.directory-path {
+    display: inline-block;
+
+    color: #d00000;
+
+    border: 1px solid #520000;
+
+    padding: 8px 16px;
+
+    font-size: 18px;
     letter-spacing: 2px;
+
+    margin-bottom: 24px;
 }
 
+.section-title {
+    color: #666;
 
-/* LINE */
-
-.line {
-    height: 1px;
-    background: #292929;
-    margin: 18px 0 45px;
-}
-
-
-/* AUDIO LIST */
-
-.audio-list {
-    width: 540px;
-    max-width: 100%;
-}
-
-
-/* AUDIO BOX */
-
-.audio-entry {
-    position: relative;
-
-    border: 1px solid #252525;
-
-    background: #030303;
-
-    margin-bottom: 15px;
-
-    padding: 14px 16px 16px;
-
-    transition: 0.2s ease;
-}
-
-.audio-entry:hover {
-    border-color: #3a3a3a;
-    background: #050505;
-}
-
-
-/* FILE INFORMATION */
-
-.file-top {
-    display: flex;
-    align-items: center;
-
-    margin-bottom: 15px;
-}
-
-.filename {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-
-    color: #aaa;
     font-size: 12px;
-}
-
-.number {
-    color: #b00000;
+    letter-spacing: 1px;
 }
 
 
-/* PLAYER */
+/* =========================================
+   DIRECTORY LIST
+========================================= */
 
-.player {
+.directory-list {
+    width: 100%;
+
+    margin-top: 18px;
+
+    border-top: 1px solid #1d1d1d;
+}
+
+
+/* =========================================
+   AUDIO ROW
+========================================= */
+
+.directory-file {
     display: flex;
+
     align-items: center;
-    gap: 14px;
+
+    min-height: 46px;
+
+    padding: 0 14px;
+
+    border-bottom: 1px solid #161616;
+
+    color: #999;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease,
+        padding-left 0.15s ease,
+        background 0.15s ease;
+}
+
+.directory-file:hover {
+    color: #fff;
+
+    padding-left: 20px;
+
+    background: rgba(120, 0, 0, 0.04);
 }
 
 
-/* PLAY BUTTON */
+/* =========================================
+   SMALL FILE SYMBOL
+========================================= */
 
-.play {
-    width: 28px;
-    height: 28px;
+.file-symbol {
+    display: inline-block;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 25px;
 
-    border: 1px solid #333;
+    color: #777;
 
-    background: #050505;
-
-    color: #888;
-
-    font-family: "Courier New", monospace;
     font-size: 10px;
 
-    cursor: pointer;
-
-    transition: 0.15s;
-}
-
-.play:hover {
-    color: #fff;
-    border-color: #666;
+    flex-shrink: 0;
 }
 
 
-/* CENTER PLAYER */
+/* =========================================
+   NUMBER
+========================================= */
 
-.player-center {
-    flex: 1;
+.number {
+    display: inline-block;
+
+    width: 42px;
+
+    color: #d00000;
+
+    flex-shrink: 0;
 }
 
 
-/* WAVEFORM */
+/* =========================================
+   FILE NAME
+========================================= */
 
-.waveform {
-    height: 18px;
-
-    display: flex;
-    align-items: center;
-    gap: 3px;
-
-    margin-bottom: 7px;
-
-    overflow: hidden;
-
-    opacity: 0.45;
-}
-
-.waveform span {
-    display: block;
-
-    width: 2px;
-
-    background: #666;
-}
-
-.waveform span:nth-child(1)  { height: 4px; }
-.waveform span:nth-child(2)  { height: 9px; }
-.waveform span:nth-child(3)  { height: 14px; }
-.waveform span:nth-child(4)  { height: 7px; }
-.waveform span:nth-child(5)  { height: 17px; }
-.waveform span:nth-child(6)  { height: 11px; }
-.waveform span:nth-child(7)  { height: 5px; }
-.waveform span:nth-child(8)  { height: 13px; }
-.waveform span:nth-child(9)  { height: 8px; }
-.waveform span:nth-child(10) { height: 16px; }
-.waveform span:nth-child(11) { height: 6px; }
-.waveform span:nth-child(12) { height: 11px; }
-.waveform span:nth-child(13) { height: 15px; }
-.waveform span:nth-child(14) { height: 5px; }
-.waveform span:nth-child(15) { height: 9px; }
-.waveform span:nth-child(16) { height: 17px; }
-.waveform span:nth-child(17) { height: 7px; }
-.waveform span:nth-child(18) { height: 12px; }
-.waveform span:nth-child(19) { height: 4px; }
-.waveform span:nth-child(20) { height: 14px; }
-.waveform span:nth-child(21) { height: 8px; }
-.waveform span:nth-child(22) { height: 16px; }
-.waveform span:nth-child(23) { height: 10px; }
-.waveform span:nth-child(24) { height: 5px; }
-
-
-/* WAVEFORM ANIMATION */
-
-.audio-entry.playing .waveform {
-    opacity: 0.8;
-}
-
-.audio-entry.playing .waveform span {
-    background: #8b0000;
-    animation: signal 0.6s infinite alternate;
-}
-
-.audio-entry.playing .waveform span:nth-child(2n) {
-    animation-delay: 0.15s;
-}
-
-.audio-entry.playing .waveform span:nth-child(3n) {
-    animation-delay: 0.3s;
-}
-
-@keyframes signal {
-
-    from {
-        transform: scaleY(0.6);
-    }
-
-    to {
-        transform: scaleY(1);
-    }
-
-}
-
-
-/* PROGRESS */
-
-.progress {
-    width: 100%;
-    height: 3px;
-
-    background: #1c1c1c;
-
-    cursor: pointer;
-
-    overflow: hidden;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-
-    background: #9d0000;
-
-    pointer-events: none;
-}
-
-
-/* TIME */
-
-.time {
-    width: 85px;
-
-    color: #555;
-
-    font-size: 9px;
-
-    text-align: right;
-
+.file-name {
     white-space: nowrap;
 }
 
 
-/* HIDDEN AUDIO */
+/* =========================================
+   EMPTY FILE
+========================================= */
 
-audio {
-    display: none;
+.directory-file.empty {
+    color: #333;
+
+    cursor: default;
+}
+
+.directory-file.empty .number {
+    color: #650000;
+}
+
+.directory-file.empty .file-symbol {
+    color: #333;
+}
+
+.directory-file.empty:hover {
+    color: #333;
+
+    padding-left: 14px;
+
+    background: none;
 }
 
 
-/* FOOTER */
+/* =========================================
+   AUDIO OVERLAY
+========================================= */
 
-.footer {
-    margin-top: 80px;
+.audio-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.audio-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================
+   AUDIO WINDOW
+========================================= */
+
+.audio-window {
+    position: relative;
+
+    width: min(700px, 88vw);
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.audio-overlay.active .audio-window {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   CLOSE
+========================================= */
+
+.close-audio {
+    position: absolute;
+
+    top: -35px;
+    right: 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: none;
+
+    color: #666;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.close-audio:hover {
+    color: #fff;
+}
+
+
+/* =========================================
+   LOADING SCREEN
+========================================= */
+
+.loading-screen {
+    width: 100%;
+
+    padding: 30px 0;
+
+    background: #000;
+}
+
+.loading-text {
+    color: #666;
+
+    font-size: 11px;
+
+    margin-bottom: 15px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   LOADING BAR
+========================================= */
+
+.loading-bar {
+    width: 100%;
+    height: 2px;
+
+    background: #171717;
+
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 0%;
+    height: 100%;
+
+    background: #a00000;
+}
+
+.loading-percent {
+    margin-top: 10px;
 
     color: #444;
 
-    font-size: 11px;
-    line-height: 1.8;
+    font-size: 10px;
 
-    white-space: pre-line;
+    text-align: right;
 }
 
 
-/* MOBILE */
+/* =========================================
+   AUDIO PLAYER AREA
+========================================= */
+
+.player-area {
+    display: none;
+
+    width: 100%;
+
+    padding: 28px 0;
+}
+
+
+/* TRACK NAME */
+
+.now-playing {
+    color: #777;
+
+    font-size: 11px;
+
+    margin-bottom: 20px;
+
+    letter-spacing: 1px;
+}
+
+.now-playing span {
+    color: #b00000;
+}
+
+
+/* ACTUAL AUDIO PLAYER */
+
+#audioPlayer {
+    width: 100%;
+    height: 38px;
+
+    filter:
+        grayscale(1)
+        brightness(0.65);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
 
     .page {
         width: 90%;
+        padding-top: 28px;
     }
 
-    .audio-list {
-        width: 100%;
+    .directory-header {
+        margin-top: 35px;
     }
 
-    .time {
-        width: 70px;
-        font-size: 8px;
+    .directory-file {
+        font-size: 11px;
+
+        padding-left: 8px;
+    }
+
+    .directory-file:hover {
+        padding-left: 12px;
+    }
+
+    .directory-path {
+        font-size: 16px;
+    }
+
+    .file-symbol {
+        width: 20px;
+    }
+
+    .number {
+        width: 34px;
+    }
+
+    .audio-window {
+        width: 88vw;
     }
 
 }
@@ -334,113 +443,65 @@ audio {
 <div class="page">
 
 
-    <!-- BACK -->
+    <!-- =====================================
+         BACK
+    ====================================== -->
 
-    <a class="back" href="index.html">
+    <a
+        class="back"
+        href="index.html"
+    >
         ← back
     </a>
 
 
-    <!-- HEADER -->
 
-    <div class="header">
+    <!-- =====================================
+         HEADER
+    ====================================== -->
 
-        <div class="title">
-            audio files
+    <div class="directory-header">
+
+
+        <div class="directory-path">
+            /audio
         </div>
+
+
+        <div class="section-title">
+            audio files (.mp3)
+        </div>
+
 
     </div>
 
 
-    <div class="line"></div>
 
+    <!-- =====================================
+         AUDIO FILE LIST
+    ====================================== -->
 
-
-    <div class="audio-list">
+    <div class="directory-list">
 
 
         <!-- AUDIO 01 -->
 
-        <div class="audio-entry" id="entry01">
+        <div
+            class="directory-file"
+            onclick="openAudio('audio-file-01.mp3', 'audio-file-01.mp3')"
+        >
 
+            <span class="file-symbol">
+                ▫
+            </span>
 
-            <div class="file-top">
+            <span class="number">
+                01
+            </span>
 
-                <div class="filename">
-
-                    <span class="number">01</span>
-
-                    <span>file_01.mp3</span>
-
-                </div>
-
-            </div>
-
-
-            <div class="player">
-
-
-                <button
-                    class="play"
-                    onclick="toggleAudio('audio01', this, 'entry01')"
-                >
-                    ▶
-                </button>
-
-
-                <div class="player-center">
-
-
-                    <div class="waveform">
-
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-
-                    </div>
-
-
-                    <div
-                        class="progress"
-                        onclick="seekAudio(event, 'audio01', this)"
-                    >
-
-                        <div
-                            class="progress-fill"
-                            id="progress01"
-                        ></div>
-
-                    </div>
-
-
-                </div>
-
-
-                <span class="time" id="time01">
-                    00:00 / 00:00
-                </span>
-
-
-            </div>
-
-
-            <audio
-                id="audio01"
-                data-progress="progress01"
-                data-time="time01"
-                data-entry="entry01"
-            >
-
-                <source
-                    src="file_01.mp3"
-                    type="audio/mpeg"
-                >
-
-            </audio>
-
+            <span class="file-name">
+                audio-file-01.mp3
+            </span>
 
         </div>
 
@@ -448,81 +509,128 @@ audio {
 
         <!-- AUDIO 02 -->
 
-        <div class="audio-entry" id="entry02">
+        <div
+            class="directory-file"
+            onclick="openAudio('audio-file-02.mp3', 'audio-file-02.mp3')"
+        >
+
+            <span class="file-symbol">
+                ▫
+            </span>
+
+            <span class="number">
+                02
+            </span>
+
+            <span class="file-name">
+                audio-file-02.mp3
+            </span>
+
+        </div>
 
 
-            <div class="file-top">
+    </div>
 
-                <div class="filename">
 
-                    <span class="number">02</span>
+</div>
 
-                    <span>file_02.mp3</span>
 
-                </div>
+
+<!-- =========================================
+     AUDIO OVERLAY
+========================================= -->
+
+<div
+    id="audioOverlay"
+    class="audio-overlay"
+    onclick="backgroundClose(event)"
+>
+
+
+    <div class="audio-window">
+
+
+        <!-- CLOSE -->
+
+        <button
+            class="close-audio"
+            onclick="closeAudio()"
+        >
+            ×
+        </button>
+
+
+
+        <!-- =================================
+             LOADING
+        ================================== -->
+
+        <div
+            id="loadingScreen"
+            class="loading-screen"
+        >
+
+
+            <div
+                id="loadingText"
+                class="loading-text"
+            >
+                loading audio...
+            </div>
+
+
+            <div class="loading-bar">
+
+                <div
+                    id="loadingProgress"
+                    class="loading-progress"
+                ></div>
 
             </div>
 
 
-            <div class="player">
+            <div
+                id="loadingPercent"
+                class="loading-percent"
+            >
+                0%
+            </div>
 
 
-                <button
-                    class="play"
-                    onclick="toggleAudio('audio02', this, 'entry02')"
-                >
-                    ▶
-                </button>
+        </div>
 
 
-                <div class="player-center">
+
+        <!-- =================================
+             PLAYER
+        ================================== -->
+
+        <div
+            id="playerArea"
+            class="player-area"
+        >
 
 
-                    <div class="waveform">
+            <div class="now-playing">
 
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
-                        <span></span><span></span><span></span><span></span>
+                playing:
 
-                    </div>
-
-
-                    <div
-                        class="progress"
-                        onclick="seekAudio(event, 'audio02', this)"
-                    >
-
-                        <div
-                            class="progress-fill"
-                            id="progress02"
-                        ></div>
-
-                    </div>
-
-
-                </div>
-
-
-                <span class="time" id="time02">
-                    00:00 / 00:00
+                <span id="trackName">
+                    unknown
                 </span>
-
 
             </div>
 
 
             <audio
-                id="audio02"
-                data-progress="progress02"
-                data-time="time02"
-                data-entry="entry02"
+                id="audioPlayer"
+                controls
+                preload="metadata"
             >
 
                 <source
-                    src="file_02.mp3"
+                    id="audioSource"
+                    src=""
                     type="audio/mpeg"
                 >
 
@@ -533,12 +641,6 @@ audio {
 
 
     </div>
-
-
-
-    <!-- FOOTER -->
-
-    <div class="footer"></div>
 
 
 </div>
@@ -548,196 +650,341 @@ audio {
 <script>
 
 
-function toggleAudio(audioId, button, entryId) {
+let loadingInterval;
 
-    const selectedAudio =
-        document.getElementById(audioId);
 
-    const selectedEntry =
-        document.getElementById(entryId);
+/* =========================================
+   OPEN AUDIO
+========================================= */
 
+function openAudio(
+    fileName,
+    displayName
+) {
 
-    /* STOP OTHER AUDIO */
 
-    document.querySelectorAll("audio").forEach(function(audio) {
+    const overlay =
+        document.getElementById(
+            "audioOverlay"
+        );
 
-        if (audio !== selectedAudio) {
 
-            audio.pause();
+    const player =
+        document.getElementById(
+            "audioPlayer"
+        );
 
-            const entry =
-                document.getElementById(audio.dataset.entry);
 
-            const otherButton =
-                entry.querySelector(".play");
+    const source =
+        document.getElementById(
+            "audioSource"
+        );
 
 
-            entry.classList.remove("playing");
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
 
-            otherButton.textContent = "▶";
 
-        }
+    const playerArea =
+        document.getElementById(
+            "playerArea"
+        );
 
-    });
 
+    const progress =
+        document.getElementById(
+            "loadingProgress"
+        );
 
-    /* PLAY */
 
-    if (selectedAudio.paused) {
+    const percent =
+        document.getElementById(
+            "loadingPercent"
+        );
 
-        selectedAudio.play();
 
-        button.textContent = "Ⅱ";
+    const loadingText =
+        document.getElementById(
+            "loadingText"
+        );
 
-        selectedEntry.classList.add("playing");
 
-    }
+    const trackName =
+        document.getElementById(
+            "trackName"
+        );
 
 
-    /* PAUSE */
 
-    else {
+    /* RESET */
 
-        selectedAudio.pause();
-
-        button.textContent = "▶";
-
-        selectedEntry.classList.remove("playing");
-
-    }
-
-}
-
-
-
-/* PROGRESS */
-
-document.querySelectorAll("audio").forEach(function(audio) {
-
-    audio.addEventListener("timeupdate", function() {
-
-        const progress =
-            document.getElementById(audio.dataset.progress);
-
-        const time =
-            document.getElementById(audio.dataset.time);
-
-
-        if (!audio.duration) {
-            return;
-        }
-
-
-        const percent =
-            (audio.currentTime / audio.duration) * 100;
-
-
-        progress.style.width =
-            percent + "%";
-
-
-        time.textContent =
-            formatTime(audio.currentTime)
-            +
-            " / "
-            +
-            formatTime(audio.duration);
-
-    });
-
-
-    audio.addEventListener("loadedmetadata", function() {
-
-        const time =
-            document.getElementById(audio.dataset.time);
-
-        time.textContent =
-            "00:00 / "
-            +
-            formatTime(audio.duration);
-
-    });
-
-
-    audio.addEventListener("ended", function() {
-
-        const entry =
-            document.getElementById(audio.dataset.entry);
-
-        const button =
-            entry.querySelector(".play");
-
-
-        entry.classList.remove("playing");
-
-        button.textContent = "▶";
-
-    });
-
-});
-
-
-
-/* SEEK */
-
-function seekAudio(event, audioId, progressBar) {
-
-    const audio =
-        document.getElementById(audioId);
-
-
-    if (!audio.duration) {
-        return;
-    }
-
-
-    const rect =
-        progressBar.getBoundingClientRect();
-
-
-    let percent =
-        (event.clientX - rect.left)
-        /
-        rect.width;
-
-
-    percent =
-        Math.max(0, Math.min(1, percent));
-
-
-    audio.currentTime =
-        percent * audio.duration;
-
-}
-
-
-
-/* TIME */
-
-function formatTime(seconds) {
-
-    if (!isFinite(seconds)) {
-        return "00:00";
-    }
-
-
-    const minutes =
-        Math.floor(seconds / 60);
-
-
-    const secs =
-        Math.floor(seconds % 60);
-
-
-    return (
-        String(minutes).padStart(2, "0")
-        +
-        ":"
-        +
-        String(secs).padStart(2, "0")
+    clearInterval(
+        loadingInterval
     );
 
+
+    player.pause();
+
+
+    source.src =
+        fileName;
+
+
+    player.load();
+
+
+    trackName.textContent =
+        displayName;
+
+
+    playerArea.style.display =
+        "none";
+
+
+    loadingScreen.style.display =
+        "block";
+
+
+    progress.style.width =
+        "0%";
+
+
+    percent.textContent =
+        "0%";
+
+
+    loadingText.textContent =
+        "loading audio...";
+
+
+    overlay.classList.add(
+        "active"
+    );
+
+
+
+    let value = 0;
+
+
+
+    /* =====================================
+       LOAD BAR
+    ====================================== */
+
+    loadingInterval =
+
+        setInterval(function() {
+
+
+            value++;
+
+
+            progress.style.width =
+                value + "%";
+
+
+            percent.textContent =
+                value + "%";
+
+
+
+            /* STATUS CHANGES */
+
+            if (
+                value < 30
+            ) {
+
+                loadingText.textContent =
+                    "loading audio...";
+
+            }
+
+
+            else if (
+                value < 65
+            ) {
+
+                loadingText.textContent =
+                    "reading file...";
+
+            }
+
+
+            else if (
+                value < 90
+            ) {
+
+                loadingText.textContent =
+                    "buffering...";
+
+            }
+
+
+            else {
+
+                loadingText.textContent =
+                    "file ready...";
+
+            }
+
+
+
+            /* COMPLETE */
+
+            if (
+                value >= 100
+            ) {
+
+
+                clearInterval(
+                    loadingInterval
+                );
+
+
+                showAudio();
+
+
+            }
+
+
+        }, 30);
+
+
 }
+
+
+
+/* =========================================
+   SHOW AUDIO
+========================================= */
+
+function showAudio() {
+
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+
+    const playerArea =
+        document.getElementById(
+            "playerArea"
+        );
+
+
+    const player =
+        document.getElementById(
+            "audioPlayer"
+        );
+
+
+
+    setTimeout(function() {
+
+
+        loadingScreen.style.display =
+            "none";
+
+
+        playerArea.style.display =
+            "block";
+
+
+        player.play();
+
+
+    }, 150);
+
+
+}
+
+
+
+/* =========================================
+   CLOSE AUDIO
+========================================= */
+
+function closeAudio() {
+
+
+    const overlay =
+        document.getElementById(
+            "audioOverlay"
+        );
+
+
+    const player =
+        document.getElementById(
+            "audioPlayer"
+        );
+
+
+    clearInterval(
+        loadingInterval
+    );
+
+
+    player.pause();
+
+
+    overlay.classList.remove(
+        "active"
+    );
+
+
+}
+
+
+
+/* =========================================
+   CLICK BACKGROUND TO CLOSE
+========================================= */
+
+function backgroundClose(event) {
+
+
+    if (
+        event.target.id ===
+        "audioOverlay"
+    ) {
+
+
+        closeAudio();
+
+
+    }
+
+
+}
+
+
+
+/* =========================================
+   ESC TO CLOSE
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key ===
+            "Escape"
+        ) {
+
+
+            closeAudio();
+
+
+        }
+
+
+    }
+);
 
 
 </script>
