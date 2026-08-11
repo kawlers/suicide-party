@@ -43,6 +43,8 @@ body {
     text-align: center;
 
     padding: 30px;
+
+    overflow: hidden;
 }
 
 
@@ -59,35 +61,149 @@ body {
 
     margin-bottom: 0;
 
-    animation: logoFlicker 6s infinite;
+    animation:
+        logoFlicker 7.2s infinite;
 }
 
 
-/* SUBTLE RANDOM-STYLE FLICKER */
+/* =========================================
+   MORE REALISTIC / UNSTABLE FLICKER
+========================================= */
 
 @keyframes logoFlicker {
 
-    0%,
-    18%,
-    20%,
-    52%,
-    54%,
-    78%,
-    80%,
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
+    }
+
+    8% {
+        opacity: 1;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
+    }
+
+    8.4% {
+        opacity: 0.60;
+        transform: translateX(-2px);
+        filter:
+            brightness(1.55)
+            contrast(1.15);
+    }
+
+    8.8% {
+        opacity: 1;
+        transform: translateX(2px);
+        filter:
+            brightness(0.88)
+            contrast(1.08);
+    }
+
+    9.1% {
+        opacity: 0.78;
+        transform: translateX(-1px);
+        filter:
+            brightness(1.25)
+            contrast(1.2);
+    }
+
+    9.5% {
+        opacity: 1;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
+    }
+
+    37% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    37.3% {
+        opacity: 0.35;
+        transform: translateX(3px);
+        filter:
+            brightness(1.75)
+            contrast(1.3);
+    }
+
+    37.6% {
+        opacity: 0.95;
+        transform: translateX(-2px);
+        filter:
+            brightness(0.78)
+            contrast(1.2);
+    }
+
+    38% {
+        opacity: 1;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
+    }
+
+    66% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    66.3% {
+        opacity: 0.72;
+        transform: translateX(-1px);
+        filter:
+            brightness(1.35)
+            contrast(1.2);
+    }
+
+    66.6% {
+        opacity: 1;
+        transform: translateX(1px);
+    }
+
+    66.9% {
+        opacity: 0.48;
+        transform: translateX(-2px);
+        filter:
+            brightness(1.65)
+            contrast(1.3);
+    }
+
+    67.2% {
+        opacity: 1;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
+    }
+
+    91% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    91.2% {
+        opacity: 0.82;
+        transform: translateX(1px);
+    }
+
+    91.4% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
     100% {
         opacity: 1;
-    }
-
-    19% {
-        opacity: 0.82;
-    }
-
-    53% {
-        opacity: 0.93;
-    }
-
-    79% {
-        opacity: 0.72;
+        transform: translateX(0);
+        filter:
+            brightness(1)
+            contrast(1);
     }
 
 }
@@ -102,7 +218,11 @@ body {
     flex-direction: column;
     align-items: center;
 
-    transform: translateY(-45px);
+    /*
+       MOVED UP MUCH CLOSER TO LOGO
+    */
+
+    transform: translateY(-105px);
 }
 
 
@@ -114,7 +234,7 @@ body {
     display: flex;
     flex-direction: column;
 
-    gap: 14px;
+    gap: 12px;
 
     align-items: center;
 }
@@ -160,7 +280,7 @@ body {
 ========================================= */
 
 .tagline {
-    margin-top: 25px;
+    margin-top: 20px;
 
     color: #555;
 
@@ -345,7 +465,7 @@ body {
     }
 
     .text-area {
-        transform: translateY(-35px);
+        transform: translateY(-70px);
     }
 
     .nav a {
@@ -353,7 +473,7 @@ body {
     }
 
     .tagline {
-        margin-top: 22px;
+        margin-top: 18px;
     }
 
     .encrypt-panel {
@@ -470,15 +590,10 @@ body {
     <div class="encrypt-panel">
 
 
-        <!-- TITLE -->
-
         <div class="encrypt-title">
             establishing channel
         </div>
 
-
-
-        <!-- 16 CHARACTER CODE -->
 
         <div
             id="encryptCode"
@@ -487,9 +602,6 @@ body {
             0000 0000 0000 0000
         </div>
 
-
-
-        <!-- STATUS -->
 
         <div class="encrypt-status">
 
@@ -504,9 +616,6 @@ body {
         </div>
 
 
-
-        <!-- BAR -->
-
         <div class="encrypt-bar">
 
             <div
@@ -516,9 +625,6 @@ body {
 
         </div>
 
-
-
-        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -544,37 +650,28 @@ body {
 
 function updateClock() {
 
-
     const now = new Date();
-
 
     let hours =
         now.getHours();
-
 
     const minutes =
         String(
             now.getMinutes()
         ).padStart(2, "0");
 
-
     const seconds =
         String(
             now.getSeconds()
         ).padStart(2, "0");
-
 
     const ampm =
         hours >= 12
         ? "PM"
         : "AM";
 
-
-    /* CONVERT TO 12-HOUR TIME */
-
     hours =
         hours % 12;
-
 
     hours =
         hours
@@ -594,7 +691,6 @@ function updateClock() {
         " " +
         ampm;
 
-
 }
 
 
@@ -605,24 +701,20 @@ function updateClock() {
 
 function updateRoute() {
 
-
     const part1 =
         Math.floor(
             Math.random() * 256
         );
-
 
     const part2 =
         Math.floor(
             Math.random() * 256
         );
 
-
     const part3 =
         Math.floor(
             Math.random() * 256
         );
-
 
     const part4 =
         Math.floor(
@@ -639,7 +731,6 @@ function updateRoute() {
         part3 + "." +
         part4;
 
-
 }
 
 
@@ -651,15 +742,11 @@ updateClock();
 updateRoute();
 
 
-/* UPDATE TIME EVERY SECOND */
-
 setInterval(
     updateClock,
     1000
 );
 
-
-/* CHANGE FAKE IP */
 
 setInterval(
     updateRoute,
@@ -674,22 +761,17 @@ setInterval(
 
 function makeEncryptionCode() {
 
-
     const characters =
         "0123456789ABCDEF";
 
-
     let output = "";
 
-
-    /* EXACTLY 16 CHARACTERS */
 
     for (
         let i = 0;
         i < 16;
         i++
     ) {
-
 
         output +=
 
@@ -704,8 +786,6 @@ function makeEncryptionCode() {
             ];
 
 
-        /* SPACE AFTER EVERY 4 */
-
         if (
             (i + 1) % 4 === 0
             &&
@@ -716,12 +796,10 @@ function makeEncryptionCode() {
 
         }
 
-
     }
 
 
     return output;
-
 
 }
 
@@ -736,36 +814,30 @@ function openEncryptedPage(
     directoryName
 ) {
 
-
     const overlay =
         document.getElementById(
             "encryptOverlay"
         );
-
 
     const code =
         document.getElementById(
             "encryptCode"
         );
 
-
     const progress =
         document.getElementById(
             "encryptProgress"
         );
-
 
     const percent =
         document.getElementById(
             "encryptPercent"
         );
 
-
     const status =
         document.getElementById(
             "encryptStatus"
         );
-
 
     const bottom =
         document.getElementById(
@@ -773,79 +845,56 @@ function openEncryptedPage(
         );
 
 
-
-    /* =====================================
-       RESET
-    ===================================== */
+    /* RESET */
 
     progress.style.width =
         "0%";
 
-
     percent.textContent =
         "0%";
-
 
     code.textContent =
         makeEncryptionCode();
 
-
     status.textContent =
         "negotiating key...";
-
 
     bottom.textContent =
         directoryName +
         " / access request pending";
 
 
-
-    /* =====================================
-       SHOW SCREEN IMMEDIATELY
-    ===================================== */
+    /* SHOW SCREEN */
 
     overlay.classList.add(
         "active"
     );
 
 
-
-    /*
-       NUMBERS START MOVING IMMEDIATELY
-    */
+    /* MOVING CODE */
 
     const codeInterval =
 
         setInterval(function() {
 
-
             code.textContent =
                 makeEncryptionCode();
-
 
         }, 100);
 
 
-
-    /* =====================================
-       WAIT 2 SECONDS BEFORE BAR MOVES
-    ===================================== */
+    /* WAIT 2 SECONDS */
 
     setTimeout(function() {
-
 
         let value = 0;
 
 
-
-        /* =================================
-           ABOUT 4 SECOND LOAD
-        ================================= */
+        /* ABOUT 4 SECOND LOAD */
 
         const progressInterval =
 
             setInterval(function() {
-
 
                 value++;
 
@@ -858,9 +907,6 @@ function openEncryptedPage(
                     value + "%";
 
 
-
-                /* 0 - 24% */
-
                 if (
                     value < 25
                 ) {
@@ -869,9 +915,6 @@ function openEncryptedPage(
                         "negotiating key...";
 
                 }
-
-
-                /* 25 - 49% */
 
                 else if (
                     value < 50
@@ -882,9 +925,6 @@ function openEncryptedPage(
 
                 }
 
-
-                /* 50 - 74% */
-
                 else if (
                     value < 75
                 ) {
@@ -894,9 +934,6 @@ function openEncryptedPage(
 
                 }
 
-
-                /* 75 - 100% */
-
                 else {
 
                     status.textContent =
@@ -905,15 +942,9 @@ function openEncryptedPage(
                 }
 
 
-
-                /* =================================
-                   OPEN PAGE AT 100%
-                ================================= */
-
                 if (
                     value >= 100
                 ) {
-
 
                     clearInterval(
                         progressInterval
@@ -928,7 +959,6 @@ function openEncryptedPage(
                     window.location.href =
                         destination;
 
-
                 }
 
 
@@ -936,7 +966,6 @@ function openEncryptedPage(
 
 
     }, 2000);
-
 
 }
 
