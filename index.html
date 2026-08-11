@@ -83,7 +83,9 @@ body {
 .nav {
     display: flex;
     flex-direction: column;
+
     gap: 12px;
+
     align-items: center;
 }
 
@@ -151,6 +153,7 @@ body {
 
 #sessionID {
     color: #777;
+
     letter-spacing: 0.5px;
 }
 
@@ -167,21 +170,24 @@ body {
 /* =========================================
    UNKNOWN CLIENT
 
-   WAITS 2.5 SECONDS
-   THEN FADES IN OVER 0.8 SECONDS
+   WAITS 2 SECONDS
+   FADES IN OVER 0.8 SECONDS
 ========================================= */
 
 #unknownClient {
     color: #b00000;
 
     opacity: 0;
+
     visibility: hidden;
 
-    transition: opacity 0.8s ease;
+    transition:
+        opacity 0.8s ease;
 }
 
 #unknownClient.visible {
     opacity: 1;
+
     visibility: visible;
 }
 
@@ -262,7 +268,6 @@ body {
 
 /* =========================================
    SCRAMBLING / KYSORDIETRYIN
-   SAME FONT AS ENTER
 ========================================= */
 
 .encrypt-code {
@@ -331,7 +336,8 @@ body {
 
     background: #8d0000;
 
-    transition: width 0.06s linear;
+    transition:
+        width 0.06s linear;
 }
 
 
@@ -379,6 +385,7 @@ body {
 
     .encrypt-panel {
         width: 92vw;
+
         padding: 25px;
     }
 
@@ -484,7 +491,7 @@ body {
             </div>
 
 
-            <!-- APPEARS AFTER 2.5 SECONDS -->
+            <!-- APPEARS AFTER 2 SECONDS -->
 
             <div id="unknownClient">
                 unknown client
@@ -694,7 +701,7 @@ function updateRoute() {
 /* =========================================
    RANDOM SESSION ID
 
-   NEW ONE EVERY PAGE LOAD
+   NEW ID EVERY PAGE LOAD
 ========================================= */
 
 function createSessionID() {
@@ -805,12 +812,12 @@ createSessionID();
 /* =========================================
    UNKNOWN CLIENT DELAY
 
-   2500 = 2.5 SECONDS
+   2000 = 2 SECONDS
 ========================================= */
 
 setTimeout(
     revealUnknownClient,
-    2500
+    2000
 );
 
 
@@ -864,9 +871,7 @@ function randomCharacter() {
    BUILD REVEAL
 
    0 - 39% = RANDOM
-
-   40 - 100% =
-   KYSORDIETRYIN REVEALS
+   40 - 100% = KYSORDIETRYIN REVEALS
 ========================================= */
 
 function makeRevealCode(
@@ -992,9 +997,7 @@ function openEncryptedPage(
 
 
 
-    /* =====================================
-       RESET
-    ===================================== */
+    /* RESET */
 
     progress.style.width =
         "0%";
@@ -1020,9 +1023,7 @@ function openEncryptedPage(
 
 
 
-    /* =====================================
-       SHOW OVERLAY
-    ===================================== */
+    /* SHOW OVERLAY */
 
     overlay.classList.add(
         "active"
@@ -1090,14 +1091,11 @@ function openEncryptedPage(
 
 
 
-                        /* =================================
-                           STATUS MESSAGES
-                        ================================= */
+                        /* STATUS MESSAGES */
 
                         if (
                             value < 25
                         ) {
-
 
                             status.textContent =
                                 "negotiating key...";
@@ -1109,7 +1107,6 @@ function openEncryptedPage(
                             value < 50
                         ) {
 
-
                             status.textContent =
                                 "searching for path...";
 
@@ -1120,7 +1117,6 @@ function openEncryptedPage(
                             value < 75
                         ) {
 
-
                             status.textContent =
                                 "binding client...";
 
@@ -1128,7 +1124,6 @@ function openEncryptedPage(
 
 
                         else {
-
 
                             status.textContent =
                                 "path found...";
@@ -1179,7 +1174,7 @@ function openEncryptedPage(
 
 
                             /* =================================
-                               HOLD FINAL WORD
+                               HOLD KYSORDIETRYIN
                                FOR 2 SECONDS
                             ================================= */
 
