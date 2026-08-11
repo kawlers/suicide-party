@@ -147,7 +147,9 @@ body {
 }
 
 
-/* SESSION ID */
+/* =========================================
+   SESSION ID
+========================================= */
 
 #sessionID {
     color: #777;
@@ -156,7 +158,9 @@ body {
 }
 
 
-/* CHANGING ROUTE */
+/* =========================================
+   CHANGING ROUTE
+========================================= */
 
 #route {
     color: #b00000;
@@ -165,6 +169,9 @@ body {
 
 /* =========================================
    UNKNOWN CLIENT
+
+   HIDDEN AT FIRST
+   FADES IN AFTER 3 SECONDS
 ========================================= */
 
 #unknownClient {
@@ -174,7 +181,8 @@ body {
 
     visibility: hidden;
 
-    transition: opacity 0.35s ease;
+    transition:
+        opacity 0.8s ease;
 }
 
 #unknownClient.visible {
@@ -260,6 +268,8 @@ body {
 
 /* =========================================
    SCRAMBLING / KYSORDIETRYIN
+
+   SAME FONT AS ENTER
 ========================================= */
 
 .encrypt-code {
@@ -328,7 +338,8 @@ body {
 
     background: #8d0000;
 
-    transition: width 0.06s linear;
+    transition:
+        width 0.06s linear;
 }
 
 
@@ -434,7 +445,9 @@ body {
         </div>
 
 
-        <!-- CONNECTION INFORMATION -->
+        <!-- =================================
+             CONNECTION INFORMATION
+        ================================== -->
 
         <div class="tagline">
 
@@ -445,10 +458,13 @@ body {
 
 
             <div>
+
                 session ID:
+
                 <span id="sessionID">
                     ---- ---- ----
                 </span>
+
             </div>
 
 
@@ -474,7 +490,9 @@ body {
             </div>
 
 
-            <!-- APPEARS AFTER 2 SECONDS -->
+            <!-- =================================
+                 APPEARS AFTER 3 SECONDS
+            ================================== -->
 
             <div id="unknownClient">
                 unknown client
@@ -504,10 +522,14 @@ body {
     <div class="encrypt-panel">
 
 
+        <!-- TITLE -->
+
         <div class="encrypt-title">
             establishing channel
         </div>
 
+
+        <!-- SCRAMBLING CODE -->
 
         <div
             id="encryptCode"
@@ -517,7 +539,10 @@ body {
         </div>
 
 
+        <!-- STATUS -->
+
         <div class="encrypt-status">
+
 
             <span id="encryptStatus">
                 negotiating key...
@@ -528,18 +553,25 @@ body {
                 0%
             </span>
 
+
         </div>
 
 
+        <!-- PROGRESS -->
+
         <div class="encrypt-bar">
+
 
             <div
                 id="encryptProgress"
                 class="encrypt-progress"
             ></div>
 
+
         </div>
 
+
+        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -564,6 +596,7 @@ body {
 ========================================= */
 
 function updateClock() {
+
 
     const now =
         new Date();
@@ -613,7 +646,10 @@ function updateClock() {
         );
 
 
-    if (timeElement) {
+    if (
+        timeElement
+    ) {
+
 
         timeElement.textContent =
 
@@ -624,6 +660,7 @@ function updateClock() {
             seconds +
             " " +
             ampm;
+
 
     }
 
@@ -636,6 +673,7 @@ function updateClock() {
 ========================================= */
 
 function updateRoute() {
+
 
     const part1 =
         Math.floor(
@@ -667,7 +705,10 @@ function updateRoute() {
         );
 
 
-    if (routeElement) {
+    if (
+        routeElement
+    ) {
+
 
         routeElement.textContent =
 
@@ -675,6 +716,7 @@ function updateRoute() {
             part2 + "." +
             part3 + "." +
             part4;
+
 
     }
 
@@ -684,9 +726,13 @@ function updateRoute() {
 
 /* =========================================
    RANDOM SESSION ID
+
+   GENERATES A NEW ID
+   EVERY PAGE LOAD
 ========================================= */
 
 function createSessionID() {
+
 
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -695,6 +741,8 @@ function createSessionID() {
     let sessionID =
         "";
 
+
+    /* THREE GROUPS OF FOUR */
 
     for (
         let group = 0;
@@ -724,14 +772,20 @@ function createSessionID() {
                     randomIndex
                 ];
 
+
         }
 
+
+        /* ADD DASH BETWEEN GROUPS */
 
         if (
             group < 2
         ) {
 
-            sessionID += "-";
+
+            sessionID +=
+                "-";
+
 
         }
 
@@ -744,10 +798,14 @@ function createSessionID() {
         );
 
 
-    if (sessionElement) {
+    if (
+        sessionElement
+    ) {
+
 
         sessionElement.textContent =
             sessionID;
+
 
     }
 
@@ -756,12 +814,13 @@ function createSessionID() {
 
 
 /* =========================================
-   UNKNOWN CLIENT REVEAL
+   UNKNOWN CLIENT
 
-   APPEARS AFTER 2 SECONDS
+   REVEALS AFTER 3 SECONDS
 ========================================= */
 
 function revealUnknownClient() {
+
 
     const unknownClient =
         document.getElementById(
@@ -769,11 +828,15 @@ function revealUnknownClient() {
         );
 
 
-    if (unknownClient) {
+    if (
+        unknownClient
+    ) {
+
 
         unknownClient.classList.add(
             "visible"
         );
+
 
     }
 
@@ -792,15 +855,23 @@ updateRoute();
 createSessionID();
 
 
-/* REVEAL UNKNOWN CLIENT AFTER 2 SECONDS */
+
+/* =========================================
+   UNKNOWN CLIENT DELAY
+
+   3000 = 3 SECONDS
+========================================= */
 
 setTimeout(
     revealUnknownClient,
-    2000
+    3000
 );
 
 
-/* CLOCK */
+
+/* =========================================
+   CLOCK UPDATE
+========================================= */
 
 setInterval(
     updateClock,
@@ -808,7 +879,10 @@ setInterval(
 );
 
 
-/* ROUTE */
+
+/* =========================================
+   ROUTE UPDATE
+========================================= */
 
 setInterval(
     updateRoute,
@@ -822,6 +896,7 @@ setInterval(
 ========================================= */
 
 function randomCharacter() {
+
 
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -867,6 +942,11 @@ function makeRevealCode(
         0;
 
 
+
+    /* =====================================
+       BEGIN REVEAL AT 40%
+    ===================================== */
+
     if (
         progressValue >= 40
     ) {
@@ -891,12 +971,19 @@ function makeRevealCode(
 
             );
 
+
     }
+
 
 
     let output =
         "";
 
+
+
+    /* =====================================
+       BUILD ALL 13 CHARACTERS
+    ===================================== */
 
     for (
         let i = 0;
@@ -904,6 +991,8 @@ function makeRevealCode(
         i++
     ) {
 
+
+        /* REVEALED */
 
         if (
             i < lockedLetters
@@ -913,8 +1002,11 @@ function makeRevealCode(
             output +=
                 finalWord[i];
 
+
         }
 
+
+        /* STILL SCRAMBLING */
 
         else {
 
@@ -922,7 +1014,9 @@ function makeRevealCode(
             output +=
                 randomCharacter();
 
+
         }
+
 
     }
 
@@ -980,7 +1074,9 @@ function openEncryptedPage(
 
 
 
-    /* RESET */
+    /* =====================================
+       RESET ENCRYPTION SCREEN
+    ===================================== */
 
     progress.style.width =
         "0%";
@@ -1005,11 +1101,15 @@ function openEncryptedPage(
         " / access request pending";
 
 
-    /* SHOW OVERLAY */
+
+    /* =====================================
+       SHOW OVERLAY
+    ===================================== */
 
     overlay.classList.add(
         "active"
     );
+
 
 
     let currentProgress =
@@ -1017,7 +1117,11 @@ function openEncryptedPage(
 
 
 
-    /* FAST SCRAMBLING */
+    /* =====================================
+       FAST SCRAMBLING
+
+       CHANGES EVERY 35MS
+    ===================================== */
 
     const codeInterval =
 
@@ -1038,7 +1142,8 @@ function openEncryptedPage(
 
 
     /* =====================================
-       WAIT 2 SECONDS BEFORE PROGRESS
+       WAIT 2 SECONDS
+       BEFORE PROGRESS STARTS
     ===================================== */
 
     setTimeout(
@@ -1047,6 +1152,7 @@ function openEncryptedPage(
 
             let value =
                 0;
+
 
 
             const progressInterval =
@@ -1071,7 +1177,9 @@ function openEncryptedPage(
 
 
 
-                        /* STATUS */
+                        /* =================================
+                           0 - 24%
+                        ================================= */
 
                         if (
                             value < 25
@@ -1081,8 +1189,14 @@ function openEncryptedPage(
                             status.textContent =
                                 "negotiating key...";
 
+
                         }
 
+
+
+                        /* =================================
+                           25 - 49%
+                        ================================= */
 
                         else if (
                             value < 50
@@ -1092,8 +1206,14 @@ function openEncryptedPage(
                             status.textContent =
                                 "searching for path...";
 
+
                         }
 
+
+
+                        /* =================================
+                           50 - 74%
+                        ================================= */
 
                         else if (
                             value < 75
@@ -1103,14 +1223,21 @@ function openEncryptedPage(
                             status.textContent =
                                 "binding client...";
 
+
                         }
 
+
+
+                        /* =================================
+                           75 - 100%
+                        ================================= */
 
                         else {
 
 
                             status.textContent =
                                 "path found...";
+
 
                         }
 
@@ -1135,6 +1262,9 @@ function openEncryptedPage(
                             );
 
 
+
+                            /* FORCE FINAL STATE */
+
                             progress.style.width =
                                 "100%";
 
@@ -1157,7 +1287,10 @@ function openEncryptedPage(
 
 
 
-                            /* HOLD FOR 2 SECONDS */
+                            /* =================================
+                               HOLD FINAL WORD
+                               FOR 2 SECONDS
+                            ================================= */
 
                             setTimeout(
                                 function() {
@@ -1171,15 +1304,19 @@ function openEncryptedPage(
                                 2000
                             );
 
+
                         }
+
 
                     },
                     40
                 );
 
+
         },
         2000
     );
+
 
 }
 
