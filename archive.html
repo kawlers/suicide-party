@@ -16,9 +16,21 @@
 
 body {
     margin: 0;
-    background: #000;
+
+    background-color: #000;
+    background-image: url("COREBACKROUND4PAGES.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     color: #fff;
-    font-family: "Courier New", monospace;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    min-height: 100vh;
 }
 
 
@@ -26,8 +38,11 @@ body {
 
 .page {
     width: min(900px, 92%);
+
     margin: auto;
-    padding: 35px 0 70px;
+
+    padding:
+        35px 0 70px;
 }
 
 
@@ -35,7 +50,9 @@ body {
 
 .back {
     color: #aaa;
+
     text-decoration: none;
+
     font-size: 12px;
 }
 
@@ -52,7 +69,9 @@ body {
 
 .title {
     color: #aaa;
+
     font-size: 13px;
+
     letter-spacing: 2px;
 }
 
@@ -61,8 +80,11 @@ body {
 
 .line {
     height: 1px;
+
     background: #333;
-    margin: 18px 0 45px;
+
+    margin:
+        18px 0 45px;
 }
 
 
@@ -70,7 +92,9 @@ body {
 
 .section-title {
     color: #aaa;
+
     font-size: 13px;
+
     margin-bottom: 18px;
 }
 
@@ -79,19 +103,25 @@ body {
 
 .video-list {
     width: 500px;
+
     max-width: 100%;
 }
 
 .video-file {
     display: flex;
+
     align-items: center;
+
     gap: 22px;
 
-    padding: 14px 4px;
+    padding:
+        14px 4px;
 
-    border-top: 1px solid #222;
+    border-top:
+        1px solid #222;
 
     color: #aaa;
+
     font-size: 13px;
 
     cursor: pointer;
@@ -100,11 +130,13 @@ body {
 }
 
 .video-file:last-child {
-    border-bottom: 1px solid #222;
+    border-bottom:
+        1px solid #222;
 }
 
 .video-file:hover {
     color: #fff;
+
     padding-left: 10px;
 }
 
@@ -113,11 +145,13 @@ body {
 
 .video-file.empty {
     cursor: default;
+
     color: #333;
 }
 
 .video-file.empty:hover {
     color: #333;
+
     padding-left: 4px;
 }
 
@@ -126,6 +160,7 @@ body {
 
 .number {
     color: #d00000;
+
     width: 24px;
 }
 
@@ -138,6 +173,7 @@ body {
     color: #555;
 
     font-size: 11px;
+
     line-height: 1.8;
 
     white-space: pre-line;
@@ -157,15 +193,24 @@ body {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.75);
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.75
+        );
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     z-index: 9999;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition:
@@ -175,6 +220,7 @@ body {
 
 .video-overlay.active {
     opacity: 1;
+
     visibility: visible;
 }
 
@@ -185,6 +231,7 @@ body {
     position: relative;
 
     width: 1000px;
+
     max-width: 90vw;
 
     opacity: 0;
@@ -201,7 +248,8 @@ body {
 
 /* OPEN ANIMATION */
 
-.video-overlay.active .video-window {
+.video-overlay.active
+.video-window {
     opacity: 1;
 
     transform:
@@ -216,16 +264,21 @@ body {
     position: absolute;
 
     top: -32px;
+
     right: 0;
 
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: #888;
 
-    font-family: "Courier New", monospace;
+    font-family:
+        "Courier New",
+        monospace;
+
     font-size: 24px;
 
     cursor: pointer;
@@ -242,17 +295,21 @@ body {
 
 .loading-screen {
     width: 100%;
+
     height: 180px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     padding: 30px;
 
     background: #000;
 
-    border: 1px solid #333;
+    border:
+        1px solid #333;
 }
 
 
@@ -269,6 +326,7 @@ body {
 
 .loading-bar {
     width: 100%;
+
     height: 2px;
 
     background: #222;
@@ -279,6 +337,7 @@ body {
 
 .loading-progress {
     width: 0%;
+
     height: 100%;
 
     background: #b00000;
@@ -309,7 +368,8 @@ body {
 
     background: #000;
 
-    border: 1px solid #333;
+    border:
+        1px solid #333;
 }
 
 
@@ -327,6 +387,7 @@ body {
 
     .video-window {
         width: 90vw;
+
         max-width: 90vw;
     }
 
@@ -630,7 +691,10 @@ let stallTimeout;
    OPEN VIDEO
 ========================================= */
 
-function openVideo(fileName, shouldStall) {
+function openVideo(
+    fileName,
+    shouldStall
+) {
 
 
     const overlay =
@@ -682,6 +746,7 @@ function openVideo(fileName, shouldStall) {
         loadingInterval
     );
 
+
     clearTimeout(
         stallTimeout
     );
@@ -727,6 +792,7 @@ function openVideo(fileName, shouldStall) {
 
 
     let value = 0;
+
     let hasStalled = false;
 
 
@@ -736,6 +802,7 @@ function openVideo(fileName, shouldStall) {
     ===================================== */
 
     loadingInterval =
+
         setInterval(function() {
 
 
@@ -779,12 +846,14 @@ function openVideo(fileName, shouldStall) {
                 */
 
                 stallTimeout =
+
                     setTimeout(function() {
 
 
                         /* RESUME */
 
                         loadingInterval =
+
                             setInterval(function() {
 
 
@@ -799,7 +868,9 @@ function openVideo(fileName, shouldStall) {
                                     value + "%";
 
 
-                                if (value >= 100) {
+                                if (
+                                    value >= 100
+                                ) {
 
 
                                     clearInterval(
@@ -827,7 +898,9 @@ function openVideo(fileName, shouldStall) {
 
             /* NORMAL COMPLETION */
 
-            if (value >= 100) {
+            if (
+                value >= 100
+            ) {
 
 
                 clearInterval(
@@ -939,7 +1012,9 @@ function backgroundClose(event) {
         "videoOverlay"
     ) {
 
+
         closeVideo();
+
 
     }
 
@@ -960,7 +1035,9 @@ document.addEventListener(
             "Escape"
         ) {
 
+
             closeVideo();
+
 
         }
 
