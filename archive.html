@@ -231,8 +231,6 @@ body {
 .auth-box {
     width: min(430px, 88vw);
 
-    padding: 0;
-
     background: #050505;
 
     border:
@@ -380,6 +378,10 @@ body {
     color: #b00000;
 }
 
+.auth-status.accepted {
+    color: #4d7d4d;
+}
+
 
 /* =========================================
    AUTH BUTTON
@@ -415,6 +417,72 @@ body {
 
 .auth-button:active {
     background: #140000;
+}
+
+
+/* =========================================
+   GREEN CHECK
+========================================= */
+
+.auth-success {
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 22px;
+
+    height: 34px;
+}
+
+.auth-success.visible {
+    display: flex;
+}
+
+
+/* CHECKMARK */
+
+.checkmark {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #4f9a4f;
+
+    font-size: 18px;
+
+    border: 1px solid #315f31;
+
+    background: #061006;
+
+    opacity: 0;
+
+    transform: scale(0.8);
+
+    animation:
+        checkAppear 0.25s ease forwards;
+
+    box-shadow:
+        0 0 8px rgba(70, 150, 70, 0.18);
+}
+
+@keyframes checkAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
 }
 
 
@@ -755,12 +823,29 @@ body {
 
 
                 <button
+                    id="authButton"
                     class="auth-button"
                     onclick="submitPassword()"
                 >
                     submit
                 </button>
 
+
+            </div>
+
+
+            <!-- =================================
+                 SUCCESS CHECK
+            ================================== -->
+
+            <div
+                id="authSuccess"
+                class="auth-success"
+            >
+
+                <div class="checkmark">
+                    ✓
+                </div>
 
             </div>
 
@@ -790,7 +875,6 @@ body {
     </a>
 
 
-
     <div class="directory-header">
 
 
@@ -807,26 +891,19 @@ body {
     </div>
 
 
-
     <div class="directory-list">
 
-
-        <!-- 01 -->
 
         <div
             class="directory-file"
             onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    01
-                </span>
+                <span class="number">01</span>
 
                 purge-xtra2k25.mp4
 
@@ -835,23 +912,16 @@ body {
         </div>
 
 
-
-        <!-- 02 -->
-
         <div
             class="directory-file"
             onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    02
-                </span>
+                <span class="number">02</span>
 
                 scenebitch-lcut.mp4
 
@@ -860,20 +930,13 @@ body {
         </div>
 
 
-
-        <!-- 03 -->
-
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    03
-                </span>
+                <span class="number">03</span>
 
                 ------
 
@@ -882,23 +945,16 @@ body {
         </div>
 
 
-
-        <!-- 04 -->
-
         <div
             class="directory-file"
             onclick="openVideo('untitled_04.mp4', false)"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    04
-                </span>
+                <span class="number">04</span>
 
                 untitled_04.mp4
 
@@ -907,23 +963,16 @@ body {
         </div>
 
 
-
-        <!-- 05 -->
-
         <div
             class="directory-file"
             onclick="openVideo('sp_005.mp4', false)"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    05
-                </span>
+                <span class="number">05</span>
 
                 sp_005.mp4
 
@@ -932,20 +981,13 @@ body {
         </div>
 
 
-
-        <!-- 06 -->
-
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    06
-                </span>
+                <span class="number">06</span>
 
                 ------
 
@@ -954,20 +996,13 @@ body {
         </div>
 
 
-
-        <!-- 07 -->
-
         <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    07
-                </span>
+                <span class="number">07</span>
 
                 ------
 
@@ -975,24 +1010,17 @@ body {
 
         </div>
 
-
-
-        <!-- 08 -->
 
         <div
             class="directory-file"
             onclick="openVideo('957229577.mp4', true)"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    08
-                </span>
+                <span class="number">08</span>
 
                 957229577.mp4
 
@@ -1022,8 +1050,6 @@ body {
     <div class="video-window">
 
 
-        <!-- CLOSE -->
-
         <button
             class="close-video"
             onclick="closeVideo()"
@@ -1031,11 +1057,6 @@ body {
             ×
         </button>
 
-
-
-        <!-- =================================
-             LOADING SCREEN
-        ================================== -->
 
         <div
             id="loadingScreen"
@@ -1073,11 +1094,6 @@ body {
 
         </div>
 
-
-
-        <!-- =================================
-             RAW VIDEO
-        ================================== -->
 
         <div
             id="videoContainer"
@@ -1155,9 +1171,21 @@ const authOverlay =
     );
 
 
+const authSuccess =
+    document.getElementById(
+        "authSuccess"
+    );
+
+
+const authButton =
+    document.getElementById(
+        "authButton"
+    );
+
+
 
 /* =========================================
-   AUTO FOCUS PASSWORD
+   AUTO FOCUS
 ========================================= */
 
 window.addEventListener(
@@ -1208,7 +1236,7 @@ passwordInput.addEventListener(
 
 
 /* =========================================
-   REMOVE SPACES FROM PASTE / INPUT
+   REMOVE SPACES FROM PASTE
 ========================================= */
 
 passwordInput.addEventListener(
@@ -1229,7 +1257,7 @@ passwordInput.addEventListener(
 
 
 /* =========================================
-   PRESS ENTER TO SUBMIT
+   ENTER TO SUBMIT
 ========================================= */
 
 passwordInput.addEventListener(
@@ -1278,14 +1306,45 @@ function submitPassword() {
     ) {
 
 
+        /* PREVENT MORE INPUT */
+
+        passwordInput.disabled =
+            true;
+
+
+        authButton.disabled =
+            true;
+
+
+
+        /* REMOVE ERROR STATE */
+
         authStatus.classList.remove(
             "error"
+        );
+
+
+        authStatus.classList.add(
+            "accepted"
         );
 
 
         authStatus.textContent =
             "authorization accepted";
 
+
+
+        /* SHOW GREEN CHECK */
+
+        authSuccess.classList.add(
+            "visible"
+        );
+
+
+
+        /* =================================
+           HOLD CHECK FOR 2 SECONDS
+        ================================= */
 
         setTimeout(
             function() {
@@ -1296,7 +1355,7 @@ function submitPassword() {
 
 
             },
-            300
+            2000
         );
 
 
@@ -1331,7 +1390,9 @@ function submitPassword() {
 
 
 
-    /* SHAKE BOX */
+    /* =====================================
+       SHAKE
+    ===================================== */
 
     authBox.classList.remove(
         "shake"
@@ -1348,7 +1409,7 @@ function submitPassword() {
 
 
     /* =====================================
-       THIRD FAILED ATTEMPT
+       3 FAILED ATTEMPTS
     ===================================== */
 
     if (
@@ -1358,6 +1419,10 @@ function submitPassword() {
 
 
         passwordInput.disabled =
+            true;
+
+
+        authButton.disabled =
             true;
 
 
@@ -1389,11 +1454,6 @@ let loadingInterval;
 
 let stallTimeout;
 
-
-
-/* =========================================
-   VIDEO REFERENCES
-========================================= */
 
 const videoPlayer =
     document.getElementById(
@@ -1455,8 +1515,6 @@ function openVideo(
 
 
 
-    /* CLEAR OLD LOADING */
-
     clearInterval(
         loadingInterval
     );
@@ -1467,9 +1525,6 @@ function openVideo(
     );
 
 
-
-    /* RESET VIDEO */
-
     videoPlayer.pause();
 
 
@@ -1479,9 +1534,6 @@ function openVideo(
 
     videoPlayer.load();
 
-
-
-    /* RESET DISPLAY */
 
     videoContainer.style.display =
         "none";
@@ -1503,13 +1555,9 @@ function openVideo(
         "0%";
 
 
-
-    /* OPEN OVERLAY */
-
     overlay.classList.add(
         "active"
     );
-
 
 
     let value =
@@ -1520,10 +1568,6 @@ function openVideo(
         false;
 
 
-
-    /* =====================================
-       LOADING LOOP
-    ===================================== */
 
     loadingInterval =
 
@@ -1543,9 +1587,7 @@ function openVideo(
 
 
 
-                /* =================================
-                   FILE 08 STALL
-                ================================= */
+                /* FILE 08 STALL */
 
                 if (
                     shouldStall === true
@@ -1568,12 +1610,6 @@ function openVideo(
                     loadingText.textContent =
                         "loading file...";
 
-
-
-                    /* =================================
-                       STALL
-                       NO BACKWARDS JUMP
-                    ================================= */
 
                     stallTimeout =
 
@@ -1631,10 +1667,6 @@ function openVideo(
 
 
 
-                /* =================================
-                   NORMAL FINISH
-                ================================= */
-
                 if (
                     value >= 100
                 ) {
@@ -1661,7 +1693,7 @@ function openVideo(
 
 
 /* =========================================
-   SHOW RAW VIDEO
+   SHOW VIDEO
 ========================================= */
 
 function showVideo() {
@@ -1691,9 +1723,6 @@ function showVideo() {
                 "block";
 
 
-
-            /* ATTEMPT AUTOPLAY */
-
             const playAttempt =
                 videoPlayer.play();
 
@@ -1706,7 +1735,7 @@ function showVideo() {
                 playAttempt.catch(
                     function() {
 
-                        /* browser blocked autoplay */
+                        /* autoplay blocked */
 
                     }
                 );
@@ -1764,7 +1793,7 @@ function closeVideo() {
 
 
 /* =========================================
-   CLICK OUTSIDE VIDEO
+   CLICK OUTSIDE
 ========================================= */
 
 function backgroundClose(
@@ -1789,7 +1818,7 @@ function backgroundClose(
 
 
 /* =========================================
-   ESC CLOSE
+   ESC
 ========================================= */
 
 document.addEventListener(
@@ -1797,20 +1826,10 @@ document.addEventListener(
     function(event) {
 
 
-        /*
-           ESC ONLY CLOSES VIDEO.
-
-           IT DOES NOT BYPASS
-           AUTHORIZATION.
-        */
-
-
         if (
-            event.key ===
-            "Escape"
+            event.key === "Escape"
             &&
-            authOverlay.style.display ===
-            "none"
+            authOverlay.style.display === "none"
         ) {
 
 
