@@ -18,42 +18,33 @@ html,
 body {
     margin: 0;
     padding: 0;
+
+    width: 100%;
     min-height: 100%;
-}
 
-body {
-    min-height: 100vh;
     background: #000;
-    color: #d7cbe2;
+
     font-family: "Courier New", monospace;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 18px;
 }
 
 
 /* =========================================================
-   MAIN WEBSITE FRAME
+   FULL SCREEN WEBSITE
 ========================================================= */
 
 .site-frame {
-    width: min(1400px, 98vw);
-
-    min-height: 650px;
-
-    border: 1px solid #5d2b88;
-
-    background: #030005;
+    width: 100vw;
+    min-height: 100vh;
 
     position: relative;
 
     overflow: hidden;
 
-    box-shadow:
-        0 0 22px rgba(74, 24, 125, 0.18);
+    background: #030005;
+
+    border: none;
+
+    box-shadow: none;
 }
 
 
@@ -62,34 +53,40 @@ body {
 ========================================================= */
 
 .topbar {
-    height: 54px;
+    height: 48px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 24px;
+    padding: 0 22px;
 
-    border-bottom: 1px solid #512679;
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 20;
+
+    border-bottom:
+        1px solid rgba(107, 44, 160, 0.85);
 
     background:
         linear-gradient(
             180deg,
-            rgba(40, 12, 72, 0.98),
-            rgba(17, 3, 31, 0.98)
+            rgba(38, 8, 72, 0.95),
+            rgba(16, 2, 29, 0.92)
         );
-
-    position: relative;
-    z-index: 10;
 }
 
 
 /* LEFT TITLE */
 
 .site-name {
-    color: #e1d8e8;
+    color: #e2d7ea;
 
-    font-size: 18px;
+    font-size: 17px;
 
     letter-spacing: 1px;
 
@@ -105,13 +102,13 @@ body {
 
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .top-nav a {
-    color: #ad78d5;
+    color: #ae78d8;
 
     text-decoration: underline;
 
@@ -123,30 +120,21 @@ body {
 }
 
 .nav-separator {
-    color: #67487b;
+    color: #68487d;
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   FULL PAGE ARTWORK
 ========================================================= */
 
 .main-content {
-    min-height: 555px;
+    width: 100vw;
+    min-height: 100vh;
 
     position: relative;
 
-    display: grid;
-
-    grid-template-columns:
-        53% 47%;
-
     overflow: hidden;
-
-    /*
-        SAME ARTWORK USED AS THE BASE
-        ACROSS THE WHOLE CONTENT AREA
-    */
 
     background-image:
         url("SPNEWBACKROUNDINDEX.png");
@@ -159,7 +147,7 @@ body {
 }
 
 
-/* DARKEN / BLEND FOR READABILITY */
+/* DARKEN RIGHT SIDE ONLY */
 
 .main-content::before {
     content: "";
@@ -175,15 +163,17 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,0.02) 0%,
-            rgba(0,0,0,0.02) 44%,
-            rgba(0,0,0,0.18) 58%,
-            rgba(0,0,0,0.42) 100%
+
+            rgba(0,0,0,0.00) 0%,
+            rgba(0,0,0,0.00) 46%,
+            rgba(0,0,0,0.08) 58%,
+            rgba(0,0,0,0.18) 70%,
+            rgba(0,0,0,0.34) 100%
         );
 }
 
 
-/* SUBTLE CRT LINES */
+/* SLIGHT CRT TEXTURE */
 
 .main-content::after {
     content: "";
@@ -196,88 +186,61 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.06;
+    opacity: 0.045;
 
     background:
         repeating-linear-gradient(
             0deg,
             transparent 0px,
             transparent 3px,
-            rgba(255,255,255,0.07) 4px
+            rgba(255,255,255,0.06) 4px
         );
 }
 
 
 /* =========================================================
-   LEFT SIDE
-
-   The artwork is already the background, so this side
-   stays mostly empty like the reference.
-========================================================= */
-
-.art-side {
-    position: relative;
-
-    z-index: 3;
-
-    min-height: 555px;
-}
-
-
-/* =========================================================
-   RIGHT SIDE
-========================================================= */
-
-.info-side {
-    position: relative;
-
-    z-index: 4;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding:
-        55px 55px 55px 20px;
-}
-
-
-/* =========================================================
-   CONNECTION BOX
+   CONNECTION PANEL
 ========================================================= */
 
 .connection-box {
-    width: 100%;
+    position: absolute;
 
-    max-width: 520px;
+    z-index: 5;
 
-    min-height: 315px;
+    top: 50%;
+    right: 7%;
+
+    transform:
+        translateY(-45%);
+
+    width: 500px;
+    max-width: 38vw;
+
+    min-height: 285px;
 
     padding:
-        28px 28px;
+        27px 28px;
 
     background:
-        rgba(2, 0, 6, 0.91);
+        rgba(2,0,6,0.90);
 
     border:
         1px solid #63319a;
 
     box-shadow:
-        inset 0 0 26px rgba(69, 20, 118, 0.10),
-        0 0 20px rgba(0,0,0,0.55);
+        inset 0 0 26px rgba(69,20,118,0.10),
+        0 0 22px rgba(0,0,0,0.55);
 }
 
 
 /* TITLE */
 
 .connection-title {
-    color: #9c62d2;
+    color: #9f65d5;
 
     font-size: 12px;
 
-    margin-bottom: 20px;
+    margin-bottom: 19px;
 }
 
 
@@ -288,7 +251,7 @@ body {
 
     height: 1px;
 
-    margin-bottom: 20px;
+    margin-bottom: 19px;
 
     background:
         repeating-linear-gradient(
@@ -301,7 +264,7 @@ body {
 }
 
 
-/* INFO ROW */
+/* INFO */
 
 .info-row {
     display: grid;
@@ -311,23 +274,23 @@ body {
 
     gap: 18px;
 
-    margin-bottom: 11px;
+    margin-bottom: 10px;
 
-    font-size: 12px;
+    font-size: 11px;
 
     line-height: 1.4;
 }
 
 .info-label {
-    color: #9865bc;
+    color: #9966bd;
 }
 
 .info-value {
-    color: #c5b6cf;
+    color: #c7b8d0;
 }
 
 
-/* RED ROUTE */
+/* ROUTE */
 
 #route {
     color: #cf001c;
@@ -338,25 +301,6 @@ body {
 
 .online {
     color: #75d122;
-}
-
-
-/* =========================================================
-   BOTTOM BAR
-========================================================= */
-
-.bottom-bar {
-    height: 34px;
-
-    border-top:
-        1px solid #512679;
-
-    background:
-        linear-gradient(
-            180deg,
-            #150425,
-            #0a0113
-        );
 }
 
 
@@ -435,7 +379,7 @@ body {
 }
 
 
-/* ENCRYPTION TITLE */
+/* TITLE */
 
 .encrypt-title {
     color: #95849e;
@@ -512,7 +456,8 @@ body {
 
     background: #120817;
 
-    border: 1px solid #25172b;
+    border:
+        1px solid #25172b;
 
     overflow: hidden;
 }
@@ -529,7 +474,7 @@ body {
 }
 
 
-/* BOTTOM TEXT */
+/* BOTTOM */
 
 .encrypt-bottom {
     margin-top: 17px;
@@ -546,73 +491,51 @@ body {
 
 @media (max-width: 800px) {
 
-    body {
-        padding: 6px;
-
-        align-items: flex-start;
-    }
-
-
-    .site-frame {
-        width: 100%;
-
-        min-height: 100vh;
-    }
-
-
     .topbar {
-        min-height: 52px;
-
         height: auto;
 
-        padding:
-            10px 13px;
-    }
+        min-height: 48px;
 
+        padding:
+            10px 12px;
+    }
 
     .site-name {
-        font-size: 13px;
+        font-size: 12px;
     }
 
-
     .top-nav {
-        gap: 7px;
+        gap: 6px;
 
         font-size: 9px;
     }
 
-
     .main-content {
-        display: block;
-
-        min-height: calc(100vh - 86px);
-
-        background-size: cover;
+        min-height: 100vh;
 
         background-position:
-            center top;
+            center center;
     }
-
-
-    .art-side {
-        min-height: 330px;
-    }
-
-
-    .info-side {
-        padding:
-            20px 18px 35px;
-    }
-
 
     .connection-box {
-        width: 100%;
+        top: auto;
+
+        bottom: 25px;
+
+        left: 50%;
+        right: auto;
+
+        transform:
+            translateX(-50%);
+
+        width: 88vw;
+        max-width: none;
 
         min-height: auto;
 
-        padding: 22px 20px;
+        padding:
+            22px 20px;
     }
-
 
     .info-row {
         grid-template-columns:
@@ -623,14 +546,12 @@ body {
         font-size: 10px;
     }
 
-
     .encrypt-panel {
         width: 92vw;
 
         padding:
             28px 24px;
     }
-
 
     .encrypt-code {
         min-height: 90px;
@@ -655,15 +576,124 @@ body {
 <body>
 
 
-<!-- =========================================================
-     MAIN SITE
-========================================================= -->
-
 <div class="site-frame">
 
 
     <!-- =====================================================
-         TOP BAR
+         FULL PAGE ARTWORK
+    ====================================================== -->
+
+    <div class="main-content">
+
+
+        <!-- CONNECTION BOX -->
+
+        <div class="connection-box">
+
+
+            <div class="connection-title">
+
+                your connection has been logged.
+
+            </div>
+
+
+            <div class="system-line">
+            </div>
+
+
+
+            <div class="info-row">
+
+                <div class="info-label">
+                    session ID:
+                </div>
+
+                <div class="info-value">
+                    [unbound]
+                </div>
+
+            </div>
+
+
+
+            <div class="info-row">
+
+                <div class="info-label">
+                    route:
+                </div>
+
+                <div
+                    class="info-value"
+                    id="route"
+                >
+                    192.168.---.---
+                </div>
+
+            </div>
+
+
+
+            <div class="info-row">
+
+                <div class="info-label">
+                    time:
+                </div>
+
+                <div
+                    class="info-value"
+                    id="time"
+                >
+                    --:--:-- --
+                </div>
+
+            </div>
+
+
+
+            <div class="info-row">
+
+                <div class="info-label">
+                </div>
+
+                <div class="info-value">
+                    unknown client
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="system-line"
+                style="margin-top:20px;"
+            >
+            </div>
+
+
+
+            <div class="info-row">
+
+                <div class="info-label">
+                    connection status:
+                </div>
+
+                <div class="info-value online">
+                    online
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         TOP BAR FLOATING OVER ART
     ====================================================== -->
 
     <div class="topbar">
@@ -680,16 +710,12 @@ body {
 
 
             <a href="index.html">
-
                 home
-
             </a>
 
 
             <span class="nav-separator">
-
                 |
-
             </span>
 
 
@@ -701,16 +727,12 @@ body {
                     )
                 "
             >
-
                 files
-
             </a>
 
 
             <span class="nav-separator">
-
                 |
-
             </span>
 
 
@@ -722,191 +744,13 @@ body {
                     )
                 "
             >
-
                 audio files
-
             </a>
 
 
         </div>
 
 
-    </div>
-
-
-
-    <!-- =====================================================
-         MAIN CONTENT
-    ====================================================== -->
-
-    <div class="main-content">
-
-
-        <!-- ART SIDE -->
-
-        <div class="art-side">
-        </div>
-
-
-
-        <!-- CONNECTION SIDE -->
-
-        <div class="info-side">
-
-
-            <div class="connection-box">
-
-
-                <div class="connection-title">
-
-                    your connection has been logged.
-
-                </div>
-
-
-                <div class="system-line">
-                </div>
-
-
-
-                <!-- SESSION -->
-
-                <div class="info-row">
-
-
-                    <div class="info-label">
-
-                        session ID:
-
-                    </div>
-
-
-                    <div class="info-value">
-
-                        [unbound]
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- ROUTE -->
-
-                <div class="info-row">
-
-
-                    <div class="info-label">
-
-                        route:
-
-                    </div>
-
-
-                    <div
-                        class="info-value"
-                        id="route"
-                    >
-
-                        192.168.---.---
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- TIME -->
-
-                <div class="info-row">
-
-
-                    <div class="info-label">
-
-                        time:
-
-                    </div>
-
-
-                    <div
-                        class="info-value"
-                        id="time"
-                    >
-
-                        --:--:-- --
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- UNKNOWN CLIENT -->
-
-                <div class="info-row">
-
-
-                    <div class="info-label">
-                    </div>
-
-
-                    <div class="info-value">
-
-                        unknown client
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div
-                    class="system-line"
-                    style="margin-top:20px;"
-                >
-                </div>
-
-
-
-                <!-- STATUS -->
-
-                <div class="info-row">
-
-
-                    <div class="info-label">
-
-                        connection status:
-
-                    </div>
-
-
-                    <div class="info-value online">
-
-                        online
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- BOTTOM -->
-
-    <div class="bottom-bar">
     </div>
 
 
@@ -927,17 +771,12 @@ body {
     <div class="encrypt-panel">
 
 
-        <!-- TITLE -->
-
         <div class="encrypt-title">
 
             establishing channel
 
         </div>
 
-
-
-        <!-- CODE -->
 
         <div
             id="encryptCode"
@@ -949,31 +788,21 @@ body {
         </div>
 
 
-
-        <!-- STATUS -->
-
         <div class="encrypt-status">
 
 
             <span id="encryptStatus">
-
                 negotiating key...
-
             </span>
 
 
             <span id="encryptPercent">
-
                 0%
-
             </span>
 
 
         </div>
 
-
-
-        <!-- BAR -->
 
         <div class="encrypt-bar">
 
@@ -987,9 +816,6 @@ body {
 
         </div>
 
-
-
-        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -1017,14 +843,11 @@ body {
 
 function updateClock() {
 
-
     const now =
         new Date();
 
-
     let hours =
         now.getHours();
-
 
     const minutes =
         String(
@@ -1034,7 +857,6 @@ function updateClock() {
             "0"
         );
 
-
     const seconds =
         String(
             now.getSeconds()
@@ -1043,16 +865,13 @@ function updateClock() {
             "0"
         );
 
-
     const ampm =
         hours >= 12
         ? "PM"
         : "AM";
 
-
     hours =
         hours % 12;
-
 
     hours =
         hours
@@ -1074,7 +893,6 @@ function updateClock() {
         " " +
         ampm;
 
-
 }
 
 
@@ -1085,36 +903,24 @@ function updateClock() {
 
 function updateRoute() {
 
-
     const part1 =
         Math.floor(
-            Math.random()
-            *
-            256
+            Math.random() * 256
         );
-
 
     const part2 =
         Math.floor(
-            Math.random()
-            *
-            256
+            Math.random() * 256
         );
-
 
     const part3 =
         Math.floor(
-            Math.random()
-            *
-            256
+            Math.random() * 256
         );
-
 
     const part4 =
         Math.floor(
-            Math.random()
-            *
-            256
+            Math.random() * 256
         );
 
 
@@ -1132,12 +938,8 @@ function updateRoute() {
         "." +
         part4;
 
-
 }
 
-
-
-/* START */
 
 updateClock();
 
@@ -1158,15 +960,13 @@ setInterval(
 
 
 /* =========================================================
-   16 CHARACTER MOVING CODE
+   16 CHARACTER CODE
 ========================================================= */
 
 function makeEncryptionCode() {
 
-
     const characters =
         "0123456789ABCDEF";
-
 
     let output =
         "";
@@ -1178,17 +978,14 @@ function makeEncryptionCode() {
         i++
     ) {
 
-
         output +=
 
             characters[
-
                 Math.floor(
                     Math.random()
                     *
                     characters.length
                 )
-
             ];
 
 
@@ -1198,19 +995,15 @@ function makeEncryptionCode() {
             i < 15
         ) {
 
-
             output +=
                 " ";
 
-
         }
-
 
     }
 
 
     return output;
-
 
 }
 
@@ -1225,36 +1018,30 @@ function openEncryptedPage(
     directoryName
 ) {
 
-
     const overlay =
         document.getElementById(
             "encryptOverlay"
         );
-
 
     const code =
         document.getElementById(
             "encryptCode"
         );
 
-
     const progress =
         document.getElementById(
             "encryptProgress"
         );
-
 
     const percent =
         document.getElementById(
             "encryptPercent"
         );
 
-
     const status =
         document.getElementById(
             "encryptStatus"
         );
-
 
     const bottom =
         document.getElementById(
@@ -1262,29 +1049,23 @@ function openEncryptedPage(
         );
 
 
-
     /* RESET */
 
     progress.style.width =
         "0%";
 
-
     percent.textContent =
         "0%";
-
 
     code.textContent =
         makeEncryptionCode();
 
-
     status.textContent =
         "negotiating key...";
-
 
     bottom.textContent =
         directoryName +
         " / access request pending";
-
 
 
     /* SHOW */
@@ -1296,47 +1077,36 @@ function openEncryptedPage(
         );
 
 
-
-    /* MOVING CODE IMMEDIATELY */
+    /* CODE MOVES IMMEDIATELY */
 
     const codeInterval =
 
         setInterval(
             function() {
 
-
                 code.textContent =
                     makeEncryptionCode();
-
 
             },
             100
         );
 
 
-
-    /* =====================================================
-       WAIT 2 SECONDS
-    ===================================================== */
+    /* WAIT 2 SECONDS */
 
     setTimeout(
         function() {
-
 
             let value =
                 0;
 
 
-
-            /* =================================================
-               THEN LOAD ~4 SECONDS
-            ================================================= */
+            /* THEN ~4 SECOND LOAD */
 
             const progressInterval =
 
                 setInterval(
                     function() {
-
 
                         value++;
 
@@ -1356,85 +1126,55 @@ function openEncryptedPage(
                             "%";
 
 
-
-                        /* 0 - 24 */
-
                         if (
                             value < 25
                         ) {
 
-
                             status.textContent =
                                 "negotiating key...";
 
-
                         }
-
-
-
-                        /* 25 - 49 */
 
                         else if (
                             value < 50
                         ) {
 
-
                             status.textContent =
                                 "searching for path...";
 
-
                         }
-
-
-
-                        /* 50 - 74 */
 
                         else if (
                             value < 75
                         ) {
 
-
                             status.textContent =
                                 "binding client...";
 
-
                         }
 
-
-
-                        /* 75 - 100 */
-
                         else {
-
 
                             status.textContent =
                                 "path found...";
 
-
                         }
 
-
-
-                        /* COMPLETE */
 
                         if (
                             value >= 100
                         ) {
 
-
                             clearInterval(
                                 progressInterval
                             );
-
 
                             clearInterval(
                                 codeInterval
                             );
 
-
                             window.location.href =
                                 destination;
-
 
                         }
 
@@ -1448,9 +1188,7 @@ function openEncryptedPage(
         2000
     );
 
-
 }
-
 
 </script>
 
