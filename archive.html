@@ -14,37 +14,27 @@
     box-sizing: border-box;
 }
 
-html,
 body {
     margin: 0;
-    padding: 0;
-    min-height: 100%;
-}
-
-body {
     background: #000;
     color: #fff;
     font-family: "Courier New", monospace;
 }
 
 
-/* =========================================================
-   PAGE
-========================================================= */
+/* PAGE */
 
 .page {
     width: min(900px, 92%);
     margin: auto;
-    padding: 40px 0 80px;
+    padding: 35px 0 70px;
 }
 
 
-/* =========================================================
-   BACK
-========================================================= */
+/* BACK */
 
 .back {
-    color: #777;
+    color: #aaa;
     text-decoration: none;
     font-size: 12px;
 }
@@ -54,171 +44,122 @@ body {
 }
 
 
-/* =========================================================
-   DIRECTORY HEADER
-========================================================= */
+/* HEADER */
 
-.directory-header {
-    margin-top: 48px;
-    margin-bottom: 32px;
+.header {
+    text-align: center;
 }
 
-.directory-path {
-    display: inline-block;
-
-    color: #d00000;
-
-    border: 1px solid #520000;
-
-    padding: 8px 16px;
-
-    font-size: 18px;
+.title {
+    color: #aaa;
+    font-size: 13px;
     letter-spacing: 2px;
-
-    margin-bottom: 24px;
 }
+
+
+/* LINE */
+
+.line {
+    height: 1px;
+    background: #333;
+    margin: 18px 0 45px;
+}
+
+
+/* SECTION TITLE */
 
 .section-title {
-    color: #666;
-
-    font-size: 12px;
-    letter-spacing: 1px;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 18px;
 }
 
 
-/* =========================================================
-   DIRECTORY LIST
-========================================================= */
+/* VIDEO LIST */
 
-.directory-list {
-    width: 100%;
-
-    margin-top: 18px;
-
-    border-top: 1px solid #1d1d1d;
+.video-list {
+    width: 500px;
+    max-width: 100%;
 }
 
-
-/* =========================================================
-   FILE ROW
-========================================================= */
-
-.directory-file {
+.video-file {
     display: flex;
     align-items: center;
+    gap: 22px;
 
-    gap: 14px;
+    padding: 14px 4px;
 
-    min-height: 46px;
+    border-top: 1px solid #222;
 
-    padding: 0 8px;
-
-    border-bottom: 1px solid #161616;
-
-    color: #999;
-
+    color: #aaa;
     font-size: 13px;
 
     cursor: pointer;
 
-    transition:
-        color 0.15s ease,
-        padding-left 0.15s ease,
-        background 0.15s ease;
+    transition: 0.15s;
 }
 
-.directory-file:hover {
+.video-file:last-child {
+    border-bottom: 1px solid #222;
+}
+
+.video-file:hover {
     color: #fff;
-
-    padding-left: 14px;
-
-    background: rgba(120, 0, 0, 0.04);
+    padding-left: 10px;
 }
 
 
-/* =========================================================
-   FILE SYMBOL
-========================================================= */
+/* EMPTY FILES */
 
-.file-icon {
-    color: #666;
+.video-file.empty {
+    cursor: default;
+    color: #333;
+}
 
-    width: 18px;
-
-    font-size: 15px;
-
-    text-align: center;
-
-    flex-shrink: 0;
+.video-file.empty:hover {
+    color: #333;
+    padding-left: 4px;
 }
 
 
-/* =========================================================
-   NUMBER
-========================================================= */
+/* RED NUMBERS */
 
 .number {
-    display: inline-block;
-
-    width: 28px;
-
     color: #d00000;
-
-    margin-right: 8px;
+    width: 24px;
 }
 
 
-/* =========================================================
-   FILE NAME
-========================================================= */
+/* FOOTER */
 
-.file-name {
-    white-space: nowrap;
+.footer {
+    margin-top: 80px;
+
+    color: #555;
+
+    font-size: 11px;
+    line-height: 1.8;
+
+    white-space: pre-line;
 }
 
 
-/* =========================================================
-   EMPTY
-========================================================= */
-
-.directory-file.empty {
-    color: #333;
-    cursor: default;
-}
-
-.directory-file.empty .number {
-    color: #650000;
-}
-
-.directory-file.empty .file-icon {
-    color: #292929;
-}
-
-.directory-file.empty:hover {
-    color: #333;
-
-    padding-left: 8px;
-
-    background: none;
-}
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
+/* =========================================
+   VIDEO OVERLAY
+========================================= */
 
 .video-overlay {
     position: fixed;
 
-    inset: 0;
+    top: 0;
+    left: 0;
 
     width: 100%;
     height: 100%;
 
-    background: rgba(0,0,0,0.9);
+    background: rgba(0, 0, 0, 0.75);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -228,8 +169,8 @@ body {
     visibility: hidden;
 
     transition:
-        opacity 0.2s ease,
-        visibility 0.2s ease;
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 }
 
 .video-overlay.active {
@@ -238,58 +179,54 @@ body {
 }
 
 
-/* =========================================================
-   VIDEO WINDOW
-========================================================= */
+/* VIDEO WINDOW */
 
 .video-window {
     position: relative;
 
     width: 1000px;
-
-    max-width: 92vw;
+    max-width: 90vw;
 
     opacity: 0;
 
     transform:
-        translateY(10px)
-        scale(0.99);
+        translateX(80px)
+        scale(0.96);
 
     transition:
-        opacity 0.2s ease,
-        transform 0.2s ease;
+        transform 0.3s ease,
+        opacity 0.3s ease;
 }
+
+
+/* OPEN ANIMATION */
 
 .video-overlay.active .video-window {
     opacity: 1;
 
     transform:
-        translateY(0)
+        translateX(0)
         scale(1);
 }
 
 
-/* =========================================================
-   CLOSE
-========================================================= */
+/* CLOSE */
 
 .close-video {
     position: absolute;
 
-    right: 0;
     top: -32px;
+    right: 0;
 
     padding: 0;
 
     border: none;
-
     background: none;
 
-    color: #777;
+    color: #888;
 
     font-family: "Courier New", monospace;
-
-    font-size: 22px;
+    font-size: 24px;
 
     cursor: pointer;
 }
@@ -299,27 +236,25 @@ body {
 }
 
 
-/* =========================================================
-   LOADING SCREEN
-========================================================= */
+/* =========================================
+   VIDEO LOADING SCREEN
+========================================= */
 
 .loading-screen {
     width: 100%;
-
     height: 180px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     padding: 30px;
 
     background: #000;
 
-    border: 1px solid #292929;
+    border: 1px solid #333;
 }
+
 
 .loading-text {
     color: #777;
@@ -330,25 +265,27 @@ body {
 }
 
 
-/* =========================================================
-   LOADING BAR
-========================================================= */
+/* BAR */
 
 .loading-bar {
     width: 100%;
     height: 2px;
 
-    background: #181818;
+    background: #222;
 
     overflow: hidden;
 }
+
 
 .loading-progress {
     width: 0%;
     height: 100%;
 
-    background: #a00000;
+    background: #b00000;
 }
+
+
+/* PERCENT */
 
 .loading-percent {
     margin-top: 10px;
@@ -361,422 +298,36 @@ body {
 }
 
 
-/* =========================================================
-   STYLE F
-   EARLY 2000s BROWSER PLUGIN
-========================================================= */
+/* VIDEO */
 
-.retro-player {
+#videoPlayer {
     display: none;
 
     width: 100%;
 
-    background: #dedede;
-
-    border-top: 2px solid #fff;
-    border-left: 2px solid #fff;
-
-    border-right: 2px solid #707070;
-    border-bottom: 2px solid #707070;
-
-    box-shadow:
-        0 0 0 1px #222,
-        0 8px 25px rgba(0,0,0,0.75);
-}
-
-
-/* =========================================================
-   SCREEN
-========================================================= */
-
-.player-screen {
-    position: relative;
-
-    width: 100%;
-
-    padding: 3px;
-
-    background: #d8d8d8;
-}
-
-#videoPlayer {
-    display: block;
-
-    width: 100%;
-
-    max-height: 74vh;
+    max-height: 72vh;
 
     background: #000;
 
-    border-top: 1px solid #555;
-    border-left: 1px solid #555;
-
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border: 1px solid #333;
 }
 
 
-/* =========================================================
-   CONTROLS
-========================================================= */
-
-.player-controls {
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    padding: 4px 5px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #eeeeee,
-            #c9c9c9
-        );
-
-    border-top: 1px solid #aaa;
-}
-
-
-/* =========================================================
-   PLAY / PAUSE
-========================================================= */
-
-.toggle-button {
-    width: 38px;
-    height: 29px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    padding: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #fafafa,
-            #c7c7c7
-        );
-
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
-
-    border-right: 1px solid #777;
-    border-bottom: 1px solid #777;
-
-    cursor: pointer;
-}
-
-.toggle-button:active {
-    border-top: 1px solid #777;
-    border-left: 1px solid #777;
-
-    border-right: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-}
-
-
-/* PLAY */
-
-.play-symbol {
-    width: 0;
-    height: 0;
-
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-
-    border-left: 10px solid #222;
-
-    margin-left: 2px;
-}
-
-
-/* PAUSE */
-
-.pause-symbol {
-    display: none;
-
-    gap: 3px;
-}
-
-.pause-symbol span {
-    width: 4px;
-    height: 13px;
-
-    background: #222;
-}
-
-
-/* =========================================================
-   SEEK
-========================================================= */
-
-.timeline-area {
-    flex: 1;
-
-    min-width: 0;
-
-    display: flex;
-
-    align-items: center;
-}
-
-#seekBar {
-    width: 100%;
-
-    appearance: none;
-    -webkit-appearance: none;
-
-    height: 10px;
-
-    background: #f3f3f3;
-
-    border-top: 1px solid #888;
-    border-left: 1px solid #888;
-
-    border-right: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-
-    cursor: pointer;
-}
-
-
-/* SEEK THUMB */
-
-#seekBar::-webkit-slider-thumb {
-    appearance: none;
-    -webkit-appearance: none;
-
-    width: 10px;
-    height: 18px;
-
-    background:
-        linear-gradient(
-            to right,
-            #9a9a9a,
-            #eee,
-            #999
-        );
-
-    border-top: 1px solid #fff;
-    border-left: 1px solid #ddd;
-
-    border-right: 1px solid #666;
-    border-bottom: 1px solid #666;
-
-    cursor: pointer;
-}
-
-#seekBar::-moz-range-thumb {
-    width: 9px;
-    height: 17px;
-
-    border-radius: 0;
-
-    background:
-        linear-gradient(
-            to right,
-            #9a9a9a,
-            #eee,
-            #999
-        );
-
-    border-top: 1px solid #fff;
-    border-left: 1px solid #ddd;
-
-    border-right: 1px solid #666;
-    border-bottom: 1px solid #666;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   VOLUME BUTTON
-========================================================= */
-
-.volume-button {
-    width: 38px;
-    height: 29px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    padding: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #fafafa,
-            #c7c7c7
-        );
-
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
-
-    border-right: 1px solid #777;
-    border-bottom: 1px solid #777;
-
-    cursor: pointer;
-}
-
-
-/* SPEAKER */
-
-.speaker-icon {
-    position: relative;
-
-    width: 18px;
-    height: 16px;
-}
-
-.speaker-icon::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 5px;
-
-    width: 6px;
-    height: 7px;
-
-    background: #222;
-}
-
-.speaker-icon::after {
-    content: "";
-
-    position: absolute;
-
-    left: 5px;
-    top: 3px;
-
-    width: 0;
-    height: 0;
-
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-
-    border-right: 7px solid #222;
-}
-
-
-/* VOLUME WAVES */
-
-.wave-one {
-    position: absolute;
-
-    right: 0;
-    top: 4px;
-
-    width: 6px;
-    height: 8px;
-
-    border-right: 1px solid #222;
-
-    border-radius: 50%;
-}
-
-.wave-two {
-    position: absolute;
-
-    right: -3px;
-    top: 1px;
-
-    width: 8px;
-    height: 14px;
-
-    border-right: 1px solid #222;
-
-    border-radius: 50%;
-}
-
-
-/* =========================================================
-   VOLUME STATES
-========================================================= */
-
-.volume-button.medium .wave-two {
-    display: none;
-}
-
-.volume-button.low .wave-two {
-    display: none;
-}
-
-.volume-button.low .wave-one {
-    opacity: 0.35;
-}
-
-.volume-button.muted .wave-one,
-.volume-button.muted .wave-two {
-    display: none;
-}
-
-.volume-button.muted .speaker-icon {
-    opacity: 0.3;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
+/* MOBILE */
 
 @media (max-width: 700px) {
 
     .page {
         width: 90%;
-
-        padding-top: 28px;
     }
 
-    .directory-header {
-        margin-top: 35px;
-    }
-
-    .directory-file {
-        font-size: 11px;
-
-        gap: 8px;
-    }
-
-    .directory-path {
-        font-size: 16px;
-    }
-
-    .number {
-        width: 24px;
-
-        margin-right: 4px;
+    .video-list {
+        width: 100%;
     }
 
     .video-window {
-        width: 94vw;
-
-        max-width: 94vw;
-    }
-
-    .player-controls {
-        gap: 5px;
-    }
-
-    .toggle-button,
-    .volume-button {
-        width: 34px;
-        height: 27px;
+        width: 90vw;
+        max-width: 90vw;
     }
 
 }
@@ -792,6 +343,8 @@ body {
 <div class="page">
 
 
+    <!-- BACK -->
+
     <a
         class="back"
         href="index.html"
@@ -800,42 +353,43 @@ body {
     </a>
 
 
+    <!-- HEADER -->
 
-    <div class="directory-header">
+    <div class="header">
 
-
-        <div class="directory-path">
-            /files
+        <div class="title">
+            files
         </div>
-
-
-        <div class="section-title">
-            video files (.mp4)
-        </div>
-
 
     </div>
 
 
+    <div class="line"></div>
 
-    <div class="directory-list">
+
+    <!-- VIDEO FILES -->
+
+    <div class="section-title">
+        video files (.mp4)
+    </div>
+
+
+    <div class="video-list">
 
 
         <!-- 01 -->
 
         <div
-            class="directory-file"
+            class="video-file"
             onclick="openVideo('purge-xtra2k25.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                01
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">01</span>
-
+            <span>
                 purge-xtra2k25.mp4
-
             </span>
 
         </div>
@@ -845,36 +399,32 @@ body {
         <!-- 02 -->
 
         <div
-            class="directory-file"
+            class="video-file"
             onclick="openVideo('scenebitch-lcut.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                02
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">02</span>
-
+            <span>
                 scenebitch-lcut.mp4
-
             </span>
 
         </div>
 
 
 
-        <!-- 03 -->
+        <!-- 03 EMPTY -->
 
-        <div class="directory-file empty">
+        <div class="video-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                03
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">03</span>
-
+            <span>
                 ------
-
             </span>
 
         </div>
@@ -884,18 +434,16 @@ body {
         <!-- 04 -->
 
         <div
-            class="directory-file"
+            class="video-file"
             onclick="openVideo('untitled_04.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                04
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">04</span>
-
+            <span>
                 untitled_04.mp4
-
             </span>
 
         </div>
@@ -905,75 +453,67 @@ body {
         <!-- 05 -->
 
         <div
-            class="directory-file"
+            class="video-file"
             onclick="openVideo('sp_005.mp4', false)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                05
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">05</span>
-
+            <span>
                 sp_005.mp4
-
             </span>
 
         </div>
 
 
 
-        <!-- 06 -->
+        <!-- 06 EMPTY -->
 
-        <div class="directory-file empty">
+        <div class="video-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                06
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">06</span>
-
+            <span>
                 ------
-
             </span>
 
         </div>
 
 
 
-        <!-- 07 -->
+        <!-- 07 EMPTY -->
 
-        <div class="directory-file empty">
+        <div class="video-file empty">
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                07
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">07</span>
-
+            <span>
                 ------
-
             </span>
 
         </div>
 
 
 
-        <!-- 08 -->
+        <!-- 08 - STALLS DURING LOADING -->
 
         <div
-            class="directory-file"
+            class="video-file"
             onclick="openVideo('957229577.mp4', true)"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="number">
+                08
+            </span>
 
-            <span class="file-name">
-
-                <span class="number">08</span>
-
+            <span>
                 957229577.mp4
-
             </span>
 
         </div>
@@ -982,13 +522,19 @@ body {
     </div>
 
 
+
+    <!-- FOOTER -->
+
+    <div class="footer"></div>
+
+
 </div>
 
 
 
-<!-- =========================================================
-     VIDEO OVERLAY
-========================================================= -->
+<!-- =========================================
+     FLOATING VIDEO
+========================================= -->
 
 <div
     id="videoOverlay"
@@ -999,6 +545,8 @@ body {
 
     <div class="video-window">
 
+
+        <!-- CLOSE -->
 
         <button
             class="close-video"
@@ -1015,7 +563,6 @@ body {
             id="loadingScreen"
             class="loading-screen"
         >
-
 
             <div
                 id="loadingText"
@@ -1047,121 +594,23 @@ body {
 
 
 
-        <!-- =================================================
-             STYLE F PLAYER
-        ================================================== -->
+        <!-- VIDEO -->
 
-        <div
-            id="retroPlayer"
-            class="retro-player"
+        <video
+            id="videoPlayer"
+            controls
+            preload="metadata"
         >
 
-
-            <!-- VIDEO -->
-
-            <div
-                class="player-screen"
-                onclick="togglePlay()"
+            <source
+                id="videoSource"
+                src=""
+                type="video/mp4"
             >
 
+            your browser does not support video playback.
 
-                <video
-                    id="videoPlayer"
-                    preload="metadata"
-                >
-
-                    <source
-                        id="videoSource"
-                        src=""
-                        type="video/mp4"
-                    >
-
-                </video>
-
-
-            </div>
-
-
-
-            <!-- CONTROLS -->
-
-            <div class="player-controls">
-
-
-                <!-- PLAY / PAUSE -->
-
-                <button
-                    id="playPauseButton"
-                    class="toggle-button"
-                    onclick="togglePlay()"
-                >
-
-
-                    <span
-                        id="playIcon"
-                        class="play-symbol"
-                    ></span>
-
-
-                    <span
-                        id="pauseIcon"
-                        class="pause-symbol"
-                    >
-
-                        <span></span>
-                        <span></span>
-
-                    </span>
-
-
-                </button>
-
-
-
-                <!-- SEEK -->
-
-                <div class="timeline-area">
-
-
-                    <input
-                        id="seekBar"
-                        type="range"
-                        min="0"
-                        max="100"
-                        value="0"
-                        step="0.1"
-                    >
-
-
-                </div>
-
-
-
-                <!-- VOLUME -->
-
-                <button
-                    id="volumeButton"
-                    class="volume-button"
-                    onclick="cycleVolume()"
-                >
-
-
-                    <span class="speaker-icon">
-
-                        <span class="wave-one"></span>
-
-                        <span class="wave-two"></span>
-
-                    </span>
-
-
-                </button>
-
-
-            </div>
-
-
-        </div>
+        </video>
 
 
     </div>
@@ -1173,52 +622,26 @@ body {
 
 <script>
 
-
 let loadingInterval;
-
 let stallTimeout;
 
 
-/* =========================================================
-   REFERENCES
-========================================================= */
-
-const videoPlayer =
-    document.getElementById(
-        "videoPlayer"
-    );
-
-
-const seekBar =
-    document.getElementById(
-        "seekBar"
-    );
-
-
-const volumeButton =
-    document.getElementById(
-        "volumeButton"
-    );
-
-
-let volumeState =
-    0;
-
-
-
-/* =========================================================
+/* =========================================
    OPEN VIDEO
-========================================================= */
+========================================= */
 
-function openVideo(
-    fileName,
-    shouldStall
-) {
+function openVideo(fileName, shouldStall) {
 
 
     const overlay =
         document.getElementById(
             "videoOverlay"
+        );
+
+
+    const video =
+        document.getElementById(
+            "videoPlayer"
         );
 
 
@@ -1231,12 +654,6 @@ function openVideo(
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
-        );
-
-
-    const retroPlayer =
-        document.getElementById(
-            "retroPlayer"
         );
 
 
@@ -1259,41 +676,28 @@ function openVideo(
 
 
 
+    /* RESET */
+
     clearInterval(
         loadingInterval
     );
-
 
     clearTimeout(
         stallTimeout
     );
 
 
-    videoPlayer.pause();
+    video.pause();
 
 
     source.src =
         fileName;
 
 
-    videoPlayer.load();
+    video.load();
 
 
-    seekBar.value =
-        0;
-
-
-    volumeState =
-        0;
-
-
-    setVolumeState();
-
-
-    updatePlayPauseIcon();
-
-
-    retroPlayer.style.display =
+    video.style.display =
         "none";
 
 
@@ -1313,22 +717,25 @@ function openVideo(
         "0%";
 
 
+
+    /* OPEN WINDOW */
+
     overlay.classList.add(
         "active"
     );
 
 
-    let value =
-        0;
+
+    let value = 0;
+    let hasStalled = false;
 
 
-    let hasStalled =
-        false;
 
-
+    /* =====================================
+       LOADING
+    ===================================== */
 
     loadingInterval =
-
         setInterval(function() {
 
 
@@ -1344,7 +751,9 @@ function openVideo(
 
 
 
-            /* FILE 08 STALL */
+            /* =================================
+               ONLY FILE 08 STALLS AT 82%
+            ================================= */
 
             if (
                 shouldStall === true
@@ -1364,13 +773,18 @@ function openVideo(
                 );
 
 
-                stallTimeout =
+                /*
+                   BAR STAYS FROZEN AT 82%
+                   FOR 2 SECONDS
+                */
 
+                stallTimeout =
                     setTimeout(function() {
 
 
-                        loadingInterval =
+                        /* RESUME */
 
+                        loadingInterval =
                             setInterval(function() {
 
 
@@ -1385,9 +799,7 @@ function openVideo(
                                     value + "%";
 
 
-                                if (
-                                    value >= 100
-                                ) {
+                                if (value >= 100) {
 
 
                                     clearInterval(
@@ -1395,7 +807,7 @@ function openVideo(
                                     );
 
 
-                                    showVideoPlayer();
+                                    showVideo();
 
 
                                 }
@@ -1409,14 +821,13 @@ function openVideo(
 
                 return;
 
-
             }
 
 
 
-            if (
-                value >= 100
-            ) {
+            /* NORMAL COMPLETION */
+
+            if (value >= 100) {
 
 
                 clearInterval(
@@ -1424,7 +835,7 @@ function openVideo(
                 );
 
 
-                showVideoPlayer();
+                showVideo();
 
 
             }
@@ -1437,22 +848,22 @@ function openVideo(
 
 
 
-/* =========================================================
-   SHOW PLAYER
-========================================================= */
+/* =========================================
+   SHOW VIDEO
+========================================= */
 
-function showVideoPlayer() {
+function showVideo() {
+
+
+    const video =
+        document.getElementById(
+            "videoPlayer"
+        );
 
 
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
-        );
-
-
-    const retroPlayer =
-        document.getElementById(
-            "retroPlayer"
         );
 
 
@@ -1463,11 +874,11 @@ function showVideoPlayer() {
             "none";
 
 
-        retroPlayer.style.display =
+        video.style.display =
             "block";
 
 
-        videoPlayer.play();
+        video.play();
 
 
     }, 100);
@@ -1477,321 +888,9 @@ function showVideoPlayer() {
 
 
 
-/* =========================================================
-   PLAY / PAUSE
-========================================================= */
-
-function togglePlay() {
-
-
-    if (
-        videoPlayer.paused
-    ) {
-
-
-        videoPlayer.play();
-
-
-    }
-
-
-    else {
-
-
-        videoPlayer.pause();
-
-
-    }
-
-
-}
-
-
-
-/* =========================================================
-   UPDATE PLAY ICON
-========================================================= */
-
-function updatePlayPauseIcon() {
-
-
-    const playIcon =
-        document.getElementById(
-            "playIcon"
-        );
-
-
-    const pauseIcon =
-        document.getElementById(
-            "pauseIcon"
-        );
-
-
-    if (
-        videoPlayer.paused
-    ) {
-
-
-        playIcon.style.display =
-            "block";
-
-
-        pauseIcon.style.display =
-            "none";
-
-
-    }
-
-
-    else {
-
-
-        playIcon.style.display =
-            "none";
-
-
-        pauseIcon.style.display =
-            "flex";
-
-
-    }
-
-
-}
-
-
-
-videoPlayer.addEventListener(
-    "play",
-    updatePlayPauseIcon
-);
-
-
-videoPlayer.addEventListener(
-    "pause",
-    updatePlayPauseIcon
-);
-
-
-videoPlayer.addEventListener(
-    "ended",
-    updatePlayPauseIcon
-);
-
-
-
-/* =========================================================
-   SEEK UPDATE
-========================================================= */
-
-videoPlayer.addEventListener(
-    "timeupdate",
-    function() {
-
-
-        if (
-            Number.isFinite(
-                videoPlayer.duration
-            )
-            &&
-            videoPlayer.duration > 0
-        ) {
-
-
-            seekBar.value =
-
-                (
-                    videoPlayer.currentTime
-                    /
-                    videoPlayer.duration
-                )
-
-                *
-                100;
-
-
-        }
-
-
-    }
-);
-
-
-
-/* =========================================================
-   SEEK FORWARD / BACKWARD
-========================================================= */
-
-seekBar.addEventListener(
-    "input",
-    function() {
-
-
-        if (
-            Number.isFinite(
-                videoPlayer.duration
-            )
-        ) {
-
-
-            videoPlayer.currentTime =
-
-                (
-                    Number(
-                        seekBar.value
-                    )
-                    /
-                    100
-                )
-
-                *
-                videoPlayer.duration;
-
-
-        }
-
-
-    }
-);
-
-
-
-/* =========================================================
-   VOLUME CYCLE
-
-   100
-   70
-   35
-   MUTE
-========================================================= */
-
-function cycleVolume() {
-
-
-    volumeState++;
-
-
-    if (
-        volumeState > 3
-    ) {
-
-
-        volumeState =
-            0;
-
-
-    }
-
-
-    setVolumeState();
-
-
-}
-
-
-
-/* =========================================================
-   APPLY VOLUME
-========================================================= */
-
-function setVolumeState() {
-
-
-    volumeButton.classList.remove(
-        "medium",
-        "low",
-        "muted"
-    );
-
-
-    /* FULL */
-
-    if (
-        volumeState === 0
-    ) {
-
-
-        videoPlayer.muted =
-            false;
-
-
-        videoPlayer.volume =
-            1;
-
-
-    }
-
-
-    /* MEDIUM */
-
-    else if (
-        volumeState === 1
-    ) {
-
-
-        videoPlayer.muted =
-            false;
-
-
-        videoPlayer.volume =
-            0.7;
-
-
-        volumeButton.classList.add(
-            "medium"
-        );
-
-
-    }
-
-
-    /* LOW */
-
-    else if (
-        volumeState === 2
-    ) {
-
-
-        videoPlayer.muted =
-            false;
-
-
-        videoPlayer.volume =
-            0.35;
-
-
-        volumeButton.classList.add(
-            "low"
-        );
-
-
-    }
-
-
-    /* MUTE */
-
-    else {
-
-
-        videoPlayer.muted =
-            true;
-
-
-        volumeButton.classList.add(
-            "muted"
-        );
-
-
-    }
-
-
-}
-
-
-
-/* =========================================================
-   CLOSE
-========================================================= */
+/* =========================================
+   CLOSE VIDEO
+========================================= */
 
 function closeVideo() {
 
@@ -1799,6 +898,12 @@ function closeVideo() {
     const overlay =
         document.getElementById(
             "videoOverlay"
+        );
+
+
+    const video =
+        document.getElementById(
+            "videoPlayer"
         );
 
 
@@ -1812,25 +917,21 @@ function closeVideo() {
     );
 
 
-    videoPlayer.pause();
-
-
     overlay.classList.remove(
         "active"
     );
+
+
+    video.pause();
 
 
 }
 
 
 
-/* =========================================================
-   CLICK OUTSIDE
-========================================================= */
+/* CLICK OUTSIDE */
 
-function backgroundClose(
-    event
-) {
+function backgroundClose(event) {
 
 
     if (
@@ -1838,9 +939,7 @@ function backgroundClose(
         "videoOverlay"
     ) {
 
-
         closeVideo();
-
 
     }
 
@@ -1849,9 +948,7 @@ function backgroundClose(
 
 
 
-/* =========================================================
-   ESC
-========================================================= */
+/* ESC CLOSE */
 
 document.addEventListener(
     "keydown",
@@ -1863,16 +960,13 @@ document.addEventListener(
             "Escape"
         ) {
 
-
             closeVideo();
-
 
         }
 
 
     }
 );
-
 
 </script>
 
