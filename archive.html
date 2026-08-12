@@ -60,11 +60,16 @@ body {
 
 .directory-path {
     display: inline-block;
+
     color: #d00000;
+
     border: 1px solid #520000;
+
     padding: 8px 16px;
+
     font-size: 18px;
     letter-spacing: 2px;
+
     margin-bottom: 24px;
 }
 
@@ -76,7 +81,9 @@ body {
 
 .directory-list {
     width: 100%;
+
     margin-top: 18px;
+
     border-top: 1px solid #1d1d1d;
 }
 
@@ -88,12 +95,19 @@ body {
 .directory-file {
     display: flex;
     align-items: center;
+
     gap: 14px;
+
     min-height: 46px;
+
     padding: 0 8px;
+
     border-bottom: 1px solid #161616;
+
     color: #999;
+
     font-size: 13px;
+
     cursor: pointer;
 
     transition:
@@ -104,22 +118,31 @@ body {
 
 .directory-file:hover {
     color: #fff;
+
     padding-left: 14px;
+
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
+
     width: 18px;
+
     font-size: 15px;
+
     text-align: center;
+
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
+
     width: 28px;
+
     color: #d00000;
+
     margin-right: 8px;
 }
 
@@ -147,7 +170,9 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
+
     padding-left: 8px;
+
     background: none;
 }
 
@@ -158,7 +183,9 @@ body {
 
 .auth-overlay {
     position: fixed;
+
     inset: 0;
+
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -170,7 +197,9 @@ body {
 
 .auth-box {
     width: min(430px, 88vw);
+
     background: #050505;
+
     border: 1px solid #3a0000;
 
     box-shadow:
@@ -180,7 +209,9 @@ body {
 
 .auth-strip {
     height: 6px;
+
     background: #700000;
+
     border-bottom: 1px solid #1c0000;
 }
 
@@ -190,21 +221,27 @@ body {
 
 .auth-title {
     color: #cfcfcf;
+
     font-size: 13px;
+
     letter-spacing: 2px;
+
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
+
     font-size: 9px;
+
     letter-spacing: 0.7px;
+
     margin-bottom: 22px;
 }
 
 
 /* =========================================
-   PASSWORD INPUT
+   PASSWORD
 ========================================= */
 
 .auth-input {
@@ -214,16 +251,20 @@ body {
     padding: 0 12px;
 
     background: #000;
+
     color: #aaa;
 
     font-family: "Courier New", monospace;
+
     font-size: 14px;
+
     letter-spacing: 3px;
 
     outline: none;
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
+
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -235,17 +276,22 @@ body {
 
 .auth-bottom {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
+
     margin-top: 16px;
+
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
+
     font-size: 9px;
+
     letter-spacing: 1px;
 }
 
@@ -257,10 +303,13 @@ body {
     padding: 7px 15px;
 
     background: #0b0b0b;
+
     color: #777;
 
     font-family: "Courier New", monospace;
+
     font-size: 10px;
+
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -270,6 +319,7 @@ body {
 
 .auth-button:hover {
     color: #ddd;
+
     border-color: #540000;
 }
 
@@ -279,6 +329,7 @@ body {
 
 .auth-button:disabled {
     cursor: default;
+
     opacity: 0.3;
 }
 
@@ -289,10 +340,12 @@ body {
 
 .auth-loader {
     display: none;
+
     align-items: center;
     justify-content: center;
 
     height: 40px;
+
     margin-top: 15px;
 }
 
@@ -305,10 +358,13 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
+
     border-top-color: #8d0000;
+
     border-radius: 50%;
 
-    animation: authSpin 0.55s linear infinite;
+    animation:
+        authSpin 0.55s linear infinite;
 }
 
 @keyframes authSpin {
@@ -329,7 +385,8 @@ body {
 ========================================= */
 
 .auth-box.shake {
-    animation: authShake 0.22s linear;
+    animation:
+        authShake 0.22s linear;
 }
 
 @keyframes authShake {
@@ -363,6 +420,7 @@ body {
 
 .video-overlay {
     position: fixed;
+
     inset: 0;
 
     width: 100%;
@@ -371,6 +429,7 @@ body {
     background: rgba(0, 0, 0, 0.94);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -398,6 +457,7 @@ body {
     position: relative;
 
     width: 1000px;
+
     max-width: 92vw;
 
     opacity: 0;
@@ -421,7 +481,7 @@ body {
 
 
 /* =========================================
-   CLOSE BUTTON
+   CLOSE
 ========================================= */
 
 .close-video {
@@ -433,11 +493,13 @@ body {
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
+
     font-size: 22px;
 
     cursor: pointer;
@@ -456,10 +518,13 @@ body {
 
 .loading-screen {
     width: 100%;
+
     height: 180px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     padding: 30px;
@@ -471,17 +536,15 @@ body {
 
 .loading-text {
     color: #777;
+
     font-size: 11px;
+
     margin-bottom: 15px;
 }
 
-
-/* =========================================
-   LOADING BAR
-========================================= */
-
 .loading-bar {
     width: 100%;
+
     height: 2px;
 
     background: #181818;
@@ -491,6 +554,7 @@ body {
 
 .loading-progress {
     width: 0%;
+
     height: 100%;
 
     background: #a00000;
@@ -504,6 +568,116 @@ body {
     font-size: 10px;
 
     text-align: right;
+}
+
+
+/* =========================================
+   CORRUPT FILE WINDOW
+========================================= */
+
+.corrupt-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    z-index: 50;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
+}
+
+.corrupt-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.corrupt-window {
+    width: min(360px, 80vw);
+
+    background: #050505;
+
+    border: 1px solid #4a0000;
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.9);
+}
+
+.corrupt-header {
+    padding: 8px 11px;
+
+    background: #160000;
+
+    color: #b00000;
+
+    border-bottom: 1px solid #3b0000;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+}
+
+.corrupt-body {
+    padding: 22px 20px 18px;
+}
+
+.corrupt-title {
+    color: #ccc;
+
+    font-size: 12px;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 9px;
+}
+
+.corrupt-message {
+    color: #666;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.corrupt-actions {
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+.corrupt-button {
+    padding: 6px 14px;
+
+    background: #090909;
+
+    color: #777;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 9px;
+
+    border: 1px solid #292929;
+
+    cursor: pointer;
+}
+
+.corrupt-button:hover {
+    color: #ddd;
+
+    border-color: #560000;
 }
 
 
@@ -543,6 +717,7 @@ body {
 
     .page {
         width: 90%;
+
         padding-top: 28px;
     }
 
@@ -552,6 +727,7 @@ body {
 
     .directory-file {
         font-size: 11px;
+
         gap: 8px;
     }
 
@@ -561,11 +737,13 @@ body {
 
     .number {
         width: 24px;
+
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
+
         max-width: 94vw;
     }
 
@@ -689,7 +867,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20)"
+            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20, 0)"
         >
 
             <span class="file-icon">⌑</span>
@@ -709,7 +887,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20)"
+            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20, 0)"
         >
 
             <span class="file-icon">⌑</span>
@@ -746,7 +924,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', 'normal', 20)"
+            onclick="openVideo('untitled_04.mp4', 'normal', 20, 0)"
         >
 
             <span class="file-icon">⌑</span>
@@ -766,7 +944,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', 'normal', 20)"
+            onclick="openVideo('sp_005.mp4', 'normal', 20, 0)"
         >
 
             <span class="file-icon">⌑</span>
@@ -799,9 +977,15 @@ body {
         </div>
 
 
-        <!-- 07 -->
+        <!-- =================================
+             07 — FAKE CORRUPT FILE
+             FAILS AT 63%
+        ================================== -->
 
-        <div class="directory-file empty">
+        <div
+            class="directory-file"
+            onclick="openVideo('sp_directorscut.mp4', 'corrupt', 23, 63)"
+        >
 
             <span class="file-icon">⌑</span>
 
@@ -809,18 +993,21 @@ body {
 
                 <span class="number">07</span>
 
-                ------
+                sp_directorscut.mp4
 
             </span>
 
         </div>
 
 
-        <!-- 08 -->
+        <!-- =================================
+             08 — REAL FILE
+             BUFFER STALL AT 82%
+        ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', 'stall', 20)"
+            onclick="openVideo('957229577.mp4', 'stall', 20, 0)"
         >
 
             <span class="file-icon">⌑</span>
@@ -830,6 +1017,46 @@ body {
                 <span class="number">08</span>
 
                 957229577.mp4
+
+            </span>
+
+        </div>
+
+
+        <!-- 09 -->
+
+        <div class="directory-file empty">
+
+            <span class="file-icon">⌑</span>
+
+            <span class="file-name">
+
+                <span class="number">09</span>
+
+                ------
+
+            </span>
+
+        </div>
+
+
+        <!-- =================================
+             10 — FAKE CORRUPT FILE
+             FAILS AT 81%
+        ================================== -->
+
+        <div
+            class="directory-file"
+            onclick="openVideo('k3tamineluv.mp4', 'corrupt', 20, 81)"
+        >
+
+            <span class="file-icon">⌑</span>
+
+            <span class="file-name">
+
+                <span class="number">10</span>
+
+                k3tamineluv.mp4
 
             </span>
 
@@ -861,6 +1088,10 @@ body {
             ×
         </button>
 
+
+        <!-- =================================
+             LOADING
+        ================================== -->
 
         <div
             id="loadingScreen"
@@ -895,6 +1126,10 @@ body {
         </div>
 
 
+        <!-- =================================
+             RAW VIDEO
+        ================================== -->
+
         <div
             id="videoContainer"
             class="video-container"
@@ -916,6 +1151,50 @@ body {
 
         </div>
 
+
+        <!-- =================================
+             CORRUPT FILE WINDOW
+        ================================== -->
+
+        <div
+            id="corruptOverlay"
+            class="corrupt-overlay"
+        >
+
+            <div class="corrupt-window">
+
+                <div class="corrupt-header">
+                    system error
+                </div>
+
+                <div class="corrupt-body">
+
+                    <div class="corrupt-title">
+                        corrupt file
+                    </div>
+
+                    <div class="corrupt-message">
+                        file could not be played.
+                    </div>
+
+                    <div class="corrupt-actions">
+
+                        <button
+                            class="corrupt-button"
+                            onclick="closeCorruptFile()"
+                        >
+                            close
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
 
 </div>
@@ -933,26 +1212,45 @@ let failedAttempts = 0;
 
 const maxAttempts = 3;
 
-const correctPassword = "notmyblood";
+const correctPassword =
+    "notmyblood";
 
 
 const passwordInput =
-    document.getElementById("passwordInput");
+    document.getElementById(
+        "passwordInput"
+    );
+
 
 const authStatus =
-    document.getElementById("authStatus");
+    document.getElementById(
+        "authStatus"
+    );
+
 
 const authBox =
-    document.getElementById("authBox");
+    document.getElementById(
+        "authBox"
+    );
+
 
 const authOverlay =
-    document.getElementById("authOverlay");
+    document.getElementById(
+        "authOverlay"
+    );
+
 
 const authButton =
-    document.getElementById("authButton");
+    document.getElementById(
+        "authButton"
+    );
+
 
 const authLoader =
-    document.getElementById("authLoader");
+    document.getElementById(
+        "authLoader"
+    );
+
 
 
 /* =========================================
@@ -976,6 +1274,7 @@ window.addEventListener(
 );
 
 
+
 /* =========================================
    BLOCK SPACES
 ========================================= */
@@ -984,7 +1283,9 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === " ") {
+        if (
+            event.key === " "
+        ) {
 
             event.preventDefault();
 
@@ -992,6 +1293,7 @@ passwordInput.addEventListener(
 
     }
 );
+
 
 
 /* =========================================
@@ -1012,6 +1314,7 @@ passwordInput.addEventListener(
 );
 
 
+
 /* =========================================
    ENTER TO SUBMIT
 ========================================= */
@@ -1020,7 +1323,9 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             event.preventDefault();
 
@@ -1030,6 +1335,7 @@ passwordInput.addEventListener(
 
     }
 );
+
 
 
 /* =========================================
@@ -1042,22 +1348,25 @@ function submitPassword() {
         passwordInput.value;
 
 
-    /* CORRECT PASSWORD */
+    /* CORRECT */
 
     if (
         enteredPassword ===
         correctPassword
     ) {
 
-        passwordInput.disabled = true;
+        passwordInput.disabled =
+            true;
 
-        authButton.disabled = true;
+        authButton.disabled =
+            true;
 
         authStatus.classList.remove(
             "error"
         );
 
-        authStatus.textContent = "";
+        authStatus.textContent =
+            "";
 
         authLoader.classList.add(
             "visible"
@@ -1082,7 +1391,7 @@ function submitPassword() {
     }
 
 
-    /* WRONG PASSWORD */
+    /* WRONG */
 
     failedAttempts++;
 
@@ -1096,34 +1405,38 @@ function submitPassword() {
     );
 
 
-    passwordInput.value = "";
+    passwordInput.value =
+        "";
+
 
     passwordInput.focus();
 
-
-    /* SHAKE */
 
     authBox.classList.remove(
         "shake"
     );
 
+
     void authBox.offsetWidth;
+
 
     authBox.classList.add(
         "shake"
     );
 
 
-    /* THREE FAILED ATTEMPTS */
+    /* THIRD WRONG ATTEMPT */
 
     if (
         failedAttempts >=
         maxAttempts
     ) {
 
-        passwordInput.disabled = true;
+        passwordInput.disabled =
+            true;
 
-        authButton.disabled = true;
+        authButton.disabled =
+            true;
 
 
         setTimeout(
@@ -1147,7 +1460,10 @@ function submitPassword() {
 ========================================= */
 
 let loadingTimer = null;
+
 let stallTimer = null;
+
+let errorTimer = null;
 
 
 const videoPlayer =
@@ -1162,9 +1478,15 @@ const videoSource =
     );
 
 
+const corruptOverlay =
+    document.getElementById(
+        "corruptOverlay"
+    );
+
+
 
 /* =========================================
-   LOADING TEXT
+   NORMAL LOADING TEXT
 
    0 - 24%
    file found..
@@ -1212,12 +1534,22 @@ function updateLoadingText(
 
 /* =========================================
    OPEN VIDEO
+
+   normal
+   = smooth load
+
+   stall
+   = file 08 stalls at 82%
+
+   corrupt
+   = fake file fails at failAt
 ========================================= */
 
 function openVideo(
     fileName,
     loadMode,
-    loadSpeed
+    loadSpeed,
+    failAt
 ) {
 
     const overlay =
@@ -1256,31 +1588,73 @@ function openVideo(
         );
 
 
-    /* CLEAR OLD LOAD */
+
+    /* =====================================
+       CLEAR OLD TIMERS
+    ===================================== */
 
     clearTimeout(
         loadingTimer
     );
+
 
     clearTimeout(
         stallTimer
     );
 
 
-    /* RESET VIDEO */
+    clearTimeout(
+        errorTimer
+    );
+
+
+
+    /* HIDE OLD ERROR */
+
+    corruptOverlay.classList.remove(
+        "active"
+    );
+
+
+
+    /* =====================================
+       VIDEO SETUP
+
+       FAKE CORRUPT FILES DON'T NEED
+       AN ACTUAL VIDEO FILE TO EXIST
+    ===================================== */
 
     videoPlayer.pause();
 
-    videoSource.src =
-        fileName;
 
-    videoPlayer.load();
+    if (
+        loadMode !== "corrupt"
+    ) {
+
+        videoSource.src =
+            fileName;
 
 
-    /* RESET DISPLAY */
+        videoPlayer.load();
+
+    }
+
+    else {
+
+        videoSource.src =
+            "";
+
+    }
+
+
+
+    /* =====================================
+       RESET UI
+    ===================================== */
 
     videoContainer.style.display =
         "none";
+
 
     loadingScreen.style.display =
         "flex";
@@ -1289,8 +1663,10 @@ function openVideo(
     loadingText.textContent =
         "file found..";
 
+
     progress.style.width =
         "0%";
+
 
     percent.textContent =
         "0%";
@@ -1301,19 +1677,24 @@ function openVideo(
     );
 
 
-    let value = 0;
 
-    let longStallUsed = false;
+    let value =
+        0;
+
+
+    let stallUsed =
+        false;
 
 
 
     /* =====================================
-       SCHEDULE NEXT %
+       NEXT LOADING STEP
     ===================================== */
 
     function scheduleNextStep() {
 
         loadingTimer =
+
             setTimeout(
                 loadingStep,
                 loadSpeed
@@ -1328,6 +1709,7 @@ function openVideo(
     ===================================== */
 
     function loadingStep() {
+
 
         value++;
 
@@ -1348,11 +1730,46 @@ function openVideo(
 
 
         /* =================================
-           FILE 08 BUFFERING STALL
+           FAKE CORRUPT FILE
+        ================================= */
 
-           STOPS AT 82%
-           SAYS BUFFERING..
-           HOLDS 2 SECONDS
+        if (
+            loadMode === "corrupt"
+            &&
+            value === failAt
+        ) {
+
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            /* SHORT BUFFER BEFORE ERROR */
+
+            errorTimer =
+
+                setTimeout(
+                    function() {
+
+
+                        corruptOverlay.classList.add(
+                            "active"
+                        );
+
+
+                    },
+                    750
+                );
+
+
+            return;
+
+        }
+
+
+
+        /* =================================
+           FILE 08 BUFFER STALL
         ================================= */
 
         if (
@@ -1360,10 +1777,12 @@ function openVideo(
             &&
             value === 82
             &&
-            longStallUsed === false
+            stallUsed === false
         ) {
 
-            longStallUsed = true;
+
+            stallUsed =
+                true;
 
 
             loadingText.textContent =
@@ -1371,8 +1790,10 @@ function openVideo(
 
 
             stallTimer =
+
                 setTimeout(
                     function() {
+
 
                         updateLoadingText(
                             value,
@@ -1381,6 +1802,7 @@ function openVideo(
 
 
                         scheduleNextStep();
+
 
                     },
                     2000
@@ -1401,6 +1823,7 @@ function openVideo(
             value >= 100
         ) {
 
+
             progress.style.width =
                 "100%";
 
@@ -1419,6 +1842,7 @@ function openVideo(
             return;
 
         }
+
 
 
         scheduleNextStep();
@@ -1441,6 +1865,7 @@ function openVideo(
 
 function showVideo() {
 
+
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
@@ -1455,6 +1880,7 @@ function showVideo() {
 
     setTimeout(
         function() {
+
 
             loadingScreen.style.display =
                 "none";
@@ -1472,6 +1898,7 @@ function showVideo() {
                 playAttempt !== undefined
             ) {
 
+
                 playAttempt.catch(
                     function() {
 
@@ -1480,7 +1907,9 @@ function showVideo() {
                     }
                 );
 
+
             }
+
 
         },
         100
@@ -1491,10 +1920,29 @@ function showVideo() {
 
 
 /* =========================================
+   CLOSE CORRUPT FILE
+========================================= */
+
+function closeCorruptFile() {
+
+
+    corruptOverlay.classList.remove(
+        "active"
+    );
+
+
+    closeVideo();
+
+}
+
+
+
+/* =========================================
    CLOSE VIDEO
 ========================================= */
 
 function closeVideo() {
+
 
     const overlay =
         document.getElementById(
@@ -1512,10 +1960,21 @@ function closeVideo() {
     );
 
 
+    clearTimeout(
+        errorTimer
+    );
+
+
+    corruptOverlay.classList.remove(
+        "active"
+    );
+
+
     videoPlayer.pause();
 
 
-    videoPlayer.currentTime = 0;
+    videoPlayer.currentTime =
+        0;
 
 
     overlay.classList.remove(
@@ -1527,19 +1986,22 @@ function closeVideo() {
 
 
 /* =========================================
-   CLICK OUTSIDE TO CLOSE
+   CLICK OUTSIDE
 ========================================= */
 
 function backgroundClose(
     event
 ) {
 
+
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
+
         closeVideo();
+
 
     }
 
@@ -1548,12 +2010,13 @@ function backgroundClose(
 
 
 /* =========================================
-   ESC TO CLOSE
+   ESC
 ========================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
+
 
         if (
             event.key === "Escape"
@@ -1562,9 +2025,30 @@ document.addEventListener(
             "none"
         ) {
 
-            closeVideo();
+
+            if (
+                corruptOverlay.classList.contains(
+                    "active"
+                )
+            ) {
+
+
+                closeCorruptFile();
+
+
+            }
+
+            else {
+
+
+                closeVideo();
+
+
+            }
+
 
         }
+
 
     }
 );
