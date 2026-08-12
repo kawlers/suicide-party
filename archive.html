@@ -347,7 +347,7 @@ body {
 
 
 /* =========================================
-   STATUS
+   AUTH STATUS
 ========================================= */
 
 .auth-status {
@@ -364,7 +364,7 @@ body {
 
 
 /* =========================================
-   SUBMIT BUTTON
+   AUTH BUTTON
 ========================================= */
 
 .auth-button {
@@ -403,7 +403,7 @@ body {
 
 
 /* =========================================
-   AUTH LOADING STATE
+   AUTH LOADER
 ========================================= */
 
 .auth-loader {
@@ -440,7 +440,6 @@ body {
         authSpin 0.55s linear infinite;
 }
 
-
 @keyframes authSpin {
 
     from {
@@ -462,7 +461,6 @@ body {
     animation:
         authShake 0.22s linear;
 }
-
 
 @keyframes authShake {
 
@@ -797,8 +795,6 @@ body {
             </div>
 
 
-            <!-- LOADING SYMBOL -->
-
             <div
                 id="authLoader"
                 class="auth-loader"
@@ -853,9 +849,11 @@ body {
     <div class="directory-list">
 
 
+        <!-- 01 -->
+
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', false)"
+            onclick="openVideo('purge-xtra2k25.mp4', false, 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -871,9 +869,11 @@ body {
         </div>
 
 
+        <!-- 02 -->
+
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', false)"
+            onclick="openVideo('scenebitch-lcut.mp4', false, 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -888,6 +888,8 @@ body {
 
         </div>
 
+
+        <!-- 03 -->
 
         <div class="directory-file empty">
 
@@ -904,9 +906,11 @@ body {
         </div>
 
 
+        <!-- 04 -->
+
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', false)"
+            onclick="openVideo('untitled_04.mp4', false, 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -922,9 +926,11 @@ body {
         </div>
 
 
+        <!-- 05 -->
+
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', false)"
+            onclick="openVideo('sp_005.mp4', false, 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -939,6 +945,8 @@ body {
 
         </div>
 
+
+        <!-- 06 -->
 
         <div class="directory-file empty">
 
@@ -955,7 +963,17 @@ body {
         </div>
 
 
-        <div class="directory-file empty">
+        <!-- =================================
+             07 — NEW FILE
+
+             SAME STALL AS 08
+             BUT SLIGHTLY SLOWER
+        ================================== -->
+
+        <div
+            class="directory-file"
+            onclick="openVideo('im_ok_itsnotmyblood.mp4', true, 26)"
+        >
 
             <span class="file-icon">⌑</span>
 
@@ -963,16 +981,18 @@ body {
 
                 <span class="number">07</span>
 
-                ------
+                im_ok_itsnotmyblood.mp4
 
             </span>
 
         </div>
 
 
+        <!-- 08 -->
+
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', true)"
+            onclick="openVideo('957229577.mp4', true, 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -1265,8 +1285,6 @@ function submitPassword() {
     ) {
 
 
-        /* LOCK INPUT */
-
         passwordInput.disabled =
             true;
 
@@ -1274,9 +1292,6 @@ function submitPassword() {
         authButton.disabled =
             true;
 
-
-
-        /* REMOVE ERROR TEXT */
 
         authStatus.classList.remove(
             "error"
@@ -1287,17 +1302,13 @@ function submitPassword() {
             "";
 
 
-
-        /* SHOW LOADING SYMBOL */
-
         authLoader.classList.add(
             "visible"
         );
 
 
-
         /* =================================
-           LOAD FOR 2 SECONDS
+           SPINNER FOR 2 SECONDS
         ================================= */
 
         setTimeout(
@@ -1342,9 +1353,6 @@ function submitPassword() {
 
     passwordInput.focus();
 
-
-
-    /* SHAKE */
 
     authBox.classList.remove(
         "shake"
@@ -1422,11 +1430,16 @@ const videoSource =
 
 /* =========================================
    OPEN VIDEO
+
+   loadSpeed:
+   20 = NORMAL
+   26 = SLIGHTLY SLOWER
 ========================================= */
 
 function openVideo(
     fileName,
-    shouldStall
+    shouldStall,
+    loadSpeed
 ) {
 
 
@@ -1539,7 +1552,10 @@ function openVideo(
 
 
                 /* =================================
-                   FILE 08 STALL
+                   SPECIAL STALL
+
+                   FILE 07 + FILE 08
+                   STOP AT 82%
                 ================================= */
 
                 if (
@@ -1563,6 +1579,11 @@ function openVideo(
                     loadingText.textContent =
                         "loading file...";
 
+
+                    /* =================================
+                       HOLD AT 82%
+                       FOR 2 SECONDS
+                    ================================= */
 
                     stallTimeout =
 
@@ -1604,7 +1625,7 @@ function openVideo(
 
 
                                         },
-                                        20
+                                        loadSpeed
                                     );
 
 
@@ -1619,6 +1640,10 @@ function openVideo(
                 }
 
 
+
+                /* =================================
+                   NORMAL FINISH
+                ================================= */
 
                 if (
                     value >= 100
@@ -1637,7 +1662,7 @@ function openVideo(
 
 
             },
-            20
+            loadSpeed
         );
 
 
