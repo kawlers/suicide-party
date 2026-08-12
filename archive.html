@@ -60,16 +60,11 @@ body {
 
 .directory-path {
     display: inline-block;
-
     color: #d00000;
-
     border: 1px solid #520000;
-
     padding: 8px 16px;
-
     font-size: 18px;
     letter-spacing: 2px;
-
     margin-bottom: 24px;
 }
 
@@ -81,9 +76,7 @@ body {
 
 .directory-list {
     width: 100%;
-
     margin-top: 18px;
-
     border-top: 1px solid #1d1d1d;
 }
 
@@ -95,19 +88,12 @@ body {
 .directory-file {
     display: flex;
     align-items: center;
-
     gap: 14px;
-
     min-height: 46px;
-
     padding: 0 8px;
-
     border-bottom: 1px solid #161616;
-
     color: #999;
-
     font-size: 13px;
-
     cursor: pointer;
 
     transition:
@@ -118,31 +104,22 @@ body {
 
 .directory-file:hover {
     color: #fff;
-
     padding-left: 14px;
-
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
-
     width: 18px;
-
     font-size: 15px;
-
     text-align: center;
-
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
-
     width: 28px;
-
     color: #d00000;
-
     margin-right: 8px;
 }
 
@@ -170,9 +147,7 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
-
     padding-left: 8px;
-
     background: none;
 }
 
@@ -183,9 +158,7 @@ body {
 
 .auth-overlay {
     position: fixed;
-
     inset: 0;
-
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -209,9 +182,7 @@ body {
 
 .auth-strip {
     height: 6px;
-
     background: #700000;
-
     border-bottom: 1px solid #1c0000;
 }
 
@@ -221,21 +192,15 @@ body {
 
 .auth-title {
     color: #cfcfcf;
-
     font-size: 13px;
-
     letter-spacing: 2px;
-
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
-
     font-size: 9px;
-
     letter-spacing: 0.7px;
-
     margin-bottom: 22px;
 }
 
@@ -251,20 +216,16 @@ body {
     padding: 0 12px;
 
     background: #000;
-
     color: #aaa;
 
     font-family: "Courier New", monospace;
-
     font-size: 14px;
-
     letter-spacing: 3px;
 
     outline: none;
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
-
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -276,22 +237,18 @@ body {
 
 .auth-bottom {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
 
     margin-top: 16px;
-
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
-
     font-size: 9px;
-
     letter-spacing: 1px;
 }
 
@@ -303,13 +260,10 @@ body {
     padding: 7px 15px;
 
     background: #0b0b0b;
-
     color: #777;
 
     font-family: "Courier New", monospace;
-
     font-size: 10px;
-
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -319,7 +273,6 @@ body {
 
 .auth-button:hover {
     color: #ddd;
-
     border-color: #540000;
 }
 
@@ -329,7 +282,6 @@ body {
 
 .auth-button:disabled {
     cursor: default;
-
     opacity: 0.3;
 }
 
@@ -340,12 +292,10 @@ body {
 
 .auth-loader {
     display: none;
-
     align-items: center;
     justify-content: center;
 
     height: 40px;
-
     margin-top: 15px;
 }
 
@@ -358,13 +308,10 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
-
     border-top-color: #8d0000;
-
     border-radius: 50%;
 
-    animation:
-        authSpin 0.55s linear infinite;
+    animation: authSpin 0.55s linear infinite;
 }
 
 @keyframes authSpin {
@@ -381,12 +328,11 @@ body {
 
 
 /* =========================================
-   ERROR SHAKE
+   AUTH ERROR SHAKE
 ========================================= */
 
 .auth-box.shake {
-    animation:
-        authShake 0.22s linear;
+    animation: authShake 0.22s linear;
 }
 
 @keyframes authShake {
@@ -420,7 +366,6 @@ body {
 
 .video-overlay {
     position: fixed;
-
     inset: 0;
 
     width: 100%;
@@ -429,7 +374,6 @@ body {
     background: rgba(0, 0, 0, 0.94);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -457,7 +401,6 @@ body {
     position: relative;
 
     width: 1000px;
-
     max-width: 92vw;
 
     opacity: 0;
@@ -493,13 +436,11 @@ body {
     padding: 0;
 
     border: none;
-
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
-
     font-size: 22px;
 
     cursor: pointer;
@@ -518,13 +459,10 @@ body {
 
 .loading-screen {
     width: 100%;
-
     height: 180px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     padding: 30px;
@@ -536,15 +474,12 @@ body {
 
 .loading-text {
     color: #777;
-
     font-size: 11px;
-
     margin-bottom: 15px;
 }
 
 .loading-bar {
     width: 100%;
-
     height: 2px;
 
     background: #181818;
@@ -554,7 +489,6 @@ body {
 
 .loading-progress {
     width: 0%;
-
     height: 100%;
 
     background: #a00000;
@@ -577,11 +511,9 @@ body {
 
 .corrupt-overlay {
     position: absolute;
-
     inset: 0;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -590,7 +522,6 @@ body {
     z-index: 50;
 
     opacity: 0;
-
     visibility: hidden;
 
     transition:
@@ -624,7 +555,6 @@ body {
     border-bottom: 1px solid #3b0000;
 
     font-size: 10px;
-
     letter-spacing: 1.5px;
 }
 
@@ -636,7 +566,6 @@ body {
     color: #ccc;
 
     font-size: 12px;
-
     letter-spacing: 1.5px;
 
     margin-bottom: 9px;
@@ -646,7 +575,6 @@ body {
     color: #666;
 
     font-size: 10px;
-
     line-height: 1.6;
 
     margin-bottom: 20px;
@@ -654,7 +582,6 @@ body {
 
 .corrupt-actions {
     display: flex;
-
     justify-content: flex-end;
 }
 
@@ -662,11 +589,9 @@ body {
     padding: 6px 14px;
 
     background: #090909;
-
     color: #777;
 
     font-family: "Courier New", monospace;
-
     font-size: 9px;
 
     border: 1px solid #292929;
@@ -676,7 +601,6 @@ body {
 
 .corrupt-button:hover {
     color: #ddd;
-
     border-color: #560000;
 }
 
@@ -717,7 +641,6 @@ body {
 
     .page {
         width: 90%;
-
         padding-top: 28px;
     }
 
@@ -727,7 +650,6 @@ body {
 
     .directory-file {
         font-size: 11px;
-
         gap: 8px;
     }
 
@@ -737,13 +659,11 @@ body {
 
     .number {
         width: 24px;
-
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
-
         max-width: 94vw;
     }
 
@@ -1040,29 +960,6 @@ body {
         </div>
 
 
-        <!-- =================================
-             10 — FAKE CORRUPT FILE
-             FAILS AT 81%
-        ================================== -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo('k3tamineluv.mp4', 'corrupt', 20, 81)"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">10</span>
-
-                k3tamineluv.mp4
-
-            </span>
-
-        </div>
-
-
     </div>
 
 </div>
@@ -1127,7 +1024,7 @@ body {
 
 
         <!-- =================================
-             RAW VIDEO
+             VIDEO
         ================================== -->
 
         <div
@@ -1373,7 +1270,7 @@ function submitPassword() {
         );
 
 
-        /* LOAD FOR 2 SECONDS */
+        /* SPINNER FOR 2 SECONDS */
 
         setTimeout(
             function() {
@@ -1460,9 +1357,7 @@ function submitPassword() {
 ========================================= */
 
 let loadingTimer = null;
-
 let stallTimer = null;
-
 let errorTimer = null;
 
 
@@ -1486,15 +1381,15 @@ const corruptOverlay =
 
 
 /* =========================================
-   NORMAL LOADING TEXT
+   LOADING TEXT
 
-   0 - 24%
+   0 - 24%:
    file found..
 
-   25 - 84%
+   25 - 84%:
    loading file..
 
-   85 - 100%
+   85 - 100%:
    opening file..
 ========================================= */
 
@@ -1535,14 +1430,14 @@ function updateLoadingText(
 /* =========================================
    OPEN VIDEO
 
-   normal
-   = smooth load
+   normal:
+   smooth loading
 
-   stall
-   = file 08 stalls at 82%
+   stall:
+   08 buffers at 82%
 
-   corrupt
-   = fake file fails at failAt
+   corrupt:
+   07 fails at 63%
 ========================================= */
 
 function openVideo(
@@ -1619,9 +1514,6 @@ function openVideo(
 
     /* =====================================
        VIDEO SETUP
-
-       FAKE CORRUPT FILES DON'T NEED
-       AN ACTUAL VIDEO FILE TO EXIST
     ===================================== */
 
     videoPlayer.pause();
@@ -1640,6 +1532,13 @@ function openVideo(
     }
 
     else {
+
+        /*
+        Fake corrupt file.
+
+        No actual sp_directorscut.mp4
+        file is required.
+        */
 
         videoSource.src =
             "";
@@ -1688,7 +1587,7 @@ function openVideo(
 
 
     /* =====================================
-       NEXT LOADING STEP
+       NEXT STEP
     ===================================== */
 
     function scheduleNextStep() {
@@ -1730,7 +1629,11 @@ function openVideo(
 
 
         /* =================================
-           FAKE CORRUPT FILE
+           FILE 07 — CORRUPT
+
+           LOADS TO 63%
+           THEN BUFFERING..
+           THEN ERROR WINDOW
         ================================= */
 
         if (
@@ -1743,8 +1646,6 @@ function openVideo(
             loadingText.textContent =
                 "buffering..";
 
-
-            /* SHORT BUFFER BEFORE ERROR */
 
             errorTimer =
 
@@ -1769,7 +1670,10 @@ function openVideo(
 
 
         /* =================================
-           FILE 08 BUFFER STALL
+           FILE 08 — BUFFERING
+
+           STOPS AT 82%
+           FOR 2 SECONDS
         ================================= */
 
         if (
@@ -1986,7 +1890,7 @@ function closeVideo() {
 
 
 /* =========================================
-   CLICK OUTSIDE
+   CLICK OUTSIDE TO CLOSE
 ========================================= */
 
 function backgroundClose(
