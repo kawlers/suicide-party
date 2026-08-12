@@ -38,11 +38,6 @@ body {
     padding: 40px 0 80px;
 }
 
-
-/* =========================================
-   BACK
-========================================= */
-
 .back {
     color: #777;
     text-decoration: none;
@@ -55,7 +50,7 @@ body {
 
 
 /* =========================================
-   DIRECTORY HEADER
+   DIRECTORY
 ========================================= */
 
 .directory-header {
@@ -80,15 +75,9 @@ body {
 
 .section-title {
     color: #666;
-
     font-size: 12px;
     letter-spacing: 1px;
 }
-
-
-/* =========================================
-   DIRECTORY LIST
-========================================= */
 
 .directory-list {
     width: 100%;
@@ -135,11 +124,6 @@ body {
     background: rgba(120, 0, 0, 0.04);
 }
 
-
-/* =========================================
-   FILE SYMBOL
-========================================= */
-
 .file-icon {
     color: #666;
 
@@ -152,11 +136,6 @@ body {
     flex-shrink: 0;
 }
 
-
-/* =========================================
-   NUMBER
-========================================= */
-
 .number {
     display: inline-block;
 
@@ -167,19 +146,12 @@ body {
     margin-right: 8px;
 }
 
-
-/* =========================================
-   FILE NAME
-========================================= */
-
 .file-name {
     white-space: nowrap;
 }
 
 
-/* =========================================
-   EMPTY FILES
-========================================= */
+/* EMPTY */
 
 .directory-file.empty {
     color: #333;
@@ -209,23 +181,16 @@ body {
 
 .auth-overlay {
     position: fixed;
-
     inset: 0;
 
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     z-index: 20000;
 }
-
-
-/* =========================================
-   AUTH BOX
-========================================= */
 
 .auth-box {
     width: min(430px, 88vw);
@@ -239,11 +204,6 @@ body {
         0 18px 60px rgba(0, 0, 0, 0.9);
 }
 
-
-/* =========================================
-   TOP RED STRIP
-========================================= */
-
 .auth-strip {
     height: 6px;
 
@@ -252,40 +212,23 @@ body {
     border-bottom: 1px solid #1c0000;
 }
 
-
-/* =========================================
-   AUTH CONTENT
-========================================= */
-
 .auth-content {
     padding: 30px 30px 26px;
 }
-
-
-/* =========================================
-   TITLE
-========================================= */
 
 .auth-title {
     color: #cfcfcf;
 
     font-size: 13px;
-
     letter-spacing: 2px;
 
     margin-bottom: 8px;
 }
 
-
-/* =========================================
-   SUBTEXT
-========================================= */
-
 .auth-subtext {
     color: #444;
 
     font-size: 9px;
-
     letter-spacing: 0.7px;
 
     margin-bottom: 22px;
@@ -293,24 +236,21 @@ body {
 
 
 /* =========================================
-   PASSWORD INPUT
+   PASSWORD
 ========================================= */
 
 .auth-input {
     width: 100%;
-
     height: 40px;
 
     padding: 0 12px;
 
     background: #000;
-
     color: #aaa;
 
     font-family: "Courier New", monospace;
 
     font-size: 14px;
-
     letter-spacing: 3px;
 
     outline: none;
@@ -327,11 +267,6 @@ body {
     border-bottom-color: #5b0000;
 }
 
-
-/* =========================================
-   AUTH BOTTOM
-========================================= */
-
 .auth-bottom {
     display: flex;
 
@@ -345,11 +280,6 @@ body {
     min-height: 26px;
 }
 
-
-/* =========================================
-   AUTH STATUS
-========================================= */
-
 .auth-status {
     color: #3e3e3e;
 
@@ -362,16 +292,10 @@ body {
     color: #b00000;
 }
 
-
-/* =========================================
-   AUTH BUTTON
-========================================= */
-
 .auth-button {
     padding: 7px 15px;
 
     background: #0b0b0b;
-
     color: #777;
 
     font-family: "Courier New", monospace;
@@ -421,11 +345,6 @@ body {
     display: flex;
 }
 
-
-/* =========================================
-   LOADING SYMBOL
-========================================= */
-
 .loader-symbol {
     width: 18px;
     height: 18px;
@@ -436,8 +355,7 @@ body {
 
     border-radius: 50%;
 
-    animation:
-        authSpin 0.55s linear infinite;
+    animation: authSpin 0.55s linear infinite;
 }
 
 @keyframes authSpin {
@@ -454,12 +372,11 @@ body {
 
 
 /* =========================================
-   ERROR SHAKE
+   AUTH ERROR SHAKE
 ========================================= */
 
 .auth-box.shake {
-    animation:
-        authShake 0.22s linear;
+    animation: authShake 0.22s linear;
 }
 
 @keyframes authShake {
@@ -493,7 +410,6 @@ body {
 
 .video-overlay {
     position: fixed;
-
     inset: 0;
 
     width: 100%;
@@ -520,11 +436,6 @@ body {
     opacity: 1;
     visibility: visible;
 }
-
-
-/* =========================================
-   VIDEO WINDOW
-========================================= */
 
 .video-window {
     position: relative;
@@ -614,11 +525,6 @@ body {
 
     margin-bottom: 15px;
 }
-
-
-/* =========================================
-   FILE LOADING BAR
-========================================= */
 
 .loading-bar {
     width: 100%;
@@ -738,28 +644,22 @@ body {
     class="auth-overlay"
 >
 
-
     <div
         id="authBox"
         class="auth-box"
     >
 
-
         <div class="auth-strip"></div>
 
-
         <div class="auth-content">
-
 
             <div class="auth-title">
                 authorization required
             </div>
 
-
             <div class="auth-subtext">
                 protected directory / credentials required
             </div>
-
 
             <input
                 id="passwordInput"
@@ -771,9 +671,7 @@ body {
                 aria-label="password"
             >
 
-
             <div class="auth-bottom">
-
 
                 <div
                     id="authStatus"
@@ -781,7 +679,6 @@ body {
                 >
                     awaiting authorization
                 </div>
-
 
                 <button
                     id="authButton"
@@ -791,9 +688,7 @@ body {
                     submit
                 </button>
 
-
             </div>
-
 
             <div
                 id="authLoader"
@@ -804,12 +699,9 @@ body {
 
             </div>
 
-
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -821,7 +713,6 @@ body {
 
 <div class="page">
 
-
     <a
         class="back"
         href="index.html"
@@ -832,16 +723,13 @@ body {
 
     <div class="directory-header">
 
-
         <div class="directory-path">
             /files
         </div>
 
-
         <div class="section-title">
             video files (.mp4)
         </div>
-
 
     </div>
 
@@ -853,7 +741,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', false, 20)"
+            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -873,7 +761,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', false, 20)"
+            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -910,7 +798,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', false, 20)"
+            onclick="openVideo('untitled_04.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -930,7 +818,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', false, 20)"
+            onclick="openVideo('sp_005.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -964,15 +852,13 @@ body {
 
 
         <!-- =================================
-             07 — NEW FILE
-
-             SAME STALL AS 08
-             BUT SLIGHTLY SLOWER
+             07
+             STUTTERS THROUGHOUT
         ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('im_ok_itsnotmyblood.mp4', true, 26)"
+            onclick="openVideo('im_ok_itsnotmyblood.mp4', 'stutter', 26)"
         >
 
             <span class="file-icon">⌑</span>
@@ -988,11 +874,14 @@ body {
         </div>
 
 
-        <!-- 08 -->
+        <!-- =================================
+             08
+             LONG BUFFER AT 82%
+        ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', true, 20)"
+            onclick="openVideo('957229577.mp4', 'stall', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -1010,7 +899,6 @@ body {
 
     </div>
 
-
 </div>
 
 
@@ -1025,9 +913,7 @@ body {
     onclick="backgroundClose(event)"
 >
 
-
     <div class="video-window">
-
 
         <button
             class="close-video"
@@ -1042,23 +928,20 @@ body {
             class="loading-screen"
         >
 
-
             <div
                 id="loadingText"
                 class="loading-text"
             >
-                loading file...
+                file found..
             </div>
 
 
             <div class="loading-bar">
 
-
                 <div
                     id="loadingProgress"
                     class="loading-progress"
                 ></div>
-
 
             </div>
 
@@ -1070,7 +953,6 @@ body {
                 0%
             </div>
 
-
         </div>
 
 
@@ -1079,13 +961,11 @@ body {
             class="video-container"
         >
 
-
             <video
                 id="videoPlayer"
                 controls
                 preload="metadata"
             >
-
 
                 <source
                     id="videoSource"
@@ -1093,15 +973,11 @@ body {
                     type="video/mp4"
                 >
 
-
             </video>
-
 
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -1114,13 +990,9 @@ body {
    AUTHORIZATION
 ========================================= */
 
-let failedAttempts =
-    0;
+let failedAttempts = 0;
 
-
-const maxAttempts =
-    3;
-
+const maxAttempts = 3;
 
 const correctPassword =
     "notmyblood";
@@ -1171,18 +1043,14 @@ window.addEventListener(
     "load",
     function() {
 
-
         setTimeout(
             function() {
 
-
                 passwordInput.focus();
-
 
             },
             100
         );
-
 
     }
 );
@@ -1197,17 +1065,13 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === " "
         ) {
 
-
             event.preventDefault();
 
-
         }
-
 
     }
 );
@@ -1222,13 +1086,11 @@ passwordInput.addEventListener(
     "input",
     function() {
 
-
         passwordInput.value =
             passwordInput.value.replace(
                 /\s/g,
                 ""
             );
-
 
     }
 );
@@ -1243,20 +1105,15 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === "Enter"
         ) {
 
-
             event.preventDefault();
-
 
             submitPassword();
 
-
         }
-
 
     }
 );
@@ -1269,55 +1126,42 @@ passwordInput.addEventListener(
 
 function submitPassword() {
 
-
     const enteredPassword =
         passwordInput.value;
 
 
-
-    /* =====================================
-       CORRECT PASSWORD
-    ===================================== */
+    /* CORRECT */
 
     if (
         enteredPassword ===
         correctPassword
     ) {
 
-
         passwordInput.disabled =
             true;
 
-
         authButton.disabled =
             true;
-
 
         authStatus.classList.remove(
             "error"
         );
 
-
         authStatus.textContent =
             "";
-
 
         authLoader.classList.add(
             "visible"
         );
 
 
-        /* =================================
-           SPINNER FOR 2 SECONDS
-        ================================= */
+        /* SPINNER FOR 2 SECONDS */
 
         setTimeout(
             function() {
 
-
                 authOverlay.style.display =
                     "none";
-
 
             },
             2000
@@ -1326,14 +1170,10 @@ function submitPassword() {
 
         return;
 
-
     }
 
 
-
-    /* =====================================
-       WRONG PASSWORD
-    ===================================== */
+    /* WRONG */
 
     failedAttempts++;
 
@@ -1367,20 +1207,15 @@ function submitPassword() {
     );
 
 
-
-    /* =====================================
-       THIRD WRONG ATTEMPT
-    ===================================== */
+    /* THIRD WRONG ATTEMPT */
 
     if (
         failedAttempts >=
         maxAttempts
     ) {
 
-
         passwordInput.disabled =
             true;
-
 
         authButton.disabled =
             true;
@@ -1389,25 +1224,21 @@ function submitPassword() {
         setTimeout(
             function() {
 
-
                 window.location.href =
                     "index.html";
-
 
             },
             700
         );
 
-
     }
-
 
 }
 
 
 
 /* =========================================
-   VIDEO LOADING
+   VIDEO REFERENCES
 ========================================= */
 
 let loadingInterval;
@@ -1429,19 +1260,69 @@ const videoSource =
 
 
 /* =========================================
+   NORMAL LOAD TEXT
+========================================= */
+
+function updateLoadingText(
+    value,
+    loadingText
+) {
+
+    /* BEGINNING */
+
+    if (
+        value < 25
+    ) {
+
+        loadingText.textContent =
+            "file found..";
+
+    }
+
+
+    /* MIDDLE */
+
+    else if (
+        value < 85
+    ) {
+
+        loadingText.textContent =
+            "loading file..";
+
+    }
+
+
+    /* END */
+
+    else {
+
+        loadingText.textContent =
+            "opening file..";
+
+    }
+
+}
+
+
+
+/* =========================================
    OPEN VIDEO
 
-   loadSpeed:
-   20 = NORMAL
-   26 = SLIGHTLY SLOWER
+   normal:
+   smooth
+
+   stutter:
+   several short buffering stops
+
+   stall:
+   one long buffering stop at 82%
 ========================================= */
 
 function openVideo(
     fileName,
-    shouldStall,
+    loadMode,
     loadSpeed
 ) {
-
 
     const overlay =
         document.getElementById(
@@ -1479,7 +1360,7 @@ function openVideo(
         );
 
 
-    clearInterval(
+    clearTimeout(
         loadingInterval
     );
 
@@ -1508,7 +1389,7 @@ function openVideo(
 
 
     loadingText.textContent =
-        "loading file...";
+        "file found..";
 
 
     progress.style.width =
@@ -1524,147 +1405,222 @@ function openVideo(
     );
 
 
-    let value =
-        0;
+    let value = 0;
 
-
-    let hasStalled =
+    let longStallUsed =
         false;
 
 
-
-    loadingInterval =
-
-        setInterval(
-            function() {
-
-
-                value++;
-
-
-                progress.style.width =
-                    value + "%";
-
-
-                percent.textContent =
-                    value + "%";
+    const usedStutters =
+        new Set();
 
 
 
-                /* =================================
-                   SPECIAL STALL
+    /* =====================================
+       FILE 07 STUTTER POINTS
+    ===================================== */
 
-                   FILE 07 + FILE 08
-                   STOP AT 82%
-                ================================= */
-
-                if (
-                    shouldStall === true
-                    &&
-                    value === 82
-                    &&
-                    hasStalled === false
-                ) {
+    const stutterPoints = [
+        14,
+        29,
+        43,
+        58,
+        71,
+        83
+    ];
 
 
-                    hasStalled =
-                        true;
+    /* DIFFERENT DELAYS MAKE IT FEEL LESS
+       LIKE A PERFECT SCRIPT */
+
+    const stutterDurations = {
+
+        14: 320,
+
+        29: 460,
+
+        43: 260,
+
+        58: 520,
+
+        71: 350,
+
+        83: 620
+
+    };
 
 
-                    clearInterval(
-                        loadingInterval
-                    );
+
+    /* =====================================
+       NEXT STEP
+    ===================================== */
+
+    function scheduleNextStep() {
+
+        loadingInterval =
+            setTimeout(
+                loadingStep,
+                loadSpeed
+            );
+
+    }
 
 
-                    loadingText.textContent =
-                        "loading file...";
+
+    /* =====================================
+       LOADING STEP
+    ===================================== */
+
+    function loadingStep() {
+
+        value++;
 
 
-                    /* =================================
-                       HOLD AT 82%
-                       FOR 2 SECONDS
-                    ================================= */
-
-                    stallTimeout =
-
-                        setTimeout(
-                            function() {
+        progress.style.width =
+            value + "%";
 
 
-                                loadingInterval =
-
-                                    setInterval(
-                                        function() {
+        percent.textContent =
+            value + "%";
 
 
-                                            value++;
+        updateLoadingText(
+            value,
+            loadingText
+        );
 
 
-                                            progress.style.width =
-                                                value + "%";
+
+        /* =================================
+           FILE 07 STUTTERS THROUGHOUT
+        ================================= */
+
+        if (
+            loadMode === "stutter"
+            &&
+            stutterPoints.includes(
+                value
+            )
+            &&
+            !usedStutters.has(
+                value
+            )
+        ) {
+
+            usedStutters.add(
+                value
+            );
 
 
-                                            percent.textContent =
-                                                value + "%";
+            loadingText.textContent =
+                "buffering..";
 
 
-                                            if (
-                                                value >= 100
-                                            ) {
+            stallTimeout =
+                setTimeout(
+                    function() {
 
-
-                                                clearInterval(
-                                                    loadingInterval
-                                                );
-
-
-                                                showVideo();
-
-
-                                            }
-
-
-                                        },
-                                        loadSpeed
-                                    );
-
-
-                            },
-                            2000
+                        updateLoadingText(
+                            value,
+                            loadingText
                         );
 
 
-                    return;
+                        scheduleNextStep();
+
+                    },
+                    stutterDurations[
+                        value
+                    ]
+                );
 
 
-                }
+            return;
+
+        }
 
 
 
-                /* =================================
-                   NORMAL FINISH
-                ================================= */
+        /* =================================
+           FILE 08 LONG BUFFER
+        ================================= */
 
-                if (
-                    value >= 100
-                ) {
+        if (
+            loadMode === "stall"
+            &&
+            value === 82
+            &&
+            longStallUsed === false
+        ) {
 
-
-                    clearInterval(
-                        loadingInterval
-                    );
-
-
-                    showVideo();
-
-
-                }
+            longStallUsed =
+                true;
 
 
-            },
-            loadSpeed
-        );
+            loadingText.textContent =
+                "buffering..";
 
+
+            stallTimeout =
+                setTimeout(
+                    function() {
+
+                        updateLoadingText(
+                            value,
+                            loadingText
+                        );
+
+
+                        scheduleNextStep();
+
+                    },
+                    2000
+                );
+
+
+            return;
+
+        }
+
+
+
+        /* =================================
+           FINISHED
+        ================================= */
+
+        if (
+            value >= 100
+        ) {
+
+            progress.style.width =
+                "100%";
+
+
+            percent.textContent =
+                "100%";
+
+
+            loadingText.textContent =
+                "opening file..";
+
+
+            showVideo();
+
+
+            return;
+
+        }
+
+
+        scheduleNextStep();
+
+    }
+
+
+
+    /* START LOADING */
+
+    scheduleNextStep();
 
 }
 
@@ -1675,7 +1631,6 @@ function openVideo(
 ========================================= */
 
 function showVideo() {
-
 
     const loadingScreen =
         document.getElementById(
@@ -1691,7 +1646,6 @@ function showVideo() {
 
     setTimeout(
         function() {
-
 
             loadingScreen.style.display =
                 "none";
@@ -1709,7 +1663,6 @@ function showVideo() {
                 playAttempt !== undefined
             ) {
 
-
                 playAttempt.catch(
                     function() {
 
@@ -1718,14 +1671,11 @@ function showVideo() {
                     }
                 );
 
-
             }
-
 
         },
         100
     );
-
 
 }
 
@@ -1737,14 +1687,13 @@ function showVideo() {
 
 function closeVideo() {
 
-
     const overlay =
         document.getElementById(
             "videoOverlay"
         );
 
 
-    clearInterval(
+    clearTimeout(
         loadingInterval
     );
 
@@ -1765,7 +1714,6 @@ function closeVideo() {
         "active"
     );
 
-
 }
 
 
@@ -1778,18 +1726,14 @@ function backgroundClose(
     event
 ) {
 
-
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
-
         closeVideo();
 
-
     }
-
 
 }
 
@@ -1803,26 +1747,22 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === "Escape"
             &&
-            authOverlay.style.display === "none"
+            authOverlay.style.display ===
+            "none"
         ) {
-
 
             closeVideo();
 
-
         }
-
 
     }
 );
 
 
 </script>
-
 
 </body>
 
