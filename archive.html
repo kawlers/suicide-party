@@ -60,16 +60,11 @@ body {
 
 .directory-path {
     display: inline-block;
-
     color: #d00000;
-
     border: 1px solid #520000;
-
     padding: 8px 16px;
-
     font-size: 18px;
     letter-spacing: 2px;
-
     margin-bottom: 24px;
 }
 
@@ -81,9 +76,7 @@ body {
 
 .directory-list {
     width: 100%;
-
     margin-top: 18px;
-
     border-top: 1px solid #1d1d1d;
 }
 
@@ -95,19 +88,12 @@ body {
 .directory-file {
     display: flex;
     align-items: center;
-
     gap: 14px;
-
     min-height: 46px;
-
     padding: 0 8px;
-
     border-bottom: 1px solid #161616;
-
     color: #999;
-
     font-size: 13px;
-
     cursor: pointer;
 
     transition:
@@ -118,31 +104,22 @@ body {
 
 .directory-file:hover {
     color: #fff;
-
     padding-left: 14px;
-
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
-
     width: 18px;
-
     font-size: 15px;
-
     text-align: center;
-
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
-
     width: 28px;
-
     color: #d00000;
-
     margin-right: 8px;
 }
 
@@ -151,7 +128,9 @@ body {
 }
 
 
-/* EMPTY */
+/* =========================================
+   EMPTY FILES
+========================================= */
 
 .directory-file.empty {
     color: #333;
@@ -168,9 +147,7 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
-
     padding-left: 8px;
-
     background: none;
 }
 
@@ -182,7 +159,6 @@ body {
 .auth-overlay {
     position: fixed;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -194,9 +170,7 @@ body {
 
 .auth-box {
     width: min(430px, 88vw);
-
     background: #050505;
-
     border: 1px solid #3a0000;
 
     box-shadow:
@@ -206,9 +180,7 @@ body {
 
 .auth-strip {
     height: 6px;
-
     background: #700000;
-
     border-bottom: 1px solid #1c0000;
 }
 
@@ -218,25 +190,21 @@ body {
 
 .auth-title {
     color: #cfcfcf;
-
     font-size: 13px;
     letter-spacing: 2px;
-
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
-
     font-size: 9px;
     letter-spacing: 0.7px;
-
     margin-bottom: 22px;
 }
 
 
 /* =========================================
-   PASSWORD
+   PASSWORD INPUT
 ========================================= */
 
 .auth-input {
@@ -249,7 +217,6 @@ body {
     color: #aaa;
 
     font-family: "Courier New", monospace;
-
     font-size: 14px;
     letter-spacing: 3px;
 
@@ -257,7 +224,6 @@ body {
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
-
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -269,22 +235,17 @@ body {
 
 .auth-bottom {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
-
     margin-top: 16px;
-
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
-
     font-size: 9px;
-
     letter-spacing: 1px;
 }
 
@@ -299,9 +260,7 @@ body {
     color: #777;
 
     font-family: "Courier New", monospace;
-
     font-size: 10px;
-
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -311,7 +270,6 @@ body {
 
 .auth-button:hover {
     color: #ddd;
-
     border-color: #540000;
 }
 
@@ -321,7 +279,6 @@ body {
 
 .auth-button:disabled {
     cursor: default;
-
     opacity: 0.3;
 }
 
@@ -332,12 +289,10 @@ body {
 
 .auth-loader {
     display: none;
-
     align-items: center;
     justify-content: center;
 
     height: 40px;
-
     margin-top: 15px;
 }
 
@@ -350,9 +305,7 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
-
     border-top-color: #8d0000;
-
     border-radius: 50%;
 
     animation: authSpin 0.55s linear infinite;
@@ -372,7 +325,7 @@ body {
 
 
 /* =========================================
-   AUTH ERROR SHAKE
+   ERROR SHAKE
 ========================================= */
 
 .auth-box.shake {
@@ -418,7 +371,6 @@ body {
     background: rgba(0, 0, 0, 0.94);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -437,11 +389,15 @@ body {
     visibility: visible;
 }
 
+
+/* =========================================
+   VIDEO WINDOW
+========================================= */
+
 .video-window {
     position: relative;
 
     width: 1000px;
-
     max-width: 92vw;
 
     opacity: 0;
@@ -465,7 +421,7 @@ body {
 
 
 /* =========================================
-   CLOSE
+   CLOSE BUTTON
 ========================================= */
 
 .close-video {
@@ -477,13 +433,11 @@ body {
     padding: 0;
 
     border: none;
-
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
-
     font-size: 22px;
 
     cursor: pointer;
@@ -502,13 +456,10 @@ body {
 
 .loading-screen {
     width: 100%;
-
     height: 180px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     padding: 30px;
@@ -520,15 +471,17 @@ body {
 
 .loading-text {
     color: #777;
-
     font-size: 11px;
-
     margin-bottom: 15px;
 }
 
+
+/* =========================================
+   LOADING BAR
+========================================= */
+
 .loading-bar {
     width: 100%;
-
     height: 2px;
 
     background: #181818;
@@ -538,7 +491,6 @@ body {
 
 .loading-progress {
     width: 0%;
-
     height: 100%;
 
     background: #a00000;
@@ -556,7 +508,7 @@ body {
 
 
 /* =========================================
-   RAW VIDEO
+   VIDEO
 ========================================= */
 
 .video-container {
@@ -591,7 +543,6 @@ body {
 
     .page {
         width: 90%;
-
         padding-top: 28px;
     }
 
@@ -601,7 +552,6 @@ body {
 
     .directory-file {
         font-size: 11px;
-
         gap: 8px;
     }
 
@@ -611,13 +561,11 @@ body {
 
     .number {
         width: 24px;
-
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
-
         max-width: 94vw;
     }
 
@@ -851,15 +799,9 @@ body {
         </div>
 
 
-        <!-- =================================
-             07
-             STUTTERS THROUGHOUT
-        ================================== -->
+        <!-- 07 -->
 
-        <div
-            class="directory-file"
-            onclick="openVideo('im_ok_itsnotmyblood.mp4', 'stutter', 26)"
-        >
+        <div class="directory-file empty">
 
             <span class="file-icon">⌑</span>
 
@@ -867,17 +809,14 @@ body {
 
                 <span class="number">07</span>
 
-                im_ok_itsnotmyblood.mp4
+                ------
 
             </span>
 
         </div>
 
 
-        <!-- =================================
-             08
-             LONG BUFFER AT 82%
-        ================================== -->
+        <!-- 08 -->
 
         <div
             class="directory-file"
@@ -994,45 +933,26 @@ let failedAttempts = 0;
 
 const maxAttempts = 3;
 
-const correctPassword =
-    "notmyblood";
+const correctPassword = "notmyblood";
 
 
 const passwordInput =
-    document.getElementById(
-        "passwordInput"
-    );
-
+    document.getElementById("passwordInput");
 
 const authStatus =
-    document.getElementById(
-        "authStatus"
-    );
-
+    document.getElementById("authStatus");
 
 const authBox =
-    document.getElementById(
-        "authBox"
-    );
-
+    document.getElementById("authBox");
 
 const authOverlay =
-    document.getElementById(
-        "authOverlay"
-    );
-
+    document.getElementById("authOverlay");
 
 const authButton =
-    document.getElementById(
-        "authButton"
-    );
-
+    document.getElementById("authButton");
 
 const authLoader =
-    document.getElementById(
-        "authLoader"
-    );
-
+    document.getElementById("authLoader");
 
 
 /* =========================================
@@ -1056,7 +976,6 @@ window.addEventListener(
 );
 
 
-
 /* =========================================
    BLOCK SPACES
 ========================================= */
@@ -1065,9 +984,7 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === " "
-        ) {
+        if (event.key === " ") {
 
             event.preventDefault();
 
@@ -1077,9 +994,8 @@ passwordInput.addEventListener(
 );
 
 
-
 /* =========================================
-   REMOVE SPACES FROM PASTE
+   REMOVE PASTED SPACES
 ========================================= */
 
 passwordInput.addEventListener(
@@ -1096,7 +1012,6 @@ passwordInput.addEventListener(
 );
 
 
-
 /* =========================================
    ENTER TO SUBMIT
 ========================================= */
@@ -1105,9 +1020,7 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
 
             event.preventDefault();
 
@@ -1119,9 +1032,8 @@ passwordInput.addEventListener(
 );
 
 
-
 /* =========================================
-   SUBMIT PASSWORD
+   PASSWORD CHECK
 ========================================= */
 
 function submitPassword() {
@@ -1130,32 +1042,29 @@ function submitPassword() {
         passwordInput.value;
 
 
-    /* CORRECT */
+    /* CORRECT PASSWORD */
 
     if (
         enteredPassword ===
         correctPassword
     ) {
 
-        passwordInput.disabled =
-            true;
+        passwordInput.disabled = true;
 
-        authButton.disabled =
-            true;
+        authButton.disabled = true;
 
         authStatus.classList.remove(
             "error"
         );
 
-        authStatus.textContent =
-            "";
+        authStatus.textContent = "";
 
         authLoader.classList.add(
             "visible"
         );
 
 
-        /* SPINNER FOR 2 SECONDS */
+        /* LOAD FOR 2 SECONDS */
 
         setTimeout(
             function() {
@@ -1173,7 +1082,7 @@ function submitPassword() {
     }
 
 
-    /* WRONG */
+    /* WRONG PASSWORD */
 
     failedAttempts++;
 
@@ -1187,38 +1096,34 @@ function submitPassword() {
     );
 
 
-    passwordInput.value =
-        "";
-
+    passwordInput.value = "";
 
     passwordInput.focus();
 
+
+    /* SHAKE */
 
     authBox.classList.remove(
         "shake"
     );
 
-
     void authBox.offsetWidth;
-
 
     authBox.classList.add(
         "shake"
     );
 
 
-    /* THIRD WRONG ATTEMPT */
+    /* THREE FAILED ATTEMPTS */
 
     if (
         failedAttempts >=
         maxAttempts
     ) {
 
-        passwordInput.disabled =
-            true;
+        passwordInput.disabled = true;
 
-        authButton.disabled =
-            true;
+        authButton.disabled = true;
 
 
         setTimeout(
@@ -1241,9 +1146,8 @@ function submitPassword() {
    VIDEO REFERENCES
 ========================================= */
 
-let loadingInterval;
-
-let stallTimeout;
+let loadingTimer = null;
+let stallTimer = null;
 
 
 const videoPlayer =
@@ -1260,15 +1164,22 @@ const videoSource =
 
 
 /* =========================================
-   NORMAL LOAD TEXT
+   LOADING TEXT
+
+   0 - 24%
+   file found..
+
+   25 - 84%
+   loading file..
+
+   85 - 100%
+   opening file..
 ========================================= */
 
 function updateLoadingText(
     value,
     loadingText
 ) {
-
-    /* BEGINNING */
 
     if (
         value < 25
@@ -1279,9 +1190,6 @@ function updateLoadingText(
 
     }
 
-
-    /* MIDDLE */
-
     else if (
         value < 85
     ) {
@@ -1290,9 +1198,6 @@ function updateLoadingText(
             "loading file..";
 
     }
-
-
-    /* END */
 
     else {
 
@@ -1307,15 +1212,6 @@ function updateLoadingText(
 
 /* =========================================
    OPEN VIDEO
-
-   normal:
-   smooth
-
-   stutter:
-   several short buffering stops
-
-   stall:
-   one long buffering stop at 82%
 ========================================= */
 
 function openVideo(
@@ -1360,29 +1256,31 @@ function openVideo(
         );
 
 
+    /* CLEAR OLD LOAD */
+
     clearTimeout(
-        loadingInterval
+        loadingTimer
+    );
+
+    clearTimeout(
+        stallTimer
     );
 
 
-    clearTimeout(
-        stallTimeout
-    );
-
+    /* RESET VIDEO */
 
     videoPlayer.pause();
-
 
     videoSource.src =
         fileName;
 
-
     videoPlayer.load();
 
 
+    /* RESET DISPLAY */
+
     videoContainer.style.display =
         "none";
-
 
     loadingScreen.style.display =
         "flex";
@@ -1391,10 +1289,8 @@ function openVideo(
     loadingText.textContent =
         "file found..";
 
-
     progress.style.width =
         "0%";
-
 
     percent.textContent =
         "0%";
@@ -1407,57 +1303,17 @@ function openVideo(
 
     let value = 0;
 
-    let longStallUsed =
-        false;
-
-
-    const usedStutters =
-        new Set();
+    let longStallUsed = false;
 
 
 
     /* =====================================
-       FILE 07 STUTTER POINTS
-    ===================================== */
-
-    const stutterPoints = [
-        14,
-        29,
-        43,
-        58,
-        71,
-        83
-    ];
-
-
-    /* DIFFERENT DELAYS MAKE IT FEEL LESS
-       LIKE A PERFECT SCRIPT */
-
-    const stutterDurations = {
-
-        14: 320,
-
-        29: 460,
-
-        43: 260,
-
-        58: 520,
-
-        71: 350,
-
-        83: 620
-
-    };
-
-
-
-    /* =====================================
-       NEXT STEP
+       SCHEDULE NEXT %
     ===================================== */
 
     function scheduleNextStep() {
 
-        loadingInterval =
+        loadingTimer =
             setTimeout(
                 loadingStep,
                 loadSpeed
@@ -1492,57 +1348,11 @@ function openVideo(
 
 
         /* =================================
-           FILE 07 STUTTERS THROUGHOUT
-        ================================= */
+           FILE 08 BUFFERING STALL
 
-        if (
-            loadMode === "stutter"
-            &&
-            stutterPoints.includes(
-                value
-            )
-            &&
-            !usedStutters.has(
-                value
-            )
-        ) {
-
-            usedStutters.add(
-                value
-            );
-
-
-            loadingText.textContent =
-                "buffering..";
-
-
-            stallTimeout =
-                setTimeout(
-                    function() {
-
-                        updateLoadingText(
-                            value,
-                            loadingText
-                        );
-
-
-                        scheduleNextStep();
-
-                    },
-                    stutterDurations[
-                        value
-                    ]
-                );
-
-
-            return;
-
-        }
-
-
-
-        /* =================================
-           FILE 08 LONG BUFFER
+           STOPS AT 82%
+           SAYS BUFFERING..
+           HOLDS 2 SECONDS
         ================================= */
 
         if (
@@ -1553,15 +1363,14 @@ function openVideo(
             longStallUsed === false
         ) {
 
-            longStallUsed =
-                true;
+            longStallUsed = true;
 
 
             loadingText.textContent =
                 "buffering..";
 
 
-            stallTimeout =
+            stallTimer =
                 setTimeout(
                     function() {
 
@@ -1618,7 +1427,7 @@ function openVideo(
 
 
 
-    /* START LOADING */
+    /* START */
 
     scheduleNextStep();
 
@@ -1694,20 +1503,19 @@ function closeVideo() {
 
 
     clearTimeout(
-        loadingInterval
+        loadingTimer
     );
 
 
     clearTimeout(
-        stallTimeout
+        stallTimer
     );
 
 
     videoPlayer.pause();
 
 
-    videoPlayer.currentTime =
-        0;
+    videoPlayer.currentTime = 0;
 
 
     overlay.classList.remove(
@@ -1719,7 +1527,7 @@ function closeVideo() {
 
 
 /* =========================================
-   CLICK OUTSIDE
+   CLICK OUTSIDE TO CLOSE
 ========================================= */
 
 function backgroundClose(
@@ -1740,7 +1548,7 @@ function backgroundClose(
 
 
 /* =========================================
-   ESC
+   ESC TO CLOSE
 ========================================= */
 
 document.addEventListener(
@@ -1763,6 +1571,7 @@ document.addEventListener(
 
 
 </script>
+
 
 </body>
 
