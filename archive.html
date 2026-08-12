@@ -153,7 +153,7 @@ body {
 
 
 /* =========================================
-   AUTHORIZATION OVERLAY
+   AUTHORIZATION
 ========================================= */
 
 .auth-overlay {
@@ -787,7 +787,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20, 0)"
+            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -807,7 +807,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20, 0)"
+            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -844,7 +844,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', 'normal', 20, 0)"
+            onclick="openVideo('untitled_04.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -864,7 +864,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', 'normal', 20, 0)"
+            onclick="openVideo('sp_005.mp4', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -898,13 +898,12 @@ body {
 
 
         <!-- =================================
-             07 — FAKE CORRUPT FILE
-             FAILS AT 63%
+             07 — PERMANENTLY CORRUPT
         ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_directorscut.mp4', 'corrupt', 23, 63)"
+            onclick="openVideo('sp_directorscut.mp4', 'corrupt', 23)"
         >
 
             <span class="file-icon">⌑</span>
@@ -921,13 +920,12 @@ body {
 
 
         <!-- =================================
-             08 — REAL FILE
-             BUFFER STALL AT 82%
+             08 — REAL FILE / BUFFER STALL
         ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', 'stall', 20, 0)"
+            onclick="openVideo('957229577.mp4', 'stall', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -986,9 +984,7 @@ body {
         </button>
 
 
-        <!-- =================================
-             LOADING
-        ================================== -->
+        <!-- LOADING -->
 
         <div
             id="loadingScreen"
@@ -1023,9 +1019,7 @@ body {
         </div>
 
 
-        <!-- =================================
-             VIDEO
-        ================================== -->
+        <!-- VIDEO -->
 
         <div
             id="videoContainer"
@@ -1049,9 +1043,7 @@ body {
         </div>
 
 
-        <!-- =================================
-             CORRUPT FILE WINDOW
-        ================================== -->
+        <!-- CORRUPT ERROR -->
 
         <div
             id="corruptOverlay"
@@ -1108,45 +1100,26 @@ body {
 let failedAttempts = 0;
 
 const maxAttempts = 3;
-
-const correctPassword =
-    "notmyblood";
+const correctPassword = "notmyblood";
 
 
 const passwordInput =
-    document.getElementById(
-        "passwordInput"
-    );
-
+    document.getElementById("passwordInput");
 
 const authStatus =
-    document.getElementById(
-        "authStatus"
-    );
-
+    document.getElementById("authStatus");
 
 const authBox =
-    document.getElementById(
-        "authBox"
-    );
-
+    document.getElementById("authBox");
 
 const authOverlay =
-    document.getElementById(
-        "authOverlay"
-    );
-
+    document.getElementById("authOverlay");
 
 const authButton =
-    document.getElementById(
-        "authButton"
-    );
-
+    document.getElementById("authButton");
 
 const authLoader =
-    document.getElementById(
-        "authLoader"
-    );
+    document.getElementById("authLoader");
 
 
 
@@ -1180,9 +1153,7 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === " "
-        ) {
+        if (event.key === " ") {
 
             event.preventDefault();
 
@@ -1220,9 +1191,7 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
 
             event.preventDefault();
 
@@ -1252,25 +1221,20 @@ function submitPassword() {
         correctPassword
     ) {
 
-        passwordInput.disabled =
-            true;
+        passwordInput.disabled = true;
 
-        authButton.disabled =
-            true;
+        authButton.disabled = true;
 
         authStatus.classList.remove(
             "error"
         );
 
-        authStatus.textContent =
-            "";
+        authStatus.textContent = "";
 
         authLoader.classList.add(
             "visible"
         );
 
-
-        /* SPINNER FOR 2 SECONDS */
 
         setTimeout(
             function() {
@@ -1302,9 +1266,7 @@ function submitPassword() {
     );
 
 
-    passwordInput.value =
-        "";
-
+    passwordInput.value = "";
 
     passwordInput.focus();
 
@@ -1329,11 +1291,9 @@ function submitPassword() {
         maxAttempts
     ) {
 
-        passwordInput.disabled =
-            true;
+        passwordInput.disabled = true;
 
-        authButton.disabled =
-            true;
+        authButton.disabled = true;
 
 
         setTimeout(
@@ -1383,13 +1343,13 @@ const corruptOverlay =
 /* =========================================
    LOADING TEXT
 
-   0 - 24%:
+   0 - 24%
    file found..
 
-   25 - 84%:
+   25 - 84%
    loading file..
 
-   85 - 100%:
+   85 - 100%
    opening file..
 ========================================= */
 
@@ -1398,18 +1358,14 @@ function updateLoadingText(
     loadingText
 ) {
 
-    if (
-        value < 25
-    ) {
+    if (value < 25) {
 
         loadingText.textContent =
             "file found..";
 
     }
 
-    else if (
-        value < 85
-    ) {
+    else if (value < 85) {
 
         loadingText.textContent =
             "loading file..";
@@ -1431,20 +1387,20 @@ function updateLoadingText(
    OPEN VIDEO
 
    normal:
-   smooth loading
+   loads normally
 
    stall:
-   08 buffers at 82%
+   file 08 pauses at 82%
 
    corrupt:
-   07 fails at 63%
+   file 07 ALWAYS fails,
+   but at a random percentage
 ========================================= */
 
 function openVideo(
     fileName,
     loadMode,
-    loadSpeed,
-    failAt
+    loadSpeed
 ) {
 
     const overlay =
@@ -1484,23 +1440,11 @@ function openVideo(
 
 
 
-    /* =====================================
-       CLEAR OLD TIMERS
-    ===================================== */
+    /* CLEAR OLD TIMERS */
 
-    clearTimeout(
-        loadingTimer
-    );
-
-
-    clearTimeout(
-        stallTimer
-    );
-
-
-    clearTimeout(
-        errorTimer
-    );
+    clearTimeout(loadingTimer);
+    clearTimeout(stallTimer);
+    clearTimeout(errorTimer);
 
 
 
@@ -1512,12 +1456,15 @@ function openVideo(
 
 
 
-    /* =====================================
-       VIDEO SETUP
-    ===================================== */
+    /* RESET VIDEO */
 
     videoPlayer.pause();
 
+
+    /*
+       Only assign a real video source
+       if this isn't the fake corrupt file.
+    */
 
     if (
         loadMode !== "corrupt"
@@ -1526,30 +1473,21 @@ function openVideo(
         videoSource.src =
             fileName;
 
-
         videoPlayer.load();
 
     }
 
     else {
 
-        /*
-        Fake corrupt file.
+        videoSource.src = "";
 
-        No actual sp_directorscut.mp4
-        file is required.
-        */
-
-        videoSource.src =
-            "";
+        videoPlayer.load();
 
     }
 
 
 
-    /* =====================================
-       RESET UI
-    ===================================== */
+    /* RESET UI */
 
     videoContainer.style.display =
         "none";
@@ -1577,12 +1515,34 @@ function openVideo(
 
 
 
-    let value =
-        0;
+    let value = 0;
+
+    let stallUsed = false;
 
 
-    let stallUsed =
-        false;
+
+    /* =====================================
+       RANDOM CORRUPTION POINT
+
+       07 will fail somewhere between
+       38% and 84% EVERY time.
+
+       Therefore it can never reach 100%.
+    ===================================== */
+
+    let corruptAt = null;
+
+
+    if (
+        loadMode === "corrupt"
+    ) {
+
+        corruptAt =
+            Math.floor(
+                Math.random() * 47
+            ) + 38;
+
+    }
 
 
 
@@ -1593,7 +1553,6 @@ function openVideo(
     function scheduleNextStep() {
 
         loadingTimer =
-
             setTimeout(
                 loadingStep,
                 loadSpeed
@@ -1629,17 +1588,18 @@ function openVideo(
 
 
         /* =================================
-           FILE 07 — CORRUPT
+           FILE 07
 
-           LOADS TO 63%
-           THEN BUFFERING..
-           THEN ERROR WINDOW
+           ALWAYS CORRUPTS
+
+           THE FAILURE POINT CHANGES
+           EVERY TIME THE FILE IS CLICKED
         ================================= */
 
         if (
             loadMode === "corrupt"
             &&
-            value === failAt
+            value >= corruptAt
         ) {
 
 
@@ -1647,8 +1607,16 @@ function openVideo(
                 "buffering..";
 
 
-            errorTimer =
+            /*
+               Stop scheduling loading
+               immediately.
 
+               This means the corrupt file
+               cannot continue toward 100%.
+            */
+
+
+            errorTimer =
                 setTimeout(
                     function() {
 
@@ -1670,10 +1638,11 @@ function openVideo(
 
 
         /* =================================
-           FILE 08 — BUFFERING
+           FILE 08
 
-           STOPS AT 82%
+           BUFFER AT 82%
            FOR 2 SECONDS
+           THEN CONTINUE
         ================================= */
 
         if (
@@ -1685,8 +1654,7 @@ function openVideo(
         ) {
 
 
-            stallUsed =
-                true;
+            stallUsed = true;
 
 
             loadingText.textContent =
@@ -1694,7 +1662,6 @@ function openVideo(
 
 
             stallTimer =
-
                 setTimeout(
                     function() {
 
@@ -1721,10 +1688,15 @@ function openVideo(
 
         /* =================================
            FINISHED
+
+           CORRUPT FILES ARE EXCLUDED
+           AS AN EXTRA FAILSAFE
         ================================= */
 
         if (
             value >= 100
+            &&
+            loadMode !== "corrupt"
         ) {
 
 
@@ -1749,13 +1721,53 @@ function openVideo(
 
 
 
+        /* =================================
+           EXTRA CORRUPT FAILSAFE
+
+           EVEN IF SOMETHING WENT WRONG
+           WITH THE RANDOM FAIL POINT,
+           07 STILL CANNOT OPEN.
+        ================================= */
+
+        if (
+            loadMode === "corrupt"
+            &&
+            value >= 90
+        ) {
+
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            errorTimer =
+                setTimeout(
+                    function() {
+
+
+                        corruptOverlay.classList.add(
+                            "active"
+                        );
+
+
+                    },
+                    750
+                );
+
+
+            return;
+
+        }
+
+
+
         scheduleNextStep();
 
     }
 
 
 
-    /* START */
+    /* START LOADING */
 
     scheduleNextStep();
 
@@ -1768,7 +1780,6 @@ function openVideo(
 ========================================= */
 
 function showVideo() {
-
 
     const loadingScreen =
         document.getElementById(
@@ -1829,7 +1840,6 @@ function showVideo() {
 
 function closeCorruptFile() {
 
-
     corruptOverlay.classList.remove(
         "active"
     );
@@ -1847,26 +1857,15 @@ function closeCorruptFile() {
 
 function closeVideo() {
 
-
     const overlay =
         document.getElementById(
             "videoOverlay"
         );
 
 
-    clearTimeout(
-        loadingTimer
-    );
-
-
-    clearTimeout(
-        stallTimer
-    );
-
-
-    clearTimeout(
-        errorTimer
-    );
+    clearTimeout(loadingTimer);
+    clearTimeout(stallTimer);
+    clearTimeout(errorTimer);
 
 
     corruptOverlay.classList.remove(
@@ -1877,8 +1876,7 @@ function closeVideo() {
     videoPlayer.pause();
 
 
-    videoPlayer.currentTime =
-        0;
+    videoPlayer.currentTime = 0;
 
 
     overlay.classList.remove(
@@ -1897,15 +1895,12 @@ function backgroundClose(
     event
 ) {
 
-
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
-
         closeVideo();
-
 
     }
 
@@ -1936,17 +1931,13 @@ document.addEventListener(
                 )
             ) {
 
-
                 closeCorruptFile();
-
 
             }
 
             else {
 
-
                 closeVideo();
-
 
             }
 
