@@ -60,11 +60,16 @@ body {
 
 .directory-path {
     display: inline-block;
+
     color: #d00000;
+
     border: 1px solid #520000;
+
     padding: 8px 16px;
+
     font-size: 18px;
     letter-spacing: 2px;
+
     margin-bottom: 24px;
 }
 
@@ -76,7 +81,9 @@ body {
 
 .directory-list {
     width: 100%;
+
     margin-top: 18px;
+
     border-top: 1px solid #1d1d1d;
 }
 
@@ -88,12 +95,19 @@ body {
 .directory-file {
     display: flex;
     align-items: center;
+
     gap: 14px;
+
     min-height: 46px;
+
     padding: 0 8px;
+
     border-bottom: 1px solid #161616;
+
     color: #999;
+
     font-size: 13px;
+
     cursor: pointer;
 
     transition:
@@ -104,22 +118,31 @@ body {
 
 .directory-file:hover {
     color: #fff;
+
     padding-left: 14px;
+
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
+
     width: 18px;
+
     font-size: 15px;
+
     text-align: center;
+
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
+
     width: 28px;
+
     color: #d00000;
+
     margin-right: 8px;
 }
 
@@ -147,7 +170,9 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
+
     padding-left: 8px;
+
     background: none;
 }
 
@@ -159,6 +184,7 @@ body {
 .auth-overlay {
     position: fixed;
     inset: 0;
+
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -182,7 +208,9 @@ body {
 
 .auth-strip {
     height: 6px;
+
     background: #700000;
+
     border-bottom: 1px solid #1c0000;
 }
 
@@ -192,15 +220,21 @@ body {
 
 .auth-title {
     color: #cfcfcf;
+
     font-size: 13px;
+
     letter-spacing: 2px;
+
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
+
     font-size: 9px;
+
     letter-spacing: 0.7px;
+
     margin-bottom: 22px;
 }
 
@@ -216,16 +250,20 @@ body {
     padding: 0 12px;
 
     background: #000;
+
     color: #aaa;
 
     font-family: "Courier New", monospace;
+
     font-size: 14px;
+
     letter-spacing: 3px;
 
     outline: none;
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
+
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -237,18 +275,22 @@ body {
 
 .auth-bottom {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
 
     margin-top: 16px;
+
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
+
     font-size: 9px;
+
     letter-spacing: 1px;
 }
 
@@ -260,10 +302,13 @@ body {
     padding: 7px 15px;
 
     background: #0b0b0b;
+
     color: #777;
 
     font-family: "Courier New", monospace;
+
     font-size: 10px;
+
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -273,6 +318,7 @@ body {
 
 .auth-button:hover {
     color: #ddd;
+
     border-color: #540000;
 }
 
@@ -282,6 +328,7 @@ body {
 
 .auth-button:disabled {
     cursor: default;
+
     opacity: 0.3;
 }
 
@@ -292,10 +339,12 @@ body {
 
 .auth-loader {
     display: none;
+
     align-items: center;
     justify-content: center;
 
     height: 40px;
+
     margin-top: 15px;
 }
 
@@ -308,10 +357,13 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
+
     border-top-color: #8d0000;
+
     border-radius: 50%;
 
-    animation: authSpin 0.55s linear infinite;
+    animation:
+        authSpin 0.55s linear infinite;
 }
 
 @keyframes authSpin {
@@ -332,7 +384,8 @@ body {
 ========================================= */
 
 .auth-box.shake {
-    animation: authShake 0.22s linear;
+    animation:
+        authShake 0.22s linear;
 }
 
 @keyframes authShake {
@@ -361,7 +414,7 @@ body {
 
 
 /* =========================================
-   VIDEO OVERLAY
+   MEDIA OVERLAY
 ========================================= */
 
 .video-overlay {
@@ -374,6 +427,7 @@ body {
     background: rgba(0, 0, 0, 0.94);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -394,13 +448,14 @@ body {
 
 
 /* =========================================
-   VIDEO WINDOW
+   MEDIA WINDOW
 ========================================= */
 
 .video-window {
     position: relative;
 
     width: 1000px;
+
     max-width: 92vw;
 
     opacity: 0;
@@ -436,16 +491,18 @@ body {
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
+
     font-size: 22px;
 
     cursor: pointer;
 
-    z-index: 20;
+    z-index: 100;
 }
 
 .close-video:hover {
@@ -459,10 +516,13 @@ body {
 
 .loading-screen {
     width: 100%;
+
     height: 180px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
     padding: 30px;
@@ -474,12 +534,15 @@ body {
 
 .loading-text {
     color: #777;
+
     font-size: 11px;
+
     margin-bottom: 15px;
 }
 
 .loading-bar {
     width: 100%;
+
     height: 2px;
 
     background: #181818;
@@ -489,6 +552,7 @@ body {
 
 .loading-progress {
     width: 0%;
+
     height: 100%;
 
     background: #a00000;
@@ -511,9 +575,11 @@ body {
 
 .corrupt-overlay {
     position: absolute;
+
     inset: 0;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -555,6 +621,7 @@ body {
     border-bottom: 1px solid #3b0000;
 
     font-size: 10px;
+
     letter-spacing: 1.5px;
 }
 
@@ -566,6 +633,7 @@ body {
     color: #ccc;
 
     font-size: 12px;
+
     letter-spacing: 1.5px;
 
     margin-bottom: 9px;
@@ -575,6 +643,7 @@ body {
     color: #666;
 
     font-size: 10px;
+
     line-height: 1.6;
 
     margin-bottom: 20px;
@@ -582,6 +651,7 @@ body {
 
 .corrupt-actions {
     display: flex;
+
     justify-content: flex-end;
 }
 
@@ -589,9 +659,11 @@ body {
     padding: 6px 14px;
 
     background: #090909;
+
     color: #777;
 
     font-family: "Courier New", monospace;
+
     font-size: 9px;
 
     border: 1px solid #292929;
@@ -601,6 +673,7 @@ body {
 
 .corrupt-button:hover {
     color: #ddd;
+
     border-color: #560000;
 }
 
@@ -634,13 +707,259 @@ body {
 
 
 /* =========================================
-   MOBILE
+   SILVER AUDIO PLAYER
+========================================= */
+
+.audio-container {
+    display: none;
+
+    width: 100%;
+
+    padding: 24px;
+
+    background: #000;
+}
+
+
+/* OUTER SILVER BODY */
+
+.silver-player {
+    width: 100%;
+
+    padding: 13px 15px 15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #e2e2e2 0%,
+            #c8c8c8 44%,
+            #a8a8a8 100%
+        );
+
+    border-top: 1px solid #f4f4f4;
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #636363;
+    border-bottom: 1px solid #555;
+
+    box-shadow:
+        inset 0 0 0 1px #8c8c8c,
+        0 7px 22px rgba(0, 0, 0, 0.85);
+}
+
+
+/* =========================================
+   WAVEFORM
+========================================= */
+
+.waveform-frame {
+    width: 100%;
+
+    height: 86px;
+
+    margin-bottom: 12px;
+
+    padding: 7px;
+
+    background: #151515;
+
+    border-top: 1px solid #555;
+    border-left: 1px solid #555;
+
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+
+    box-shadow:
+        inset 0 0 8px rgba(0, 0, 0, 0.9);
+}
+
+#audioWaveform {
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+/* =========================================
+   PLAYER CONTROLS
+========================================= */
+
+.audio-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+}
+
+
+/* BUTTONS */
+
+.audio-button {
+    width: 42px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ededed,
+            #b8b8b8
+        );
+
+    color: #111;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 14px;
+
+    border-top: 1px solid #fff;
+    border-left: 1px solid #eee;
+
+    border-right: 1px solid #555;
+    border-bottom: 1px solid #555;
+
+    cursor: pointer;
+}
+
+.audio-button:hover {
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #c5c5c5
+        );
+}
+
+.audio-button:active {
+    border-top-color: #666;
+    border-left-color: #666;
+
+    border-right-color: #eee;
+    border-bottom-color: #eee;
+
+    background: #aaa;
+}
+
+
+/* =========================================
+   SEEK AREA
+========================================= */
+
+.seek-area {
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    min-width: 0;
+
+    padding: 0 5px;
+}
+
+#audioSeek {
+    width: 100%;
+
+    height: 4px;
+
+    accent-color: #8a0000;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   VOLUME
+========================================= */
+
+.volume-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding-left: 8px;
+
+    border-left: 1px solid #777;
+}
+
+.volume-symbol {
+    color: #111;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+}
+
+#audioVolume {
+    width: 80px;
+
+    accent-color: #222;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   MOBILE AUDIO
+========================================= */
+
+@media (max-width: 700px) {
+
+    .audio-container {
+        padding: 8px;
+    }
+
+    .silver-player {
+        padding: 10px;
+    }
+
+    .waveform-frame {
+        height: 70px;
+    }
+
+    .audio-controls {
+        gap: 5px;
+    }
+
+    .audio-button {
+        width: 34px;
+        height: 30px;
+
+        font-size: 12px;
+    }
+
+    .volume-area {
+        gap: 4px;
+
+        padding-left: 5px;
+    }
+
+    #audioVolume {
+        width: 55px;
+    }
+
+}
+
+
+/* =========================================
+   GENERAL MOBILE
 ========================================= */
 
 @media (max-width: 700px) {
 
     .page {
         width: 90%;
+
         padding-top: 28px;
     }
 
@@ -650,6 +969,7 @@ body {
 
     .directory-file {
         font-size: 11px;
+
         gap: 8px;
     }
 
@@ -659,11 +979,13 @@ body {
 
     .number {
         width: 24px;
+
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
+
         max-width: 94vw;
     }
 
@@ -697,15 +1019,19 @@ body {
 
         <div class="auth-strip"></div>
 
+
         <div class="auth-content">
+
 
             <div class="auth-title">
                 authorization required
             </div>
 
+
             <div class="auth-subtext">
                 protected directory / credentials required
             </div>
+
 
             <input
                 id="passwordInput"
@@ -717,7 +1043,9 @@ body {
                 aria-label="password"
             >
 
+
             <div class="auth-bottom">
+
 
                 <div
                     id="authStatus"
@@ -725,6 +1053,7 @@ body {
                 >
                     awaiting authorization
                 </div>
+
 
                 <button
                     id="authButton"
@@ -734,7 +1063,9 @@ body {
                     submit
                 </button>
 
+
             </div>
+
 
             <div
                 id="authLoader"
@@ -744,6 +1075,7 @@ body {
                 <div class="loader-symbol"></div>
 
             </div>
+
 
         </div>
 
@@ -759,6 +1091,7 @@ body {
 
 <div class="page">
 
+
     <a
         class="back"
         href="index.html"
@@ -769,13 +1102,16 @@ body {
 
     <div class="directory-header">
 
+
         <div class="directory-path">
             /files
         </div>
 
+
         <div class="section-title">
-            video files (.mp4)
+            files
         </div>
+
 
     </div>
 
@@ -787,7 +1123,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20)"
+            onclick="openMedia('purge-xtra2k25.mp4', 'video', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -807,7 +1143,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20)"
+            onclick="openMedia('scenebitch-lcut.mp4', 'video', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -844,7 +1180,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', 'normal', 20)"
+            onclick="openMedia('untitled_04.mp4', 'video', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -864,7 +1200,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', 'normal', 20)"
+            onclick="openMedia('sp_005.mp4', 'video', 'normal', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -903,7 +1239,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_directorscut.mp4', 'corrupt', 23)"
+            onclick="openMedia('sp_directorscut.mp4', 'video', 'corrupt', 23)"
         >
 
             <span class="file-icon">⌑</span>
@@ -920,12 +1256,12 @@ body {
 
 
         <!-- =================================
-             08 — REAL FILE / BUFFER STALL
+             08 — BUFFER AT 82%
         ================================== -->
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', 'stall', 20)"
+            onclick="openMedia('957229577.mp4', 'video', 'stall82', 20)"
         >
 
             <span class="file-icon">⌑</span>
@@ -941,9 +1277,17 @@ body {
         </div>
 
 
-        <!-- 09 -->
+        <!-- =================================
+             09 — AUDIO
 
-        <div class="directory-file empty">
+             BUFFER AT 20%
+             FOR 3 SECONDS
+        ================================== -->
+
+        <div
+            class="directory-file"
+            onclick="openMedia('kocaine_snippet_f_ckfame.wav', 'audio', 'audioBuffer', 22)"
+        >
 
             <span class="file-icon">⌑</span>
 
@@ -951,7 +1295,7 @@ body {
 
                 <span class="number">09</span>
 
-                ------
+                kocaine_snippet_f_ckfame.wav
 
             </span>
 
@@ -965,7 +1309,7 @@ body {
 
 
 <!-- =========================================
-     VIDEO OVERLAY
+     MEDIA OVERLAY
 ========================================= -->
 
 <div
@@ -974,22 +1318,28 @@ body {
     onclick="backgroundClose(event)"
 >
 
+
     <div class="video-window">
+
 
         <button
             class="close-video"
-            onclick="closeVideo()"
+            onclick="closeMedia()"
         >
             ×
         </button>
 
 
-        <!-- LOADING -->
+
+        <!-- =================================
+             LOADING
+        ================================== -->
 
         <div
             id="loadingScreen"
             class="loading-screen"
         >
+
 
             <div
                 id="loadingText"
@@ -1001,10 +1351,12 @@ body {
 
             <div class="loading-bar">
 
+
                 <div
                     id="loadingProgress"
                     class="loading-progress"
                 ></div>
+
 
             </div>
 
@@ -1016,15 +1368,20 @@ body {
                 0%
             </div>
 
+
         </div>
 
 
-        <!-- VIDEO -->
+
+        <!-- =================================
+             VIDEO
+        ================================== -->
 
         <div
             id="videoContainer"
             class="video-container"
         >
+
 
             <video
                 id="videoPlayer"
@@ -1032,41 +1389,181 @@ body {
                 preload="metadata"
             >
 
+
                 <source
                     id="videoSource"
                     src=""
                     type="video/mp4"
                 >
 
+
             </video>
+
 
         </div>
 
 
-        <!-- CORRUPT ERROR -->
+
+        <!-- =================================
+             AUDIO PLAYER
+        ================================== -->
+
+        <div
+            id="audioContainer"
+            class="audio-container"
+        >
+
+
+            <div class="silver-player">
+
+
+                <!-- WAVEFORM -->
+
+                <div class="waveform-frame">
+
+
+                    <canvas
+                        id="audioWaveform"
+                    ></canvas>
+
+
+                </div>
+
+
+
+                <!-- CONTROLS -->
+
+                <div class="audio-controls">
+
+
+                    <!-- REWIND 10 SEC -->
+
+                    <button
+                        class="audio-button"
+                        onclick="skipAudio(-10)"
+                        title="back 10 seconds"
+                    >
+                        ◀◀
+                    </button>
+
+
+                    <!-- PLAY / PAUSE -->
+
+                    <button
+                        id="audioPlayButton"
+                        class="audio-button"
+                        onclick="toggleAudio()"
+                        title="play / pause"
+                    >
+                        ▶
+                    </button>
+
+
+                    <!-- FORWARD 10 SEC -->
+
+                    <button
+                        class="audio-button"
+                        onclick="skipAudio(10)"
+                        title="forward 10 seconds"
+                    >
+                        ▶▶
+                    </button>
+
+
+
+                    <!-- SEEK -->
+
+                    <div class="seek-area">
+
+
+                        <input
+                            id="audioSeek"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step="0.01"
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- VOLUME -->
+
+                    <div class="volume-area">
+
+
+                        <span class="volume-symbol">
+                            🔊
+                        </span>
+
+
+                        <input
+                            id="audioVolume"
+                            type="range"
+                            min="0"
+                            max="1"
+                            value="0.85"
+                            step="0.01"
+                        >
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ACTUAL AUDIO ELEMENT -->
+
+            <audio
+                id="audioPlayer"
+                preload="metadata"
+            ></audio>
+
+
+        </div>
+
+
+
+        <!-- =================================
+             CORRUPT ERROR
+        ================================== -->
 
         <div
             id="corruptOverlay"
             class="corrupt-overlay"
         >
 
+
             <div class="corrupt-window">
+
 
                 <div class="corrupt-header">
                     system error
                 </div>
 
+
                 <div class="corrupt-body">
+
 
                     <div class="corrupt-title">
                         corrupt file
                     </div>
 
+
                     <div class="corrupt-message">
                         file could not be played.
                     </div>
 
+
                     <div class="corrupt-actions">
+
 
                         <button
                             class="corrupt-button"
@@ -1075,16 +1572,21 @@ body {
                             close
                         </button>
 
+
                     </div>
+
 
                 </div>
 
+
             </div>
+
 
         </div>
 
 
     </div>
+
 
 </div>
 
@@ -1100,26 +1602,45 @@ body {
 let failedAttempts = 0;
 
 const maxAttempts = 3;
-const correctPassword = "notmyblood";
+
+const correctPassword =
+    "notmyblood";
 
 
 const passwordInput =
-    document.getElementById("passwordInput");
+    document.getElementById(
+        "passwordInput"
+    );
+
 
 const authStatus =
-    document.getElementById("authStatus");
+    document.getElementById(
+        "authStatus"
+    );
+
 
 const authBox =
-    document.getElementById("authBox");
+    document.getElementById(
+        "authBox"
+    );
+
 
 const authOverlay =
-    document.getElementById("authOverlay");
+    document.getElementById(
+        "authOverlay"
+    );
+
 
 const authButton =
-    document.getElementById("authButton");
+    document.getElementById(
+        "authButton"
+    );
+
 
 const authLoader =
-    document.getElementById("authLoader");
+    document.getElementById(
+        "authLoader"
+    );
 
 
 
@@ -1131,14 +1652,18 @@ window.addEventListener(
     "load",
     function() {
 
+
         setTimeout(
             function() {
 
+
                 passwordInput.focus();
+
 
             },
             100
         );
+
 
     }
 );
@@ -1153,11 +1678,17 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === " ") {
+
+        if (
+            event.key === " "
+        ) {
+
 
             event.preventDefault();
 
+
         }
+
 
     }
 );
@@ -1172,11 +1703,13 @@ passwordInput.addEventListener(
     "input",
     function() {
 
+
         passwordInput.value =
             passwordInput.value.replace(
                 /\s/g,
                 ""
             );
+
 
     }
 );
@@ -1191,13 +1724,20 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+
+        if (
+            event.key === "Enter"
+        ) {
+
 
             event.preventDefault();
 
+
             submitPassword();
 
+
         }
+
 
     }
 );
@@ -1210,8 +1750,10 @@ passwordInput.addEventListener(
 
 function submitPassword() {
 
+
     const enteredPassword =
         passwordInput.value;
+
 
 
     /* CORRECT */
@@ -1221,26 +1763,37 @@ function submitPassword() {
         correctPassword
     ) {
 
-        passwordInput.disabled = true;
 
-        authButton.disabled = true;
+        passwordInput.disabled =
+            true;
+
+
+        authButton.disabled =
+            true;
+
 
         authStatus.classList.remove(
             "error"
         );
 
-        authStatus.textContent = "";
+
+        authStatus.textContent =
+            "";
+
 
         authLoader.classList.add(
             "visible"
         );
 
 
+
         setTimeout(
             function() {
 
+
                 authOverlay.style.display =
                     "none";
+
 
             },
             2000
@@ -1249,7 +1802,9 @@ function submitPassword() {
 
         return;
 
+
     }
+
 
 
     /* WRONG */
@@ -1266,9 +1821,12 @@ function submitPassword() {
     );
 
 
-    passwordInput.value = "";
+    passwordInput.value =
+        "";
+
 
     passwordInput.focus();
+
 
 
     authBox.classList.remove(
@@ -1284,6 +1842,7 @@ function submitPassword() {
     );
 
 
+
     /* THIRD WRONG ATTEMPT */
 
     if (
@@ -1291,34 +1850,55 @@ function submitPassword() {
         maxAttempts
     ) {
 
-        passwordInput.disabled = true;
 
-        authButton.disabled = true;
+        passwordInput.disabled =
+            true;
+
+
+        authButton.disabled =
+            true;
+
 
 
         setTimeout(
             function() {
 
+
                 window.location.href =
                     "index.html";
+
 
             },
             700
         );
 
+
     }
+
 
 }
 
 
 
 /* =========================================
-   VIDEO REFERENCES
+   MEDIA REFERENCES
 ========================================= */
 
-let loadingTimer = null;
-let stallTimer = null;
-let errorTimer = null;
+let loadingTimer =
+    null;
+
+
+let stallTimer =
+    null;
+
+
+let errorTimer =
+    null;
+
+
+let activeMediaType =
+    null;
+
 
 
 const videoPlayer =
@@ -1333,6 +1913,36 @@ const videoSource =
     );
 
 
+const audioPlayer =
+    document.getElementById(
+        "audioPlayer"
+    );
+
+
+const audioContainer =
+    document.getElementById(
+        "audioContainer"
+    );
+
+
+const audioPlayButton =
+    document.getElementById(
+        "audioPlayButton"
+    );
+
+
+const audioSeek =
+    document.getElementById(
+        "audioSeek"
+    );
+
+
+const audioVolume =
+    document.getElementById(
+        "audioVolume"
+    );
+
+
 const corruptOverlay =
     document.getElementById(
         "corruptOverlay"
@@ -1342,15 +1952,6 @@ const corruptOverlay =
 
 /* =========================================
    LOADING TEXT
-
-   0 - 24%
-   file found..
-
-   25 - 84%
-   loading file..
-
-   85 - 100%
-   opening file..
 ========================================= */
 
 function updateLoadingText(
@@ -1358,50 +1959,56 @@ function updateLoadingText(
     loadingText
 ) {
 
-    if (value < 25) {
+
+    if (
+        value < 25
+    ) {
+
 
         loadingText.textContent =
             "file found..";
 
+
     }
 
-    else if (value < 85) {
+
+    else if (
+        value < 85
+    ) {
+
 
         loadingText.textContent =
             "loading file..";
 
+
     }
 
+
     else {
+
 
         loadingText.textContent =
             "opening file..";
 
+
     }
+
 
 }
 
 
 
 /* =========================================
-   OPEN VIDEO
-
-   normal:
-   loads normally
-
-   stall:
-   file 08 pauses at 82%
-
-   corrupt:
-   file 07 ALWAYS fails,
-   but at a random percentage
+   OPEN MEDIA
 ========================================= */
 
-function openVideo(
+function openMedia(
     fileName,
+    mediaType,
     loadMode,
     loadSpeed
 ) {
+
 
     const overlay =
         document.getElementById(
@@ -1440,15 +2047,51 @@ function openVideo(
 
 
 
-    /* CLEAR OLD TIMERS */
+    /* =====================================
+       CLEAR OLD TIMERS
+    ===================================== */
 
-    clearTimeout(loadingTimer);
-    clearTimeout(stallTimer);
-    clearTimeout(errorTimer);
+    clearTimeout(
+        loadingTimer
+    );
+
+
+    clearTimeout(
+        stallTimer
+    );
+
+
+    clearTimeout(
+        errorTimer
+    );
 
 
 
-    /* HIDE OLD ERROR */
+    /* =====================================
+       RESET OLD MEDIA
+    ===================================== */
+
+    videoPlayer.pause();
+
+
+    audioPlayer.pause();
+
+
+    audioPlayButton.textContent =
+        "▶";
+
+
+    stopWaveform();
+
+
+
+    videoContainer.style.display =
+        "none";
+
+
+    audioContainer.style.display =
+        "none";
+
 
     corruptOverlay.classList.remove(
         "active"
@@ -1456,42 +2099,77 @@ function openVideo(
 
 
 
-    /* RESET VIDEO */
+    /* =====================================
+       ACTIVE TYPE
+    ===================================== */
 
-    videoPlayer.pause();
+    activeMediaType =
+        mediaType;
 
 
-    /*
-       Only assign a real video source
-       if this isn't the fake corrupt file.
-    */
+
+    /* =====================================
+       SOURCE
+    ===================================== */
 
     if (
-        loadMode !== "corrupt"
+        loadMode === "corrupt"
     ) {
+
+
+        videoSource.src =
+            "";
+
+
+    }
+
+
+    else if (
+        mediaType === "video"
+    ) {
+
 
         videoSource.src =
             fileName;
 
-        videoPlayer.load();
-
-    }
-
-    else {
-
-        videoSource.src = "";
 
         videoPlayer.load();
+
 
     }
 
 
+    else if (
+        mediaType === "audio"
+    ) {
 
-    /* RESET UI */
 
-    videoContainer.style.display =
-        "none";
+        audioPlayer.src =
+            fileName;
 
+
+        audioPlayer.load();
+
+
+        audioSeek.value =
+            0;
+
+
+        audioVolume.value =
+            0.85;
+
+
+        audioPlayer.volume =
+            0.85;
+
+
+    }
+
+
+
+    /* =====================================
+       RESET LOADING UI
+    ===================================== */
 
     loadingScreen.style.display =
         "flex";
@@ -1515,32 +2193,38 @@ function openVideo(
 
 
 
-    let value = 0;
+    let value =
+        0;
 
-    let stallUsed = false;
+
+    let stallUsed =
+        false;
 
 
 
     /* =====================================
-       RANDOM CORRUPTION POINT
+       RANDOM CORRUPTION POINT FOR 07
 
-       07 will fail somewhere between
-       38% and 84% EVERY time.
-
-       Therefore it can never reach 100%.
+       38% - 84%
     ===================================== */
 
-    let corruptAt = null;
+    let corruptAt =
+        null;
 
 
     if (
         loadMode === "corrupt"
     ) {
 
+
         corruptAt =
+
             Math.floor(
                 Math.random() * 47
-            ) + 38;
+            )
+            +
+            38;
+
 
     }
 
@@ -1552,11 +2236,14 @@ function openVideo(
 
     function scheduleNextStep() {
 
+
         loadingTimer =
+
             setTimeout(
                 loadingStep,
                 loadSpeed
             );
+
 
     }
 
@@ -1588,12 +2275,7 @@ function openVideo(
 
 
         /* =================================
-           FILE 07
-
-           ALWAYS CORRUPTS
-
-           THE FAILURE POINT CHANGES
-           EVERY TIME THE FILE IS CLICKED
+           FILE 07 — ALWAYS CORRUPT
         ================================= */
 
         if (
@@ -1607,16 +2289,8 @@ function openVideo(
                 "buffering..";
 
 
-            /*
-               Stop scheduling loading
-               immediately.
-
-               This means the corrupt file
-               cannot continue toward 100%.
-            */
-
-
             errorTimer =
+
                 setTimeout(
                     function() {
 
@@ -1633,20 +2307,18 @@ function openVideo(
 
             return;
 
+
         }
 
 
 
         /* =================================
-           FILE 08
-
-           BUFFER AT 82%
+           FILE 08 — BUFFER AT 82%
            FOR 2 SECONDS
-           THEN CONTINUE
         ================================= */
 
         if (
-            loadMode === "stall"
+            loadMode === "stall82"
             &&
             value === 82
             &&
@@ -1654,7 +2326,8 @@ function openVideo(
         ) {
 
 
-            stallUsed = true;
+            stallUsed =
+                true;
 
 
             loadingText.textContent =
@@ -1662,6 +2335,7 @@ function openVideo(
 
 
             stallTimer =
+
                 setTimeout(
                     function() {
 
@@ -1682,15 +2356,64 @@ function openVideo(
 
             return;
 
+
+        }
+
+
+
+        /* =================================
+           FILE 09 AUDIO
+
+           BUFFER AT 20%
+           FOR 3 SECONDS
+        ================================= */
+
+        if (
+            loadMode === "audioBuffer"
+            &&
+            value === 20
+            &&
+            stallUsed === false
+        ) {
+
+
+            stallUsed =
+                true;
+
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            stallTimer =
+
+                setTimeout(
+                    function() {
+
+
+                        updateLoadingText(
+                            value,
+                            loadingText
+                        );
+
+
+                        scheduleNextStep();
+
+
+                    },
+                    3000
+                );
+
+
+            return;
+
+
         }
 
 
 
         /* =================================
            FINISHED
-
-           CORRUPT FILES ARE EXCLUDED
-           AS AN EXTRA FAILSAFE
         ================================= */
 
         if (
@@ -1712,50 +2435,29 @@ function openVideo(
                 "opening file..";
 
 
-            showVideo();
+
+            if (
+                mediaType === "video"
+            ) {
+
+
+                showVideo();
+
+
+            }
+
+
+            else {
+
+
+                showAudio();
+
+
+            }
 
 
             return;
 
-        }
-
-
-
-        /* =================================
-           EXTRA CORRUPT FAILSAFE
-
-           EVEN IF SOMETHING WENT WRONG
-           WITH THE RANDOM FAIL POINT,
-           07 STILL CANNOT OPEN.
-        ================================= */
-
-        if (
-            loadMode === "corrupt"
-            &&
-            value >= 90
-        ) {
-
-
-            loadingText.textContent =
-                "buffering..";
-
-
-            errorTimer =
-                setTimeout(
-                    function() {
-
-
-                        corruptOverlay.classList.add(
-                            "active"
-                        );
-
-
-                    },
-                    750
-                );
-
-
-            return;
 
         }
 
@@ -1763,13 +2465,13 @@ function openVideo(
 
         scheduleNextStep();
 
+
     }
 
 
 
-    /* START LOADING */
-
     scheduleNextStep();
+
 
 }
 
@@ -1781,6 +2483,7 @@ function openVideo(
 
 function showVideo() {
 
+
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
@@ -1791,6 +2494,7 @@ function showVideo() {
         document.getElementById(
             "videoContainer"
         );
+
 
 
     setTimeout(
@@ -1805,8 +2509,10 @@ function showVideo() {
                 "block";
 
 
+
             const playAttempt =
                 videoPlayer.play();
+
 
 
             if (
@@ -1827,10 +2533,801 @@ function showVideo() {
 
 
         },
-        100
+        120
     );
 
+
 }
+
+
+
+/* =========================================
+   SHOW AUDIO
+========================================= */
+
+function showAudio() {
+
+
+    const loadingScreen =
+        document.getElementById(
+            "loadingScreen"
+        );
+
+
+
+    setTimeout(
+        function() {
+
+
+            loadingScreen.style.display =
+                "none";
+
+
+            audioContainer.style.display =
+                "block";
+
+
+            resizeWaveform();
+
+
+            drawIdleWaveform();
+
+
+        },
+        120
+    );
+
+
+}
+
+
+
+/* =========================================
+   AUDIO PLAY / PAUSE
+========================================= */
+
+function toggleAudio() {
+
+
+    if (
+        audioPlayer.paused
+    ) {
+
+
+        initAudioVisualizer();
+
+
+        if (
+            audioContext
+            &&
+            audioContext.state ===
+            "suspended"
+        ) {
+
+
+            audioContext.resume();
+
+
+        }
+
+
+
+        audioPlayer.play();
+
+
+    }
+
+
+    else {
+
+
+        audioPlayer.pause();
+
+
+    }
+
+
+}
+
+
+
+/* =========================================
+   AUDIO SKIP
+========================================= */
+
+function skipAudio(
+    seconds
+) {
+
+
+    if (
+        !isFinite(
+            audioPlayer.duration
+        )
+    ) {
+
+
+        return;
+
+
+    }
+
+
+    audioPlayer.currentTime =
+
+        Math.max(
+            0,
+
+            Math.min(
+                audioPlayer.duration,
+
+                audioPlayer.currentTime
+                +
+                seconds
+            )
+        );
+
+
+}
+
+
+
+/* =========================================
+   PLAY BUTTON STATE
+========================================= */
+
+audioPlayer.addEventListener(
+    "play",
+    function() {
+
+
+        audioPlayButton.textContent =
+            "❚❚";
+
+
+        startWaveform();
+
+
+    }
+);
+
+
+audioPlayer.addEventListener(
+    "pause",
+    function() {
+
+
+        audioPlayButton.textContent =
+            "▶";
+
+
+    }
+);
+
+
+audioPlayer.addEventListener(
+    "ended",
+    function() {
+
+
+        audioPlayButton.textContent =
+            "▶";
+
+
+        audioSeek.value =
+            0;
+
+
+    }
+);
+
+
+
+/* =========================================
+   AUDIO SEEK
+========================================= */
+
+audioPlayer.addEventListener(
+    "timeupdate",
+    function() {
+
+
+        if (
+            isFinite(
+                audioPlayer.duration
+            )
+            &&
+            audioPlayer.duration > 0
+        ) {
+
+
+            audioSeek.value =
+
+                (
+                    audioPlayer.currentTime
+                    /
+                    audioPlayer.duration
+                )
+                *
+                100;
+
+
+        }
+
+
+    }
+);
+
+
+
+audioSeek.addEventListener(
+    "input",
+    function() {
+
+
+        if (
+            isFinite(
+                audioPlayer.duration
+            )
+        ) {
+
+
+            audioPlayer.currentTime =
+
+                (
+                    Number(
+                        audioSeek.value
+                    )
+                    /
+                    100
+                )
+                *
+                audioPlayer.duration;
+
+
+        }
+
+
+    }
+);
+
+
+
+/* =========================================
+   VOLUME
+========================================= */
+
+audioVolume.addEventListener(
+    "input",
+    function() {
+
+
+        audioPlayer.volume =
+
+            Number(
+                audioVolume.value
+            );
+
+
+    }
+);
+
+
+
+/* =========================================
+   WEB AUDIO VISUALIZER
+========================================= */
+
+let audioContext =
+    null;
+
+
+let analyser =
+    null;
+
+
+let mediaSource =
+    null;
+
+
+let waveformAnimation =
+    null;
+
+
+
+const waveformCanvas =
+    document.getElementById(
+        "audioWaveform"
+    );
+
+
+const waveformContext =
+    waveformCanvas.getContext(
+        "2d"
+    );
+
+
+
+/* =========================================
+   INIT VISUALIZER
+========================================= */
+
+function initAudioVisualizer() {
+
+
+    if (
+        audioContext
+    ) {
+
+
+        return;
+
+
+    }
+
+
+    const AudioContextClass =
+
+        window.AudioContext
+        ||
+        window.webkitAudioContext;
+
+
+
+    if (
+        !AudioContextClass
+    ) {
+
+
+        return;
+
+
+    }
+
+
+
+    audioContext =
+        new AudioContextClass();
+
+
+
+    analyser =
+        audioContext.createAnalyser();
+
+
+
+    analyser.fftSize =
+        256;
+
+
+    analyser.smoothingTimeConstant =
+        0.78;
+
+
+
+    mediaSource =
+
+        audioContext.createMediaElementSource(
+            audioPlayer
+        );
+
+
+
+    mediaSource.connect(
+        analyser
+    );
+
+
+    analyser.connect(
+        audioContext.destination
+    );
+
+
+}
+
+
+
+/* =========================================
+   RESIZE WAVEFORM
+========================================= */
+
+function resizeWaveform() {
+
+
+    const rect =
+        waveformCanvas.getBoundingClientRect();
+
+
+
+    const scale =
+        window.devicePixelRatio
+        ||
+        1;
+
+
+
+    waveformCanvas.width =
+
+        Math.max(
+            1,
+            Math.floor(
+                rect.width * scale
+            )
+        );
+
+
+    waveformCanvas.height =
+
+        Math.max(
+            1,
+            Math.floor(
+                rect.height * scale
+            )
+        );
+
+
+    waveformContext.setTransform(
+        scale,
+        0,
+        0,
+        scale,
+        0,
+        0
+    );
+
+
+}
+
+
+
+/* =========================================
+   IDLE WAVEFORM
+========================================= */
+
+function drawIdleWaveform() {
+
+
+    resizeWaveform();
+
+
+
+    const width =
+        waveformCanvas.clientWidth;
+
+
+    const height =
+        waveformCanvas.clientHeight;
+
+
+
+    waveformContext.clearRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+
+    waveformContext.strokeStyle =
+        "#555";
+
+
+    waveformContext.lineWidth =
+        1;
+
+
+
+    waveformContext.beginPath();
+
+
+
+    const middle =
+        height / 2;
+
+
+
+    waveformContext.moveTo(
+        0,
+        middle
+    );
+
+
+    waveformContext.lineTo(
+        width,
+        middle
+    );
+
+
+    waveformContext.stroke();
+
+
+}
+
+
+
+/* =========================================
+   LIVE WAVEFORM
+========================================= */
+
+function startWaveform() {
+
+
+    cancelAnimationFrame(
+        waveformAnimation
+    );
+
+
+
+    function draw() {
+
+
+        waveformAnimation =
+
+            requestAnimationFrame(
+                draw
+            );
+
+
+
+        if (
+            !analyser
+        ) {
+
+
+            drawIdleWaveform();
+
+
+            return;
+
+
+        }
+
+
+
+        const bufferLength =
+            analyser.fftSize;
+
+
+
+        const data =
+            new Uint8Array(
+                bufferLength
+            );
+
+
+
+        analyser.getByteTimeDomainData(
+            data
+        );
+
+
+
+        const width =
+            waveformCanvas.clientWidth;
+
+
+        const height =
+            waveformCanvas.clientHeight;
+
+
+
+        waveformContext.clearRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+
+
+        /* DARK BACKGROUND */
+
+        waveformContext.fillStyle =
+            "#151515";
+
+
+        waveformContext.fillRect(
+            0,
+            0,
+            width,
+            height
+        );
+
+
+
+        /* MIDLINE */
+
+        waveformContext.strokeStyle =
+            "#303030";
+
+
+        waveformContext.lineWidth =
+            1;
+
+
+        waveformContext.beginPath();
+
+
+        waveformContext.moveTo(
+            0,
+            height / 2
+        );
+
+
+        waveformContext.lineTo(
+            width,
+            height / 2
+        );
+
+
+        waveformContext.stroke();
+
+
+
+        /* ACTUAL AUDIO WAVE */
+
+        waveformContext.strokeStyle =
+            "#9b0000";
+
+
+        waveformContext.lineWidth =
+            1.4;
+
+
+        waveformContext.beginPath();
+
+
+
+        const sliceWidth =
+            width / bufferLength;
+
+
+
+        let x =
+            0;
+
+
+
+        for (
+            let i = 0;
+            i < bufferLength;
+            i++
+        ) {
+
+
+            const v =
+                data[i]
+                /
+                128;
+
+
+            const y =
+                v
+                *
+                height
+                /
+                2;
+
+
+
+            if (
+                i === 0
+            ) {
+
+
+                waveformContext.moveTo(
+                    x,
+                    y
+                );
+
+
+            }
+
+
+            else {
+
+
+                waveformContext.lineTo(
+                    x,
+                    y
+                );
+
+
+            }
+
+
+
+            x +=
+                sliceWidth;
+
+
+        }
+
+
+
+        waveformContext.lineTo(
+            width,
+            height / 2
+        );
+
+
+        waveformContext.stroke();
+
+
+    }
+
+
+
+    draw();
+
+
+}
+
+
+
+/* =========================================
+   STOP WAVEFORM
+========================================= */
+
+function stopWaveform() {
+
+
+    if (
+        waveformAnimation
+    ) {
+
+
+        cancelAnimationFrame(
+            waveformAnimation
+        );
+
+
+        waveformAnimation =
+            null;
+
+
+    }
+
+
+}
+
+
+
+/* =========================================
+   RESIZE
+========================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+
+        if (
+            audioContainer.style.display ===
+            "block"
+        ) {
+
+
+            resizeWaveform();
+
+
+            if (
+                audioPlayer.paused
+            ) {
+
+
+                drawIdleWaveform();
+
+
+            }
+
+
+        }
+
+
+    }
+);
 
 
 
@@ -1840,22 +3337,25 @@ function showVideo() {
 
 function closeCorruptFile() {
 
+
     corruptOverlay.classList.remove(
         "active"
     );
 
 
-    closeVideo();
+    closeMedia();
+
 
 }
 
 
 
 /* =========================================
-   CLOSE VIDEO
+   CLOSE MEDIA
 ========================================= */
 
-function closeVideo() {
+function closeMedia() {
+
 
     const overlay =
         document.getElementById(
@@ -1863,9 +3363,19 @@ function closeVideo() {
         );
 
 
-    clearTimeout(loadingTimer);
-    clearTimeout(stallTimer);
-    clearTimeout(errorTimer);
+    clearTimeout(
+        loadingTimer
+    );
+
+
+    clearTimeout(
+        stallTimer
+    );
+
+
+    clearTimeout(
+        errorTimer
+    );
 
 
     corruptOverlay.classList.remove(
@@ -1876,33 +3386,63 @@ function closeVideo() {
     videoPlayer.pause();
 
 
-    videoPlayer.currentTime = 0;
+    audioPlayer.pause();
+
+
+    audioPlayButton.textContent =
+        "▶";
+
+
+    stopWaveform();
+
+
+    videoPlayer.currentTime =
+        0;
+
+
+    audioPlayer.currentTime =
+        0;
+
+
+    document.getElementById(
+        "videoContainer"
+    ).style.display =
+        "none";
+
+
+    audioContainer.style.display =
+        "none";
 
 
     overlay.classList.remove(
         "active"
     );
 
+
 }
 
 
 
 /* =========================================
-   CLICK OUTSIDE TO CLOSE
+   CLICK OUTSIDE
 ========================================= */
 
 function backgroundClose(
     event
 ) {
 
+
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
-        closeVideo();
+
+        closeMedia();
+
 
     }
+
 
 }
 
@@ -1931,13 +3471,18 @@ document.addEventListener(
                 )
             ) {
 
+
                 closeCorruptFile();
+
 
             }
 
+
             else {
 
-                closeVideo();
+
+                closeMedia();
+
 
             }
 
