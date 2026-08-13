@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>files</title>
 
 <style>
+
+/* =========================================================
+   BASE
+========================================================= */
 
 * {
     box-sizing: border-box;
@@ -28,9 +31,9 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    PAGE
-========================================= */
+========================================================= */
 
 .page {
     width: min(900px, 92%);
@@ -49,9 +52,9 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    DIRECTORY
-========================================= */
+========================================================= */
 
 .directory-header {
     margin-top: 48px;
@@ -60,11 +63,16 @@ body {
 
 .directory-path {
     display: inline-block;
+
     color: #d00000;
+
     border: 1px solid #520000;
+
     padding: 8px 16px;
+
     font-size: 18px;
     letter-spacing: 2px;
+
     margin-bottom: 24px;
 }
 
@@ -76,24 +84,33 @@ body {
 
 .directory-list {
     width: 100%;
+
     margin-top: 18px;
+
     border-top: 1px solid #1d1d1d;
 }
 
 
-/* =========================================
-   FILE ROW
-========================================= */
+/* =========================================================
+   FILE ROWS
+========================================================= */
 
 .directory-file {
     display: flex;
     align-items: center;
+
     gap: 14px;
+
     min-height: 46px;
+
     padding: 0 8px;
+
     border-bottom: 1px solid #161616;
+
     color: #999;
+
     font-size: 13px;
+
     cursor: pointer;
 
     transition:
@@ -104,22 +121,31 @@ body {
 
 .directory-file:hover {
     color: #fff;
+
     padding-left: 14px;
+
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
+
     width: 18px;
+
     font-size: 15px;
+
     text-align: center;
+
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
+
     width: 28px;
+
     color: #d00000;
+
     margin-right: 8px;
 }
 
@@ -128,9 +154,9 @@ body {
 }
 
 
-/* =========================================
-   EMPTY FILES
-========================================= */
+/* =========================================================
+   EMPTY ROWS
+========================================================= */
 
 .directory-file.empty {
     color: #333;
@@ -147,18 +173,22 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
+
     padding-left: 8px;
+
     background: none;
 }
 
 
-/* =========================================
+/* =========================================================
    AUTHORIZATION
-========================================= */
+========================================================= */
 
 .auth-overlay {
     position: fixed;
+
     inset: 0;
+
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -170,7 +200,9 @@ body {
 
 .auth-box {
     width: min(430px, 88vw);
+
     background: #050505;
+
     border: 1px solid #3a0000;
 
     box-shadow:
@@ -180,7 +212,9 @@ body {
 
 .auth-strip {
     height: 6px;
+
     background: #700000;
+
     border-bottom: 1px solid #1c0000;
 }
 
@@ -190,22 +224,28 @@ body {
 
 .auth-title {
     color: #cfcfcf;
+
     font-size: 13px;
+
     letter-spacing: 2px;
+
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
+
     font-size: 9px;
+
     letter-spacing: 0.7px;
+
     margin-bottom: 22px;
 }
 
 
-/* =========================================
+/* =========================================================
    PASSWORD
-========================================= */
+========================================================= */
 
 .auth-input {
     width: 100%;
@@ -214,16 +254,20 @@ body {
     padding: 0 12px;
 
     background: #000;
+
     color: #aaa;
 
     font-family: "Courier New", monospace;
+
     font-size: 14px;
+
     letter-spacing: 3px;
 
     outline: none;
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
+
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -235,18 +279,22 @@ body {
 
 .auth-bottom {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
 
     margin-top: 16px;
+
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
+
     font-size: 9px;
+
     letter-spacing: 1px;
 }
 
@@ -258,10 +306,13 @@ body {
     padding: 7px 15px;
 
     background: #0b0b0b;
+
     color: #777;
 
     font-family: "Courier New", monospace;
+
     font-size: 10px;
+
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -271,6 +322,7 @@ body {
 
 .auth-button:hover {
     color: #ddd;
+
     border-color: #540000;
 }
 
@@ -280,20 +332,23 @@ body {
 
 .auth-button:disabled {
     cursor: default;
+
     opacity: 0.3;
 }
 
 
-/* =========================================
+/* =========================================================
    AUTH LOADER
-========================================= */
+========================================================= */
 
 .auth-loader {
     display: none;
+
     align-items: center;
     justify-content: center;
 
     height: 40px;
+
     margin-top: 15px;
 }
 
@@ -306,7 +361,9 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
+
     border-top-color: #8d0000;
+
     border-radius: 50%;
 
     animation: authSpin 0.55s linear infinite;
@@ -325,9 +382,9 @@ body {
 }
 
 
-/* =========================================
-   AUTH ERROR SHAKE
-========================================= */
+/* =========================================================
+   AUTH SHAKE
+========================================================= */
 
 .auth-box.shake {
     animation: authShake 0.22s linear;
@@ -358,12 +415,13 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    MEDIA OVERLAY
-========================================= */
+========================================================= */
 
 .video-overlay {
     position: fixed;
+
     inset: 0;
 
     width: 100%;
@@ -378,6 +436,7 @@ body {
     z-index: 9999;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition:
@@ -387,18 +446,20 @@ body {
 
 .video-overlay.active {
     opacity: 1;
+
     visibility: visible;
 }
 
 
-/* =========================================
+/* =========================================================
    MEDIA WINDOW
-========================================= */
+========================================================= */
 
 .video-window {
     position: relative;
 
     width: 1000px;
+
     max-width: 92vw;
 
     opacity: 0;
@@ -421,9 +482,9 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    CLOSE
-========================================= */
+========================================================= */
 
 .close-video {
     position: absolute;
@@ -434,11 +495,13 @@ body {
     padding: 0;
 
     border: none;
+
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
+
     font-size: 22px;
 
     cursor: pointer;
@@ -451,12 +514,13 @@ body {
 }
 
 
-/* =========================================
-   FILE LOADING SCREEN
-========================================= */
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
 
 .loading-screen {
     width: 100%;
+
     height: 180px;
 
     display: flex;
@@ -472,12 +536,15 @@ body {
 
 .loading-text {
     color: #777;
+
     font-size: 11px;
+
     margin-bottom: 15px;
 }
 
 .loading-bar {
     width: 100%;
+
     height: 2px;
 
     background: #181818;
@@ -487,6 +554,7 @@ body {
 
 .loading-progress {
     width: 0%;
+
     height: 100%;
 
     background: #a00000;
@@ -503,12 +571,13 @@ body {
 }
 
 
-/* =========================================
-   CORRUPT FILE WINDOW
-========================================= */
+/* =========================================================
+   CORRUPT WINDOW
+========================================================= */
 
 .corrupt-overlay {
     position: absolute;
+
     inset: 0;
 
     display: flex;
@@ -520,6 +589,7 @@ body {
     z-index: 50;
 
     opacity: 0;
+
     visibility: hidden;
 
     transition:
@@ -529,6 +599,7 @@ body {
 
 .corrupt-overlay.active {
     opacity: 1;
+
     visibility: visible;
 }
 
@@ -553,6 +624,7 @@ body {
     border-bottom: 1px solid #3b0000;
 
     font-size: 10px;
+
     letter-spacing: 1.5px;
 }
 
@@ -562,20 +634,27 @@ body {
 
 .corrupt-title {
     color: #ccc;
+
     font-size: 12px;
+
     letter-spacing: 1.5px;
+
     margin-bottom: 9px;
 }
 
 .corrupt-message {
     color: #666;
+
     font-size: 10px;
+
     line-height: 1.6;
+
     margin-bottom: 20px;
 }
 
 .corrupt-actions {
     display: flex;
+
     justify-content: flex-end;
 }
 
@@ -583,9 +662,11 @@ body {
     padding: 6px 14px;
 
     background: #090909;
+
     color: #777;
 
     font-family: "Courier New", monospace;
+
     font-size: 9px;
 
     border: 1px solid #292929;
@@ -595,13 +676,14 @@ body {
 
 .corrupt-button:hover {
     color: #ddd;
+
     border-color: #560000;
 }
 
 
-/* =========================================
+/* =========================================================
    VIDEO
-========================================= */
+========================================================= */
 
 .video-container {
     display: none;
@@ -627,67 +709,62 @@ body {
 }
 
 
-/* =========================================
+/* =========================================================
    AUDIO CONTAINER
-========================================= */
+========================================================= */
 
 .audio-container {
     display: none;
 
     width: 100%;
 
-    padding: 18px;
+    padding: 15px 0;
 
-    background: #000;
-
-    text-align: center;
+    background: transparent;
 }
 
 
-/* =========================================
-   HALF-SIZE RECOVERED HARDWARE PLAYER
-========================================= */
+/* =========================================================
+   #5 MINIMAL FILE STRIP
+========================================================= */
 
-.hardware-player {
+.file-audio-player {
     position: relative;
 
-    display: inline-block;
+    width: 76%;
 
-    width: 50%;
+    min-height: 132px;
 
-    min-width: 420px;
+    margin: 0 auto;
 
-    padding: 12px;
+    padding: 20px 22px 15px;
 
     overflow: hidden;
-
-    text-align: left;
 
     background:
         linear-gradient(
             180deg,
-            #0a0a0a 0%,
-            #050505 48%,
+            #090909 0%,
+            #050505 52%,
             #020202 100%
         );
 
-    border-top: 1px solid #262626;
-    border-left: 1px solid #202020;
-    border-right: 1px solid #070707;
-    border-bottom: 1px solid #070707;
+    border-top: 1px solid #2b2b2b;
+    border-left: 1px solid #252525;
+
+    border-right: 1px solid #101010;
+    border-bottom: 1px solid #101010;
 
     box-shadow:
-        inset 0 0 0 1px #0f0f0f,
-        inset 0 -5px 13px rgba(0, 0, 0, 0.95),
-        0 8px 22px rgba(0, 0, 0, 0.95);
+        inset 0 0 0 1px rgba(255,255,255,0.015),
+        inset 0 -12px 25px rgba(0,0,0,0.75),
+        0 15px 45px rgba(0,0,0,0.85);
 }
 
 
-/* =========================================
-   BROKEN TOP EDGE
-========================================= */
+/* subtle damaged outer line */
 
-.hardware-player::before {
+.file-audio-player::before {
     content: "";
 
     position: absolute;
@@ -698,314 +775,293 @@ body {
     width: 96%;
     height: 1px;
 
-    background:
-        linear-gradient(
-            90deg,
-
-            transparent 0%,
-            #242424 4%,
-
-            #242424 11%,
-            transparent 11.5%,
-
-            transparent 17%,
-            #353535 17.5%,
-
-            #353535 29%,
-            transparent 29.4%,
-
-            transparent 46%,
-            #252525 46.5%,
-
-            #252525 62%,
-            transparent 62.3%,
-
-            transparent 79%,
-            #333 79.5%,
-
-            #333 92%,
-            transparent 92.3%
-        );
-
-    opacity: 0.6;
-
-    pointer-events: none;
-}
-
-
-/* =========================================
-   BROKEN BOTTOM EDGE
-========================================= */
-
-.hardware-player::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: 2px;
-    left: 4%;
-
-    width: 92%;
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-
-            #181818 0%,
-            #181818 13%,
-
-            transparent 13.3%,
-            transparent 21%,
-
-            #292929 21.3%,
-            #292929 44%,
-
-            transparent 44.3%,
-            transparent 57%,
-
-            #191919 57.3%,
-            #191919 72%,
-
-            transparent 72.3%,
-            transparent 87%,
-
-            #252525 87.3%,
-            #252525 100%
-        );
-
     opacity: 0.55;
 
-    pointer-events: none;
+    background:
+        linear-gradient(
+            90deg,
+
+            #343434 0%,
+            #343434 12%,
+
+            transparent 12.2%,
+            transparent 18%,
+
+            #202020 18.2%,
+            #202020 39%,
+
+            transparent 39.2%,
+            transparent 51%,
+
+            #353535 51.2%,
+            #353535 71%,
+
+            transparent 71.2%,
+            transparent 83%,
+
+            #242424 83.2%,
+            #242424 100%
+        );
 }
 
 
-/* =========================================
-   SCRATCHES
-========================================= */
+/* =========================================================
+   FILE PLAYER DAMAGE
+========================================================= */
 
-.hardware-scratches {
+.file-player-damage {
     position: absolute;
 
     inset: 0;
 
     pointer-events: none;
 
-    opacity: 0.22;
+    opacity: 0.25;
 
     background:
+
         linear-gradient(
-            174deg,
+            176deg,
             transparent 0%,
-            transparent 22%,
-            rgba(255,255,255,0.08) 22.15%,
-            transparent 22.3%
+            transparent 23%,
+            rgba(255,255,255,0.05) 23.1%,
+            transparent 23.25%
         ),
 
         linear-gradient(
-            6deg,
+            3deg,
             transparent 0%,
-            transparent 67%,
-            rgba(255,255,255,0.05) 67.1%,
-            transparent 67.25%
+            transparent 68%,
+            rgba(255,255,255,0.035) 68.1%,
+            transparent 68.2%
         ),
 
         linear-gradient(
             179deg,
             transparent 0%,
-            transparent 43%,
-            rgba(255,255,255,0.035) 43.1%,
-            transparent 43.22%
+            transparent 83%,
+            rgba(255,255,255,0.025) 83.1%,
+            transparent 83.2%
         );
 }
 
 
-/* =========================================
-   HARDWARE LAYOUT
-========================================= */
+/* =========================================================
+   PLAYER TOP ROW
+========================================================= */
 
-.hardware-main {
+.file-player-top {
     position: relative;
 
-    display: grid;
-
-    grid-template-columns:
-        auto
-        minmax(0, 1fr);
-
-    gap: 9px;
-
-    align-items: stretch;
-
     z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
 
-/* =========================================
-   BUTTON BAY
-========================================= */
+/* =========================================================
+   FILE INFORMATION
+========================================================= */
 
-.hardware-buttons {
+.file-player-info {
     display: flex;
+
     align-items: center;
 
-    gap: 4px;
+    min-width: 0;
 
-    padding: 5px;
-
-    background: #030303;
-
-    border-top: 1px solid #191919;
-    border-left: 1px solid #171717;
-    border-right: 1px solid #020202;
-    border-bottom: 1px solid #020202;
+    gap: 14px;
 }
 
 
-/* =========================================
-   HARDWARE BUTTONS
-========================================= */
+/* =========================================================
+   FILE ICON
+========================================================= */
 
-.hardware-button {
-    width: 31px;
-    height: 31px;
+.audio-file-icon {
+    position: relative;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 42px;
+    height: 52px;
 
-    padding: 0;
+    flex: 0 0 42px;
+
+    border: 1px solid #676767;
 
     background:
         linear-gradient(
-            180deg,
-            #121212,
-            #070707
+            135deg,
+            #101010,
+            #030303
         );
 
-    color: #6c6c6c;
+    box-shadow:
+        inset 0 0 8px rgba(0,0,0,0.9);
+}
+
+
+/* folded file corner */
+
+.audio-file-icon::before {
+    content: "";
+
+    position: absolute;
+
+    top: -1px;
+    right: -1px;
+
+    width: 13px;
+    height: 13px;
+
+    background: #000;
+
+    border-left: 1px solid #676767;
+    border-bottom: 1px solid #676767;
+}
+
+
+/* tiny audio mark */
+
+.audio-file-icon::after {
+    content: "♪";
+
+    position: absolute;
+
+    left: 50%;
+    top: 57%;
+
+    transform:
+        translate(-50%, -50%);
+
+    color: #777;
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   FILE TEXT
+========================================================= */
+
+.file-player-text {
+    min-width: 0;
+}
+
+.file-player-name {
+    max-width: 430px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    color: #d2d2d2;
+
+    font-size: 13px;
+
+    letter-spacing: 0.2px;
+
+    margin-bottom: 7px;
+}
+
+.file-player-time {
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 0.6px;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.file-player-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-shrink: 0;
+}
+
+.file-control {
+    width: 35px;
+    height: 32px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #858585;
 
     font-family: Arial, sans-serif;
 
-    font-size: 9px;
-
-    border-top: 1px solid #252525;
-    border-left: 1px solid #202020;
-    border-right: 1px solid #020202;
-    border-bottom: 1px solid #020202;
-
-    box-shadow:
-        inset 0 0 5px rgba(0, 0, 0, 0.95);
+    font-size: 12px;
 
     cursor: pointer;
 
     transition:
         color 0.12s ease,
-        background 0.12s ease;
+        text-shadow 0.12s ease;
 }
 
-.hardware-button:hover {
-    color: #aaa;
-
-    background:
-        linear-gradient(
-            180deg,
-            #181818,
-            #090909
-        );
+.file-control:hover {
+    color: #ddd;
 }
 
-.hardware-button:active {
-    color: #8b0000;
-
-    background: #040404;
-
-    border-top-color: #040404;
-    border-left-color: #040404;
-
-    border-right-color: #202020;
-    border-bottom-color: #202020;
+.file-control:active {
+    color: #a00000;
 }
 
+.file-control.play {
+    color: #9b0000;
 
-/* =========================================
-   SIGNAL SECTION
-========================================= */
+    font-size: 14px;
+}
 
-.signal-section {
-    min-width: 0;
+.file-control.play:hover {
+    color: #d00000;
 
-    padding: 6px 7px 7px;
-
-    background: #010101;
-
-    border-top: 1px solid #161616;
-    border-left: 1px solid #131313;
-    border-right: 1px solid #030303;
-    border-bottom: 1px solid #030303;
-
-    box-shadow:
-        inset 0 0 10px rgba(0, 0, 0, 1);
+    text-shadow:
+        0 0 6px rgba(180,0,0,0.35);
 }
 
 
-/* =========================================
+/* =========================================================
    WAVEFORM
-========================================= */
+========================================================= */
 
-.waveform-frame {
+.file-waveform-area {
     position: relative;
+
+    z-index: 2;
 
     width: 100%;
 
-    height: 39px;
+    height: 34px;
 
-    margin-bottom: 6px;
+    margin-top: 13px;
 
     overflow: hidden;
 
-    background: #000;
-
-    border-top: 1px solid #0c0c0c;
-    border-left: 1px solid #090909;
-    border-right: 1px solid #121212;
-    border-bottom: 1px solid #121212;
-}
-
-.waveform-frame::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    right: 0;
-
-    top: 48%;
-
-    height: 1px;
-
-    background:
-        linear-gradient(
-            90deg,
-
-            transparent 0%,
-
-            rgba(130,0,0,0.13) 7%,
-
-            rgba(130,0,0,0.13) 31%,
-
-            transparent 31.5%,
-
-            transparent 38%,
-
-            rgba(130,0,0,0.09) 38.5%,
-
-            rgba(130,0,0,0.09) 77%,
-
-            transparent 77.5%
-        );
-
-    pointer-events: none;
+    background: #010101;
 }
 
 #audioWaveform {
@@ -1017,82 +1073,93 @@ body {
 }
 
 
-/* =========================================
-   SEEK
-========================================= */
+/* =========================================================
+   SEEK / PROGRESS
+========================================================= */
 
-.seek-wrap {
+.file-seek-area {
+    position: relative;
+
+    z-index: 3;
+
     width: 100%;
 
     height: 12px;
 
     display: flex;
-
     align-items: center;
+
+    margin-top: 3px;
 }
 
 #audioSeek {
+    appearance: none;
+    -webkit-appearance: none;
+
     width: 100%;
 
-    height: 3px;
+    height: 2px;
 
     margin: 0;
 
+    background:
+        linear-gradient(
+            to right,
+            #8e0000 0%,
+            #8e0000 0%,
+            #222 0%,
+            #222 100%
+        );
+
+    outline: none;
+
     cursor: pointer;
-
-    accent-color: #790000;
 }
 
 
-/* =========================================
-   AUDIO MOBILE
-========================================= */
+/* Chrome / Safari */
 
-@media (max-width: 700px) {
+#audioSeek::-webkit-slider-thumb {
+    -webkit-appearance: none;
 
-    .audio-container {
-        padding: 6px;
-    }
+    width: 5px;
+    height: 5px;
 
-    .hardware-player {
-        width: 90%;
-        min-width: 0;
+    border: 0;
 
-        padding: 9px;
-    }
+    border-radius: 50%;
 
-    .hardware-main {
-        grid-template-columns: 1fr;
+    background: #a40000;
 
-        gap: 6px;
-    }
-
-    .hardware-buttons {
-        justify-content: center;
-    }
-
-    .hardware-button {
-        width: 32px;
-        height: 29px;
-
-        font-size: 9px;
-    }
-
-    .waveform-frame {
-        height: 36px;
-    }
-
+    cursor: pointer;
 }
 
 
-/* =========================================
-   GENERAL MOBILE
-========================================= */
+/* Firefox */
+
+#audioSeek::-moz-range-thumb {
+    width: 5px;
+    height: 5px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    background: #a40000;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 700px) {
 
     .page {
         width: 90%;
+
         padding-top: 28px;
     }
 
@@ -1102,6 +1169,7 @@ body {
 
     .directory-file {
         font-size: 11px;
+
         gap: 8px;
     }
 
@@ -1111,11 +1179,13 @@ body {
 
     .number {
         width: 24px;
+
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
+
         max-width: 94vw;
     }
 
@@ -1123,19 +1193,79 @@ body {
         padding: 26px 22px 22px;
     }
 
+
+    /* AUDIO */
+
+    .audio-container {
+        padding: 8px 0;
+    }
+
+    .file-audio-player {
+        width: 96%;
+
+        min-height: 150px;
+
+        padding: 15px 14px 12px;
+    }
+
+    .file-player-top {
+        gap: 10px;
+    }
+
+    .audio-file-icon {
+        width: 34px;
+        height: 43px;
+
+        flex-basis: 34px;
+    }
+
+    .file-player-info {
+        gap: 10px;
+    }
+
+    .file-player-name {
+        max-width: 43vw;
+
+        font-size: 10px;
+    }
+
+    .file-player-time {
+        font-size: 9px;
+    }
+
+    .file-player-controls {
+        gap: 0;
+    }
+
+    .file-control {
+        width: 28px;
+        height: 30px;
+
+        font-size: 9px;
+    }
+
+    .file-control.play {
+        font-size: 11px;
+    }
+
+    .file-waveform-area {
+        height: 38px;
+
+        margin-top: 15px;
+    }
+
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =========================================
+<!-- ======================================================
      AUTHORIZATION
-========================================= -->
+====================================================== -->
 
 <div
     id="authOverlay"
@@ -1149,15 +1279,19 @@ body {
 
         <div class="auth-strip"></div>
 
+
         <div class="auth-content">
+
 
             <div class="auth-title">
                 authorization required
             </div>
 
+
             <div class="auth-subtext">
                 protected directory / credentials required
             </div>
+
 
             <input
                 id="passwordInput"
@@ -1169,7 +1303,9 @@ body {
                 aria-label="password"
             >
 
+
             <div class="auth-bottom">
+
 
                 <div
                     id="authStatus"
@@ -1177,6 +1313,7 @@ body {
                 >
                     awaiting authorization
                 </div>
+
 
                 <button
                     id="authButton"
@@ -1186,7 +1323,9 @@ body {
                     submit
                 </button>
 
+
             </div>
+
 
             <div
                 id="authLoader"
@@ -1197,6 +1336,7 @@ body {
 
             </div>
 
+
         </div>
 
     </div>
@@ -1205,11 +1345,12 @@ body {
 
 
 
-<!-- =========================================
+<!-- ======================================================
      ARCHIVE
-========================================= -->
+====================================================== -->
 
 <div class="page">
+
 
     <a
         class="back"
@@ -1221,13 +1362,16 @@ body {
 
     <div class="directory-header">
 
+
         <div class="directory-path">
             /files
         </div>
 
+
         <div class="section-title">
             files
         </div>
+
 
     </div>
 
@@ -1349,9 +1493,7 @@ body {
         </div>
 
 
-        <!-- =================================
-             07 — PERMANENTLY CORRUPT
-        ================================== -->
+        <!-- 07 -->
 
         <div
             class="directory-file"
@@ -1371,9 +1513,7 @@ body {
         </div>
 
 
-        <!-- =================================
-             08 — BUFFER AT 82%
-        ================================== -->
+        <!-- 08 -->
 
         <div
             class="directory-file"
@@ -1393,9 +1533,7 @@ body {
         </div>
 
 
-        <!-- =================================
-             09 — AUDIO
-        ================================== -->
+        <!-- 09 AUDIO -->
 
         <div
             class="directory-file"
@@ -1421,9 +1559,9 @@ body {
 
 
 
-<!-- =========================================
+<!-- ======================================================
      MEDIA OVERLAY
-========================================= -->
+====================================================== -->
 
 <div
     id="videoOverlay"
@@ -1431,7 +1569,9 @@ body {
     onclick="backgroundClose(event)"
 >
 
+
     <div class="video-window">
+
 
         <button
             class="close-video"
@@ -1441,12 +1581,16 @@ body {
         </button>
 
 
-        <!-- LOADING -->
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
 
         <div
             id="loadingScreen"
             class="loading-screen"
         >
+
 
             <div
                 id="loadingText"
@@ -1473,15 +1617,20 @@ body {
                 0%
             </div>
 
+
         </div>
 
 
-        <!-- VIDEO -->
+
+        <!-- =================================================
+             VIDEO
+        ================================================== -->
 
         <div
             id="videoContainer"
             class="video-container"
         >
+
 
             <video
                 id="videoPlayer"
@@ -1489,38 +1638,83 @@ body {
                 preload="metadata"
             >
 
+
                 <source
                     id="videoSource"
                     src=""
                     type="video/mp4"
                 >
 
+
             </video>
+
 
         </div>
 
 
-        <!-- AUDIO PLAYER -->
+
+        <!-- =================================================
+             AUDIO — MINIMAL FILE STRIP
+        ================================================== -->
 
         <div
             id="audioContainer"
             class="audio-container"
         >
 
-            <div class="hardware-player">
 
-                <div class="hardware-scratches"></div>
+            <div class="file-audio-player">
 
 
-                <div class="hardware-main">
+                <div class="file-player-damage"></div>
+
+
+                <!-- TOP -->
+
+
+                <div class="file-player-top">
+
+
+                    <!-- FILE INFO -->
+
+
+                    <div class="file-player-info">
+
+
+                        <div class="audio-file-icon"></div>
+
+
+                        <div class="file-player-text">
+
+
+                            <div class="file-player-name">
+                                kocaine_snippet_f_ckfame.wav
+                            </div>
+
+
+                            <div
+                                id="audioTime"
+                                class="file-player-time"
+                            >
+                                00:00 / --:--
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
 
 
                     <!-- CONTROLS -->
 
-                    <div class="hardware-buttons">
+
+                    <div class="file-player-controls">
+
 
                         <button
-                            class="hardware-button"
+                            class="file-control"
                             onclick="skipAudio(-10)"
                             title="back 10 seconds"
                         >
@@ -1530,7 +1724,7 @@ body {
 
                         <button
                             id="audioPlayButton"
-                            class="hardware-button"
+                            class="file-control play"
                             onclick="toggleAudio()"
                             title="play / pause"
                         >
@@ -1539,48 +1733,57 @@ body {
 
 
                         <button
-                            class="hardware-button"
+                            class="file-control"
                             onclick="skipAudio(10)"
                             title="forward 10 seconds"
                         >
                             ▶▶
                         </button>
 
-                    </div>
-
-
-                    <!-- SIGNAL -->
-
-                    <div class="signal-section">
-
-                        <div class="waveform-frame">
-
-                            <canvas
-                                id="audioWaveform"
-                            ></canvas>
-
-                        </div>
-
-
-                        <div class="seek-wrap">
-
-                            <input
-                                id="audioSeek"
-                                type="range"
-                                min="0"
-                                max="100"
-                                value="0"
-                                step="0.01"
-                            >
-
-                        </div>
 
                     </div>
 
 
                 </div>
 
+
+
+                <!-- LIVE WAVEFORM -->
+
+
+                <div class="file-waveform-area">
+
+
+                    <canvas
+                        id="audioWaveform"
+                    ></canvas>
+
+
+                </div>
+
+
+
+                <!-- SEEK -->
+
+
+                <div class="file-seek-area">
+
+
+                    <input
+                        id="audioSeek"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="0"
+                        step="0.01"
+                    >
+
+
+                </div>
+
+
             </div>
+
 
 
             <audio
@@ -1588,33 +1791,44 @@ body {
                 preload="metadata"
             ></audio>
 
+
         </div>
 
 
-        <!-- CORRUPT ERROR -->
+
+        <!-- =================================================
+             CORRUPT ERROR
+        ================================================== -->
 
         <div
             id="corruptOverlay"
             class="corrupt-overlay"
         >
 
+
             <div class="corrupt-window">
+
 
                 <div class="corrupt-header">
                     system error
                 </div>
 
+
                 <div class="corrupt-body">
+
 
                     <div class="corrupt-title">
                         corrupt file
                     </div>
 
+
                     <div class="corrupt-message">
                         file could not be played.
                     </div>
 
+
                     <div class="corrupt-actions">
+
 
                         <button
                             class="corrupt-button"
@@ -1623,15 +1837,21 @@ body {
                             close
                         </button>
 
+
                     </div>
+
 
                 </div>
 
+
             </div>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
@@ -1640,9 +1860,9 @@ body {
 <script>
 
 
-/* =========================================
-   AUTHORIZATION
-========================================= */
+/* =========================================================
+   AUTH
+========================================================= */
 
 let failedAttempts = 0;
 
@@ -1689,56 +1909,53 @@ const authLoader =
 
 
 
-/* =========================================
-   AUTO FOCUS
-========================================= */
-
 window.addEventListener(
     "load",
     function() {
 
+
         setTimeout(
             function() {
 
+
                 passwordInput.focus();
+
 
             },
             100
         );
 
+
     }
 );
 
 
-
-/* =========================================
-   BLOCK SPACES
-========================================= */
 
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
+
         if (
             event.key === " "
         ) {
 
+
             event.preventDefault();
 
+
         }
+
 
     }
 );
 
 
 
-/* =========================================
-   REMOVE PASTED SPACES
-========================================= */
-
 passwordInput.addEventListener(
     "input",
     function() {
+
 
         passwordInput.value =
             passwordInput.value.replace(
@@ -1746,39 +1963,38 @@ passwordInput.addEventListener(
                 ""
             );
 
+
     }
 );
 
 
-
-/* =========================================
-   ENTER TO SUBMIT
-========================================= */
 
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
+
         if (
             event.key === "Enter"
         ) {
 
+
             event.preventDefault();
+
 
             submitPassword();
 
+
         }
+
 
     }
 );
 
 
 
-/* =========================================
-   PASSWORD CHECK
-========================================= */
-
 function submitPassword() {
+
 
     const enteredPassword =
         passwordInput.value;
@@ -1788,6 +2004,7 @@ function submitPassword() {
         enteredPassword ===
         correctPassword
     ) {
+
 
         passwordInput.disabled =
             true;
@@ -1814,8 +2031,10 @@ function submitPassword() {
         setTimeout(
             function() {
 
+
                 authOverlay.style.display =
                     "none";
+
 
             },
             2000
@@ -1824,7 +2043,9 @@ function submitPassword() {
 
         return;
 
+
     }
+
 
 
     failedAttempts++;
@@ -1864,6 +2085,7 @@ function submitPassword() {
         maxAttempts
     ) {
 
+
         passwordInput.disabled =
             true;
 
@@ -1875,26 +2097,38 @@ function submitPassword() {
         setTimeout(
             function() {
 
+
                 window.location.href =
                     "index.html";
+
 
             },
             700
         );
 
+
     }
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    MEDIA REFERENCES
-========================================= */
+========================================================= */
 
-let loadingTimer = null;
-let stallTimer = null;
-let errorTimer = null;
+let loadingTimer =
+    null;
+
+
+let stallTimer =
+    null;
+
+
+let errorTimer =
+    null;
+
 
 
 const videoPlayer =
@@ -1933,6 +2167,12 @@ const audioSeek =
     );
 
 
+const audioTime =
+    document.getElementById(
+        "audioTime"
+    );
+
+
 const corruptOverlay =
     document.getElementById(
         "corruptOverlay"
@@ -1940,47 +2180,57 @@ const corruptOverlay =
 
 
 
-/* =========================================
+/* =========================================================
    LOADING TEXT
-========================================= */
+========================================================= */
 
 function updateLoadingText(
     value,
     loadingText
 ) {
 
+
     if (
         value < 25
     ) {
 
+
         loadingText.textContent =
             "file found..";
 
+
     }
+
 
     else if (
         value < 85
     ) {
 
+
         loadingText.textContent =
             "loading file..";
 
+
     }
 
+
     else {
+
 
         loadingText.textContent =
             "opening file..";
 
+
     }
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    OPEN MEDIA
-========================================= */
+========================================================= */
 
 function openMedia(
     fileName,
@@ -1988,6 +2238,7 @@ function openMedia(
     loadMode,
     loadSpeed
 ) {
+
 
     const overlay =
         document.getElementById(
@@ -2025,6 +2276,7 @@ function openMedia(
         );
 
 
+
     clearTimeout(
         loadingTimer
     );
@@ -2038,6 +2290,7 @@ function openMedia(
     clearTimeout(
         errorTimer
     );
+
 
 
     videoPlayer.pause();
@@ -2069,42 +2322,59 @@ function openMedia(
 
     /* SOURCE */
 
+
     if (
         loadMode === "corrupt"
     ) {
 
+
         videoSource.src =
             "";
 
+
         videoPlayer.load();
 
+
     }
+
 
     else if (
         mediaType === "video"
     ) {
 
+
         videoSource.src =
             fileName;
 
+
         videoPlayer.load();
 
+
     }
+
 
     else if (
         mediaType === "audio"
     ) {
 
+
         audioPlayer.src =
             fileName;
 
+
         audioPlayer.load();
+
 
         audioSeek.value =
             0;
 
-        audioPlayer.volume =
-            1;
+
+        updateSeekVisual();
+
+
+        audioTime.textContent =
+            "00:00 / --:--";
+
 
     }
 
@@ -2141,7 +2411,8 @@ function openMedia(
 
 
 
-    /* RANDOM CORRUPTION */
+    /* 07 CORRUPTS AT DIFFERENT POINT */
+
 
     let corruptAt =
         null;
@@ -2151,6 +2422,7 @@ function openMedia(
         loadMode === "corrupt"
     ) {
 
+
         corruptAt =
 
             Math.floor(
@@ -2159,11 +2431,13 @@ function openMedia(
             +
             38;
 
+
     }
 
 
 
     function scheduleNextStep() {
+
 
         loadingTimer =
 
@@ -2172,11 +2446,13 @@ function openMedia(
                 loadSpeed
             );
 
+
     }
 
 
 
     function loadingStep() {
+
 
         value++;
 
@@ -2196,13 +2472,17 @@ function openMedia(
 
 
 
-        /* 07 CORRUPT */
+        /* =====================================
+           07 — CORRUPT
+        ===================================== */
+
 
         if (
             loadMode === "corrupt"
             &&
             value >= corruptAt
         ) {
+
 
             loadingText.textContent =
                 "buffering..";
@@ -2213,9 +2493,11 @@ function openMedia(
                 setTimeout(
                     function() {
 
+
                         corruptOverlay.classList.add(
                             "active"
                         );
+
 
                     },
                     750
@@ -2224,11 +2506,15 @@ function openMedia(
 
             return;
 
+
         }
 
 
 
-        /* 08 BUFFER */
+        /* =====================================
+           08 — BUFFER AT 82
+        ===================================== */
+
 
         if (
             loadMode === "stall82"
@@ -2238,6 +2524,7 @@ function openMedia(
             stallUsed === false
         ) {
 
+
             stallUsed =
                 true;
 
@@ -2251,6 +2538,7 @@ function openMedia(
                 setTimeout(
                     function() {
 
+
                         updateLoadingText(
                             value,
                             loadingText
@@ -2259,6 +2547,7 @@ function openMedia(
 
                         scheduleNextStep();
 
+
                     },
                     2000
                 );
@@ -2266,11 +2555,15 @@ function openMedia(
 
             return;
 
+
         }
 
 
 
-        /* 09 AUDIO BUFFER */
+        /* =====================================
+           09 — BUFFER AT 20 FOR 3 SECONDS
+        ===================================== */
+
 
         if (
             loadMode === "audioBuffer"
@@ -2280,6 +2573,7 @@ function openMedia(
             stallUsed === false
         ) {
 
+
             stallUsed =
                 true;
 
@@ -2293,6 +2587,7 @@ function openMedia(
                 setTimeout(
                     function() {
 
+
                         updateLoadingText(
                             value,
                             loadingText
@@ -2301,6 +2596,7 @@ function openMedia(
 
                         scheduleNextStep();
 
+
                     },
                     3000
                 );
@@ -2308,17 +2604,22 @@ function openMedia(
 
             return;
 
+
         }
 
 
 
-        /* FINISH */
+        /* =====================================
+           FINISH
+        ===================================== */
+
 
         if (
             value >= 100
             &&
             loadMode !== "corrupt"
         ) {
+
 
             progress.style.width =
                 "100%";
@@ -2336,38 +2637,49 @@ function openMedia(
                 mediaType === "video"
             ) {
 
+
                 showVideo();
+
 
             }
 
+
             else {
 
+
                 showAudio();
+
 
             }
 
 
             return;
 
+
         }
+
 
 
         scheduleNextStep();
 
+
     }
 
 
+
     scheduleNextStep();
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    SHOW VIDEO
-========================================= */
+========================================================= */
 
 function showVideo() {
+
 
     const loadingScreen =
         document.getElementById(
@@ -2383,6 +2695,7 @@ function showVideo() {
 
     setTimeout(
         function() {
+
 
             loadingScreen.style.display =
                 "none";
@@ -2400,29 +2713,30 @@ function showVideo() {
                 playAttempt !== undefined
             ) {
 
+
                 playAttempt.catch(
-                    function() {
-
-                        /* autoplay blocked */
-
-                    }
+                    function() {}
                 );
 
+
             }
+
 
         },
         120
     );
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
    SHOW AUDIO
-========================================= */
+========================================================= */
 
 function showAudio() {
+
 
     const loadingScreen =
         document.getElementById(
@@ -2432,6 +2746,7 @@ function showAudio() {
 
     setTimeout(
         function() {
+
 
             loadingScreen.style.display =
                 "none";
@@ -2446,23 +2761,30 @@ function showAudio() {
 
             drawIdleWaveform();
 
+
+            updateAudioTime();
+
+
         },
         120
     );
+
 
 }
 
 
 
-/* =========================================
-   AUDIO PLAY / PAUSE
-========================================= */
+/* =========================================================
+   AUDIO PLAY
+========================================================= */
 
 function toggleAudio() {
+
 
     if (
         audioPlayer.paused
     ) {
+
 
         initAudioVisualizer();
 
@@ -2474,32 +2796,40 @@ function toggleAudio() {
             "suspended"
         ) {
 
+
             audioContext.resume();
+
 
         }
 
 
         audioPlayer.play();
 
+
     }
+
 
     else {
 
+
         audioPlayer.pause();
 
+
     }
+
 
 }
 
 
 
-/* =========================================
-   SKIP
-========================================= */
+/* =========================================================
+   SKIP AUDIO
+========================================================= */
 
 function skipAudio(
     seconds
 ) {
+
 
     if (
         !isFinite(
@@ -2507,7 +2837,9 @@ function skipAudio(
         )
     ) {
 
+
         return;
+
 
     }
 
@@ -2526,17 +2858,97 @@ function skipAudio(
             )
         );
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
+   TIME FORMAT
+========================================================= */
+
+function formatTime(
+    seconds
+) {
+
+
+    if (
+        !isFinite(seconds)
+    ) {
+
+
+        return "--:--";
+
+
+    }
+
+
+    seconds =
+        Math.max(
+            0,
+            Math.floor(seconds)
+        );
+
+
+    const minutes =
+        Math.floor(
+            seconds / 60
+        );
+
+
+    const remainingSeconds =
+        seconds % 60;
+
+
+    return (
+        String(minutes).padStart(2, "0")
+        +
+        ":"
+        +
+        String(remainingSeconds).padStart(2, "0")
+    );
+
+
+}
+
+
+
+/* =========================================================
+   UPDATE TIME
+========================================================= */
+
+function updateAudioTime() {
+
+
+    audioTime.textContent =
+
+        formatTime(
+            audioPlayer.currentTime
+        )
+
+        +
+
+        " / "
+
+        +
+
+        formatTime(
+            audioPlayer.duration
+        );
+
+
+}
+
+
+
+/* =========================================================
    PLAY STATE
-========================================= */
+========================================================= */
 
 audioPlayer.addEventListener(
     "play",
     function() {
+
 
         audioPlayButton.textContent =
             "❚❚";
@@ -2544,24 +2956,43 @@ audioPlayer.addEventListener(
 
         startWaveform();
 
+
     }
 );
+
 
 
 audioPlayer.addEventListener(
     "pause",
     function() {
 
+
         audioPlayButton.textContent =
             "▶";
+
 
     }
 );
 
 
+
+audioPlayer.addEventListener(
+    "loadedmetadata",
+    function() {
+
+
+        updateAudioTime();
+
+
+    }
+);
+
+
+
 audioPlayer.addEventListener(
     "ended",
     function() {
+
 
         audioPlayButton.textContent =
             "▶";
@@ -2570,18 +3001,26 @@ audioPlayer.addEventListener(
         audioSeek.value =
             0;
 
+
+        updateSeekVisual();
+
+
+        updateAudioTime();
+
+
     }
 );
 
 
 
-/* =========================================
-   SEEK UPDATE
-========================================= */
+/* =========================================================
+   AUDIO PROGRESS
+========================================================= */
 
 audioPlayer.addEventListener(
     "timeupdate",
     function() {
+
 
         if (
             isFinite(
@@ -2591,6 +3030,7 @@ audioPlayer.addEventListener(
             audioPlayer.duration > 0
         ) {
 
+
             audioSeek.value =
 
                 (
@@ -2598,29 +3038,41 @@ audioPlayer.addEventListener(
                     /
                     audioPlayer.duration
                 )
+
                 *
+
                 100;
 
+
+            updateSeekVisual();
+
+
         }
+
+
+        updateAudioTime();
+
 
     }
 );
 
 
 
-/* =========================================
+/* =========================================================
    SEEK CONTROL
-========================================= */
+========================================================= */
 
 audioSeek.addEventListener(
     "input",
     function() {
+
 
         if (
             isFinite(
                 audioPlayer.duration
             )
         ) {
+
 
             audioPlayer.currentTime =
 
@@ -2631,19 +3083,64 @@ audioSeek.addEventListener(
                     /
                     100
                 )
+
                 *
+
                 audioPlayer.duration;
 
+
         }
+
+
+        updateSeekVisual();
+
 
     }
 );
 
 
 
-/* =========================================
-   VISUALIZER
-========================================= */
+/* =========================================================
+   SEEK VISUAL
+========================================================= */
+
+function updateSeekVisual() {
+
+
+    const value =
+        Number(
+            audioSeek.value
+        );
+
+
+    audioSeek.style.background =
+
+        "linear-gradient(to right,"
+        +
+        "#8e0000 0%,"
+        +
+        "#8e0000 "
+        +
+        value
+        +
+        "%,"
+        +
+        "#222 "
+        +
+        value
+        +
+        "%,"
+        +
+        "#222 100%)";
+
+
+}
+
+
+
+/* =========================================================
+   AUDIO VISUALIZER
+========================================================= */
 
 let audioContext =
     null;
@@ -2661,6 +3158,7 @@ let waveformAnimation =
     null;
 
 
+
 const waveformCanvas =
     document.getElementById(
         "audioWaveform"
@@ -2676,11 +3174,14 @@ const waveformContext =
 
 function initAudioVisualizer() {
 
+
     if (
         audioContext
     ) {
 
+
         return;
+
 
     }
 
@@ -2696,7 +3197,9 @@ function initAudioVisualizer() {
         !AudioContextClass
     ) {
 
+
         return;
+
 
     }
 
@@ -2710,11 +3213,11 @@ function initAudioVisualizer() {
 
 
     analyser.fftSize =
-        256;
+        512;
 
 
     analyser.smoothingTimeConstant =
-        0.8;
+        0.74;
 
 
     mediaSource =
@@ -2733,15 +3236,17 @@ function initAudioVisualizer() {
         audioContext.destination
     );
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
    RESIZE WAVEFORM
-========================================= */
+========================================================= */
 
 function resizeWaveform() {
+
 
     const rect =
         waveformCanvas.getBoundingClientRect();
@@ -2788,15 +3293,17 @@ function resizeWaveform() {
         0
     );
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
    IDLE WAVEFORM
-========================================= */
+========================================================= */
 
 function drawIdleWaveform() {
+
 
     resizeWaveform();
 
@@ -2818,7 +3325,7 @@ function drawIdleWaveform() {
 
 
     waveformContext.fillStyle =
-        "#000";
+        "#010101";
 
 
     waveformContext.fillRect(
@@ -2829,40 +3336,114 @@ function drawIdleWaveform() {
     );
 
 
-    waveformContext.strokeStyle =
-        "#242424";
+
+    /* STATIC FILE SIGNAL */
 
 
-    waveformContext.lineWidth =
-        1;
+    const center =
+        height / 2;
 
 
-    waveformContext.beginPath();
+    const bars =
+        110;
 
 
-    waveformContext.moveTo(
-        0,
-        height / 2
-    );
+    const spacing =
+        width / bars;
 
 
-    waveformContext.lineTo(
-        width,
-        height / 2
-    );
+    for (
+        let i = 0;
+        i < bars;
+        i++
+    ) {
 
 
-    waveformContext.stroke();
+        const x =
+            i * spacing;
+
+
+        const wave =
+
+            Math.sin(
+                i * 0.47
+            )
+
+            *
+
+            Math.sin(
+                i * 0.13
+            );
+
+
+        const amplitude =
+
+            2
+
+            +
+
+            Math.abs(wave)
+            *
+            8;
+
+
+        if (
+            i < 28
+        ) {
+
+
+            waveformContext.strokeStyle =
+                "#720000";
+
+
+        }
+
+
+        else {
+
+
+            waveformContext.strokeStyle =
+                "#363636";
+
+
+        }
+
+
+        waveformContext.lineWidth =
+            1;
+
+
+        waveformContext.beginPath();
+
+
+        waveformContext.moveTo(
+            x,
+            center - amplitude
+        );
+
+
+        waveformContext.lineTo(
+            x,
+            center + amplitude
+        );
+
+
+        waveformContext.stroke();
+
+
+    }
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    LIVE WAVEFORM
-========================================= */
+========================================================= */
 
 function startWaveform() {
+
 
     cancelAnimationFrame(
         waveformAnimation
@@ -2870,6 +3451,7 @@ function startWaveform() {
 
 
     function draw() {
+
 
         waveformAnimation =
 
@@ -2882,13 +3464,15 @@ function startWaveform() {
             !analyser
         ) {
 
+
             return;
+
 
         }
 
 
         const bufferLength =
-            analyser.fftSize;
+            analyser.frequencyBinCount;
 
 
         const data =
@@ -2897,7 +3481,7 @@ function startWaveform() {
             );
 
 
-        analyser.getByteTimeDomainData(
+        analyser.getByteFrequencyData(
             data
         );
 
@@ -2919,7 +3503,7 @@ function startWaveform() {
 
 
         waveformContext.fillStyle =
-            "#000";
+            "#010101";
 
 
         waveformContext.fillRect(
@@ -2930,120 +3514,162 @@ function startWaveform() {
         );
 
 
-        waveformContext.strokeStyle =
-            "#1b1b1b";
+        const center =
+            height / 2;
 
 
-        waveformContext.lineWidth =
-            1;
+        const bars =
+            120;
 
 
-        waveformContext.beginPath();
+        const step =
+
+            Math.max(
+                1,
+
+                Math.floor(
+                    bufferLength
+                    /
+                    bars
+                )
+            );
 
 
-        waveformContext.moveTo(
-            0,
-            height / 2
-        );
+        const spacing =
+            width / bars;
 
 
-        waveformContext.lineTo(
-            width,
-            height / 2
-        );
+        const progress =
 
+            (
+                isFinite(audioPlayer.duration)
+                &&
+                audioPlayer.duration > 0
+            )
 
-        waveformContext.stroke();
+            ?
 
-
-        waveformContext.strokeStyle =
-            "#8c0000";
-
-
-        waveformContext.lineWidth =
-            1.25;
-
-
-        waveformContext.beginPath();
-
-
-        const sliceWidth =
-            width
+            audioPlayer.currentTime
             /
-            bufferLength;
+            audioPlayer.duration
 
+            :
 
-        let x =
             0;
 
 
         for (
             let i = 0;
-            i < bufferLength;
+            i < bars;
             i++
         ) {
 
-            const v =
-                data[i]
+
+            const dataIndex =
+
+                Math.min(
+                    bufferLength - 1,
+
+                    i * step
+                );
+
+
+            const level =
+
+                data[dataIndex]
                 /
-                128;
+                255;
 
 
-            const y =
-                v
+            const amplitude =
+
+                1
+
+                +
+
+                level
                 *
                 height
-                /
-                2;
+                *
+                0.43;
+
+
+            const x =
+                i * spacing;
+
+
+            const barPosition =
+                i / bars;
 
 
             if (
-                i === 0
+                barPosition <= progress
             ) {
 
-                waveformContext.moveTo(
-                    x,
-                    y
-                );
+
+                waveformContext.strokeStyle =
+                    "#a00000";
+
 
             }
+
 
             else {
 
-                waveformContext.lineTo(
-                    x,
-                    y
-                );
+
+                waveformContext.strokeStyle =
+                    "#555";
+
 
             }
 
 
-            x +=
-                sliceWidth;
+            waveformContext.lineWidth =
+                1;
+
+
+            waveformContext.beginPath();
+
+
+            waveformContext.moveTo(
+                x,
+                center - amplitude
+            );
+
+
+            waveformContext.lineTo(
+                x,
+                center + amplitude
+            );
+
+
+            waveformContext.stroke();
+
 
         }
 
-
-        waveformContext.stroke();
 
     }
 
 
     draw();
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
    STOP WAVEFORM
-========================================= */
+========================================================= */
 
 function stopWaveform() {
+
 
     if (
         waveformAnimation
     ) {
+
 
         cancelAnimationFrame(
             waveformAnimation
@@ -3053,24 +3679,28 @@ function stopWaveform() {
         waveformAnimation =
             null;
 
+
     }
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    RESIZE
-========================================= */
+========================================================= */
 
 window.addEventListener(
     "resize",
     function() {
 
+
         if (
             audioContainer.style.display ===
             "block"
         ) {
+
 
             resizeWaveform();
 
@@ -3079,22 +3709,27 @@ window.addEventListener(
                 audioPlayer.paused
             ) {
 
+
                 drawIdleWaveform();
+
 
             }
 
+
         }
+
 
     }
 );
 
 
 
-/* =========================================
-   CLOSE CORRUPT
-========================================= */
+/* =========================================================
+   CORRUPT CLOSE
+========================================================= */
 
 function closeCorruptFile() {
+
 
     corruptOverlay.classList.remove(
         "active"
@@ -3103,15 +3738,17 @@ function closeCorruptFile() {
 
     closeMedia();
 
+
 }
 
 
 
-/* =========================================
+/* =========================================================
    CLOSE MEDIA
-========================================= */
+========================================================= */
 
 function closeMedia() {
+
 
     const overlay =
         document.getElementById(
@@ -3145,11 +3782,11 @@ function closeMedia() {
     audioPlayer.pause();
 
 
+    stopWaveform();
+
+
     audioPlayButton.textContent =
         "▶";
-
-
-    stopWaveform();
 
 
     videoPlayer.currentTime =
@@ -3158,6 +3795,17 @@ function closeMedia() {
 
     audioPlayer.currentTime =
         0;
+
+
+    audioSeek.value =
+        0;
+
+
+    updateSeekVisual();
+
+
+    audioTime.textContent =
+        "00:00 / --:--";
 
 
     document.getElementById(
@@ -3174,38 +3822,44 @@ function closeMedia() {
         "active"
     );
 
+
 }
 
 
 
-/* =========================================
-   CLICK OUTSIDE
-========================================= */
+/* =========================================================
+   BACKGROUND CLOSE
+========================================================= */
 
 function backgroundClose(
     event
 ) {
+
 
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
+
         closeMedia();
 
+
     }
+
 
 }
 
 
 
-/* =========================================
+/* =========================================================
    ESC
-========================================= */
+========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
+
 
         if (
             event.key === "Escape"
@@ -3214,23 +3868,31 @@ document.addEventListener(
             "none"
         ) {
 
+
             if (
                 corruptOverlay.classList.contains(
                     "active"
                 )
             ) {
 
+
                 closeCorruptFile();
 
+
             }
+
 
             else {
 
+
                 closeMedia();
+
 
             }
 
+
         }
+
 
     }
 );
@@ -3240,5 +3902,4 @@ document.addEventListener(
 
 
 </body>
-
 </html>
