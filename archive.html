@@ -60,16 +60,11 @@ body {
 
 .directory-path {
     display: inline-block;
-
     color: #d00000;
-
     border: 1px solid #520000;
-
     padding: 8px 16px;
-
     font-size: 18px;
     letter-spacing: 2px;
-
     margin-bottom: 24px;
 }
 
@@ -81,9 +76,7 @@ body {
 
 .directory-list {
     width: 100%;
-
     margin-top: 18px;
-
     border-top: 1px solid #1d1d1d;
 }
 
@@ -95,19 +88,12 @@ body {
 .directory-file {
     display: flex;
     align-items: center;
-
     gap: 14px;
-
     min-height: 46px;
-
     padding: 0 8px;
-
     border-bottom: 1px solid #161616;
-
     color: #999;
-
     font-size: 13px;
-
     cursor: pointer;
 
     transition:
@@ -118,31 +104,22 @@ body {
 
 .directory-file:hover {
     color: #fff;
-
     padding-left: 14px;
-
     background: rgba(120, 0, 0, 0.04);
 }
 
 .file-icon {
     color: #666;
-
     width: 18px;
-
     font-size: 15px;
-
     text-align: center;
-
     flex-shrink: 0;
 }
 
 .number {
     display: inline-block;
-
     width: 28px;
-
     color: #d00000;
-
     margin-right: 8px;
 }
 
@@ -170,9 +147,7 @@ body {
 
 .directory-file.empty:hover {
     color: #333;
-
     padding-left: 8px;
-
     background: none;
 }
 
@@ -184,7 +159,6 @@ body {
 .auth-overlay {
     position: fixed;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.96);
 
     display: flex;
@@ -196,9 +170,7 @@ body {
 
 .auth-box {
     width: min(430px, 88vw);
-
     background: #050505;
-
     border: 1px solid #3a0000;
 
     box-shadow:
@@ -208,9 +180,7 @@ body {
 
 .auth-strip {
     height: 6px;
-
     background: #700000;
-
     border-bottom: 1px solid #1c0000;
 }
 
@@ -220,21 +190,15 @@ body {
 
 .auth-title {
     color: #cfcfcf;
-
     font-size: 13px;
-
     letter-spacing: 2px;
-
     margin-bottom: 8px;
 }
 
 .auth-subtext {
     color: #444;
-
     font-size: 9px;
-
     letter-spacing: 0.7px;
-
     margin-bottom: 22px;
 }
 
@@ -250,20 +214,16 @@ body {
     padding: 0 12px;
 
     background: #000;
-
     color: #aaa;
 
     font-family: "Courier New", monospace;
-
     font-size: 14px;
-
     letter-spacing: 3px;
 
     outline: none;
 
     border-top: 1px solid #0b0b0b;
     border-left: 1px solid #0b0b0b;
-
     border-right: 1px solid #333;
     border-bottom: 1px solid #333;
 }
@@ -275,22 +235,18 @@ body {
 
 .auth-bottom {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
     gap: 15px;
 
     margin-top: 16px;
-
     min-height: 26px;
 }
 
 .auth-status {
     color: #3e3e3e;
-
     font-size: 9px;
-
     letter-spacing: 1px;
 }
 
@@ -302,13 +258,10 @@ body {
     padding: 7px 15px;
 
     background: #0b0b0b;
-
     color: #777;
 
     font-family: "Courier New", monospace;
-
     font-size: 10px;
-
     letter-spacing: 1px;
 
     border: 1px solid #292929;
@@ -318,7 +271,6 @@ body {
 
 .auth-button:hover {
     color: #ddd;
-
     border-color: #540000;
 }
 
@@ -328,7 +280,6 @@ body {
 
 .auth-button:disabled {
     cursor: default;
-
     opacity: 0.3;
 }
 
@@ -339,12 +290,10 @@ body {
 
 .auth-loader {
     display: none;
-
     align-items: center;
     justify-content: center;
 
     height: 40px;
-
     margin-top: 15px;
 }
 
@@ -357,13 +306,10 @@ body {
     height: 18px;
 
     border: 1px solid #292929;
-
     border-top-color: #8d0000;
-
     border-radius: 50%;
 
-    animation:
-        authSpin 0.55s linear infinite;
+    animation: authSpin 0.55s linear infinite;
 }
 
 @keyframes authSpin {
@@ -384,8 +330,7 @@ body {
 ========================================= */
 
 .auth-box.shake {
-    animation:
-        authShake 0.22s linear;
+    animation: authShake 0.22s linear;
 }
 
 @keyframes authShake {
@@ -454,7 +399,6 @@ body {
     position: relative;
 
     width: 1000px;
-
     max-width: 92vw;
 
     opacity: 0;
@@ -490,13 +434,11 @@ body {
     padding: 0;
 
     border: none;
-
     background: none;
 
     color: #666;
 
     font-family: "Courier New", monospace;
-
     font-size: 22px;
 
     cursor: pointer;
@@ -515,13 +457,10 @@ body {
 
 .loading-screen {
     width: 100%;
-
     height: 180px;
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
 
     padding: 30px;
@@ -533,15 +472,12 @@ body {
 
 .loading-text {
     color: #777;
-
     font-size: 11px;
-
     margin-bottom: 15px;
 }
 
 .loading-bar {
     width: 100%;
-
     height: 2px;
 
     background: #181818;
@@ -551,7 +487,6 @@ body {
 
 .loading-progress {
     width: 0%;
-
     height: 100%;
 
     background: #a00000;
@@ -574,11 +509,9 @@ body {
 
 .corrupt-overlay {
     position: absolute;
-
     inset: 0;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -620,7 +553,6 @@ body {
     border-bottom: 1px solid #3b0000;
 
     font-size: 10px;
-
     letter-spacing: 1.5px;
 }
 
@@ -630,27 +562,20 @@ body {
 
 .corrupt-title {
     color: #ccc;
-
     font-size: 12px;
-
     letter-spacing: 1.5px;
-
     margin-bottom: 9px;
 }
 
 .corrupt-message {
     color: #666;
-
     font-size: 10px;
-
     line-height: 1.6;
-
     margin-bottom: 20px;
 }
 
 .corrupt-actions {
     display: flex;
-
     justify-content: flex-end;
 }
 
@@ -658,11 +583,9 @@ body {
     padding: 6px 14px;
 
     background: #090909;
-
     color: #777;
 
     font-family: "Courier New", monospace;
-
     font-size: 9px;
 
     border: 1px solid #292929;
@@ -672,7 +595,6 @@ body {
 
 .corrupt-button:hover {
     color: #ddd;
-
     border-color: #560000;
 }
 
@@ -717,45 +639,52 @@ body {
     padding: 18px;
 
     background: #000;
+
+    text-align: center;
 }
 
 
 /* =========================================
-   DARK RECOVERED HARDWARE PLAYER
+   HALF-SIZE RECOVERED HARDWARE PLAYER
 ========================================= */
 
 .hardware-player {
     position: relative;
 
-    width: 100%;
+    display: inline-block;
 
-    padding: 18px;
+    width: 50%;
+
+    min-width: 420px;
+
+    padding: 12px;
 
     overflow: hidden;
+
+    text-align: left;
 
     background:
         linear-gradient(
             180deg,
-            #0d0d0d 0%,
-            #070707 48%,
-            #030303 100%
+            #0a0a0a 0%,
+            #050505 48%,
+            #020202 100%
         );
 
-    border-top: 1px solid #303030;
-    border-left: 1px solid #252525;
-
-    border-right: 1px solid #090909;
-    border-bottom: 1px solid #090909;
+    border-top: 1px solid #262626;
+    border-left: 1px solid #202020;
+    border-right: 1px solid #070707;
+    border-bottom: 1px solid #070707;
 
     box-shadow:
-        inset 0 0 0 1px #131313,
-        inset 0 -7px 18px rgba(0, 0, 0, 0.9),
-        0 12px 30px rgba(0, 0, 0, 0.9);
+        inset 0 0 0 1px #0f0f0f,
+        inset 0 -5px 13px rgba(0, 0, 0, 0.95),
+        0 8px 22px rgba(0, 0, 0, 0.95);
 }
 
 
 /* =========================================
-   DAMAGED TOP EDGE
+   BROKEN TOP EDGE
 ========================================= */
 
 .hardware-player::before {
@@ -798,14 +727,14 @@ body {
             transparent 92.3%
         );
 
-    opacity: 0.7;
+    opacity: 0.6;
 
     pointer-events: none;
 }
 
 
 /* =========================================
-   DAMAGED BOTTOM EDGE
+   BROKEN BOTTOM EDGE
 ========================================= */
 
 .hardware-player::after {
@@ -845,14 +774,14 @@ body {
             #252525 100%
         );
 
-    opacity: 0.65;
+    opacity: 0.55;
 
     pointer-events: none;
 }
 
 
 /* =========================================
-   SUBTLE SCRATCHES
+   SCRATCHES
 ========================================= */
 
 .hardware-scratches {
@@ -862,7 +791,7 @@ body {
 
     pointer-events: none;
 
-    opacity: 0.24;
+    opacity: 0.22;
 
     background:
         linear-gradient(
@@ -872,6 +801,7 @@ body {
             rgba(255,255,255,0.08) 22.15%,
             transparent 22.3%
         ),
+
         linear-gradient(
             6deg,
             transparent 0%,
@@ -879,6 +809,7 @@ body {
             rgba(255,255,255,0.05) 67.1%,
             transparent 67.25%
         ),
+
         linear-gradient(
             179deg,
             transparent 0%,
@@ -890,7 +821,7 @@ body {
 
 
 /* =========================================
-   INNER HARDWARE LAYOUT
+   HARDWARE LAYOUT
 ========================================= */
 
 .hardware-main {
@@ -900,10 +831,9 @@ body {
 
     grid-template-columns:
         auto
-        minmax(0, 1fr)
-        auto;
+        minmax(0, 1fr);
 
-    gap: 15px;
+    gap: 9px;
 
     align-items: stretch;
 
@@ -917,33 +847,30 @@ body {
 
 .hardware-buttons {
     display: flex;
-
     align-items: center;
 
-    gap: 6px;
+    gap: 4px;
 
-    padding: 7px;
+    padding: 5px;
 
-    background: #050505;
+    background: #030303;
 
-    border-top: 1px solid #1e1e1e;
-    border-left: 1px solid #1c1c1c;
-
-    border-right: 1px solid #030303;
-    border-bottom: 1px solid #030303;
+    border-top: 1px solid #191919;
+    border-left: 1px solid #171717;
+    border-right: 1px solid #020202;
+    border-bottom: 1px solid #020202;
 }
 
 
 /* =========================================
-   DARK HARDWARE BUTTON
+   HARDWARE BUTTONS
 ========================================= */
 
 .hardware-button {
-    width: 45px;
-    height: 42px;
+    width: 31px;
+    height: 31px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -952,24 +879,23 @@ body {
     background:
         linear-gradient(
             180deg,
-            #151515,
-            #090909
+            #121212,
+            #070707
         );
 
-    color: #777;
+    color: #6c6c6c;
 
     font-family: Arial, sans-serif;
 
-    font-size: 13px;
+    font-size: 9px;
 
-    border-top: 1px solid #292929;
-    border-left: 1px solid #232323;
-
+    border-top: 1px solid #252525;
+    border-left: 1px solid #202020;
     border-right: 1px solid #020202;
     border-bottom: 1px solid #020202;
 
     box-shadow:
-        inset 0 0 6px rgba(0, 0, 0, 0.9);
+        inset 0 0 5px rgba(0, 0, 0, 0.95);
 
     cursor: pointer;
 
@@ -979,26 +905,26 @@ body {
 }
 
 .hardware-button:hover {
-    color: #bbb;
+    color: #aaa;
 
     background:
         linear-gradient(
             180deg,
-            #1a1a1a,
-            #0b0b0b
+            #181818,
+            #090909
         );
 }
 
 .hardware-button:active {
     color: #8b0000;
 
-    background: #050505;
+    background: #040404;
 
-    border-top-color: #050505;
-    border-left-color: #050505;
+    border-top-color: #040404;
+    border-left-color: #040404;
 
-    border-right-color: #242424;
-    border-bottom-color: #242424;
+    border-right-color: #202020;
+    border-bottom-color: #202020;
 }
 
 
@@ -1009,18 +935,17 @@ body {
 .signal-section {
     min-width: 0;
 
-    padding: 8px 10px 10px;
+    padding: 6px 7px 7px;
 
-    background: #020202;
+    background: #010101;
 
-    border-top: 1px solid #1b1b1b;
-    border-left: 1px solid #181818;
-
-    border-right: 1px solid #050505;
-    border-bottom: 1px solid #050505;
+    border-top: 1px solid #161616;
+    border-left: 1px solid #131313;
+    border-right: 1px solid #030303;
+    border-bottom: 1px solid #030303;
 
     box-shadow:
-        inset 0 0 14px rgba(0, 0, 0, 1);
+        inset 0 0 10px rgba(0, 0, 0, 1);
 }
 
 
@@ -1033,23 +958,19 @@ body {
 
     width: 100%;
 
-    height: 58px;
+    height: 39px;
 
-    margin-bottom: 9px;
+    margin-bottom: 6px;
 
     overflow: hidden;
 
     background: #000;
 
-    border-top: 1px solid #0e0e0e;
-    border-left: 1px solid #0b0b0b;
-
-    border-right: 1px solid #151515;
-    border-bottom: 1px solid #151515;
+    border-top: 1px solid #0c0c0c;
+    border-left: 1px solid #090909;
+    border-right: 1px solid #121212;
+    border-bottom: 1px solid #121212;
 }
-
-
-/* BROKEN SCAN LINE */
 
 .waveform-frame::after {
     content: "";
@@ -1068,15 +989,19 @@ body {
             90deg,
 
             transparent 0%,
+
             rgba(130,0,0,0.13) 7%,
 
             rgba(130,0,0,0.13) 31%,
+
             transparent 31.5%,
 
             transparent 38%,
+
             rgba(130,0,0,0.09) 38.5%,
 
             rgba(130,0,0,0.09) 77%,
+
             transparent 77.5%
         );
 
@@ -1099,6 +1024,8 @@ body {
 .seek-wrap {
     width: 100%;
 
+    height: 12px;
+
     display: flex;
 
     align-items: center;
@@ -1107,94 +1034,37 @@ body {
 #audioSeek {
     width: 100%;
 
-    height: 4px;
+    height: 3px;
+
+    margin: 0;
 
     cursor: pointer;
 
-    accent-color: #830000;
+    accent-color: #790000;
 }
 
 
 /* =========================================
-   VOLUME BAY
-========================================= */
-
-.hardware-volume {
-    min-width: 130px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 9px;
-
-    padding: 8px 12px;
-
-    background: #050505;
-
-    border-top: 1px solid #1d1d1d;
-    border-left: 1px solid #181818;
-
-    border-right: 1px solid #030303;
-    border-bottom: 1px solid #030303;
-}
-
-.volume-label {
-    color: #5f5f5f;
-
-    font-family: "Courier New", monospace;
-
-    font-size: 9px;
-
-    letter-spacing: 1px;
-}
-
-.volume-control {
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-}
-
-.volume-symbol {
-    color: #777;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 15px;
-}
-
-#audioVolume {
-    width: 82px;
-
-    accent-color: #770000;
-
-    cursor: pointer;
-}
-
-
-/* =========================================
-   AUDIO PLAYER MOBILE
+   AUDIO MOBILE
 ========================================= */
 
 @media (max-width: 700px) {
 
     .audio-container {
-        padding: 7px;
+        padding: 6px;
     }
 
     .hardware-player {
-        padding: 10px;
+        width: 90%;
+        min-width: 0;
+
+        padding: 9px;
     }
 
     .hardware-main {
         grid-template-columns: 1fr;
 
-        gap: 7px;
+        gap: 6px;
     }
 
     .hardware-buttons {
@@ -1202,20 +1072,14 @@ body {
     }
 
     .hardware-button {
-        width: 43px;
-        height: 36px;
+        width: 32px;
+        height: 29px;
+
+        font-size: 9px;
     }
 
     .waveform-frame {
-        height: 55px;
-    }
-
-    .hardware-volume {
-        min-width: 0;
-
-        flex-direction: row;
-
-        justify-content: flex-end;
+        height: 36px;
     }
 
 }
@@ -1229,7 +1093,6 @@ body {
 
     .page {
         width: 90%;
-
         padding-top: 28px;
     }
 
@@ -1239,7 +1102,6 @@ body {
 
     .directory-file {
         font-size: 11px;
-
         gap: 8px;
     }
 
@@ -1249,13 +1111,11 @@ body {
 
     .number {
         width: 24px;
-
         margin-right: 4px;
     }
 
     .video-window {
         width: 94vw;
-
         max-width: 94vw;
     }
 
@@ -1289,19 +1149,15 @@ body {
 
         <div class="auth-strip"></div>
 
-
         <div class="auth-content">
-
 
             <div class="auth-title">
                 authorization required
             </div>
 
-
             <div class="auth-subtext">
                 protected directory / credentials required
             </div>
-
 
             <input
                 id="passwordInput"
@@ -1313,9 +1169,7 @@ body {
                 aria-label="password"
             >
 
-
             <div class="auth-bottom">
-
 
                 <div
                     id="authStatus"
@@ -1323,7 +1177,6 @@ body {
                 >
                     awaiting authorization
                 </div>
-
 
                 <button
                     id="authButton"
@@ -1333,9 +1186,7 @@ body {
                     submit
                 </button>
 
-
             </div>
-
 
             <div
                 id="authLoader"
@@ -1345,7 +1196,6 @@ body {
                 <div class="loader-symbol"></div>
 
             </div>
-
 
         </div>
 
@@ -1361,7 +1211,6 @@ body {
 
 <div class="page">
 
-
     <a
         class="back"
         href="index.html"
@@ -1372,16 +1221,13 @@ body {
 
     <div class="directory-header">
 
-
         <div class="directory-path">
             /files
         </div>
 
-
         <div class="section-title">
             files
         </div>
-
 
     </div>
 
@@ -1504,7 +1350,7 @@ body {
 
 
         <!-- =================================
-             07 — PERMANENT CORRUPT
+             07 — PERMANENTLY CORRUPT
         ================================== -->
 
         <div
@@ -1585,9 +1431,7 @@ body {
     onclick="backgroundClose(event)"
 >
 
-
     <div class="video-window">
-
 
         <button
             class="close-video"
@@ -1597,16 +1441,12 @@ body {
         </button>
 
 
-
-        <!-- =================================
-             LOADING
-        ================================== -->
+        <!-- LOADING -->
 
         <div
             id="loadingScreen"
             class="loading-screen"
         >
-
 
             <div
                 id="loadingText"
@@ -1618,12 +1458,10 @@ body {
 
             <div class="loading-bar">
 
-
                 <div
                     id="loadingProgress"
                     class="loading-progress"
                 ></div>
-
 
             </div>
 
@@ -1635,20 +1473,15 @@ body {
                 0%
             </div>
 
-
         </div>
 
 
-
-        <!-- =================================
-             VIDEO
-        ================================== -->
+        <!-- VIDEO -->
 
         <div
             id="videoContainer"
             class="video-container"
         >
-
 
             <video
                 id="videoPlayer"
@@ -1656,33 +1489,25 @@ body {
                 preload="metadata"
             >
 
-
                 <source
                     id="videoSource"
                     src=""
                     type="video/mp4"
                 >
 
-
             </video>
-
 
         </div>
 
 
-
-        <!-- =================================
-             DARK RECOVERED AUDIO PLAYER
-        ================================== -->
+        <!-- AUDIO PLAYER -->
 
         <div
             id="audioContainer"
             class="audio-container"
         >
 
-
             <div class="hardware-player">
-
 
                 <div class="hardware-scratches"></div>
 
@@ -1690,10 +1515,9 @@ body {
                 <div class="hardware-main">
 
 
-                    <!-- BUTTON BAY -->
+                    <!-- CONTROLS -->
 
                     <div class="hardware-buttons">
-
 
                         <button
                             class="hardware-button"
@@ -1722,29 +1546,23 @@ body {
                             ▶▶
                         </button>
 
-
                     </div>
-
 
 
                     <!-- SIGNAL -->
 
                     <div class="signal-section">
 
-
                         <div class="waveform-frame">
-
 
                             <canvas
                                 id="audioWaveform"
                             ></canvas>
 
-
                         </div>
 
 
                         <div class="seek-wrap">
-
 
                             <input
                                 id="audioSeek"
@@ -1755,53 +1573,14 @@ body {
                                 step="0.01"
                             >
 
-
                         </div>
-
-
-                    </div>
-
-
-
-                    <!-- VOLUME -->
-
-                    <div class="hardware-volume">
-
-
-                        <div class="volume-label">
-                            OUTPUT
-                        </div>
-
-
-                        <div class="volume-control">
-
-
-                            <span class="volume-symbol">
-                                🔊
-                            </span>
-
-
-                            <input
-                                id="audioVolume"
-                                type="range"
-                                min="0"
-                                max="1"
-                                value="0.85"
-                                step="0.01"
-                            >
-
-
-                        </div>
-
 
                     </div>
 
 
                 </div>
 
-
             </div>
-
 
 
             <audio
@@ -1809,44 +1588,33 @@ body {
                 preload="metadata"
             ></audio>
 
-
         </div>
 
 
-
-        <!-- =================================
-             CORRUPT ERROR
-        ================================== -->
+        <!-- CORRUPT ERROR -->
 
         <div
             id="corruptOverlay"
             class="corrupt-overlay"
         >
 
-
             <div class="corrupt-window">
-
 
                 <div class="corrupt-header">
                     system error
                 </div>
 
-
                 <div class="corrupt-body">
-
 
                     <div class="corrupt-title">
                         corrupt file
                     </div>
 
-
                     <div class="corrupt-message">
                         file could not be played.
                     </div>
 
-
                     <div class="corrupt-actions">
-
 
                         <button
                             class="corrupt-button"
@@ -1855,21 +1623,15 @@ body {
                             close
                         </button>
 
-
                     </div>
-
 
                 </div>
 
-
             </div>
-
 
         </div>
 
-
     </div>
-
 
 </div>
 
@@ -1927,7 +1689,9 @@ const authLoader =
 
 
 
-/* AUTO FOCUS */
+/* =========================================
+   AUTO FOCUS
+========================================= */
 
 window.addEventListener(
     "load",
@@ -1947,7 +1711,9 @@ window.addEventListener(
 
 
 
-/* BLOCK SPACE */
+/* =========================================
+   BLOCK SPACES
+========================================= */
 
 passwordInput.addEventListener(
     "keydown",
@@ -1966,7 +1732,9 @@ passwordInput.addEventListener(
 
 
 
-/* REMOVE PASTED SPACES */
+/* =========================================
+   REMOVE PASTED SPACES
+========================================= */
 
 passwordInput.addEventListener(
     "input",
@@ -1983,7 +1751,9 @@ passwordInput.addEventListener(
 
 
 
-/* ENTER */
+/* =========================================
+   ENTER TO SUBMIT
+========================================= */
 
 passwordInput.addEventListener(
     "keydown",
@@ -2010,7 +1780,6 @@ passwordInput.addEventListener(
 
 function submitPassword() {
 
-
     const enteredPassword =
         passwordInput.value;
 
@@ -2019,7 +1788,6 @@ function submitPassword() {
         enteredPassword ===
         correctPassword
     ) {
-
 
         passwordInput.disabled =
             true;
@@ -2046,10 +1814,8 @@ function submitPassword() {
         setTimeout(
             function() {
 
-
                 authOverlay.style.display =
                     "none";
-
 
             },
             2000
@@ -2057,7 +1823,6 @@ function submitPassword() {
 
 
         return;
-
 
     }
 
@@ -2099,7 +1864,6 @@ function submitPassword() {
         maxAttempts
     ) {
 
-
         passwordInput.disabled =
             true;
 
@@ -2111,38 +1875,26 @@ function submitPassword() {
         setTimeout(
             function() {
 
-
                 window.location.href =
                     "index.html";
-
 
             },
             700
         );
 
-
     }
-
 
 }
 
 
 
 /* =========================================
-   MEDIA
+   MEDIA REFERENCES
 ========================================= */
 
-let loadingTimer =
-    null;
-
-
-let stallTimer =
-    null;
-
-
-let errorTimer =
-    null;
-
+let loadingTimer = null;
+let stallTimer = null;
+let errorTimer = null;
 
 
 const videoPlayer =
@@ -2181,12 +1933,6 @@ const audioSeek =
     );
 
 
-const audioVolume =
-    document.getElementById(
-        "audioVolume"
-    );
-
-
 const corruptOverlay =
     document.getElementById(
         "corruptOverlay"
@@ -2203,40 +1949,30 @@ function updateLoadingText(
     loadingText
 ) {
 
-
     if (
         value < 25
     ) {
 
-
         loadingText.textContent =
             "file found..";
 
-
     }
-
 
     else if (
         value < 85
     ) {
 
-
         loadingText.textContent =
             "loading file..";
 
-
     }
 
-
     else {
-
 
         loadingText.textContent =
             "opening file..";
 
-
     }
-
 
 }
 
@@ -2252,7 +1988,6 @@ function openMedia(
     loadMode,
     loadSpeed
 ) {
-
 
     const overlay =
         document.getElementById(
@@ -2288,7 +2023,6 @@ function openMedia(
         document.getElementById(
             "loadingPercent"
         );
-
 
 
     clearTimeout(
@@ -2339,50 +2073,38 @@ function openMedia(
         loadMode === "corrupt"
     ) {
 
-
         videoSource.src =
             "";
 
+        videoPlayer.load();
 
     }
-
 
     else if (
         mediaType === "video"
     ) {
 
-
         videoSource.src =
             fileName;
 
-
         videoPlayer.load();
-
 
     }
 
-
-    else {
-
+    else if (
+        mediaType === "audio"
+    ) {
 
         audioPlayer.src =
             fileName;
 
-
         audioPlayer.load();
-
 
         audioSeek.value =
             0;
 
-
-        audioVolume.value =
-            0.85;
-
-
         audioPlayer.volume =
-            0.85;
-
+            1;
 
     }
 
@@ -2419,7 +2141,7 @@ function openMedia(
 
 
 
-    /* RANDOM CORRUPTION FOR 07 */
+    /* RANDOM CORRUPTION */
 
     let corruptAt =
         null;
@@ -2429,7 +2151,6 @@ function openMedia(
         loadMode === "corrupt"
     ) {
 
-
         corruptAt =
 
             Math.floor(
@@ -2438,13 +2159,11 @@ function openMedia(
             +
             38;
 
-
     }
 
 
 
     function scheduleNextStep() {
-
 
         loadingTimer =
 
@@ -2453,13 +2172,11 @@ function openMedia(
                 loadSpeed
             );
 
-
     }
 
 
 
     function loadingStep() {
-
 
         value++;
 
@@ -2479,16 +2196,13 @@ function openMedia(
 
 
 
-        /* =================================
-           07 CORRUPT
-        ================================= */
+        /* 07 CORRUPT */
 
         if (
             loadMode === "corrupt"
             &&
             value >= corruptAt
         ) {
-
 
             loadingText.textContent =
                 "buffering..";
@@ -2499,11 +2213,9 @@ function openMedia(
                 setTimeout(
                     function() {
 
-
                         corruptOverlay.classList.add(
                             "active"
                         );
-
 
                     },
                     750
@@ -2512,14 +2224,11 @@ function openMedia(
 
             return;
 
-
         }
 
 
 
-        /* =================================
-           08 BUFFER 82%
-        ================================= */
+        /* 08 BUFFER */
 
         if (
             loadMode === "stall82"
@@ -2529,7 +2238,6 @@ function openMedia(
             stallUsed === false
         ) {
 
-
             stallUsed =
                 true;
 
@@ -2543,7 +2251,6 @@ function openMedia(
                 setTimeout(
                     function() {
 
-
                         updateLoadingText(
                             value,
                             loadingText
@@ -2552,7 +2259,6 @@ function openMedia(
 
                         scheduleNextStep();
 
-
                     },
                     2000
                 );
@@ -2560,14 +2266,11 @@ function openMedia(
 
             return;
 
-
         }
 
 
 
-        /* =================================
-           09 BUFFER 20% FOR 3 SEC
-        ================================= */
+        /* 09 AUDIO BUFFER */
 
         if (
             loadMode === "audioBuffer"
@@ -2577,7 +2280,6 @@ function openMedia(
             stallUsed === false
         ) {
 
-
             stallUsed =
                 true;
 
@@ -2591,7 +2293,6 @@ function openMedia(
                 setTimeout(
                     function() {
 
-
                         updateLoadingText(
                             value,
                             loadingText
@@ -2600,7 +2301,6 @@ function openMedia(
 
                         scheduleNextStep();
 
-
                     },
                     3000
                 );
@@ -2608,21 +2308,17 @@ function openMedia(
 
             return;
 
-
         }
 
 
 
-        /* =================================
-           FINISH
-        ================================= */
+        /* FINISH */
 
         if (
             value >= 100
             &&
             loadMode !== "corrupt"
         ) {
-
 
             progress.style.width =
                 "100%";
@@ -2640,38 +2336,28 @@ function openMedia(
                 mediaType === "video"
             ) {
 
-
                 showVideo();
-
 
             }
 
-
             else {
 
-
                 showAudio();
-
 
             }
 
 
             return;
 
-
         }
-
 
 
         scheduleNextStep();
 
-
     }
 
 
-
     scheduleNextStep();
-
 
 }
 
@@ -2682,7 +2368,6 @@ function openMedia(
 ========================================= */
 
 function showVideo() {
-
 
     const loadingScreen =
         document.getElementById(
@@ -2698,7 +2383,6 @@ function showVideo() {
 
     setTimeout(
         function() {
-
 
             loadingScreen.style.display =
                 "none";
@@ -2716,7 +2400,6 @@ function showVideo() {
                 playAttempt !== undefined
             ) {
 
-
                 playAttempt.catch(
                     function() {
 
@@ -2725,14 +2408,11 @@ function showVideo() {
                     }
                 );
 
-
             }
-
 
         },
         120
     );
-
 
 }
 
@@ -2744,7 +2424,6 @@ function showVideo() {
 
 function showAudio() {
 
-
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
@@ -2753,7 +2432,6 @@ function showAudio() {
 
     setTimeout(
         function() {
-
 
             loadingScreen.style.display =
                 "none";
@@ -2768,11 +2446,9 @@ function showAudio() {
 
             drawIdleWaveform();
 
-
         },
         120
     );
-
 
 }
 
@@ -2784,11 +2460,9 @@ function showAudio() {
 
 function toggleAudio() {
 
-
     if (
         audioPlayer.paused
     ) {
-
 
         initAudioVisualizer();
 
@@ -2800,40 +2474,32 @@ function toggleAudio() {
             "suspended"
         ) {
 
-
             audioContext.resume();
-
 
         }
 
 
         audioPlayer.play();
 
-
     }
-
 
     else {
 
-
         audioPlayer.pause();
 
-
     }
-
 
 }
 
 
 
 /* =========================================
-   SKIP AUDIO
+   SKIP
 ========================================= */
 
 function skipAudio(
     seconds
 ) {
-
 
     if (
         !isFinite(
@@ -2841,9 +2507,7 @@ function skipAudio(
         )
     ) {
 
-
         return;
-
 
     }
 
@@ -2862,7 +2526,6 @@ function skipAudio(
             )
         );
 
-
 }
 
 
@@ -2875,13 +2538,11 @@ audioPlayer.addEventListener(
     "play",
     function() {
 
-
         audioPlayButton.textContent =
             "❚❚";
 
 
         startWaveform();
-
 
     }
 );
@@ -2891,10 +2552,8 @@ audioPlayer.addEventListener(
     "pause",
     function() {
 
-
         audioPlayButton.textContent =
             "▶";
-
 
     }
 );
@@ -2904,7 +2563,6 @@ audioPlayer.addEventListener(
     "ended",
     function() {
 
-
         audioPlayButton.textContent =
             "▶";
 
@@ -2912,20 +2570,18 @@ audioPlayer.addEventListener(
         audioSeek.value =
             0;
 
-
     }
 );
 
 
 
 /* =========================================
-   SEEK
+   SEEK UPDATE
 ========================================= */
 
 audioPlayer.addEventListener(
     "timeupdate",
     function() {
-
 
         if (
             isFinite(
@@ -2934,7 +2590,6 @@ audioPlayer.addEventListener(
             &&
             audioPlayer.duration > 0
         ) {
-
 
             audioSeek.value =
 
@@ -2946,25 +2601,26 @@ audioPlayer.addEventListener(
                 *
                 100;
 
-
         }
-
 
     }
 );
 
 
+
+/* =========================================
+   SEEK CONTROL
+========================================= */
+
 audioSeek.addEventListener(
     "input",
     function() {
-
 
         if (
             isFinite(
                 audioPlayer.duration
             )
         ) {
-
 
             audioPlayer.currentTime =
 
@@ -2978,38 +2634,15 @@ audioSeek.addEventListener(
                 *
                 audioPlayer.duration;
 
-
         }
 
-
     }
 );
 
 
 
 /* =========================================
-   VOLUME
-========================================= */
-
-audioVolume.addEventListener(
-    "input",
-    function() {
-
-
-        audioPlayer.volume =
-
-            Number(
-                audioVolume.value
-            );
-
-
-    }
-);
-
-
-
-/* =========================================
-   WEB AUDIO VISUALIZER
+   VISUALIZER
 ========================================= */
 
 let audioContext =
@@ -3028,7 +2661,6 @@ let waveformAnimation =
     null;
 
 
-
 const waveformCanvas =
     document.getElementById(
         "audioWaveform"
@@ -3044,14 +2676,11 @@ const waveformContext =
 
 function initAudioVisualizer() {
 
-
     if (
         audioContext
     ) {
 
-
         return;
-
 
     }
 
@@ -3067,9 +2696,7 @@ function initAudioVisualizer() {
         !AudioContextClass
     ) {
 
-
         return;
-
 
     }
 
@@ -3106,7 +2733,6 @@ function initAudioVisualizer() {
         audioContext.destination
     );
 
-
 }
 
 
@@ -3116,7 +2742,6 @@ function initAudioVisualizer() {
 ========================================= */
 
 function resizeWaveform() {
-
 
     const rect =
         waveformCanvas.getBoundingClientRect();
@@ -3163,7 +2788,6 @@ function resizeWaveform() {
         0
     );
 
-
 }
 
 
@@ -3173,7 +2797,6 @@ function resizeWaveform() {
 ========================================= */
 
 function drawIdleWaveform() {
-
 
     resizeWaveform();
 
@@ -3231,7 +2854,6 @@ function drawIdleWaveform() {
 
     waveformContext.stroke();
 
-
 }
 
 
@@ -3242,14 +2864,12 @@ function drawIdleWaveform() {
 
 function startWaveform() {
 
-
     cancelAnimationFrame(
         waveformAnimation
     );
 
 
     function draw() {
-
 
         waveformAnimation =
 
@@ -3262,9 +2882,7 @@ function startWaveform() {
             !analyser
         ) {
 
-
             return;
-
 
         }
 
@@ -3312,8 +2930,6 @@ function startWaveform() {
         );
 
 
-        /* MIDLINE */
-
         waveformContext.strokeStyle =
             "#1b1b1b";
 
@@ -3339,9 +2955,6 @@ function startWaveform() {
 
         waveformContext.stroke();
 
-
-
-        /* RED SIGNAL */
 
         waveformContext.strokeStyle =
             "#8c0000";
@@ -3370,7 +2983,6 @@ function startWaveform() {
             i++
         ) {
 
-
             const v =
                 data[i]
                 /
@@ -3389,24 +3001,19 @@ function startWaveform() {
                 i === 0
             ) {
 
-
                 waveformContext.moveTo(
                     x,
                     y
                 );
 
-
             }
 
-
             else {
-
 
                 waveformContext.lineTo(
                     x,
                     y
                 );
-
 
             }
 
@@ -3414,18 +3021,15 @@ function startWaveform() {
             x +=
                 sliceWidth;
 
-
         }
 
 
         waveformContext.stroke();
 
-
     }
 
 
     draw();
-
 
 }
 
@@ -3437,11 +3041,9 @@ function startWaveform() {
 
 function stopWaveform() {
 
-
     if (
         waveformAnimation
     ) {
-
 
         cancelAnimationFrame(
             waveformAnimation
@@ -3451,9 +3053,7 @@ function stopWaveform() {
         waveformAnimation =
             null;
 
-
     }
-
 
 }
 
@@ -3467,12 +3067,10 @@ window.addEventListener(
     "resize",
     function() {
 
-
         if (
             audioContainer.style.display ===
             "block"
         ) {
-
 
             resizeWaveform();
 
@@ -3481,15 +3079,11 @@ window.addEventListener(
                 audioPlayer.paused
             ) {
 
-
                 drawIdleWaveform();
-
 
             }
 
-
         }
-
 
     }
 );
@@ -3502,14 +3096,12 @@ window.addEventListener(
 
 function closeCorruptFile() {
 
-
     corruptOverlay.classList.remove(
         "active"
     );
 
 
     closeMedia();
-
 
 }
 
@@ -3520,7 +3112,6 @@ function closeCorruptFile() {
 ========================================= */
 
 function closeMedia() {
-
 
     const overlay =
         document.getElementById(
@@ -3583,7 +3174,6 @@ function closeMedia() {
         "active"
     );
 
-
 }
 
 
@@ -3596,18 +3186,14 @@ function backgroundClose(
     event
 ) {
 
-
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
-
         closeMedia();
 
-
     }
-
 
 }
 
@@ -3621,7 +3207,6 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === "Escape"
             &&
@@ -3629,31 +3214,23 @@ document.addEventListener(
             "none"
         ) {
 
-
             if (
                 corruptOverlay.classList.contains(
                     "active"
                 )
             ) {
 
-
                 closeCorruptFile();
 
-
             }
-
 
             else {
 
-
                 closeMedia();
-
 
             }
 
-
         }
-
 
     }
 );
