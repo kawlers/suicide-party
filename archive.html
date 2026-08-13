@@ -427,7 +427,6 @@ body {
     background: rgba(0, 0, 0, 0.94);
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -707,7 +706,7 @@ body {
 
 
 /* =========================================
-   SILVER AUDIO PLAYER
+   AUDIO CONTAINER
 ========================================= */
 
 .audio-container {
@@ -715,35 +714,313 @@ body {
 
     width: 100%;
 
-    padding: 24px;
+    padding: 18px;
 
     background: #000;
 }
 
 
-/* OUTER SILVER BODY */
+/* =========================================
+   DARK RECOVERED HARDWARE PLAYER
+========================================= */
 
-.silver-player {
+.hardware-player {
+    position: relative;
+
     width: 100%;
 
-    padding: 13px 15px 15px;
+    padding: 18px;
+
+    overflow: hidden;
 
     background:
         linear-gradient(
             180deg,
-            #e2e2e2 0%,
-            #c8c8c8 44%,
-            #a8a8a8 100%
+            #0d0d0d 0%,
+            #070707 48%,
+            #030303 100%
         );
 
-    border-top: 1px solid #f4f4f4;
-    border-left: 1px solid #e2e2e2;
-    border-right: 1px solid #636363;
-    border-bottom: 1px solid #555;
+    border-top: 1px solid #303030;
+    border-left: 1px solid #252525;
+
+    border-right: 1px solid #090909;
+    border-bottom: 1px solid #090909;
 
     box-shadow:
-        inset 0 0 0 1px #8c8c8c,
-        0 7px 22px rgba(0, 0, 0, 0.85);
+        inset 0 0 0 1px #131313,
+        inset 0 -7px 18px rgba(0, 0, 0, 0.9),
+        0 12px 30px rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================
+   DAMAGED TOP EDGE
+========================================= */
+
+.hardware-player::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 2%;
+
+    width: 96%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent 0%,
+            #242424 4%,
+
+            #242424 11%,
+            transparent 11.5%,
+
+            transparent 17%,
+            #353535 17.5%,
+
+            #353535 29%,
+            transparent 29.4%,
+
+            transparent 46%,
+            #252525 46.5%,
+
+            #252525 62%,
+            transparent 62.3%,
+
+            transparent 79%,
+            #333 79.5%,
+
+            #333 92%,
+            transparent 92.3%
+        );
+
+    opacity: 0.7;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   DAMAGED BOTTOM EDGE
+========================================= */
+
+.hardware-player::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 2px;
+    left: 4%;
+
+    width: 92%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            #181818 0%,
+            #181818 13%,
+
+            transparent 13.3%,
+            transparent 21%,
+
+            #292929 21.3%,
+            #292929 44%,
+
+            transparent 44.3%,
+            transparent 57%,
+
+            #191919 57.3%,
+            #191919 72%,
+
+            transparent 72.3%,
+            transparent 87%,
+
+            #252525 87.3%,
+            #252525 100%
+        );
+
+    opacity: 0.65;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   SUBTLE SCRATCHES
+========================================= */
+
+.hardware-scratches {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.24;
+
+    background:
+        linear-gradient(
+            174deg,
+            transparent 0%,
+            transparent 22%,
+            rgba(255,255,255,0.08) 22.15%,
+            transparent 22.3%
+        ),
+        linear-gradient(
+            6deg,
+            transparent 0%,
+            transparent 67%,
+            rgba(255,255,255,0.05) 67.1%,
+            transparent 67.25%
+        ),
+        linear-gradient(
+            179deg,
+            transparent 0%,
+            transparent 43%,
+            rgba(255,255,255,0.035) 43.1%,
+            transparent 43.22%
+        );
+}
+
+
+/* =========================================
+   INNER HARDWARE LAYOUT
+========================================= */
+
+.hardware-main {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        auto
+        minmax(0, 1fr)
+        auto;
+
+    gap: 15px;
+
+    align-items: stretch;
+
+    z-index: 2;
+}
+
+
+/* =========================================
+   BUTTON BAY
+========================================= */
+
+.hardware-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 7px;
+
+    background: #050505;
+
+    border-top: 1px solid #1e1e1e;
+    border-left: 1px solid #1c1c1c;
+
+    border-right: 1px solid #030303;
+    border-bottom: 1px solid #030303;
+}
+
+
+/* =========================================
+   DARK HARDWARE BUTTON
+========================================= */
+
+.hardware-button {
+    width: 45px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #090909
+        );
+
+    color: #777;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    border-top: 1px solid #292929;
+    border-left: 1px solid #232323;
+
+    border-right: 1px solid #020202;
+    border-bottom: 1px solid #020202;
+
+    box-shadow:
+        inset 0 0 6px rgba(0, 0, 0, 0.9);
+
+    cursor: pointer;
+
+    transition:
+        color 0.12s ease,
+        background 0.12s ease;
+}
+
+.hardware-button:hover {
+    color: #bbb;
+
+    background:
+        linear-gradient(
+            180deg,
+            #1a1a1a,
+            #0b0b0b
+        );
+}
+
+.hardware-button:active {
+    color: #8b0000;
+
+    background: #050505;
+
+    border-top-color: #050505;
+    border-left-color: #050505;
+
+    border-right-color: #242424;
+    border-bottom-color: #242424;
+}
+
+
+/* =========================================
+   SIGNAL SECTION
+========================================= */
+
+.signal-section {
+    min-width: 0;
+
+    padding: 8px 10px 10px;
+
+    background: #020202;
+
+    border-top: 1px solid #1b1b1b;
+    border-left: 1px solid #181818;
+
+    border-right: 1px solid #050505;
+    border-bottom: 1px solid #050505;
+
+    box-shadow:
+        inset 0 0 14px rgba(0, 0, 0, 1);
 }
 
 
@@ -752,24 +1029,58 @@ body {
 ========================================= */
 
 .waveform-frame {
+    position: relative;
+
     width: 100%;
 
-    height: 86px;
+    height: 58px;
 
-    margin-bottom: 12px;
+    margin-bottom: 9px;
 
-    padding: 7px;
+    overflow: hidden;
 
-    background: #151515;
+    background: #000;
 
-    border-top: 1px solid #555;
-    border-left: 1px solid #555;
+    border-top: 1px solid #0e0e0e;
+    border-left: 1px solid #0b0b0b;
 
-    border-right: 1px solid #ececec;
-    border-bottom: 1px solid #ececec;
+    border-right: 1px solid #151515;
+    border-bottom: 1px solid #151515;
+}
 
-    box-shadow:
-        inset 0 0 8px rgba(0, 0, 0, 0.9);
+
+/* BROKEN SCAN LINE */
+
+.waveform-frame::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 48%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+
+            transparent 0%,
+            rgba(130,0,0,0.13) 7%,
+
+            rgba(130,0,0,0.13) 31%,
+            transparent 31.5%,
+
+            transparent 38%,
+            rgba(130,0,0,0.09) 38.5%,
+
+            rgba(130,0,0,0.09) 77%,
+            transparent 77.5%
+        );
+
+    pointer-events: none;
 }
 
 #audioWaveform {
@@ -782,87 +1093,15 @@ body {
 
 
 /* =========================================
-   PLAYER CONTROLS
+   SEEK
 ========================================= */
 
-.audio-controls {
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-}
-
-
-/* BUTTONS */
-
-.audio-button {
-    width: 42px;
-    height: 32px;
+.seek-wrap {
+    width: 100%;
 
     display: flex;
 
     align-items: center;
-    justify-content: center;
-
-    padding: 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            #ededed,
-            #b8b8b8
-        );
-
-    color: #111;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    border-top: 1px solid #fff;
-    border-left: 1px solid #eee;
-
-    border-right: 1px solid #555;
-    border-bottom: 1px solid #555;
-
-    cursor: pointer;
-}
-
-.audio-button:hover {
-    background:
-        linear-gradient(
-            180deg,
-            #fff,
-            #c5c5c5
-        );
-}
-
-.audio-button:active {
-    border-top-color: #666;
-    border-left-color: #666;
-
-    border-right-color: #eee;
-    border-bottom-color: #eee;
-
-    background: #aaa;
-}
-
-
-/* =========================================
-   SEEK AREA
-========================================= */
-
-.seek-area {
-    flex: 1;
-
-    display: flex;
-
-    align-items: center;
-
-    min-width: 0;
-
-    padding: 0 5px;
 }
 
 #audioSeek {
@@ -870,82 +1109,113 @@ body {
 
     height: 4px;
 
-    accent-color: #8a0000;
-
     cursor: pointer;
+
+    accent-color: #830000;
 }
 
 
 /* =========================================
-   VOLUME
+   VOLUME BAY
 ========================================= */
 
-.volume-area {
+.hardware-volume {
+    min-width: 130px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 8px 12px;
+
+    background: #050505;
+
+    border-top: 1px solid #1d1d1d;
+    border-left: 1px solid #181818;
+
+    border-right: 1px solid #030303;
+    border-bottom: 1px solid #030303;
+}
+
+.volume-label {
+    color: #5f5f5f;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+.volume-control {
     display: flex;
 
     align-items: center;
 
     gap: 7px;
-
-    padding-left: 8px;
-
-    border-left: 1px solid #777;
 }
 
 .volume-symbol {
-    color: #111;
+    color: #777;
 
     font-family: Arial, sans-serif;
 
-    font-size: 16px;
+    font-size: 15px;
 }
 
 #audioVolume {
-    width: 80px;
+    width: 82px;
 
-    accent-color: #222;
+    accent-color: #770000;
 
     cursor: pointer;
 }
 
 
 /* =========================================
-   MOBILE AUDIO
+   AUDIO PLAYER MOBILE
 ========================================= */
 
 @media (max-width: 700px) {
 
     .audio-container {
-        padding: 8px;
+        padding: 7px;
     }
 
-    .silver-player {
+    .hardware-player {
         padding: 10px;
     }
 
+    .hardware-main {
+        grid-template-columns: 1fr;
+
+        gap: 7px;
+    }
+
+    .hardware-buttons {
+        justify-content: center;
+    }
+
+    .hardware-button {
+        width: 43px;
+        height: 36px;
+    }
+
     .waveform-frame {
-        height: 70px;
+        height: 55px;
     }
 
-    .audio-controls {
-        gap: 5px;
-    }
+    .hardware-volume {
+        min-width: 0;
 
-    .audio-button {
-        width: 34px;
-        height: 30px;
+        flex-direction: row;
 
-        font-size: 12px;
-    }
-
-    .volume-area {
-        gap: 4px;
-
-        padding-left: 5px;
-    }
-
-    #audioVolume {
-        width: 55px;
+        justify-content: flex-end;
     }
 
 }
@@ -1234,7 +1504,7 @@ body {
 
 
         <!-- =================================
-             07 — PERMANENTLY CORRUPT
+             07 — PERMANENT CORRUPT
         ================================== -->
 
         <div
@@ -1279,9 +1549,6 @@ body {
 
         <!-- =================================
              09 — AUDIO
-
-             BUFFER AT 20%
-             FOR 3 SECONDS
         ================================== -->
 
         <div
@@ -1405,7 +1672,7 @@ body {
 
 
         <!-- =================================
-             AUDIO PLAYER
+             DARK RECOVERED AUDIO PLAYER
         ================================== -->
 
         <div
@@ -1414,76 +1681,82 @@ body {
         >
 
 
-            <div class="silver-player">
+            <div class="hardware-player">
 
 
-                <!-- WAVEFORM -->
-
-                <div class="waveform-frame">
+                <div class="hardware-scratches"></div>
 
 
-                    <canvas
-                        id="audioWaveform"
-                    ></canvas>
+                <div class="hardware-main">
 
 
-                </div>
+                    <!-- BUTTON BAY -->
+
+                    <div class="hardware-buttons">
 
 
-
-                <!-- CONTROLS -->
-
-                <div class="audio-controls">
-
-
-                    <!-- REWIND 10 SEC -->
-
-                    <button
-                        class="audio-button"
-                        onclick="skipAudio(-10)"
-                        title="back 10 seconds"
-                    >
-                        ◀◀
-                    </button>
-
-
-                    <!-- PLAY / PAUSE -->
-
-                    <button
-                        id="audioPlayButton"
-                        class="audio-button"
-                        onclick="toggleAudio()"
-                        title="play / pause"
-                    >
-                        ▶
-                    </button>
-
-
-                    <!-- FORWARD 10 SEC -->
-
-                    <button
-                        class="audio-button"
-                        onclick="skipAudio(10)"
-                        title="forward 10 seconds"
-                    >
-                        ▶▶
-                    </button>
-
-
-
-                    <!-- SEEK -->
-
-                    <div class="seek-area">
-
-
-                        <input
-                            id="audioSeek"
-                            type="range"
-                            min="0"
-                            max="100"
-                            value="0"
-                            step="0.01"
+                        <button
+                            class="hardware-button"
+                            onclick="skipAudio(-10)"
+                            title="back 10 seconds"
                         >
+                            ◀◀
+                        </button>
+
+
+                        <button
+                            id="audioPlayButton"
+                            class="hardware-button"
+                            onclick="toggleAudio()"
+                            title="play / pause"
+                        >
+                            ▶
+                        </button>
+
+
+                        <button
+                            class="hardware-button"
+                            onclick="skipAudio(10)"
+                            title="forward 10 seconds"
+                        >
+                            ▶▶
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- SIGNAL -->
+
+                    <div class="signal-section">
+
+
+                        <div class="waveform-frame">
+
+
+                            <canvas
+                                id="audioWaveform"
+                            ></canvas>
+
+
+                        </div>
+
+
+                        <div class="seek-wrap">
+
+
+                            <input
+                                id="audioSeek"
+                                type="range"
+                                min="0"
+                                max="100"
+                                value="0"
+                                step="0.01"
+                            >
+
+
+                        </div>
 
 
                     </div>
@@ -1492,22 +1765,33 @@ body {
 
                     <!-- VOLUME -->
 
-                    <div class="volume-area">
+                    <div class="hardware-volume">
 
 
-                        <span class="volume-symbol">
-                            🔊
-                        </span>
+                        <div class="volume-label">
+                            OUTPUT
+                        </div>
 
 
-                        <input
-                            id="audioVolume"
-                            type="range"
-                            min="0"
-                            max="1"
-                            value="0.85"
-                            step="0.01"
-                        >
+                        <div class="volume-control">
+
+
+                            <span class="volume-symbol">
+                                🔊
+                            </span>
+
+
+                            <input
+                                id="audioVolume"
+                                type="range"
+                                min="0"
+                                max="1"
+                                value="0.85"
+                                step="0.01"
+                            >
+
+
+                        </div>
 
 
                     </div>
@@ -1519,7 +1803,6 @@ body {
             </div>
 
 
-            <!-- ACTUAL AUDIO ELEMENT -->
 
             <audio
                 id="audioPlayer"
@@ -1644,65 +1927,50 @@ const authLoader =
 
 
 
-/* =========================================
-   AUTO FOCUS
-========================================= */
+/* AUTO FOCUS */
 
 window.addEventListener(
     "load",
     function() {
 
-
         setTimeout(
             function() {
 
-
                 passwordInput.focus();
-
 
             },
             100
         );
 
-
     }
 );
 
 
 
-/* =========================================
-   BLOCK SPACES
-========================================= */
+/* BLOCK SPACE */
 
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === " "
         ) {
 
-
             event.preventDefault();
 
-
         }
-
 
     }
 );
 
 
 
-/* =========================================
-   REMOVE PASTED SPACES
-========================================= */
+/* REMOVE PASTED SPACES */
 
 passwordInput.addEventListener(
     "input",
     function() {
-
 
         passwordInput.value =
             passwordInput.value.replace(
@@ -1710,34 +1978,26 @@ passwordInput.addEventListener(
                 ""
             );
 
-
     }
 );
 
 
 
-/* =========================================
-   ENTER TO SUBMIT
-========================================= */
+/* ENTER */
 
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-
         if (
             event.key === "Enter"
         ) {
 
-
             event.preventDefault();
-
 
             submitPassword();
 
-
         }
-
 
     }
 );
@@ -1754,9 +2014,6 @@ function submitPassword() {
     const enteredPassword =
         passwordInput.value;
 
-
-
-    /* CORRECT */
 
     if (
         enteredPassword ===
@@ -1786,7 +2043,6 @@ function submitPassword() {
         );
 
 
-
         setTimeout(
             function() {
 
@@ -1805,9 +2061,6 @@ function submitPassword() {
 
     }
 
-
-
-    /* WRONG */
 
     failedAttempts++;
 
@@ -1828,7 +2081,6 @@ function submitPassword() {
     passwordInput.focus();
 
 
-
     authBox.classList.remove(
         "shake"
     );
@@ -1842,9 +2094,6 @@ function submitPassword() {
     );
 
 
-
-    /* THIRD WRONG ATTEMPT */
-
     if (
         failedAttempts >=
         maxAttempts
@@ -1857,7 +2106,6 @@ function submitPassword() {
 
         authButton.disabled =
             true;
-
 
 
         setTimeout(
@@ -1881,7 +2129,7 @@ function submitPassword() {
 
 
 /* =========================================
-   MEDIA REFERENCES
+   MEDIA
 ========================================= */
 
 let loadingTimer =
@@ -1893,10 +2141,6 @@ let stallTimer =
 
 
 let errorTimer =
-    null;
-
-
-let activeMediaType =
     null;
 
 
@@ -2047,10 +2291,6 @@ function openMedia(
 
 
 
-    /* =====================================
-       CLEAR OLD TIMERS
-    ===================================== */
-
     clearTimeout(
         loadingTimer
     );
@@ -2066,23 +2306,17 @@ function openMedia(
     );
 
 
-
-    /* =====================================
-       RESET OLD MEDIA
-    ===================================== */
-
     videoPlayer.pause();
 
 
     audioPlayer.pause();
 
 
-    audioPlayButton.textContent =
-        "▶";
-
-
     stopWaveform();
 
+
+    audioPlayButton.textContent =
+        "▶";
 
 
     videoContainer.style.display =
@@ -2099,18 +2333,7 @@ function openMedia(
 
 
 
-    /* =====================================
-       ACTIVE TYPE
-    ===================================== */
-
-    activeMediaType =
-        mediaType;
-
-
-
-    /* =====================================
-       SOURCE
-    ===================================== */
+    /* SOURCE */
 
     if (
         loadMode === "corrupt"
@@ -2139,9 +2362,7 @@ function openMedia(
     }
 
 
-    else if (
-        mediaType === "audio"
-    ) {
+    else {
 
 
         audioPlayer.src =
@@ -2166,10 +2387,6 @@ function openMedia(
     }
 
 
-
-    /* =====================================
-       RESET LOADING UI
-    ===================================== */
 
     loadingScreen.style.display =
         "flex";
@@ -2202,11 +2419,7 @@ function openMedia(
 
 
 
-    /* =====================================
-       RANDOM CORRUPTION POINT FOR 07
-
-       38% - 84%
-    ===================================== */
+    /* RANDOM CORRUPTION FOR 07 */
 
     let corruptAt =
         null;
@@ -2230,10 +2443,6 @@ function openMedia(
 
 
 
-    /* =====================================
-       NEXT STEP
-    ===================================== */
-
     function scheduleNextStep() {
 
 
@@ -2248,10 +2457,6 @@ function openMedia(
     }
 
 
-
-    /* =====================================
-       LOADING STEP
-    ===================================== */
 
     function loadingStep() {
 
@@ -2275,7 +2480,7 @@ function openMedia(
 
 
         /* =================================
-           FILE 07 — ALWAYS CORRUPT
+           07 CORRUPT
         ================================= */
 
         if (
@@ -2313,8 +2518,7 @@ function openMedia(
 
 
         /* =================================
-           FILE 08 — BUFFER AT 82%
-           FOR 2 SECONDS
+           08 BUFFER 82%
         ================================= */
 
         if (
@@ -2362,10 +2566,7 @@ function openMedia(
 
 
         /* =================================
-           FILE 09 AUDIO
-
-           BUFFER AT 20%
-           FOR 3 SECONDS
+           09 BUFFER 20% FOR 3 SEC
         ================================= */
 
         if (
@@ -2413,7 +2614,7 @@ function openMedia(
 
 
         /* =================================
-           FINISHED
+           FINISH
         ================================= */
 
         if (
@@ -2433,7 +2634,6 @@ function openMedia(
 
             loadingText.textContent =
                 "opening file..";
-
 
 
             if (
@@ -2496,7 +2696,6 @@ function showVideo() {
         );
 
 
-
     setTimeout(
         function() {
 
@@ -2509,10 +2708,8 @@ function showVideo() {
                 "block";
 
 
-
             const playAttempt =
                 videoPlayer.play();
-
 
 
             if (
@@ -2552,7 +2749,6 @@ function showAudio() {
         document.getElementById(
             "loadingScreen"
         );
-
 
 
     setTimeout(
@@ -2611,7 +2807,6 @@ function toggleAudio() {
         }
 
 
-
         audioPlayer.play();
 
 
@@ -2632,7 +2827,7 @@ function toggleAudio() {
 
 
 /* =========================================
-   AUDIO SKIP
+   SKIP AUDIO
 ========================================= */
 
 function skipAudio(
@@ -2673,7 +2868,7 @@ function skipAudio(
 
 
 /* =========================================
-   PLAY BUTTON STATE
+   PLAY STATE
 ========================================= */
 
 audioPlayer.addEventListener(
@@ -2724,7 +2919,7 @@ audioPlayer.addEventListener(
 
 
 /* =========================================
-   AUDIO SEEK
+   SEEK
 ========================================= */
 
 audioPlayer.addEventListener(
@@ -2757,7 +2952,6 @@ audioPlayer.addEventListener(
 
     }
 );
-
 
 
 audioSeek.addEventListener(
@@ -2848,10 +3042,6 @@ const waveformContext =
 
 
 
-/* =========================================
-   INIT VISUALIZER
-========================================= */
-
 function initAudioVisualizer() {
 
 
@@ -2873,7 +3063,6 @@ function initAudioVisualizer() {
         window.webkitAudioContext;
 
 
-
     if (
         !AudioContextClass
     ) {
@@ -2885,15 +3074,12 @@ function initAudioVisualizer() {
     }
 
 
-
     audioContext =
         new AudioContextClass();
 
 
-
     analyser =
         audioContext.createAnalyser();
-
 
 
     analyser.fftSize =
@@ -2901,8 +3087,7 @@ function initAudioVisualizer() {
 
 
     analyser.smoothingTimeConstant =
-        0.78;
-
+        0.8;
 
 
     mediaSource =
@@ -2910,7 +3095,6 @@ function initAudioVisualizer() {
         audioContext.createMediaElementSource(
             audioPlayer
         );
-
 
 
     mediaSource.connect(
@@ -2938,20 +3122,21 @@ function resizeWaveform() {
         waveformCanvas.getBoundingClientRect();
 
 
-
     const scale =
         window.devicePixelRatio
         ||
         1;
 
 
-
     waveformCanvas.width =
 
         Math.max(
             1,
+
             Math.floor(
-                rect.width * scale
+                rect.width
+                *
+                scale
             )
         );
 
@@ -2960,8 +3145,11 @@ function resizeWaveform() {
 
         Math.max(
             1,
+
             Math.floor(
-                rect.height * scale
+                rect.height
+                *
+                scale
             )
         );
 
@@ -2990,14 +3178,12 @@ function drawIdleWaveform() {
     resizeWaveform();
 
 
-
     const width =
         waveformCanvas.clientWidth;
 
 
     const height =
         waveformCanvas.clientHeight;
-
 
 
     waveformContext.clearRect(
@@ -3008,34 +3194,38 @@ function drawIdleWaveform() {
     );
 
 
+    waveformContext.fillStyle =
+        "#000";
+
+
+    waveformContext.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
 
     waveformContext.strokeStyle =
-        "#555";
+        "#242424";
 
 
     waveformContext.lineWidth =
         1;
 
 
-
     waveformContext.beginPath();
-
-
-
-    const middle =
-        height / 2;
-
 
 
     waveformContext.moveTo(
         0,
-        middle
+        height / 2
     );
 
 
     waveformContext.lineTo(
         width,
-        middle
+        height / 2
     );
 
 
@@ -3058,7 +3248,6 @@ function startWaveform() {
     );
 
 
-
     function draw() {
 
 
@@ -3069,13 +3258,9 @@ function startWaveform() {
             );
 
 
-
         if (
             !analyser
         ) {
-
-
-            drawIdleWaveform();
 
 
             return;
@@ -3084,10 +3269,8 @@ function startWaveform() {
         }
 
 
-
         const bufferLength =
             analyser.fftSize;
-
 
 
         const data =
@@ -3096,11 +3279,9 @@ function startWaveform() {
             );
 
 
-
         analyser.getByteTimeDomainData(
             data
         );
-
 
 
         const width =
@@ -3111,7 +3292,6 @@ function startWaveform() {
             waveformCanvas.clientHeight;
 
 
-
         waveformContext.clearRect(
             0,
             0,
@@ -3120,11 +3300,8 @@ function startWaveform() {
         );
 
 
-
-        /* DARK BACKGROUND */
-
         waveformContext.fillStyle =
-            "#151515";
+            "#000";
 
 
         waveformContext.fillRect(
@@ -3135,11 +3312,10 @@ function startWaveform() {
         );
 
 
-
         /* MIDLINE */
 
         waveformContext.strokeStyle =
-            "#303030";
+            "#1b1b1b";
 
 
         waveformContext.lineWidth =
@@ -3165,28 +3341,27 @@ function startWaveform() {
 
 
 
-        /* ACTUAL AUDIO WAVE */
+        /* RED SIGNAL */
 
         waveformContext.strokeStyle =
-            "#9b0000";
+            "#8c0000";
 
 
         waveformContext.lineWidth =
-            1.4;
+            1.25;
 
 
         waveformContext.beginPath();
 
 
-
         const sliceWidth =
-            width / bufferLength;
-
+            width
+            /
+            bufferLength;
 
 
         let x =
             0;
-
 
 
         for (
@@ -3208,7 +3383,6 @@ function startWaveform() {
                 height
                 /
                 2;
-
 
 
             if (
@@ -3237,7 +3411,6 @@ function startWaveform() {
             }
 
 
-
             x +=
                 sliceWidth;
 
@@ -3245,18 +3418,10 @@ function startWaveform() {
         }
 
 
-
-        waveformContext.lineTo(
-            width,
-            height / 2
-        );
-
-
         waveformContext.stroke();
 
 
     }
-
 
 
     draw();
@@ -3332,7 +3497,7 @@ window.addEventListener(
 
 
 /* =========================================
-   CLOSE CORRUPT FILE
+   CLOSE CORRUPT
 ========================================= */
 
 function closeCorruptFile() {
