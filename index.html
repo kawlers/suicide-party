@@ -49,7 +49,7 @@ body {
 
 
 /* =========================================
-   LOGO
+   VIDEO LOGO
 ========================================= */
 
 .logo {
@@ -60,6 +60,8 @@ body {
     display: block;
 
     margin-bottom: 0;
+
+    object-fit: contain;
 }
 
 
@@ -416,13 +418,27 @@ body {
 <div class="home">
 
 
-    <!-- LOGO -->
+    <!-- =====================================
+         LOOPING VIDEO LOGO
+    ====================================== -->
 
-    <img
+    <video
         class="logo"
-        src="suicide-party-logo.png"
-        alt="suicide party"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+        aria-label="suicide party"
     >
+
+        <source
+            src="SS logo homepage_1final.mp4"
+            type="video/mp4"
+        >
+
+    </video>
 
 
     <div class="text-area">
