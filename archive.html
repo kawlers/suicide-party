@@ -64,7 +64,6 @@ body {
 
 /* =========================================================
    LOOPING FILES VIDEO HEADER
-   RIGHT SIDE
 ========================================================= */
 
 .directory-logo-video {
@@ -86,7 +85,6 @@ body {
 
 /* =========================================================
    DIRECTORY LIST
-   MOVED CLOSER
 ========================================================= */
 
 .directory-list {
@@ -717,6 +715,23 @@ body {
 
 
 /* =========================================================
+   FILE 08 — 35% SMALLER
+========================================================= */
+
+.video-container.file-eight-size {
+    width: 65%;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-container.file-eight-size #videoPlayer {
+    width: 100%;
+    max-height: 65vh;
+}
+
+
+/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -770,6 +785,10 @@ body {
 
     .auth-content {
         padding: 26px 22px 22px;
+    }
+
+    .video-container.file-eight-size {
+        width: 65%;
     }
 
 }
@@ -1037,11 +1056,11 @@ body {
 
 
 
-        <!-- 08 -->
+        <!-- 08 — 35% SMALLER WHEN OPENED -->
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', 'stall82', 20)"
+            onclick="openVideo('957229577.mp4', 'stall82', 20, true)"
         >
 
             <span class="file-icon">⌑</span>
@@ -1252,7 +1271,9 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === " ") {
+        if (
+            event.key === " "
+        ) {
 
             event.preventDefault();
 
@@ -1280,7 +1301,9 @@ passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key === "Enter") {
+        if (
+            event.key === "Enter"
+        ) {
 
             event.preventDefault();
 
@@ -1303,14 +1326,18 @@ function submitPassword() {
         correctPassword
     ) {
 
-        passwordInput.disabled = true;
-        authButton.disabled = true;
+        passwordInput.disabled =
+            true;
+
+        authButton.disabled =
+            true;
 
         authStatus.classList.remove(
             "error"
         );
 
-        authStatus.textContent = "";
+        authStatus.textContent =
+            "";
 
         authLoader.classList.add(
             "visible"
@@ -1334,6 +1361,7 @@ function submitPassword() {
 
     failedAttempts++;
 
+
     authStatus.textContent =
         "authorization error";
 
@@ -1341,7 +1369,8 @@ function submitPassword() {
         "error"
     );
 
-    passwordInput.value = "";
+    passwordInput.value =
+        "";
 
     passwordInput.focus();
 
@@ -1361,8 +1390,11 @@ function submitPassword() {
         maxAttempts
     ) {
 
-        passwordInput.disabled = true;
-        authButton.disabled = true;
+        passwordInput.disabled =
+            true;
+
+        authButton.disabled =
+            true;
 
 
         setTimeout(
@@ -1381,9 +1413,14 @@ function submitPassword() {
 
 
 
-let loadingTimer = null;
-let stallTimer = null;
-let errorTimer = null;
+let loadingTimer =
+    null;
+
+let stallTimer =
+    null;
+
+let errorTimer =
+    null;
 
 
 const videoPlayer =
@@ -1394,6 +1431,11 @@ const videoPlayer =
 const videoSource =
     document.getElementById(
         "videoSource"
+    );
+
+const videoContainer =
+    document.getElementById(
+        "videoContainer"
     );
 
 const corruptOverlay =
@@ -1407,14 +1449,18 @@ function updateLoadingText(
     loadingText
 ) {
 
-    if (value < 25) {
+    if (
+        value < 25
+    ) {
 
         loadingText.textContent =
             "file found..";
 
     }
 
-    else if (value < 85) {
+    else if (
+        value < 85
+    ) {
 
         loadingText.textContent =
             "loading file..";
@@ -1434,7 +1480,8 @@ function updateLoadingText(
 function openVideo(
     fileName,
     loadMode,
-    loadSpeed
+    loadSpeed,
+    makeSmaller = false
 ) {
 
     const overlay =
@@ -1445,11 +1492,6 @@ function openVideo(
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
-        );
-
-    const videoContainer =
-        document.getElementById(
-            "videoContainer"
         );
 
     const loadingText =
@@ -1468,15 +1510,41 @@ function openVideo(
         );
 
 
-    clearTimeout(loadingTimer);
-    clearTimeout(stallTimer);
-    clearTimeout(errorTimer);
+    clearTimeout(
+        loadingTimer
+    );
+
+    clearTimeout(
+        stallTimer
+    );
+
+    clearTimeout(
+        errorTimer
+    );
 
 
     videoPlayer.pause();
 
+
     videoContainer.style.display =
         "none";
+
+
+    videoContainer.classList.remove(
+        "file-eight-size"
+    );
+
+
+    if (
+        makeSmaller
+    ) {
+
+        videoContainer.classList.add(
+            "file-eight-size"
+        );
+
+    }
+
 
     corruptOverlay.classList.remove(
         "active"
@@ -1487,7 +1555,8 @@ function openVideo(
         loadMode === "corrupt"
     ) {
 
-        videoSource.src = "";
+        videoSource.src =
+            "";
 
         videoPlayer.load();
 
@@ -1520,11 +1589,15 @@ function openVideo(
     );
 
 
-    let value = 0;
-    let stallUsed = false;
+    let value =
+        0;
+
+    let stallUsed =
+        false;
 
 
-    let corruptAt = null;
+    let corruptAt =
+        null;
 
 
     if (
@@ -1534,7 +1607,9 @@ function openVideo(
         corruptAt =
             Math.floor(
                 Math.random() * 47
-            ) + 38;
+            )
+            +
+            38;
 
     }
 
@@ -1542,6 +1617,7 @@ function openVideo(
     function scheduleNextStep() {
 
         loadingTimer =
+
             setTimeout(
                 loadingStep,
                 loadSpeed
@@ -1554,11 +1630,13 @@ function openVideo(
 
         value++;
 
+
         progress.style.width =
             value + "%";
 
         percent.textContent =
             value + "%";
+
 
         updateLoadingText(
             value,
@@ -1577,6 +1655,7 @@ function openVideo(
 
 
             errorTimer =
+
                 setTimeout(
                     function() {
 
@@ -1601,13 +1680,15 @@ function openVideo(
             stallUsed === false
         ) {
 
-            stallUsed = true;
+            stallUsed =
+                true;
 
             loadingText.textContent =
                 "buffering..";
 
 
             stallTimer =
+
                 setTimeout(
                     function() {
 
@@ -1642,6 +1723,7 @@ function openVideo(
             loadingText.textContent =
                 "opening file..";
 
+
             showVideo();
 
             return;
@@ -1664,11 +1746,6 @@ function showVideo() {
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
-        );
-
-    const videoContainer =
-        document.getElementById(
-            "videoContainer"
         );
 
 
@@ -1722,22 +1799,38 @@ function closeVideo() {
         );
 
 
-    clearTimeout(loadingTimer);
-    clearTimeout(stallTimer);
-    clearTimeout(errorTimer);
+    clearTimeout(
+        loadingTimer
+    );
+
+    clearTimeout(
+        stallTimer
+    );
+
+    clearTimeout(
+        errorTimer
+    );
+
 
     corruptOverlay.classList.remove(
         "active"
     );
 
+
     videoPlayer.pause();
 
-    videoPlayer.currentTime = 0;
+    videoPlayer.currentTime =
+        0;
 
-    document.getElementById(
-        "videoContainer"
-    ).style.display =
+
+    videoContainer.style.display =
         "none";
+
+
+    videoContainer.classList.remove(
+        "file-eight-size"
+    );
+
 
     overlay.classList.remove(
         "active"
@@ -1798,4 +1891,5 @@ document.addEventListener(
 
 
 </body>
+
 </html>
