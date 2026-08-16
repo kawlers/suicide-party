@@ -57,15 +57,25 @@ body {
     margin-bottom: 32px;
 }
 
-.directory-path {
-    display: inline-block;
-    color: #d00000;
-    border: 1px solid #520000;
-    padding: 8px 16px;
-    font-size: 18px;
-    letter-spacing: 2px;
-    margin-bottom: 24px;
+
+/* =========================================================
+   LOOPING FILES VIDEO HEADER
+========================================================= */
+
+.directory-logo-video {
+    display: block;
+
+    width: 210px;
+    max-width: 55vw;
+    height: auto;
+
+    object-fit: contain;
+
+    margin: 0 0 24px 0;
+
+    pointer-events: none;
 }
+
 
 .section-title {
     color: #666;
@@ -644,13 +654,14 @@ body {
         margin-top: 35px;
     }
 
+    .directory-logo-video {
+        width: 175px;
+        max-width: 60vw;
+    }
+
     .directory-file {
         font-size: 11px;
         gap: 8px;
-    }
-
-    .directory-path {
-        font-size: 16px;
     }
 
     .number {
@@ -764,9 +775,29 @@ body {
 
     <div class="directory-header">
 
-        <div class="directory-path">
-            /files
-        </div>
+
+        <!-- ================================================
+             LOOPING FILES VIDEO
+        ================================================= -->
+
+        <video
+            class="directory-logo-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+            aria-label="files"
+        >
+
+            <source
+                src="filestextvideofinal.mp4"
+                type="video/mp4"
+            >
+
+        </video>
+
 
         <div class="section-title">
             files
@@ -954,10 +985,6 @@ body {
         </button>
 
 
-        <!-- =================================================
-             LOADING
-        ================================================== -->
-
         <div
             id="loadingScreen"
             class="loading-screen"
@@ -989,10 +1016,6 @@ body {
         </div>
 
 
-        <!-- =================================================
-             VIDEO
-        ================================================== -->
-
         <div
             id="videoContainer"
             class="video-container"
@@ -1014,10 +1037,6 @@ body {
 
         </div>
 
-
-        <!-- =================================================
-             CORRUPT ERROR
-        ================================================== -->
 
         <div
             id="corruptOverlay"
@@ -1353,10 +1372,6 @@ const corruptOverlay =
 
 /* =========================================================
    LOADING TEXT
-
-   0-24%   file found..
-   25-84%  loading file..
-   85-100% opening file..
 ========================================================= */
 
 function updateLoadingText(
@@ -1373,7 +1388,6 @@ function updateLoadingText(
 
     }
 
-
     else if (
         value < 85
     ) {
@@ -1382,7 +1396,6 @@ function updateLoadingText(
             "loading file..";
 
     }
-
 
     else {
 
@@ -1471,8 +1484,6 @@ function openVideo(
 
 
 
-    /* SOURCE */
-
     if (
         loadMode === "corrupt"
     ) {
@@ -1485,7 +1496,6 @@ function openVideo(
 
     }
 
-
     else {
 
         videoSource.src =
@@ -1497,8 +1507,6 @@ function openVideo(
     }
 
 
-
-    /* RESET LOADER */
 
     loadingScreen.style.display =
         "flex";
@@ -1530,11 +1538,6 @@ function openVideo(
         false;
 
 
-
-    /* =====================================================
-       07 RANDOM CORRUPTION POINT
-       ALWAYS FAILS BETWEEN 38% AND 84%
-    ===================================================== */
 
     let corruptAt =
         null;
@@ -1590,7 +1593,7 @@ function openVideo(
 
 
         /* =================================================
-           07 — ALWAYS CORRUPT
+           07 — RANDOM CORRUPTION
         ================================================= */
 
         if (
@@ -1624,7 +1627,7 @@ function openVideo(
 
 
         /* =================================================
-           08 — BUFFER AT 82% FOR 2 SECONDS
+           08 — BUFFER AT 82%
         ================================================= */
 
         if (
@@ -1666,10 +1669,6 @@ function openVideo(
         }
 
 
-
-        /* =================================================
-           FINISH
-        ================================================= */
 
         if (
             value >= 100
@@ -1880,7 +1879,6 @@ document.addEventListener(
                 closeCorruptFile();
 
             }
-
 
             else {
 
