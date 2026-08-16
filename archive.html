@@ -54,7 +54,7 @@ body {
 
 .directory-header {
     margin-top: 48px;
-    margin-bottom: 32px;
+    margin-bottom: 14px;
 }
 
 
@@ -71,21 +71,21 @@ body {
 
     object-fit: contain;
 
-    margin: 0 0 24px 0;
+    margin: 0;
 
     pointer-events: none;
 }
 
 
-.section-title {
-    color: #666;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
+/* =========================================================
+   DIRECTORY LIST
+========================================================= */
 
 .directory-list {
     width: 100%;
-    margin-top: 18px;
+
+    margin-top: 34px;
+
     border-top: 1px solid #1d1d1d;
 }
 
@@ -652,11 +652,16 @@ body {
 
     .directory-header {
         margin-top: 35px;
+        margin-bottom: 10px;
     }
 
     .directory-logo-video {
         width: 175px;
         max-width: 60vw;
+    }
+
+    .directory-list {
+        margin-top: 26px;
     }
 
     .directory-file {
@@ -746,9 +751,7 @@ body {
                 id="authLoader"
                 class="auth-loader"
             >
-
                 <div class="loader-symbol"></div>
-
             </div>
 
         </div>
@@ -775,11 +778,6 @@ body {
 
     <div class="directory-header">
 
-
-        <!-- ================================================
-             LOOPING FILES VIDEO
-        ================================================= -->
-
         <video
             class="directory-logo-video"
             autoplay
@@ -797,11 +795,6 @@ body {
             >
 
         </video>
-
-
-        <div class="section-title">
-            files
-        </div>
 
     </div>
 
@@ -905,9 +898,7 @@ body {
         </div>
 
 
-        <!-- =================================================
-             07 — ALWAYS CORRUPT
-        ================================================== -->
+        <!-- 07 -->
 
         <div
             class="directory-file"
@@ -924,9 +915,7 @@ body {
         </div>
 
 
-        <!-- =================================================
-             08 — BUFFER AT 82%
-        ================================================== -->
+        <!-- 08 -->
 
         <div
             class="directory-file"
@@ -943,9 +932,7 @@ body {
         </div>
 
 
-        <!-- =================================================
-             09 — BLANK
-        ================================================== -->
+        <!-- 09 -->
 
         <div class="directory-file empty">
 
@@ -1135,10 +1122,6 @@ const authLoader =
 
 
 
-/* =========================================================
-   AUTO FOCUS
-========================================================= */
-
 window.addEventListener(
     "load",
     function() {
@@ -1157,10 +1140,6 @@ window.addEventListener(
 
 
 
-/* =========================================================
-   BLOCK SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1178,10 +1157,6 @@ passwordInput.addEventListener(
 
 
 
-/* =========================================================
-   REMOVE PASTED SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "input",
     function() {
@@ -1196,10 +1171,6 @@ passwordInput.addEventListener(
 );
 
 
-
-/* =========================================================
-   ENTER TO SUBMIT
-========================================================= */
 
 passwordInput.addEventListener(
     "keydown",
@@ -1219,10 +1190,6 @@ passwordInput.addEventListener(
 );
 
 
-
-/* =========================================================
-   PASSWORD CHECK
-========================================================= */
 
 function submitPassword() {
 
@@ -1339,16 +1306,9 @@ function submitPassword() {
    VIDEO REFERENCES
 ========================================================= */
 
-let loadingTimer =
-    null;
-
-
-let stallTimer =
-    null;
-
-
-let errorTimer =
-    null;
+let loadingTimer = null;
+let stallTimer = null;
+let errorTimer = null;
 
 
 const videoPlayer =
@@ -1369,10 +1329,6 @@ const corruptOverlay =
     );
 
 
-
-/* =========================================================
-   LOADING TEXT
-========================================================= */
 
 function updateLoadingText(
     value,
@@ -1407,10 +1363,6 @@ function updateLoadingText(
 }
 
 
-
-/* =========================================================
-   OPEN VIDEO
-========================================================= */
 
 function openVideo(
     fileName,
@@ -1592,10 +1544,6 @@ function openVideo(
 
 
 
-        /* =================================================
-           07 — RANDOM CORRUPTION
-        ================================================= */
-
         if (
             loadMode === "corrupt"
             &&
@@ -1625,10 +1573,6 @@ function openVideo(
         }
 
 
-
-        /* =================================================
-           08 — BUFFER AT 82%
-        ================================================= */
 
         if (
             loadMode === "stall82"
@@ -1709,10 +1653,6 @@ function openVideo(
 
 
 
-/* =========================================================
-   SHOW VIDEO
-========================================================= */
-
 function showVideo() {
 
     const loadingScreen =
@@ -1747,11 +1687,7 @@ function showVideo() {
             ) {
 
                 playAttempt.catch(
-                    function() {
-
-                        /* autoplay blocked */
-
-                    }
+                    function() {}
                 );
 
             }
@@ -1763,10 +1699,6 @@ function showVideo() {
 }
 
 
-
-/* =========================================================
-   CLOSE CORRUPT
-========================================================= */
 
 function closeCorruptFile() {
 
@@ -1780,10 +1712,6 @@ function closeCorruptFile() {
 }
 
 
-
-/* =========================================================
-   CLOSE VIDEO
-========================================================= */
 
 function closeVideo() {
 
@@ -1834,10 +1762,6 @@ function closeVideo() {
 
 
 
-/* =========================================================
-   CLICK OUTSIDE
-========================================================= */
-
 function backgroundClose(
     event
 ) {
@@ -1854,10 +1778,6 @@ function backgroundClose(
 }
 
 
-
-/* =========================================================
-   ESC
-========================================================= */
 
 document.addEventListener(
     "keydown",
