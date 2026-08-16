@@ -472,7 +472,7 @@ body {
                 session ID:
 
                 <span id="sessionID">
-                    ---- ---- ----
+                    ------------
                 </span>
 
             </div>
@@ -707,6 +707,7 @@ function updateRoute() {
 
 /* =========================================
    RANDOM SESSION ID
+   NO DASHES
 ========================================= */
 
 function createSessionID() {
@@ -720,43 +721,25 @@ function createSessionID() {
 
 
     for (
-        let group = 0;
-        group < 3;
-        group++
+        let character = 0;
+        character < 12;
+        character++
     ) {
 
 
-        for (
-            let character = 0;
-            character < 4;
-            character++
-        ) {
+        const randomIndex =
+
+            Math.floor(
+                Math.random()
+                *
+                characters.length
+            );
 
 
-            const randomIndex =
-
-                Math.floor(
-                    Math.random()
-                    *
-                    characters.length
-                );
-
-
-            sessionID +=
-                characters[
-                    randomIndex
-                ];
-
-        }
-
-
-        if (
-            group < 2
-        ) {
-
-            sessionID += "-";
-
-        }
+        sessionID +=
+            characters[
+                randomIndex
+            ];
 
     }
 
@@ -1099,10 +1082,6 @@ function openEncryptedPage(
 
 
 
-                        /* =================================
-                           STATUS MESSAGES
-                        ================================= */
-
                         if (
                             value < 25
                         ) {
@@ -1142,10 +1121,6 @@ function openEncryptedPage(
 
 
 
-                        /* =================================
-                           COMPLETE
-                        ================================= */
-
                         if (
                             value >= 100
                         ) {
@@ -1181,11 +1156,6 @@ function openEncryptedPage(
                                 directoryName +
                                 " / channel established";
 
-
-
-                            /* =================================
-                               HOLD FINAL WORD FOR 2 SECONDS
-                            ================================= */
 
                             setTimeout(
                                 function() {
