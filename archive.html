@@ -54,13 +54,17 @@ body {
 
 .directory-header {
     margin-top: 48px;
-    margin-bottom: 14px;
+    margin-bottom: 0;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 
 /* =========================================================
    LOOPING FILES VIDEO HEADER
-   MOVED HIGHER
+   RIGHT SIDE
 ========================================================= */
 
 .directory-logo-video {
@@ -72,11 +76,6 @@ body {
 
     object-fit: contain;
 
-    /*
-       Moves only the animated FILES graphic upward
-       without dragging the file list upward.
-    */
-
     transform: translateY(-72px);
 
     margin-bottom: -72px;
@@ -87,12 +86,13 @@ body {
 
 /* =========================================================
    DIRECTORY LIST
+   MOVED CLOSER
 ========================================================= */
 
 .directory-list {
     width: 100%;
 
-    margin-top: 34px;
+    margin-top: 8px;
 
     border-top: 1px solid #1d1d1d;
 }
@@ -731,7 +731,9 @@ body {
     .directory-header {
         margin-top: 35px;
 
-        margin-bottom: 10px;
+        margin-bottom: 0;
+
+        justify-content: flex-end;
     }
 
     .directory-logo-video {
@@ -745,7 +747,7 @@ body {
     }
 
     .directory-list {
-        margin-top: 26px;
+        margin-top: 6px;
     }
 
     .directory-file {
@@ -869,11 +871,6 @@ body {
 
     <div class="directory-header">
 
-
-        <!-- =================================================
-             NEW LOOPING FILES/BLOOD VIDEO
-        ================================================== -->
-
         <video
             class="directory-logo-video"
             autoplay
@@ -891,7 +888,6 @@ body {
             >
 
         </video>
-
 
     </div>
 
@@ -1020,9 +1016,7 @@ body {
 
 
 
-        <!-- =================================================
-             07 — ALWAYS CORRUPT
-        ================================================== -->
+        <!-- 07 -->
 
         <div
             class="directory-file"
@@ -1043,9 +1037,7 @@ body {
 
 
 
-        <!-- =================================================
-             08 — BUFFER AT 82%
-        ================================================== -->
+        <!-- 08 -->
 
         <div
             class="directory-file"
@@ -1066,9 +1058,7 @@ body {
 
 
 
-        <!-- =================================================
-             09 — BLANK
-        ================================================== -->
+        <!-- 09 -->
 
         <div class="directory-file empty">
 
@@ -1113,9 +1103,6 @@ body {
         </button>
 
 
-
-        <!-- LOADING -->
-
         <div
             id="loadingScreen"
             class="loading-screen"
@@ -1150,8 +1137,6 @@ body {
 
 
 
-        <!-- VIDEO -->
-
         <div
             id="videoContainer"
             class="video-container"
@@ -1175,8 +1160,6 @@ body {
 
 
 
-        <!-- CORRUPT ERROR -->
-
         <div
             id="corruptOverlay"
             class="corrupt-overlay"
@@ -1184,24 +1167,19 @@ body {
 
             <div class="corrupt-window">
 
-
                 <div class="corrupt-header">
                     system error
                 </div>
 
-
                 <div class="corrupt-body">
-
 
                     <div class="corrupt-title">
                         corrupt file
                     </div>
 
-
                     <div class="corrupt-message">
                         file could not be played.
                     </div>
-
 
                     <div class="corrupt-actions">
 
@@ -1213,7 +1191,6 @@ body {
                         </button>
 
                     </div>
-
 
                 </div>
 
@@ -1230,63 +1207,29 @@ body {
 
 <script>
 
+let failedAttempts = 0;
 
-/* =========================================================
-   AUTHORIZATION
-========================================================= */
-
-let failedAttempts =
-    0;
-
-
-const maxAttempts =
-    3;
-
-
-const correctPassword =
-    "notmyblood";
-
+const maxAttempts = 3;
+const correctPassword = "notmyblood";
 
 const passwordInput =
-    document.getElementById(
-        "passwordInput"
-    );
-
+    document.getElementById("passwordInput");
 
 const authStatus =
-    document.getElementById(
-        "authStatus"
-    );
-
+    document.getElementById("authStatus");
 
 const authBox =
-    document.getElementById(
-        "authBox"
-    );
-
+    document.getElementById("authBox");
 
 const authOverlay =
-    document.getElementById(
-        "authOverlay"
-    );
-
+    document.getElementById("authOverlay");
 
 const authButton =
-    document.getElementById(
-        "authButton"
-    );
-
+    document.getElementById("authButton");
 
 const authLoader =
-    document.getElementById(
-        "authLoader"
-    );
+    document.getElementById("authLoader");
 
-
-
-/* =========================================================
-   AUTO FOCUS
-========================================================= */
 
 window.addEventListener(
     "load",
@@ -1305,18 +1248,11 @@ window.addEventListener(
 );
 
 
-
-/* =========================================================
-   BLOCK SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === " "
-        ) {
+        if (event.key === " ") {
 
             event.preventDefault();
 
@@ -1325,11 +1261,6 @@ passwordInput.addEventListener(
     }
 );
 
-
-
-/* =========================================================
-   REMOVE PASTED SPACES
-========================================================= */
 
 passwordInput.addEventListener(
     "input",
@@ -1345,18 +1276,11 @@ passwordInput.addEventListener(
 );
 
 
-
-/* =========================================================
-   ENTER TO SUBMIT
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
-        if (
-            event.key === "Enter"
-        ) {
+        if (event.key === "Enter") {
 
             event.preventDefault();
 
@@ -1368,13 +1292,7 @@ passwordInput.addEventListener(
 );
 
 
-
-/* =========================================================
-   PASSWORD CHECK
-========================================================= */
-
 function submitPassword() {
-
 
     const enteredPassword =
         passwordInput.value;
@@ -1385,23 +1303,14 @@ function submitPassword() {
         correctPassword
     ) {
 
-
-        passwordInput.disabled =
-            true;
-
-
-        authButton.disabled =
-            true;
-
+        passwordInput.disabled = true;
+        authButton.disabled = true;
 
         authStatus.classList.remove(
             "error"
         );
 
-
-        authStatus.textContent =
-            "";
-
+        authStatus.textContent = "";
 
         authLoader.classList.add(
             "visible"
@@ -1418,39 +1327,29 @@ function submitPassword() {
             2000
         );
 
-
         return;
 
     }
 
 
-
     failedAttempts++;
-
 
     authStatus.textContent =
         "authorization error";
-
 
     authStatus.classList.add(
         "error"
     );
 
-
-    passwordInput.value =
-        "";
-
+    passwordInput.value = "";
 
     passwordInput.focus();
-
 
     authBox.classList.remove(
         "shake"
     );
 
-
     void authBox.offsetWidth;
-
 
     authBox.classList.add(
         "shake"
@@ -1462,13 +1361,8 @@ function submitPassword() {
         maxAttempts
     ) {
 
-
-        passwordInput.disabled =
-            true;
-
-
-        authButton.disabled =
-            true;
+        passwordInput.disabled = true;
+        authButton.disabled = true;
 
 
         setTimeout(
@@ -1487,20 +1381,9 @@ function submitPassword() {
 
 
 
-/* =========================================================
-   VIDEO REFERENCES
-========================================================= */
-
-let loadingTimer =
-    null;
-
-
-let stallTimer =
-    null;
-
-
-let errorTimer =
-    null;
+let loadingTimer = null;
+let stallTimer = null;
+let errorTimer = null;
 
 
 const videoPlayer =
@@ -1508,12 +1391,10 @@ const videoPlayer =
         "videoPlayer"
     );
 
-
 const videoSource =
     document.getElementById(
         "videoSource"
     );
-
 
 const corruptOverlay =
     document.getElementById(
@@ -1521,36 +1402,24 @@ const corruptOverlay =
     );
 
 
-
-/* =========================================================
-   LOADING TEXT
-========================================================= */
-
 function updateLoadingText(
     value,
     loadingText
 ) {
 
-
-    if (
-        value < 25
-    ) {
+    if (value < 25) {
 
         loadingText.textContent =
             "file found..";
 
     }
 
-
-    else if (
-        value < 85
-    ) {
+    else if (value < 85) {
 
         loadingText.textContent =
             "loading file..";
 
     }
-
 
     else {
 
@@ -1562,47 +1431,36 @@ function updateLoadingText(
 }
 
 
-
-/* =========================================================
-   OPEN VIDEO
-========================================================= */
-
 function openVideo(
     fileName,
     loadMode,
     loadSpeed
 ) {
 
-
     const overlay =
         document.getElementById(
             "videoOverlay"
         );
-
 
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
         );
 
-
     const videoContainer =
         document.getElementById(
             "videoContainer"
         );
-
 
     const loadingText =
         document.getElementById(
             "loadingText"
         );
 
-
     const progress =
         document.getElementById(
             "loadingProgress"
         );
-
 
     const percent =
         document.getElementById(
@@ -1610,154 +1468,97 @@ function openVideo(
         );
 
 
-
-    clearTimeout(
-        loadingTimer
-    );
-
-
-    clearTimeout(
-        stallTimer
-    );
-
-
-    clearTimeout(
-        errorTimer
-    );
-
+    clearTimeout(loadingTimer);
+    clearTimeout(stallTimer);
+    clearTimeout(errorTimer);
 
 
     videoPlayer.pause();
 
-
     videoContainer.style.display =
         "none";
-
 
     corruptOverlay.classList.remove(
         "active"
     );
 
 
-
-    /* SOURCE */
-
     if (
         loadMode === "corrupt"
     ) {
 
-
-        videoSource.src =
-            "";
-
+        videoSource.src = "";
 
         videoPlayer.load();
 
-
     }
 
-
     else {
-
 
         videoSource.src =
             fileName;
 
-
         videoPlayer.load();
-
 
     }
 
 
-
-    /* RESET LOADING */
-
     loadingScreen.style.display =
         "flex";
-
 
     loadingText.textContent =
         "file found..";
 
-
     progress.style.width =
         "0%";
 
-
     percent.textContent =
         "0%";
-
 
     overlay.classList.add(
         "active"
     );
 
 
-
-    let value =
-        0;
-
-
-    let stallUsed =
-        false;
+    let value = 0;
+    let stallUsed = false;
 
 
-
-    /* =====================================================
-       RANDOM CORRUPT POINT
-    ===================================================== */
-
-    let corruptAt =
-        null;
+    let corruptAt = null;
 
 
     if (
         loadMode === "corrupt"
     ) {
 
-
         corruptAt =
-
             Math.floor(
                 Math.random() * 47
-            )
-            +
-            38;
-
+            ) + 38;
 
     }
 
 
-
     function scheduleNextStep() {
 
-
         loadingTimer =
-
             setTimeout(
                 loadingStep,
                 loadSpeed
             );
 
-
     }
-
 
 
     function loadingStep() {
 
-
         value++;
-
 
         progress.style.width =
             value + "%";
 
-
         percent.textContent =
             value + "%";
-
 
         updateLoadingText(
             value,
@@ -1765,47 +1566,32 @@ function openVideo(
         );
 
 
-
-        /* =================================================
-           07 — ALWAYS CORRUPT
-        ================================================= */
-
         if (
             loadMode === "corrupt"
             &&
             value >= corruptAt
         ) {
 
-
             loadingText.textContent =
                 "buffering..";
 
 
             errorTimer =
-
                 setTimeout(
                     function() {
-
 
                         corruptOverlay.classList.add(
                             "active"
                         );
 
-
                     },
                     750
                 );
-
 
             return;
 
         }
 
-
-
-        /* =================================================
-           08 — BUFFER AT 82%
-        ================================================= */
 
         if (
             loadMode === "stall82"
@@ -1815,44 +1601,31 @@ function openVideo(
             stallUsed === false
         ) {
 
-
-            stallUsed =
-                true;
-
+            stallUsed = true;
 
             loadingText.textContent =
                 "buffering..";
 
 
             stallTimer =
-
                 setTimeout(
                     function() {
-
 
                         updateLoadingText(
                             value,
                             loadingText
                         );
 
-
                         scheduleNextStep();
-
 
                     },
                     2000
                 );
 
-
             return;
 
         }
 
-
-
-        /* =================================================
-           FINISH
-        ================================================= */
 
         if (
             value >= 100
@@ -1860,26 +1633,20 @@ function openVideo(
             loadMode !== "corrupt"
         ) {
 
-
             progress.style.width =
                 "100%";
-
 
             percent.textContent =
                 "100%";
 
-
             loadingText.textContent =
                 "opening file..";
 
-
             showVideo();
-
 
             return;
 
         }
-
 
 
         scheduleNextStep();
@@ -1887,25 +1654,17 @@ function openVideo(
     }
 
 
-
     scheduleNextStep();
 
 }
 
 
-
-/* =========================================================
-   SHOW VIDEO
-========================================================= */
-
 function showVideo() {
-
 
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
         );
-
 
     const videoContainer =
         document.getElementById(
@@ -1916,10 +1675,8 @@ function showVideo() {
     setTimeout(
         function() {
 
-
             loadingScreen.style.display =
                 "none";
-
 
             videoContainer.style.display =
                 "block";
@@ -1933,18 +1690,11 @@ function showVideo() {
                 playAttempt !== undefined
             ) {
 
-
                 playAttempt.catch(
-                    function() {
-
-                        /* autoplay blocked */
-
-                    }
+                    function() {}
                 );
 
-
             }
-
 
         },
         120
@@ -1953,31 +1703,18 @@ function showVideo() {
 }
 
 
-
-/* =========================================================
-   CLOSE CORRUPT
-========================================================= */
-
 function closeCorruptFile() {
-
 
     corruptOverlay.classList.remove(
         "active"
     );
-
 
     closeVideo();
 
 }
 
 
-
-/* =========================================================
-   CLOSE VIDEO
-========================================================= */
-
 function closeVideo() {
-
 
     const overlay =
         document.getElementById(
@@ -1985,38 +1722,22 @@ function closeVideo() {
         );
 
 
-    clearTimeout(
-        loadingTimer
-    );
-
-
-    clearTimeout(
-        stallTimer
-    );
-
-
-    clearTimeout(
-        errorTimer
-    );
-
+    clearTimeout(loadingTimer);
+    clearTimeout(stallTimer);
+    clearTimeout(errorTimer);
 
     corruptOverlay.classList.remove(
         "active"
     );
 
-
     videoPlayer.pause();
 
-
-    videoPlayer.currentTime =
-        0;
-
+    videoPlayer.currentTime = 0;
 
     document.getElementById(
         "videoContainer"
     ).style.display =
         "none";
-
 
     overlay.classList.remove(
         "active"
@@ -2025,39 +1746,25 @@ function closeVideo() {
 }
 
 
-
-/* =========================================================
-   CLICK OUTSIDE
-========================================================= */
-
 function backgroundClose(
     event
 ) {
-
 
     if (
         event.target.id ===
         "videoOverlay"
     ) {
 
-
         closeVideo();
-
 
     }
 
 }
 
 
-
-/* =========================================================
-   ESCAPE
-========================================================= */
-
 document.addEventListener(
     "keydown",
     function(event) {
-
 
         if (
             event.key === "Escape"
@@ -2066,39 +1773,29 @@ document.addEventListener(
             "none"
         ) {
 
-
             if (
                 corruptOverlay.classList.contains(
                     "active"
                 )
             ) {
 
-
                 closeCorruptFile();
 
-
             }
-
 
             else {
 
-
                 closeVideo();
-
 
             }
 
-
         }
-
 
     }
 );
-
 
 </script>
 
 
 </body>
-
 </html>
