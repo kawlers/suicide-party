@@ -247,10 +247,19 @@ body {
 
 
 /* =========================================================
-   PASSWORD
+   PASSWORD — RED INPUT + CUSTOM BLINKING CURSOR
 ========================================================= */
 
+.auth-input-wrap {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
 .auth-input {
+    position: absolute;
+    inset: 0;
+
     width: 100%;
     height: 40px;
 
@@ -258,7 +267,10 @@ body {
 
     background: #000;
 
-    color: #aaa;
+    /* password dots are now red */
+    color: #b00000;
+
+    caret-color: transparent;
 
     font-family: "Courier New", monospace;
 
@@ -277,9 +289,42 @@ body {
 
 .auth-input:focus {
     border-right-color: #5b0000;
-
     border-bottom-color: #5b0000;
 }
+
+
+/* blinking red cursor */
+
+.fake-cursor {
+    position: absolute;
+
+    top: 12px;
+    left: 13px;
+
+    width: 1px;
+    height: 16px;
+
+    background: #c00000;
+
+    pointer-events: none;
+
+    animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+
+}
+
 
 .auth-bottom {
     display: flex;
@@ -715,7 +760,7 @@ body {
 
 
 /* =========================================================
-   FILE 08 — 80% OF NORMAL SIZE
+   FILE 08 — 80% SIZE
 ========================================================= */
 
 .video-container.file-eight-size {
@@ -828,15 +873,28 @@ body {
                 protected directory / credentials required
             </div>
 
-            <input
-                id="passwordInput"
-                class="auth-input"
-                type="password"
-                autocomplete="off"
-                spellcheck="false"
-                maxlength="20"
-                aria-label="password"
-            >
+
+            <!-- RED PASSWORD INPUT + BLINKING CURSOR -->
+
+            <div class="auth-input-wrap">
+
+                <input
+                    id="passwordInput"
+                    class="auth-input"
+                    type="password"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="20"
+                    aria-label="password"
+                >
+
+                <div
+                    id="fakeCursor"
+                    class="fake-cursor"
+                ></div>
+
+            </div>
+
 
             <div class="auth-bottom">
 
@@ -856,6 +914,7 @@ body {
                 </button>
 
             </div>
+
 
             <div
                 id="authLoader"
@@ -1057,7 +1116,7 @@ body {
 
 
 
-        <!-- 08 — 80% SIZE WHEN OPENED -->
+        <!-- 08 -->
 
         <div
             class="directory-file"
@@ -1227,6 +1286,10 @@ body {
 
 <script>
 
+/* =========================================================
+   AUTHORIZATION
+========================================================= */
+
 let failedAttempts = 0;
 
 const maxAttempts = 3;
@@ -1234,6 +1297,9 @@ const correctPassword = "notmyblood";
 
 const passwordInput =
     document.getElementById("passwordInput");
+
+const fakeCursor =
+    document.getElementById("fakeCursor");
 
 const authStatus =
     document.getElementById("authStatus");
@@ -1251,6 +1317,10 @@ const authLoader =
     document.getElementById("authLoader");
 
 
+/* =========================================================
+   FOCUS
+========================================================= */
+
 window.addEventListener(
     "load",
     function() {
@@ -1260,6 +1330,8 @@ window.addEventListener(
 
                 passwordInput.focus();
 
+                updateCursor();
+
             },
             100
         );
@@ -1267,6 +1339,10 @@ window.addEventListener(
     }
 );
 
+
+/* =========================================================
+   BLOCK SPACES
+========================================================= */
 
 passwordInput.addEventListener(
     "keydown",
@@ -1284,6 +1360,10 @@ passwordInput.addEventListener(
 );
 
 
+/* =========================================================
+   REMOVE PASTED SPACES
+========================================================= */
+
 passwordInput.addEventListener(
     "input",
     function() {
@@ -1294,9 +1374,63 @@ passwordInput.addEventListener(
                 ""
             );
 
+        updateCursor();
+
     }
 );
 
+
+/* =========================================================
+   CUSTOM CURSOR POSITION
+========================================================= */
+
+function updateCursor() {
+
+    /*
+       Password dots are approximately 11px apart because
+       of the font size + letter spacing.
+    */
+
+    const characterWidth = 11;
+
+    const startPosition = 13;
+
+    let cursorPosition =
+        startPosition +
+        (
+            passwordInput.value.length *
+            characterWidth
+        );
+
+
+    /*
+       Stop cursor from leaving the input.
+    */
+
+    const maximumPosition =
+        passwordInput.clientWidth - 18;
+
+
+    if (
+        cursorPosition >
+        maximumPosition
+    ) {
+
+        cursorPosition =
+            maximumPosition;
+
+    }
+
+
+    fakeCursor.style.left =
+        cursorPosition + "px";
+
+}
+
+
+/* =========================================================
+   ENTER
+========================================================= */
 
 passwordInput.addEventListener(
     "keydown",
@@ -1316,6 +1450,10 @@ passwordInput.addEventListener(
 );
 
 
+/* =========================================================
+   PASSWORD CHECK
+========================================================= */
+
 function submitPassword() {
 
     const enteredPassword =
@@ -1332,6 +1470,9 @@ function submitPassword() {
 
         authButton.disabled =
             true;
+
+        fakeCursor.style.display =
+            "none";
 
         authStatus.classList.remove(
             "error"
@@ -1370,10 +1511,14 @@ function submitPassword() {
         "error"
     );
 
+
     passwordInput.value =
         "";
 
+    updateCursor();
+
     passwordInput.focus();
+
 
     authBox.classList.remove(
         "shake"
@@ -1397,6 +1542,9 @@ function submitPassword() {
         authButton.disabled =
             true;
 
+        fakeCursor.style.display =
+            "none";
+
 
         setTimeout(
             function() {
@@ -1413,15 +1561,13 @@ function submitPassword() {
 }
 
 
+/* =========================================================
+   VIDEO
+========================================================= */
 
-let loadingTimer =
-    null;
-
-let stallTimer =
-    null;
-
-let errorTimer =
-    null;
+let loadingTimer = null;
+let stallTimer = null;
+let errorTimer = null;
 
 
 const videoPlayer =
@@ -1526,10 +1672,8 @@ function openVideo(
 
     videoPlayer.pause();
 
-
     videoContainer.style.display =
         "none";
-
 
     videoContainer.classList.remove(
         "file-eight-size"
@@ -1596,7 +1740,6 @@ function openVideo(
     let stallUsed =
         false;
 
-
     let corruptAt =
         null;
 
@@ -1645,6 +1788,8 @@ function openVideo(
         );
 
 
+        /* 07 — ALWAYS CORRUPT */
+
         if (
             loadMode === "corrupt"
             &&
@@ -1672,6 +1817,8 @@ function openVideo(
 
         }
 
+
+        /* 08 — STALL AT 82% */
 
         if (
             loadMode === "stall82"
@@ -1709,6 +1856,8 @@ function openVideo(
         }
 
 
+        /* FINISH */
+
         if (
             value >= 100
             &&
@@ -1741,6 +1890,10 @@ function openVideo(
 
 }
 
+
+/* =========================================================
+   SHOW VIDEO
+========================================================= */
 
 function showVideo() {
 
@@ -1780,6 +1933,10 @@ function showVideo() {
 
 }
 
+
+/* =========================================================
+   CLOSE
+========================================================= */
 
 function closeCorruptFile() {
 
@@ -1826,7 +1983,6 @@ function closeVideo() {
 
     videoContainer.style.display =
         "none";
-
 
     videoContainer.classList.remove(
         "file-eight-size"
@@ -1892,5 +2048,4 @@ document.addEventListener(
 
 
 </body>
-
 </html>
