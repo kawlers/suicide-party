@@ -247,17 +247,19 @@ body {
 
 
 /* =========================================================
-   PASSWORD — RED INPUT + CUSTOM BLINKING CURSOR
+   PASSWORD
 ========================================================= */
 
 .auth-input-wrap {
     position: relative;
+
     width: 100%;
     height: 40px;
 }
 
 .auth-input {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
@@ -291,8 +293,6 @@ body {
     border-bottom-color: #5b0000;
 }
 
-
-/* blinking red cursor */
 
 .fake-cursor {
     position: absolute;
@@ -700,7 +700,7 @@ body {
 
 
 /* =========================================================
-   QUICKTIME / OLD MAC PLAYER
+   QUICKTIME PLAYER
 ========================================================= */
 
 .video-container {
@@ -726,7 +726,9 @@ body {
 }
 
 
-/* OLD MAC TITLE BAR */
+/* =========================================================
+   TITLE BAR
+========================================================= */
 
 .qt-titlebar {
     position: relative;
@@ -770,7 +772,9 @@ body {
 }
 
 
-/* FILE ICON */
+/* =========================================================
+   TITLE ICON
+========================================================= */
 
 .qt-title-icon {
     position: absolute;
@@ -810,7 +814,9 @@ body {
 }
 
 
-/* CLOSE DOT */
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
 
 .qt-close {
     position: absolute;
@@ -860,7 +866,9 @@ body {
 }
 
 
-/* VIDEO */
+/* =========================================================
+   VIDEO
+========================================================= */
 
 .qt-stage {
     position: relative;
@@ -902,7 +910,9 @@ body {
 }
 
 
-/* FLOATING BLACK CONTROL BAR */
+/* =========================================================
+   FLOATING BLACK CONTROL BAR
+========================================================= */
 
 .qt-controls {
     position: absolute;
@@ -941,35 +951,26 @@ body {
 }
 
 
-/* VOLUME */
+/* =========================================================
+   VOLUME
+========================================================= */
 
 .qt-volume-group {
     display: flex;
 
     align-items: center;
 
-    gap: 6px;
-
     min-width: 102px;
 }
 
-.qt-speaker {
-    width: 15px;
 
-    color: #d8d8d8;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 12px;
-
-    text-align: center;
-
-    text-shadow:
-        0 -1px 0 #000;
-}
+/*
+   ONLY VOLUME BAR.
+   SIDE SYMBOLS REMOVED.
+*/
 
 .qt-volume {
-    width: 62px;
+    width: 82px;
     height: 12px;
 
     margin: 0;
@@ -980,7 +981,9 @@ body {
 }
 
 
-/* TRANSPORT */
+/* =========================================================
+   TRANSPORT
+========================================================= */
 
 .qt-transport {
     flex: 1;
@@ -1037,7 +1040,9 @@ body {
 }
 
 
-/* RIGHT EXPORT BUTTON */
+/* =========================================================
+   EXPORT
+========================================================= */
 
 .qt-export {
     min-width: 28px;
@@ -1048,7 +1053,9 @@ body {
 }
 
 
-/* VERY THIN SEEK BAR */
+/* =========================================================
+   SEEK BAR
+========================================================= */
 
 .qt-progress-hit {
     position: absolute;
@@ -1110,8 +1117,7 @@ body {
 
         max-width: 60vw;
 
-        transform:
-            translateY(-48px);
+        transform: translateY(-48px);
 
         margin-bottom: -48px;
     }
@@ -1133,10 +1139,7 @@ body {
     }
 
     .auth-content {
-        padding:
-            26px
-            22px
-            22px;
+        padding: 26px 22px 22px;
     }
 
     .qt-titlebar {
@@ -1154,20 +1157,17 @@ body {
 
         height: 32px;
 
-        width:
-            calc(100% - 18px);
+        width: calc(100% - 18px);
 
         padding: 0 7px;
     }
 
     .qt-volume-group {
         min-width: 82px;
-
-        gap: 3px;
     }
 
     .qt-volume {
-        width: 45px;
+        width: 62px;
     }
 
     .qt-transport {
@@ -1215,8 +1215,6 @@ body {
             </div>
 
 
-            <!-- RED PASSWORD INPUT + BLINKING CURSOR -->
-
             <div class="auth-input-wrap">
 
                 <input
@@ -1242,9 +1240,8 @@ body {
                 <div
                     id="authStatus"
                     class="auth-status"
-                >
-                    
-                </div>
+                ></div>
+
 
                 <button
                     id="authButton"
@@ -1327,15 +1324,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    01
-                </span>
+                <span class="number">01</span>
 
                 purge-xtra2k25.mp4
 
@@ -1356,15 +1349,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    02
-                </span>
+                <span class="number">02</span>
 
                 scenebitch-lcut.mp4
 
@@ -1376,19 +1365,13 @@ body {
 
         <!-- 03 -->
 
-        <div
-            class="directory-file empty"
-        >
+        <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    03
-                </span>
+                <span class="number">03</span>
 
                 ------
 
@@ -1409,15 +1392,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    04
-                </span>
+                <span class="number">04</span>
 
                 untitled_04.mp4
 
@@ -1438,15 +1417,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    05
-                </span>
+                <span class="number">05</span>
 
                 sp_005.mp4
 
@@ -1458,19 +1433,13 @@ body {
 
         <!-- 06 -->
 
-        <div
-            class="directory-file empty"
-        >
+        <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    06
-                </span>
+                <span class="number">06</span>
 
                 ------
 
@@ -1491,15 +1460,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    07
-                </span>
+                <span class="number">07</span>
 
                 sp_directorscut.mp4
 
@@ -1520,15 +1485,11 @@ body {
             )"
         >
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    08
-                </span>
+                <span class="number">08</span>
 
                 957229577.mp4
 
@@ -1540,19 +1501,13 @@ body {
 
         <!-- 09 -->
 
-        <div
-            class="directory-file empty"
-        >
+        <div class="directory-file empty">
 
-            <span class="file-icon">
-                ⌑
-            </span>
+            <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">
-                    09
-                </span>
+                <span class="number">09</span>
 
                 ------
 
@@ -1632,7 +1587,7 @@ body {
             >
 
 
-                <!-- OLD MAC TITLE BAR -->
+                <!-- TITLE BAR -->
 
                 <div class="qt-titlebar">
 
@@ -1683,12 +1638,10 @@ body {
 
 
 
-                <!-- QUICKTIME BOTTOM -->
+                <!-- CONTROLS -->
 
                 <div class="qt-controls-wrap">
 
-
-                    <!-- THIN SEEK LINE -->
 
                     <div
                         id="qtProgressHit"
@@ -1711,19 +1664,12 @@ body {
 
 
 
-                    <!-- BLACK CONTROL BAR -->
-
                     <div class="qt-controls">
 
 
-                        <!-- VOLUME -->
+                        <!-- VOLUME BAR ONLY -->
 
                         <div class="qt-volume-group">
-
-                            <span class="qt-speaker">
-                                ◖
-                            </span>
-
 
                             <input
                                 id="qtVolume"
@@ -1735,11 +1681,6 @@ body {
                                 value="1"
                                 aria-label="volume"
                             >
-
-
-                            <span class="qt-speaker">
-                                ◗
-                            </span>
 
                         </div>
 
@@ -1782,7 +1723,7 @@ body {
 
 
 
-                        <!-- EXPORT / OPEN -->
+                        <!-- EXPORT -->
 
                         <div class="qt-export">
 
@@ -1907,10 +1848,6 @@ const authLoader =
     );
 
 
-/* =========================================================
-   FOCUS
-========================================================= */
-
 window.addEventListener(
     "load",
     function() {
@@ -1930,10 +1867,6 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   BLOCK SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1950,10 +1883,6 @@ passwordInput.addEventListener(
 );
 
 
-/* =========================================================
-   REMOVE PASTED SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "input",
     function() {
@@ -1969,10 +1898,6 @@ passwordInput.addEventListener(
     }
 );
 
-
-/* =========================================================
-   CUSTOM CURSOR POSITION
-========================================================= */
 
 function updateCursor() {
 
@@ -2013,10 +1938,6 @@ function updateCursor() {
 }
 
 
-/* =========================================================
-   ENTER
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -2034,10 +1955,6 @@ passwordInput.addEventListener(
     }
 );
 
-
-/* =========================================================
-   PASSWORD CHECK
-========================================================= */
 
 function submitPassword() {
 
@@ -2147,7 +2064,7 @@ function submitPassword() {
 
 
 /* =========================================================
-   VIDEO
+   VIDEO VARIABLES
 ========================================================= */
 
 let loadingTimer =
@@ -2182,7 +2099,6 @@ const corruptOverlay =
     document.getElementById(
         "corruptOverlay"
     );
-
 
 const qtShell =
     document.getElementById(
@@ -2273,7 +2189,13 @@ function updateLoadingText(
 
 
 /* =========================================================
-   AUTO FIT EACH VIDEO
+   VIDEO SIZING
+
+   NORMAL FILES:
+   EXACT SAME FITTING BEHAVIOR AS BEFORE.
+
+   FILE 08:
+   TAKES THAT NORMAL DISPLAY SIZE AND DOUBLES IT.
 ========================================================= */
 
 function fitQuickTimeWindow() {
@@ -2299,14 +2221,11 @@ function fitQuickTimeWindow() {
 
 
     /*
-       Maximum width of player.
-       Large videos shrink down.
-
-       Smaller videos remain closer
-       to their actual dimensions.
+       THESE ARE THE ORIGINAL LIMITS.
+       DO NOT CHANGE THESE FOR NORMAL FILES.
     */
 
-    const maxWidth =
+    const originalMaxWidth =
         Math.min(
             960,
             window.innerWidth *
@@ -2314,12 +2233,7 @@ function fitQuickTimeWindow() {
         );
 
 
-    /*
-       Leaves room for title bar,
-       controls and screen margins.
-    */
-
-    const maxVideoHeight =
+    const originalMaxVideoHeight =
         Math.max(
             180,
             window.innerHeight -
@@ -2328,37 +2242,107 @@ function fitQuickTimeWindow() {
 
 
     /*
-       Never distort the aspect ratio.
+       ORIGINAL FIT SCALE.
     */
 
-    const scale =
+    const normalScale =
         Math.min(
             1,
-            maxWidth /
+            originalMaxWidth /
             naturalWidth,
-            maxVideoHeight /
+            originalMaxVideoHeight /
             naturalHeight
         );
 
 
-    const fittedWidth =
+    /*
+       THIS IS THE EXACT ORIGINAL
+       DISPLAYED SIZE.
+    */
+
+    let fittedWidth =
         Math.max(
             220,
             Math.round(
                 naturalWidth *
-                scale
+                normalScale
             )
         );
 
 
-    const fittedHeight =
+    let fittedHeight =
         Math.max(
             124,
             Math.round(
                 naturalHeight *
-                scale
+                normalScale
             )
         );
+
+
+    /*
+       ONLY FILE 08 CHANGES SIZE.
+
+       FIRST WE TAKE ITS NORMAL FITTED SIZE,
+       THEN DOUBLE IT.
+    */
+
+    if (
+        currentFileName ===
+        "957229577.mp4"
+    ) {
+
+        let doubledWidth =
+            fittedWidth *
+            2;
+
+
+        let doubledHeight =
+            fittedHeight *
+            2;
+
+
+        /*
+           KEEP DOUBLED FILE 08 INSIDE SCREEN.
+        */
+
+        const fileEightMaxWidth =
+            window.innerWidth *
+            0.94;
+
+
+        const fileEightMaxHeight =
+            Math.max(
+                180,
+                window.innerHeight -
+                110
+            );
+
+
+        const fileEightScreenScale =
+            Math.min(
+                1,
+                fileEightMaxWidth /
+                doubledWidth,
+                fileEightMaxHeight /
+                doubledHeight
+            );
+
+
+        fittedWidth =
+            Math.round(
+                doubledWidth *
+                fileEightScreenScale
+            );
+
+
+        fittedHeight =
+            Math.round(
+                doubledHeight *
+                fileEightScreenScale
+            );
+
+    }
 
 
     qtShell.style.width =
@@ -2566,7 +2550,7 @@ function openVideo(
 
 
         /* =================================================
-           FILE 07 — ALWAYS CORRUPT
+           FILE 07 — CORRUPT
         ================================================= */
 
         if (
@@ -2703,11 +2687,6 @@ function showVideo() {
         function() {
 
 
-            /*
-               Read the video's actual
-               width and height first.
-            */
-
             fitQuickTimeWindow();
 
 
@@ -2773,7 +2752,7 @@ function showVideo() {
 
 
 /* =========================================================
-   REFIT WHEN METADATA LOADS
+   METADATA
 ========================================================= */
 
 videoPlayer.addEventListener(
@@ -2783,7 +2762,7 @@ videoPlayer.addEventListener(
 
 
 /* =========================================================
-   REFIT IF BROWSER RESIZES
+   BROWSER RESIZE
 ========================================================= */
 
 window.addEventListener(
@@ -2853,8 +2832,6 @@ videoPlayer.addEventListener(
     toggleVideoPlayback
 );
 
-
-/* CHANGE PLAY ICON */
 
 videoPlayer.addEventListener(
     "play",
@@ -2958,7 +2935,7 @@ qtVolume.addEventListener(
 
 
 /* =========================================================
-   PLAYBACK PROGRESS
+   PROGRESS
 ========================================================= */
 
 videoPlayer.addEventListener(
@@ -2994,7 +2971,7 @@ videoPlayer.addEventListener(
 
 
 /* =========================================================
-   CLICK SEEK BAR
+   SEEK
 ========================================================= */
 
 qtProgressHit.addEventListener(
@@ -3044,7 +3021,7 @@ qtProgressHit.addEventListener(
 
 
 /* =========================================================
-   EXPORT / OPEN VIDEO
+   EXPORT
 ========================================================= */
 
 qtExport.addEventListener(
@@ -3070,7 +3047,7 @@ qtExport.addEventListener(
 
 
 /* =========================================================
-   CLOSE CORRUPT FILE
+   CLOSE CORRUPT
 ========================================================= */
 
 function closeCorruptFile() {
@@ -3142,7 +3119,7 @@ function closeVideo() {
 
 
 /* =========================================================
-   CLICK OUTSIDE TO CLOSE
+   BACKGROUND CLOSE
 ========================================================= */
 
 function backgroundClose(
@@ -3162,7 +3139,7 @@ function backgroundClose(
 
 
 /* =========================================================
-   ESCAPE KEY
+   ESCAPE
 ========================================================= */
 
 document.addEventListener(
@@ -3200,7 +3177,6 @@ document.addEventListener(
 
 
 </script>
-
 
 </body>
 </html>
