@@ -267,7 +267,6 @@ body {
 
     background: #000;
 
-    /* password dots are now red */
     color: #b00000;
 
     caret-color: transparent;
@@ -507,9 +506,10 @@ body {
 .video-window {
     position: relative;
 
-    width: 1000px;
+    width: auto;
 
-    max-width: 92vw;
+    max-width: 94vw;
+    max-height: 94vh;
 
     opacity: 0;
 
@@ -532,43 +532,11 @@ body {
 
 
 /* =========================================================
-   CLOSE
-========================================================= */
-
-.close-video {
-    position: absolute;
-
-    top: -34px;
-    right: 0;
-
-    padding: 0;
-
-    border: none;
-
-    background: none;
-
-    color: #666;
-
-    font-family: "Courier New", monospace;
-
-    font-size: 22px;
-
-    cursor: pointer;
-
-    z-index: 100;
-}
-
-.close-video:hover {
-    color: #fff;
-}
-
-
-/* =========================================================
    LOADING SCREEN
 ========================================================= */
 
 .loading-screen {
-    width: 100%;
+    width: min(720px, 90vw);
 
     height: 180px;
 
@@ -732,48 +700,388 @@ body {
 
 
 /* =========================================================
-   VIDEO
+   QUICKTIME / OLD MAC PLAYER
 ========================================================= */
 
 .video-container {
     display: none;
 
-    width: 100%;
+    width: auto;
 
-    background: #000;
+    max-width: 94vw;
+    max-height: 94vh;
+}
 
-    border: 1px solid #252525;
+
+.qt-shell {
+    width: 640px;
+
+    background: #111;
+
+    border: 1px solid #555;
 
     box-shadow:
-        0 0 30px rgba(0, 0, 0, 0.9);
+        0 0 0 1px #111,
+        0 18px 45px rgba(0, 0, 0, 0.9);
+}
+
+
+/* OLD MAC TITLE BAR */
+
+.qt-titlebar {
+    position: relative;
+
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 34px;
+
+    color: #202020;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7);
+
+    border-top: 1px solid #f2f2f2;
+
+    border-bottom: 1px solid #4e4e4e;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,0.25),
+            rgba(0,0,0,0.06)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            #bcbcbc 0px,
+            #bcbcbc 1px,
+            #a8a8a8 1px,
+            #a8a8a8 2px
+        );
+
+    user-select: none;
+}
+
+
+/* FILE ICON */
+
+.qt-title-icon {
+    position: absolute;
+
+    left: 8px;
+
+    width: 11px;
+    height: 11px;
+
+    border: 1px solid #666;
+
+    border-radius: 2px;
+
+    background:
+        linear-gradient(
+            #f7f7f7,
+            #bdbdbd
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.45);
+}
+
+.qt-title-icon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    top: 2px;
+
+    width: 3px;
+    height: 5px;
+
+    border-left: 1px solid #777;
+    border-right: 1px solid #777;
+}
+
+
+/* CLOSE DOT */
+
+.qt-close {
+    position: absolute;
+
+    right: 7px;
+    top: 5px;
+
+    width: 14px;
+    height: 14px;
+
+    padding: 0;
+
+    border: 1px solid #6f6f6f;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            #dedede,
+            #8f8f8f
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.75);
+
+    cursor: pointer;
+}
+
+.qt-close::before {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 4px;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #777;
+}
+
+.qt-close:hover::before {
+    background: #222;
+}
+
+
+/* VIDEO */
+
+.qt-stage {
+    position: relative;
+
+    width: 640px;
+    height: 360px;
+
+    overflow: hidden;
+
+    background: #000;
 }
 
 #videoPlayer {
     display: block;
 
     width: 100%;
+    height: 100%;
 
-    max-height: 82vh;
+    object-fit: contain;
 
     background: #000;
+
+    cursor: pointer;
 }
 
 
 /* =========================================================
-   FILE 08 — 80% SIZE
+   QUICKTIME CONTROL AREA
 ========================================================= */
 
-.video-container.file-eight-size {
-    width: 80%;
+.qt-controls-wrap {
+    position: relative;
 
-    margin-left: auto;
-    margin-right: auto;
+    height: 47px;
+
+    background: #0d0d0d;
+
+    border-top: 1px solid #050505;
 }
 
-.video-container.file-eight-size #videoPlayer {
-    width: 100%;
 
-    max-height: 72vh;
+/* FLOATING BLACK CONTROL BAR */
+
+.qt-controls {
+    position: absolute;
+
+    left: 50%;
+    top: 7px;
+
+    transform: translateX(-50%);
+
+    width: min(
+        450px,
+        calc(100% - 28px)
+    );
+
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 9px;
+
+    border: 1px solid #555;
+
+    border-radius: 3px;
+
+    background:
+        linear-gradient(
+            #303030,
+            #121212 60%,
+            #1e1e1e
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.16),
+        0 1px 0 #000;
+}
+
+
+/* VOLUME */
+
+.qt-volume-group {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    min-width: 102px;
+}
+
+.qt-speaker {
+    width: 15px;
+
+    color: #d8d8d8;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    text-shadow:
+        0 -1px 0 #000;
+}
+
+.qt-volume {
+    width: 62px;
+    height: 12px;
+
+    margin: 0;
+
+    accent-color: #cfcfcf;
+
+    cursor: pointer;
+}
+
+
+/* TRANSPORT */
+
+.qt-transport {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.qt-btn {
+    width: 31px;
+    height: 24px;
+
+    padding: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #eee;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1;
+
+    border: 0;
+
+    background: transparent;
+
+    text-shadow:
+        0 -1px 0 #000;
+
+    cursor: pointer;
+}
+
+.qt-btn:hover {
+    color: #fff;
+
+    filter:
+        brightness(1.25);
+}
+
+.qt-btn.play {
+    font-size: 21px;
+}
+
+
+/* RIGHT EXPORT BUTTON */
+
+.qt-export {
+    min-width: 28px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+
+/* VERY THIN SEEK BAR */
+
+.qt-progress-hit {
+    position: absolute;
+
+    left: 8px;
+    right: 8px;
+
+    top: -3px;
+
+    height: 6px;
+
+    cursor: pointer;
+}
+
+.qt-progress-track {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 2px;
+
+    height: 2px;
+
+    background: #202020;
+}
+
+.qt-progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background: #9b9b9b;
 }
 
 
@@ -802,7 +1110,8 @@ body {
 
         max-width: 60vw;
 
-        transform: translateY(-48px);
+        transform:
+            translateY(-48px);
 
         margin-bottom: -48px;
     }
@@ -823,18 +1132,50 @@ body {
         margin-right: 4px;
     }
 
-    .video-window {
-        width: 94vw;
-
-        max-width: 94vw;
-    }
-
     .auth-content {
-        padding: 26px 22px 22px;
+        padding:
+            26px
+            22px
+            22px;
     }
 
-    .video-container.file-eight-size {
-        width: 80%;
+    .qt-titlebar {
+        height: 22px;
+
+        font-size: 10px;
+    }
+
+    .qt-controls-wrap {
+        height: 44px;
+    }
+
+    .qt-controls {
+        top: 6px;
+
+        height: 32px;
+
+        width:
+            calc(100% - 18px);
+
+        padding: 0 7px;
+    }
+
+    .qt-volume-group {
+        min-width: 82px;
+
+        gap: 3px;
+    }
+
+    .qt-volume {
+        width: 45px;
+    }
+
+    .qt-transport {
+        gap: 2px;
+    }
+
+    .qt-btn {
+        width: 27px;
     }
 
 }
@@ -979,14 +1320,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('purge-xtra2k25.mp4', 'normal', 20)"
+            onclick="openVideo(
+                'purge-xtra2k25.mp4',
+                'normal',
+                20
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">01</span>
+                <span class="number">
+                    01
+                </span>
 
                 purge-xtra2k25.mp4
 
@@ -1000,14 +1349,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('scenebitch-lcut.mp4', 'normal', 20)"
+            onclick="openVideo(
+                'scenebitch-lcut.mp4',
+                'normal',
+                20
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">02</span>
+                <span class="number">
+                    02
+                </span>
 
                 scenebitch-lcut.mp4
 
@@ -1019,13 +1376,19 @@ body {
 
         <!-- 03 -->
 
-        <div class="directory-file empty">
+        <div
+            class="directory-file empty"
+        >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">03</span>
+                <span class="number">
+                    03
+                </span>
 
                 ------
 
@@ -1039,14 +1402,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('untitled_04.mp4', 'normal', 20)"
+            onclick="openVideo(
+                'untitled_04.mp4',
+                'normal',
+                20
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">04</span>
+                <span class="number">
+                    04
+                </span>
 
                 untitled_04.mp4
 
@@ -1060,14 +1431,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_005.mp4', 'normal', 20)"
+            onclick="openVideo(
+                'sp_005.mp4',
+                'normal',
+                20
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">05</span>
+                <span class="number">
+                    05
+                </span>
 
                 sp_005.mp4
 
@@ -1079,13 +1458,19 @@ body {
 
         <!-- 06 -->
 
-        <div class="directory-file empty">
+        <div
+            class="directory-file empty"
+        >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">06</span>
+                <span class="number">
+                    06
+                </span>
 
                 ------
 
@@ -1099,14 +1484,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('sp_directorscut.mp4', 'corrupt', 23)"
+            onclick="openVideo(
+                'sp_directorscut.mp4',
+                'corrupt',
+                23
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">07</span>
+                <span class="number">
+                    07
+                </span>
 
                 sp_directorscut.mp4
 
@@ -1120,14 +1513,22 @@ body {
 
         <div
             class="directory-file"
-            onclick="openVideo('957229577.mp4', 'stall82', 20, true)"
+            onclick="openVideo(
+                '957229577.mp4',
+                'stall82',
+                20
+            )"
         >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">08</span>
+                <span class="number">
+                    08
+                </span>
 
                 957229577.mp4
 
@@ -1139,13 +1540,19 @@ body {
 
         <!-- 09 -->
 
-        <div class="directory-file empty">
+        <div
+            class="directory-file empty"
+        >
 
-            <span class="file-icon">⌑</span>
+            <span class="file-icon">
+                ⌑
+            </span>
 
             <span class="file-name">
 
-                <span class="number">09</span>
+                <span class="number">
+                    09
+                </span>
 
                 ------
 
@@ -1170,17 +1577,13 @@ body {
     onclick="backgroundClose(event)"
 >
 
+    <div
+        class="video-window"
+        id="videoWindow"
+    >
 
-    <div class="video-window">
 
-
-        <button
-            class="close-video"
-            onclick="closeVideo()"
-        >
-            ×
-        </button>
-
+        <!-- LOADING -->
 
         <div
             id="loadingScreen"
@@ -1216,28 +1619,197 @@ body {
 
 
 
+        <!-- QUICKTIME PLAYER -->
+
         <div
             id="videoContainer"
             class="video-container"
         >
 
-            <video
-                id="videoPlayer"
-                controls
-                preload="metadata"
+            <div
+                id="qtShell"
+                class="qt-shell"
             >
 
-                <source
-                    id="videoSource"
-                    src=""
-                    type="video/mp4"
+
+                <!-- OLD MAC TITLE BAR -->
+
+                <div class="qt-titlebar">
+
+                    <span
+                        class="qt-title-icon"
+                    ></span>
+
+
+                    <span id="qtFileName">
+                        video.mp4
+                    </span>
+
+
+                    <button
+                        class="qt-close"
+                        type="button"
+                        aria-label="close video"
+                        onclick="closeVideo()"
+                    ></button>
+
+                </div>
+
+
+
+                <!-- VIDEO -->
+
+                <div
+                    id="qtStage"
+                    class="qt-stage"
                 >
 
-            </video>
+                    <video
+                        id="videoPlayer"
+                        preload="metadata"
+                        playsinline
+                        disablepictureinpicture
+                    >
+
+                        <source
+                            id="videoSource"
+                            src=""
+                            type="video/mp4"
+                        >
+
+                    </video>
+
+                </div>
+
+
+
+                <!-- QUICKTIME BOTTOM -->
+
+                <div class="qt-controls-wrap">
+
+
+                    <!-- THIN SEEK LINE -->
+
+                    <div
+                        id="qtProgressHit"
+                        class="qt-progress-hit"
+                        aria-label="seek video"
+                    >
+
+                        <div
+                            class="qt-progress-track"
+                        >
+
+                            <div
+                                id="qtProgressFill"
+                                class="qt-progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BLACK CONTROL BAR -->
+
+                    <div class="qt-controls">
+
+
+                        <!-- VOLUME -->
+
+                        <div class="qt-volume-group">
+
+                            <span class="qt-speaker">
+                                ◖
+                            </span>
+
+
+                            <input
+                                id="qtVolume"
+                                class="qt-volume"
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value="1"
+                                aria-label="volume"
+                            >
+
+
+                            <span class="qt-speaker">
+                                ◗
+                            </span>
+
+                        </div>
+
+
+
+                        <!-- PLAYBACK -->
+
+                        <div class="qt-transport">
+
+                            <button
+                                id="qtBack"
+                                class="qt-btn"
+                                type="button"
+                                aria-label="rewind"
+                            >
+                                ◀◀
+                            </button>
+
+
+                            <button
+                                id="qtPlay"
+                                class="qt-btn play"
+                                type="button"
+                                aria-label="play pause"
+                            >
+                                ▶
+                            </button>
+
+
+                            <button
+                                id="qtForward"
+                                class="qt-btn"
+                                type="button"
+                                aria-label="fast forward"
+                            >
+                                ▶▶
+                            </button>
+
+                        </div>
+
+
+
+                        <!-- EXPORT / OPEN -->
+
+                        <div class="qt-export">
+
+                            <button
+                                id="qtExport"
+                                class="qt-btn"
+                                type="button"
+                                aria-label="open video in new window"
+                                title="open video"
+                            >
+                                ↗
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
 
+
+        <!-- CORRUPT FILE WINDOW -->
 
         <div
             id="corruptOverlay"
@@ -1286,6 +1858,7 @@ body {
 
 <script>
 
+
 /* =========================================================
    AUTHORIZATION
 ========================================================= */
@@ -1293,28 +1866,45 @@ body {
 let failedAttempts = 0;
 
 const maxAttempts = 3;
-const correctPassword = "notmyblood";
+
+const correctPassword =
+    "notmyblood";
+
 
 const passwordInput =
-    document.getElementById("passwordInput");
+    document.getElementById(
+        "passwordInput"
+    );
 
 const fakeCursor =
-    document.getElementById("fakeCursor");
+    document.getElementById(
+        "fakeCursor"
+    );
 
 const authStatus =
-    document.getElementById("authStatus");
+    document.getElementById(
+        "authStatus"
+    );
 
 const authBox =
-    document.getElementById("authBox");
+    document.getElementById(
+        "authBox"
+    );
 
 const authOverlay =
-    document.getElementById("authOverlay");
+    document.getElementById(
+        "authOverlay"
+    );
 
 const authButton =
-    document.getElementById("authButton");
+    document.getElementById(
+        "authButton"
+    );
 
 const authLoader =
-    document.getElementById("authLoader");
+    document.getElementById(
+        "authLoader"
+    );
 
 
 /* =========================================================
@@ -1386,14 +1976,11 @@ passwordInput.addEventListener(
 
 function updateCursor() {
 
-    /*
-       Password dots are approximately 11px apart because
-       of the font size + letter spacing.
-    */
+    const characterWidth =
+        11;
 
-    const characterWidth = 11;
-
-    const startPosition = 13;
+    const startPosition =
+        13;
 
     let cursorPosition =
         startPosition +
@@ -1403,12 +1990,9 @@ function updateCursor() {
         );
 
 
-    /*
-       Stop cursor from leaving the input.
-    */
-
     const maximumPosition =
-        passwordInput.clientWidth - 18;
+        passwordInput.clientWidth -
+        18;
 
 
     if (
@@ -1423,7 +2007,8 @@ function updateCursor() {
 
 
     fakeCursor.style.left =
-        cursorPosition + "px";
+        cursorPosition +
+        "px";
 
 }
 
@@ -1565,9 +2150,17 @@ function submitPassword() {
    VIDEO
 ========================================================= */
 
-let loadingTimer = null;
-let stallTimer = null;
-let errorTimer = null;
+let loadingTimer =
+    null;
+
+let stallTimer =
+    null;
+
+let errorTimer =
+    null;
+
+let currentFileName =
+    "";
 
 
 const videoPlayer =
@@ -1590,6 +2183,61 @@ const corruptOverlay =
         "corruptOverlay"
     );
 
+
+const qtShell =
+    document.getElementById(
+        "qtShell"
+    );
+
+const qtStage =
+    document.getElementById(
+        "qtStage"
+    );
+
+const qtFileName =
+    document.getElementById(
+        "qtFileName"
+    );
+
+const qtPlay =
+    document.getElementById(
+        "qtPlay"
+    );
+
+const qtBack =
+    document.getElementById(
+        "qtBack"
+    );
+
+const qtForward =
+    document.getElementById(
+        "qtForward"
+    );
+
+const qtVolume =
+    document.getElementById(
+        "qtVolume"
+    );
+
+const qtProgressHit =
+    document.getElementById(
+        "qtProgressHit"
+    );
+
+const qtProgressFill =
+    document.getElementById(
+        "qtProgressFill"
+    );
+
+const qtExport =
+    document.getElementById(
+        "qtExport"
+    );
+
+
+/* =========================================================
+   LOADING TEXT
+========================================================= */
 
 function updateLoadingText(
     value,
@@ -1624,32 +2272,146 @@ function updateLoadingText(
 }
 
 
+/* =========================================================
+   AUTO FIT EACH VIDEO
+========================================================= */
+
+function fitQuickTimeWindow() {
+
+
+    if (
+        !videoPlayer.videoWidth
+        ||
+        !videoPlayer.videoHeight
+    ) {
+
+        return;
+
+    }
+
+
+    const naturalWidth =
+        videoPlayer.videoWidth;
+
+
+    const naturalHeight =
+        videoPlayer.videoHeight;
+
+
+    /*
+       Maximum width of player.
+       Large videos shrink down.
+
+       Smaller videos remain closer
+       to their actual dimensions.
+    */
+
+    const maxWidth =
+        Math.min(
+            960,
+            window.innerWidth *
+            0.90
+        );
+
+
+    /*
+       Leaves room for title bar,
+       controls and screen margins.
+    */
+
+    const maxVideoHeight =
+        Math.max(
+            180,
+            window.innerHeight -
+            135
+        );
+
+
+    /*
+       Never distort the aspect ratio.
+    */
+
+    const scale =
+        Math.min(
+            1,
+            maxWidth /
+            naturalWidth,
+            maxVideoHeight /
+            naturalHeight
+        );
+
+
+    const fittedWidth =
+        Math.max(
+            220,
+            Math.round(
+                naturalWidth *
+                scale
+            )
+        );
+
+
+    const fittedHeight =
+        Math.max(
+            124,
+            Math.round(
+                naturalHeight *
+                scale
+            )
+        );
+
+
+    qtShell.style.width =
+        fittedWidth +
+        "px";
+
+
+    qtStage.style.width =
+        fittedWidth +
+        "px";
+
+
+    qtStage.style.height =
+        fittedHeight +
+        "px";
+
+}
+
+
+/* =========================================================
+   OPEN VIDEO
+========================================================= */
+
 function openVideo(
     fileName,
     loadMode,
-    loadSpeed,
-    makeSmaller = false
+    loadSpeed
 ) {
+
 
     const overlay =
         document.getElementById(
             "videoOverlay"
         );
 
+
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
         );
+
 
     const loadingText =
         document.getElementById(
             "loadingText"
         );
 
+
     const progress =
         document.getElementById(
             "loadingProgress"
         );
+
 
     const percent =
         document.getElementById(
@@ -1670,25 +2432,31 @@ function openVideo(
     );
 
 
+    currentFileName =
+        fileName;
+
+
+    qtFileName.textContent =
+        fileName;
+
+
+    qtProgressFill.style.width =
+        "0%";
+
+
+    qtPlay.textContent =
+        "▶";
+
+
     videoPlayer.pause();
+
+
+    videoPlayer.currentTime =
+        0;
+
 
     videoContainer.style.display =
         "none";
-
-    videoContainer.classList.remove(
-        "file-eight-size"
-    );
-
-
-    if (
-        makeSmaller
-    ) {
-
-        videoContainer.classList.add(
-            "file-eight-size"
-        );
-
-    }
 
 
     corruptOverlay.classList.remove(
@@ -1720,14 +2488,18 @@ function openVideo(
     loadingScreen.style.display =
         "flex";
 
+
     loadingText.textContent =
         "file found..";
+
 
     progress.style.width =
         "0%";
 
+
     percent.textContent =
         "0%";
+
 
     overlay.classList.add(
         "active"
@@ -1737,8 +2509,10 @@ function openVideo(
     let value =
         0;
 
+
     let stallUsed =
         false;
+
 
     let corruptAt =
         null;
@@ -1750,7 +2524,8 @@ function openVideo(
 
         corruptAt =
             Math.floor(
-                Math.random() * 47
+                Math.random() *
+                47
             )
             +
             38;
@@ -1761,7 +2536,6 @@ function openVideo(
     function scheduleNextStep() {
 
         loadingTimer =
-
             setTimeout(
                 loadingStep,
                 loadSpeed
@@ -1776,10 +2550,13 @@ function openVideo(
 
 
         progress.style.width =
-            value + "%";
+            value +
+            "%";
+
 
         percent.textContent =
-            value + "%";
+            value +
+            "%";
 
 
         updateLoadingText(
@@ -1788,12 +2565,16 @@ function openVideo(
         );
 
 
-        /* 07 — ALWAYS CORRUPT */
+        /* =================================================
+           FILE 07 — ALWAYS CORRUPT
+        ================================================= */
 
         if (
-            loadMode === "corrupt"
+            loadMode ===
+            "corrupt"
             &&
-            value >= corruptAt
+            value >=
+            corruptAt
         ) {
 
             loadingText.textContent =
@@ -1801,7 +2582,6 @@ function openVideo(
 
 
             errorTimer =
-
                 setTimeout(
                     function() {
 
@@ -1813,30 +2593,36 @@ function openVideo(
                     750
                 );
 
+
             return;
 
         }
 
 
-        /* 08 — STALL AT 82% */
+        /* =================================================
+           FILE 08 — STALL AT 82%
+        ================================================= */
 
         if (
-            loadMode === "stall82"
+            loadMode ===
+            "stall82"
             &&
-            value === 82
+            value ===
+            82
             &&
-            stallUsed === false
+            stallUsed ===
+            false
         ) {
 
             stallUsed =
                 true;
+
 
             loadingText.textContent =
                 "buffering..";
 
 
             stallTimer =
-
                 setTimeout(
                     function() {
 
@@ -1845,36 +2631,45 @@ function openVideo(
                             loadingText
                         );
 
+
                         scheduleNextStep();
 
                     },
                     2000
                 );
 
+
             return;
 
         }
 
 
-        /* FINISH */
+        /* =================================================
+           FINISH
+        ================================================= */
 
         if (
-            value >= 100
+            value >=
+            100
             &&
-            loadMode !== "corrupt"
+            loadMode !==
+            "corrupt"
         ) {
 
             progress.style.width =
                 "100%";
 
+
             percent.textContent =
                 "100%";
+
 
             loadingText.textContent =
                 "opening file..";
 
 
             showVideo();
+
 
             return;
 
@@ -1897,17 +2692,28 @@ function openVideo(
 
 function showVideo() {
 
+
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
         );
 
 
-    setTimeout(
+    const revealPlayer =
         function() {
+
+
+            /*
+               Read the video's actual
+               width and height first.
+            */
+
+            fitQuickTimeWindow();
+
 
             loadingScreen.style.display =
                 "none";
+
 
             videoContainer.style.display =
                 "block";
@@ -1918,11 +2724,43 @@ function showVideo() {
 
 
             if (
-                playAttempt !== undefined
+                playAttempt !==
+                undefined
             ) {
 
                 playAttempt.catch(
                     function() {}
+                );
+
+            }
+
+        };
+
+
+    setTimeout(
+        function() {
+
+
+            if (
+                videoPlayer.readyState >=
+                1
+                &&
+                videoPlayer.videoWidth >
+                0
+            ) {
+
+                revealPlayer();
+
+            }
+
+            else {
+
+                videoPlayer.addEventListener(
+                    "loadedmetadata",
+                    revealPlayer,
+                    {
+                        once: true
+                    }
                 );
 
             }
@@ -1935,7 +2773,304 @@ function showVideo() {
 
 
 /* =========================================================
-   CLOSE
+   REFIT WHEN METADATA LOADS
+========================================================= */
+
+videoPlayer.addEventListener(
+    "loadedmetadata",
+    fitQuickTimeWindow
+);
+
+
+/* =========================================================
+   REFIT IF BROWSER RESIZES
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        if (
+            videoContainer.style.display ===
+            "block"
+        ) {
+
+            fitQuickTimeWindow();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
+function toggleVideoPlayback() {
+
+
+    if (
+        videoPlayer.paused
+        ||
+        videoPlayer.ended
+    ) {
+
+        const playAttempt =
+            videoPlayer.play();
+
+
+        if (
+            playAttempt !==
+            undefined
+        ) {
+
+            playAttempt.catch(
+                function() {}
+            );
+
+        }
+
+    }
+
+    else {
+
+        videoPlayer.pause();
+
+    }
+
+}
+
+
+qtPlay.addEventListener(
+    "click",
+    toggleVideoPlayback
+);
+
+
+videoPlayer.addEventListener(
+    "click",
+    toggleVideoPlayback
+);
+
+
+/* CHANGE PLAY ICON */
+
+videoPlayer.addEventListener(
+    "play",
+    function() {
+
+        qtPlay.textContent =
+            "❚❚";
+
+    }
+);
+
+
+videoPlayer.addEventListener(
+    "pause",
+    function() {
+
+        qtPlay.textContent =
+            "▶";
+
+    }
+);
+
+
+videoPlayer.addEventListener(
+    "ended",
+    function() {
+
+        qtPlay.textContent =
+            "▶";
+
+    }
+);
+
+
+/* =========================================================
+   REWIND
+========================================================= */
+
+qtBack.addEventListener(
+    "click",
+    function() {
+
+        videoPlayer.currentTime =
+            Math.max(
+                0,
+                videoPlayer.currentTime -
+                5
+            );
+
+    }
+);
+
+
+/* =========================================================
+   FAST FORWARD
+========================================================= */
+
+qtForward.addEventListener(
+    "click",
+    function() {
+
+        if (
+            Number.isFinite(
+                videoPlayer.duration
+            )
+        ) {
+
+            videoPlayer.currentTime =
+                Math.min(
+                    videoPlayer.duration,
+                    videoPlayer.currentTime +
+                    5
+                );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   VOLUME
+========================================================= */
+
+qtVolume.addEventListener(
+    "input",
+    function() {
+
+        videoPlayer.volume =
+            Number(
+                qtVolume.value
+            );
+
+
+        videoPlayer.muted =
+            videoPlayer.volume ===
+            0;
+
+    }
+);
+
+
+/* =========================================================
+   PLAYBACK PROGRESS
+========================================================= */
+
+videoPlayer.addEventListener(
+    "timeupdate",
+    function() {
+
+        if (
+            Number.isFinite(
+                videoPlayer.duration
+            )
+            &&
+            videoPlayer.duration >
+            0
+        ) {
+
+            const amount =
+                (
+                    videoPlayer.currentTime /
+                    videoPlayer.duration
+                )
+                *
+                100;
+
+
+            qtProgressFill.style.width =
+                amount +
+                "%";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLICK SEEK BAR
+========================================================= */
+
+qtProgressHit.addEventListener(
+    "click",
+    function(event) {
+
+
+        if (
+            !Number.isFinite(
+                videoPlayer.duration
+            )
+            ||
+            videoPlayer.duration <=
+            0
+        ) {
+
+            return;
+
+        }
+
+
+        const rect =
+            qtProgressHit.getBoundingClientRect();
+
+
+        const ratio =
+            Math.min(
+                1,
+                Math.max(
+                    0,
+                    (
+                        event.clientX -
+                        rect.left
+                    )
+                    /
+                    rect.width
+                )
+            );
+
+
+        videoPlayer.currentTime =
+            ratio *
+            videoPlayer.duration;
+
+    }
+);
+
+
+/* =========================================================
+   EXPORT / OPEN VIDEO
+========================================================= */
+
+qtExport.addEventListener(
+    "click",
+    function() {
+
+        if (
+            !currentFileName
+        ) {
+
+            return;
+
+        }
+
+
+        window.open(
+            currentFileName,
+            "_blank"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLOSE CORRUPT FILE
 ========================================================= */
 
 function closeCorruptFile() {
@@ -1949,7 +3084,12 @@ function closeCorruptFile() {
 }
 
 
+/* =========================================================
+   CLOSE VIDEO
+========================================================= */
+
 function closeVideo() {
+
 
     const overlay =
         document.getElementById(
@@ -1977,16 +3117,21 @@ function closeVideo() {
 
     videoPlayer.pause();
 
+
     videoPlayer.currentTime =
         0;
 
 
+    qtProgressFill.style.width =
+        "0%";
+
+
+    qtPlay.textContent =
+        "▶";
+
+
     videoContainer.style.display =
         "none";
-
-    videoContainer.classList.remove(
-        "file-eight-size"
-    );
 
 
     overlay.classList.remove(
@@ -1995,6 +3140,10 @@ function closeVideo() {
 
 }
 
+
+/* =========================================================
+   CLICK OUTSIDE TO CLOSE
+========================================================= */
 
 function backgroundClose(
     event
@@ -2012,12 +3161,17 @@ function backgroundClose(
 }
 
 
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
 document.addEventListener(
     "keydown",
     function(event) {
 
         if (
-            event.key === "Escape"
+            event.key ===
+            "Escape"
             &&
             authOverlay.style.display ===
             "none"
@@ -2043,6 +3197,7 @@ document.addEventListener(
 
     }
 );
+
 
 </script>
 
