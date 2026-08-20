@@ -508,8 +508,8 @@ body {
 
     width: auto;
 
-    max-width: 96vw;
-    max-height: 96vh;
+    max-width: 94vw;
+    max-height: 94vh;
 
     opacity: 0;
 
@@ -708,8 +708,8 @@ body {
 
     width: auto;
 
-    max-width: 96vw;
-    max-height: 96vh;
+    max-width: 94vw;
+    max-height: 94vh;
 }
 
 
@@ -772,6 +772,10 @@ body {
 }
 
 
+/* =========================================================
+   TITLE ICON
+========================================================= */
+
 .qt-title-icon {
     position: absolute;
 
@@ -809,6 +813,10 @@ body {
     border-right: 1px solid #777;
 }
 
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
 
 .qt-close {
     position: absolute;
@@ -903,7 +911,7 @@ body {
 
 
 /* =========================================================
-   FLOATING CONTROL BAR
+   FLOATING BLACK CONTROL BAR
 ========================================================= */
 
 .qt-controls {
@@ -952,15 +960,13 @@ body {
 
     align-items: center;
 
-    min-width: 95px;
-
-    padding-left: 4px;
+    min-width: 102px;
 }
 
 
 /*
+   ONLY VOLUME BAR.
    SIDE SYMBOLS REMOVED.
-   ONLY THE VOLUME SLIDER REMAINS.
 */
 
 .qt-volume {
@@ -976,7 +982,7 @@ body {
 
 
 /* =========================================================
-   TRANSPORT BUTTONS
+   TRANSPORT
 ========================================================= */
 
 .qt-transport {
@@ -1003,7 +1009,10 @@ body {
 
     color: #eee;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     font-size: 15px;
 
@@ -1022,7 +1031,8 @@ body {
 .qt-btn:hover {
     color: #fff;
 
-    filter: brightness(1.25);
+    filter:
+        brightness(1.25);
 }
 
 .qt-btn.play {
@@ -1031,7 +1041,7 @@ body {
 
 
 /* =========================================================
-   EXPORT BUTTON
+   EXPORT
 ========================================================= */
 
 .qt-export {
@@ -1153,9 +1163,7 @@ body {
     }
 
     .qt-volume-group {
-        min-width: 72px;
-
-        padding-left: 2px;
+        min-width: 82px;
     }
 
     .qt-volume {
@@ -1232,8 +1240,8 @@ body {
                 <div
                     id="authStatus"
                     class="auth-status"
-                >
-                </div>
+                ></div>
+
 
                 <button
                     id="authButton"
@@ -1641,7 +1649,9 @@ body {
                         aria-label="seek video"
                     >
 
-                        <div class="qt-progress-track">
+                        <div
+                            class="qt-progress-track"
+                        >
 
                             <div
                                 id="qtProgressFill"
@@ -1838,10 +1848,6 @@ const authLoader =
     );
 
 
-/* =========================================================
-   FOCUS
-========================================================= */
-
 window.addEventListener(
     "load",
     function() {
@@ -1861,10 +1867,6 @@ window.addEventListener(
 );
 
 
-/* =========================================================
-   BLOCK SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1881,10 +1883,6 @@ passwordInput.addEventListener(
 );
 
 
-/* =========================================================
-   REMOVE PASTED SPACES
-========================================================= */
-
 passwordInput.addEventListener(
     "input",
     function() {
@@ -1900,10 +1898,6 @@ passwordInput.addEventListener(
     }
 );
 
-
-/* =========================================================
-   CUSTOM CURSOR
-========================================================= */
 
 function updateCursor() {
 
@@ -1944,10 +1938,6 @@ function updateCursor() {
 }
 
 
-/* =========================================================
-   ENTER
-========================================================= */
-
 passwordInput.addEventListener(
     "keydown",
     function(event) {
@@ -1965,10 +1955,6 @@ passwordInput.addEventListener(
     }
 );
 
-
-/* =========================================================
-   PASSWORD CHECK
-========================================================= */
 
 function submitPassword() {
 
@@ -2114,7 +2100,6 @@ const corruptOverlay =
         "corruptOverlay"
     );
 
-
 const qtShell =
     document.getElementById(
         "qtShell"
@@ -2204,9 +2189,13 @@ function updateLoadingText(
 
 
 /* =========================================================
-   FIT VIDEO TO ITS REAL SIZE
+   VIDEO SIZING
 
-   FILE 08 GETS 2X SIZE
+   NORMAL FILES:
+   EXACT SAME FITTING BEHAVIOR AS BEFORE.
+
+   FILE 08:
+   TAKES THAT NORMAL DISPLAY SIZE AND DOUBLES IT.
 ========================================================= */
 
 function fitQuickTimeWindow() {
@@ -2232,77 +2221,128 @@ function fitQuickTimeWindow() {
 
 
     /*
-       FILE 08 GETS DOUBLE SIZE.
-       EVERY OTHER FILE STAYS NORMAL.
+       THESE ARE THE ORIGINAL LIMITS.
+       DO NOT CHANGE THESE FOR NORMAL FILES.
     */
 
-    const sizeMultiplier =
-        currentFileName ===
-        "957229577.mp4"
-            ? 2
-            : 1;
+    const originalMaxWidth =
+        Math.min(
+            960,
+            window.innerWidth *
+            0.90
+        );
 
 
-    const desiredWidth =
-        naturalWidth *
-        sizeMultiplier;
-
-
-    const desiredHeight =
-        naturalHeight *
-        sizeMultiplier;
-
-
-    /*
-       Player cannot exceed browser screen.
-    */
-
-    const maxWidth =
-        window.innerWidth *
-        0.94;
-
-
-    const maxVideoHeight =
+    const originalMaxVideoHeight =
         Math.max(
             180,
             window.innerHeight -
-            110
+            135
         );
 
 
     /*
-       Scale down ONLY if needed
-       to keep it inside the screen.
+       ORIGINAL FIT SCALE.
     */
 
-    const screenScale =
+    const normalScale =
         Math.min(
             1,
-            maxWidth /
-            desiredWidth,
-            maxVideoHeight /
-            desiredHeight
+            originalMaxWidth /
+            naturalWidth,
+            originalMaxVideoHeight /
+            naturalHeight
         );
 
 
-    const fittedWidth =
+    /*
+       THIS IS THE EXACT ORIGINAL
+       DISPLAYED SIZE.
+    */
+
+    let fittedWidth =
         Math.max(
             220,
             Math.round(
-                desiredWidth *
-                screenScale
+                naturalWidth *
+                normalScale
             )
         );
 
 
-    const fittedHeight =
+    let fittedHeight =
         Math.max(
             124,
             Math.round(
-                desiredHeight *
-                screenScale
+                naturalHeight *
+                normalScale
             )
         );
+
+
+    /*
+       ONLY FILE 08 CHANGES SIZE.
+
+       FIRST WE TAKE ITS NORMAL FITTED SIZE,
+       THEN DOUBLE IT.
+    */
+
+    if (
+        currentFileName ===
+        "957229577.mp4"
+    ) {
+
+        let doubledWidth =
+            fittedWidth *
+            2;
+
+
+        let doubledHeight =
+            fittedHeight *
+            2;
+
+
+        /*
+           KEEP DOUBLED FILE 08 INSIDE SCREEN.
+        */
+
+        const fileEightMaxWidth =
+            window.innerWidth *
+            0.94;
+
+
+        const fileEightMaxHeight =
+            Math.max(
+                180,
+                window.innerHeight -
+                110
+            );
+
+
+        const fileEightScreenScale =
+            Math.min(
+                1,
+                fileEightMaxWidth /
+                doubledWidth,
+                fileEightMaxHeight /
+                doubledHeight
+            );
+
+
+        fittedWidth =
+            Math.round(
+                doubledWidth *
+                fileEightScreenScale
+            );
+
+
+        fittedHeight =
+            Math.round(
+                doubledHeight *
+                fileEightScreenScale
+            );
+
+    }
 
 
     qtShell.style.width =
@@ -2544,7 +2584,7 @@ function openVideo(
 
 
         /* =================================================
-           FILE 08 — STALL AT 82
+           FILE 08 — STALL AT 82%
         ================================================= */
 
         if (
@@ -2895,7 +2935,7 @@ qtVolume.addEventListener(
 
 
 /* =========================================================
-   VIDEO PROGRESS
+   PROGRESS
 ========================================================= */
 
 videoPlayer.addEventListener(
@@ -3079,7 +3119,7 @@ function closeVideo() {
 
 
 /* =========================================================
-   CLICK OUTSIDE
+   BACKGROUND CLOSE
 ========================================================= */
 
 function backgroundClose(
