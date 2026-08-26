@@ -727,6 +727,50 @@ body {
 
 
 /* =========================================================
+   PLAYER POP-IN ANIMATION
+   AFTER LOADING: BOTTOM LEFT -> CENTER
+========================================================= */
+
+.qt-shell.player-pop-in {
+    transform-origin: left bottom;
+
+    animation:
+        playerPopFromBottomLeft
+        0.72s
+        cubic-bezier(0.16, 0.84, 0.28, 1)
+        both;
+}
+
+@keyframes playerPopFromBottomLeft {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-42vw, 38vh)
+            scale(0.34);
+    }
+
+    72% {
+        opacity: 1;
+
+        transform:
+            translate(10px, -7px)
+            scale(1.025);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
    TITLE BAR
 ========================================================= */
 
@@ -2698,6 +2742,23 @@ function showVideo() {
                 "block";
 
 
+            /* =============================================
+               POP PLAYER FROM BOTTOM LEFT INTO CENTER
+            ============================================= */
+
+            qtShell.classList.remove(
+                "player-pop-in"
+            );
+
+
+            void qtShell.offsetWidth;
+
+
+            qtShell.classList.add(
+                "player-pop-in"
+            );
+
+
             const playAttempt =
                 videoPlayer.play();
 
@@ -3109,6 +3170,11 @@ function closeVideo() {
 
     videoContainer.style.display =
         "none";
+
+
+    qtShell.classList.remove(
+        "player-pop-in"
+    );
 
 
     overlay.classList.remove(
