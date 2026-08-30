@@ -1216,6 +1216,39 @@ body {
 
 }
 
+
+
+/* MESSAGE FILE POP-OUT */
+.message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.72);
+}
+.message-overlay.active { display: flex; }
+.message-pop-shell {
+    width: min(760px, 92vw);
+    height: min(760px, 90vh);
+    border: 0;
+    background: transparent;
+    transform-origin: left bottom;
+}
+.message-pop-shell.player-pop-in {
+    animation: playerPopFromBottomLeft .72s cubic-bezier(.22,1,.36,1) both;
+}
+.message-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+}
+@media (max-width: 700px) {
+    .message-pop-shell { width: 96vw; height: 92vh; }
+}
+
 </style>
 
 </head>
@@ -1539,7 +1572,7 @@ body {
 
         <div
             class="directory-file"
-            onclick="window.location.href='messages.html'"
+            onclick="openMessages()"
         >
 
             <span class="file-icon">⌑</span>
@@ -1584,6 +1617,16 @@ body {
 
 </div>
 
+
+
+
+
+<!-- MESSAGE POP-OUT OVERLAY -->
+<div id="messageOverlay" class="message-overlay" onclick="backgroundCloseMessages(event)">
+    <div id="messagePopShell" class="message-pop-shell">
+        <iframe id="messageFrame" class="message-frame" src="about:blank" title="instant message"></iframe>
+    </div>
+</div>
 
 
 <!-- ======================================================
@@ -3260,6 +3303,40 @@ document.addEventListener(
 
     }
 );
+
+
+
+
+/* =========================================================
+   MESSAGE FILE POP-OUT
+========================================================= */
+function openMessages() {
+    const overlay = document.getElementById('messageOverlay');
+    const shell = document.getElementById('messagePopShell');
+    const frame = document.getElementById('messageFrame');
+
+    frame.src = 'messages.html';
+    overlay.classList.add('active');
+    shell.classList.remove('player-pop-in');
+    void shell.offsetWidth;
+    shell.classList.add('player-pop-in');
+}
+
+function closeMessages() {
+    const overlay = document.getElementById('messageOverlay');
+    const shell = document.getElementById('messagePopShell');
+    const frame = document.getElementById('messageFrame');
+
+    overlay.classList.remove('active');
+    shell.classList.remove('player-pop-in');
+    frame.src = 'about:blank';
+}
+
+function backgroundCloseMessages(event) {
+    if (event.target === document.getElementById('messageOverlay')) {
+        closeMessages();
+    }
+}
 
 
 </script>
