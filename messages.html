@@ -9,14 +9,14 @@
 html,body{margin:0;min-height:100%;background:#000;color:#d5d5d5;font-family:"Courier New",monospace}
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:22px}
 .back{position:fixed;top:18px;left:20px;color:#8d1d1d;text-decoration:none;font-size:12px;letter-spacing:.6px}.back:hover{color:#d23c3c}
-.im-window{width:min(480px,88vw);height:min(720px,88vh);display:flex;flex-direction:column;background:linear-gradient(#171717,#0f0f0f);border:2px solid #4b4b4b;box-shadow:0 0 0 1px #111,0 0 0 3px #222,0 18px 55px rgba(0,0,0,.9)}
+.im-window{width:min(480px,88vw);height:min(720px,88vh);display:flex;flex-direction:column;background:linear-gradient(#171717,#0f0f0f);border:2px solid #4b4b4b;box-shadow:0 0 0 1px #111,0 0 0 3px #222,0 18px 55px rgba(0,0,0,.9);transform:scale(.5);transform-origin:center center}
 .titlebar{height:34px;display:flex;align-items:center;background:linear-gradient(90deg,#0c0202,#300606 55%,#140202);border-bottom:1px solid #484848}.title-icon{width:38px;text-align:center;color:#dc2e2e;font-size:11px}.title-text{flex:1;color:#e23a3a;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.window-buttons{display:flex;gap:4px;padding-right:7px}.winbtn{width:25px;height:22px;border:1px solid #555;background:linear-gradient(#252525,#080808);color:#bb2d2d;display:grid;place-items:center;font-family:Arial;font-size:14px;box-shadow:inset 1px 1px #444,inset -1px -1px #000}
 .menu{height:30px;display:flex;align-items:center;gap:24px;padding:0 16px;background:linear-gradient(#202020,#151515);border-bottom:1px solid #333;color:#bcbcbc;font-family:Arial,sans-serif;font-size:16px}
 .chat-shell{flex:1;min-height:0;margin:6px 7px 4px;border:1px solid #591717;box-shadow:inset 0 0 0 1px #1d1d1d;background:#000}.chat-log{height:100%;overflow-y:auto;padding:15px 17px 21px;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:#551111 #161616}.chat-log::-webkit-scrollbar{width:18px}.chat-log::-webkit-scrollbar-track{background:#171717;border-left:1px solid #333}.chat-log::-webkit-scrollbar-thumb{background:linear-gradient(90deg,#250606,#551111);border:1px solid #9b2828}
 .time{color:#5a5a5a;text-align:center;font-size:8px;letter-spacing:1.1px;margin:0 0 14px}.message{margin:0 0 11px;font-size:clamp(10px,1.1vw,13px);line-height:1.4;word-break:break-word}.username{color:#c93434;font-weight:bold}.message-text{color:#d1d1d1;font-weight:bold}.typing-cursor{display:inline-block;width:1px;height:1em;background:#bdbdbd;margin-left:2px;vertical-align:-2px;animation:blink .65s steps(1) infinite}
-.input-shell{height:64px;margin:0 7px 4px;padding:6px;display:flex;gap:9px;border:1px solid #3c3c3c;background:linear-gradient(#141414,#0d0d0d)}.fake-input{flex:1;position:relative;background:#020202;border:1px solid #555}.caret{position:absolute;left:7px;top:7px;width:1px;height:18px;background:#aaa;animation:blink .85s steps(1) infinite}@keyframes blink{50%{opacity:0}}.send{width:102px;border:1px solid #642020;background:linear-gradient(#2d0808,#160303);color:#d84141;display:grid;place-items:center;font-size:13px;box-shadow:inset 1px 1px #592020,inset -1px -1px #000}
+.input-shell{height:64px;margin:0 7px 4px;padding:6px;display:flex;gap:9px;border:1px solid #3c3c3c;background:linear-gradient(#141414,#0d0d0d)}.fake-input{flex:1;position:relative;background:#020202;border:1px solid #555;padding:7px;color:#d1d1d1;font-size:12px;line-height:1.35;overflow:hidden;white-space:pre-wrap;word-break:break-word}.input-text{display:inline}.caret{display:inline-block;width:1px;height:1em;background:#aaa;margin-left:2px;vertical-align:-2px;animation:blink .85s steps(1) infinite}@keyframes blink{50%{opacity:0}}.send{width:102px;border:1px solid #642020;background:linear-gradient(#2d0808,#160303);color:#d84141;display:grid;place-items:center;font-size:13px;box-shadow:inset 1px 1px #592020,inset -1px -1px #000}.send.sending{background:linear-gradient(#4a0d0d,#220404);color:#ff5a5a}
 .bottom{height:62px;display:flex;align-items:center;padding:3px 28px;background:linear-gradient(#171717,#101010);border-top:1px solid #333}.tool{flex:1;text-align:center;color:#bbb;font-family:Arial,sans-serif;font-size:9px}.icon{color:#ad2929;font-size:17px;margin-bottom:3px}
-@media(max-width:650px){body{padding:12px}.back{display:none}.im-window{width:min(360px,94vw);height:min(720px,92vh)}.title-text{font-size:13px}.title-icon{width:38px}.winbtn{width:27px;height:27px;font-size:15px}.menu{gap:18px;padding-left:12px;font-size:12px}.chat-log{padding:14px 12px 22px}.message{font-size:12px;margin-bottom:12px}.input-shell{height:70px}.send{width:82px;font-size:13px}.bottom{height:67px;padding:2px 3px}.tool{font-size:9px}.icon{font-size:18px}}
+@media(max-width:650px){body{padding:12px}.back{display:none}.im-window{width:min(360px,94vw);height:min(540px,92vh);transform:scale(.5)}.title-text{font-size:13px}.title-icon{width:38px}.winbtn{width:27px;height:27px;font-size:15px}.menu{gap:18px;padding-left:12px;font-size:12px}.chat-log{padding:14px 12px 22px}.message{font-size:12px;margin-bottom:12px}.input-shell{height:70px}.send{width:82px;font-size:13px}.bottom{height:67px;padding:2px 3px}.tool{font-size:9px}.icon{font-size:18px}}
 </style>
 </head>
 <body>
@@ -28,8 +28,8 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
     <div class="window-buttons"><div class="winbtn">−</div><div class="winbtn">□</div><div class="winbtn">×</div></div>
   </div>
   <div class="menu"><span>File</span><span>Edit</span><span>Insert</span><span>People</span></div>
-  <div class="chat-shell"><div id="chatLog" class="chat-log"></div></div>
-  <div class="input-shell"><div class="fake-input"><div class="caret"></div></div><div class="send">send</div></div>
+  <div class="chat-shell"><div id="chatLog" class="chat-log"><div class="time">11:27 PM</div></div></div>
+  <div class="input-shell"><div class="fake-input"><span id="inputText" class="input-text"></span><span class="caret"></span></div><div id="sendButton" class="send">send</div></div>
   <div class="bottom">
     <div class="tool"><div class="icon">⊘</div>Block</div>
     <div class="tool"><div class="icon">♟+</div>Add Friend</div>
@@ -39,7 +39,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 </div>
 <script>
 const conversation = [
-{time:"7:18 PM"},
+{time:"11:27 PM"},
 ["lustful6ins","u awake"],["im_ok_itsnotmyblood","yea"],["lustful6ins","we still good for tonight"],["im_ok_itsnotmyblood","nothing changed"],["lustful6ins","alright"],["im_ok_itsnotmyblood","u good?"],["lustful6ins","yeah"],["im_ok_itsnotmyblood","good"],["lustful6ins","u still picking me up?"],["im_ok_itsnotmyblood","yea"],["lustful6ins","same spot?"],["im_ok_itsnotmyblood","same spot"],["lustful6ins","bet"],
 ["im_ok_itsnotmyblood","is he actually gonna be there"],["lustful6ins","yeah"],["im_ok_itsnotmyblood","confirmed?"],["lustful6ins","yeah"],["im_ok_itsnotmyblood","good"],["lustful6ins","u really been waiting for this 😭"],["im_ok_itsnotmyblood","u have no idea"],["lustful6ins","i think i do"],["im_ok_itsnotmyblood","then u know why tonight matters"],["lustful6ins","ik"],["im_ok_itsnotmyblood","remember what we talked about"],["lustful6ins","i remember"],["im_ok_itsnotmyblood","all of it?"],["lustful6ins","yeah"],["im_ok_itsnotmyblood","good"],
 ["lustful6ins","we're like 4 hours away"],["im_ok_itsnotmyblood","ik"],["lustful6ins","shit actually real now"],["im_ok_itsnotmyblood","been real"],["lustful6ins","😭"],["im_ok_itsnotmyblood","what"],["lustful6ins","nothing"],["im_ok_itsnotmyblood","then quit acting surprised"],["lustful6ins","im not"],["im_ok_itsnotmyblood","good"],{pause:2800},
@@ -70,60 +70,65 @@ const conversation = [
 ["im_ok_itsnotmyblood","delete this"],["lustful6ins","ik"],["im_ok_itsnotmyblood","good"],["lustful6ins","see u at 10"]
 ];
 const chatLog=document.getElementById('chatLog');
+const inputText=document.getElementById('inputText');
+const sendButton=document.getElementById('sendButton');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 
-function addTime(t){
-  const e=document.createElement('div');
-  e.className='time';
-  e.textContent=t;
-  chatLog.appendChild(e);
-  chatLog.scrollTop=chatLog.scrollHeight;
-}
-
 function charDelay(ch){
-  if(ch===' ') return 18 + Math.random()*18;
-  if(ch===',' || ch==='.' || ch==='?' || ch==='!') return 90 + Math.random()*80;
-  return 28 + Math.random()*34;
+  if(ch===' ') return 20 + Math.random()*20;
+  if(ch===',' || ch==='.' || ch==='?' || ch==='!') return 95 + Math.random()*85;
+  return 34 + Math.random()*42;
 }
 
-async function typeMessage(username,text){
+function appendMessage(username,text){
   const e=document.createElement('div');
   e.className='message';
 
   const n=document.createElement('span');
   n.className='username';
+  n.textContent=username+': ';
 
   const x=document.createElement('span');
   x.className='message-text';
+  x.textContent=text;
 
-  const cursor=document.createElement('span');
-  cursor.className='typing-cursor';
-
-  e.append(n,x,cursor);
+  e.append(n,x);
   chatLog.appendChild(e);
+  chatLog.scrollTop=chatLog.scrollHeight;
+}
 
-  const prefix=username+': ';
-  for(const ch of prefix){
-    n.textContent+=ch;
-    chatLog.scrollTop=chatLog.scrollHeight;
-    await wait(20 + Math.random()*20);
-  }
+/* Incoming messages appear in the transcript as received. */
+async function receiveMessage(username,text){
+  appendMessage(username,text);
+}
+
+/* Your messages are typed into the message box first, then sent. */
+async function typeAndSend(username,text){
+  inputText.textContent='';
 
   for(const ch of text){
-    x.textContent+=ch;
-    chatLog.scrollTop=chatLog.scrollHeight;
+    inputText.textContent+=ch;
     await wait(charDelay(ch));
   }
 
-  cursor.remove();
+  await wait(180 + Math.random()*220);
+  sendButton.classList.add('sending');
+  await wait(120);
+
+  appendMessage(username,text);
+  inputText.textContent='';
+
+  await wait(90);
+  sendButton.classList.remove('sending');
 }
 
 function betweenMessageDelay(){
-  return 380 + Math.random()*620;
+  return 520 + Math.random()*900;
 }
 
 async function play(){
-  await wait(1200);
+  /* 11:27 PM is already visible when the page loads. */
+  await wait(850);
 
   for(let i=0;i<conversation.length;i++){
     const item=conversation[i];
@@ -134,15 +139,19 @@ async function play(){
     }
 
     if(item.time){
-      addTime(item.time);
-      await wait(900);
       continue;
     }
 
-    await typeMessage(item[0],item[1]);
+    const username=item[0];
+    const text=item[1];
+
+    if(username==='im_ok_itsnotmyblood'){
+      await typeAndSend(username,text);
+    }else{
+      await receiveMessage(username,text);
+    }
 
     if(i===conversation.length-1) return;
-
     await wait(betweenMessageDelay());
   }
 }
