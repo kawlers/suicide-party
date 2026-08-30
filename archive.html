@@ -1226,7 +1226,7 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,.72);
+    background: rgba(0,0,0,.16);
 }
 .message-overlay.active { display: flex; }
 .message-pop-shell {
@@ -3331,6 +3331,13 @@ function closeMessages() {
     shell.classList.remove('player-pop-in');
     frame.src = 'about:blank';
 }
+
+
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'closeMessages') {
+        closeMessages();
+    }
+});
 
 function backgroundCloseMessages(event) {
     if (event.target === document.getElementById('messageOverlay')) {
