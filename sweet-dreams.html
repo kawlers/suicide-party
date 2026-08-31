@@ -64,7 +64,7 @@ const conversation = [
 ["cry_nowdiel8r","alright damn"],
 ["im_ok_itsnotmyblood","im actually mad"],
 ["cry_nowdiel8r","ok"],
-["im_ok_itsnotmyblood","u almost fucked this up"],
+{draft:"u almost got us caught dipshit", final:"u almost fucked this up", pauseAfter:5000},
 ["cry_nowdiel8r","were good ur being a dick overreacting"],
 ["im_ok_itsnotmyblood","whatever"],
 ["im_ok_itsnotmyblood","go to sleep"],
@@ -186,6 +186,25 @@ async function play(){
       continue;
     }
 
+
+    if(item.draft){
+      inputText.textContent='';
+      for(const ch of item.draft){
+        inputText.textContent+=ch;
+        await wait(charDelay(ch));
+      }
+
+      await wait(650);
+      while(inputText.textContent.length){
+        inputText.textContent=inputText.textContent.slice(0,-1);
+        await wait(28 + Math.random()*24);
+      }
+
+      await wait(450);
+      await typeAndSend('im_ok_itsnotmyblood',item.final);
+      await wait(item.pauseAfter || 0);
+      continue;
+    }
 
     const username=item[0];
     const text=item[1];
