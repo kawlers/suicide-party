@@ -226,9 +226,6 @@ async function finishConversation(){
 }
 
 async function play(){
-  /* Let the IM window sit open for about 4 seconds before the first message arrives. */
-  await wait(4000);
-
   for(let i=0;i<conversation.length;i++){
     const item=conversation[i];
 
@@ -256,7 +253,18 @@ async function play(){
   }
 }
 
-window.addEventListener('load',play);
+let conversationStarted=false;
+function startConversationAfterPop(){
+  if(conversationStarted) return;
+  conversationStarted=true;
+  setTimeout(play,4000);
+}
+window.addEventListener('message',function(event){
+  if(event.data && event.data.type==='startConversation') startConversationAfterPop();
+});
+if(window.parent===window){
+  window.addEventListener('load',function(){ setTimeout(startConversationAfterPop,750); });
+}
 </script>
 </body>
 </html>
