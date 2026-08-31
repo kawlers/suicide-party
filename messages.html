@@ -215,14 +215,8 @@ async function finishConversation(){
   await wait(5200 + Math.random()*1500);
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
-  /* After both users sign off, leave the window up for 4 seconds, then pop it back out. */
-  await wait(4000);
-
-  if(window.parent && window.parent !== window){
-    window.parent.postMessage({type:'closeMessages'}, '*');
-  }else{
-    window.close();
-  }
+  /* Leave the signed-off conversation visible. The archive's Back button closes it. */
+  return;
 }
 
 async function play(){
