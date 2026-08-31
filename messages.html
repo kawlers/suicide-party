@@ -215,8 +215,8 @@ async function finishConversation(){
   await wait(5200 + Math.random()*1500);
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
-  /* Close the archive pop-out 10 seconds after both users are signed off. */
-  await wait(10000);
+  /* After both users sign off, leave the window up for 4 seconds, then pop it back out. */
+  await wait(4000);
 
   if(window.parent && window.parent !== window){
     window.parent.postMessage({type:'closeMessages'}, '*');
@@ -226,7 +226,8 @@ async function finishConversation(){
 }
 
 async function play(){
-  await wait(1400);
+  /* Let the IM window sit open for about 4 seconds before the first message arrives. */
+  await wait(4000);
 
   for(let i=0;i<conversation.length;i++){
     const item=conversation[i];
