@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instant Message</title>
+<title>see_u_l8r_(IM)</title>
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:transparent;color:#d5d5d5;font-family:"Courier New",monospace}
@@ -27,7 +27,7 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
     <div class="window-buttons"><div class="winbtn">−</div><div class="winbtn">□</div><div class="winbtn">×</div></div>
   </div>
   <div class="menu"><span>File</span><span>Edit</span><span>Insert</span><span>People</span></div>
-  <div class="chat-shell"><div id="chatLog" class="chat-log"><div class="time">7:04 PM</div></div></div>
+  <div class="chat-shell"><div id="chatLog" class="chat-log"></div></div>
   <div class="input-shell"><div class="fake-input"><span id="inputText" class="input-text"></span><span class="caret"></span></div><div id="sendButton" class="send">send</div></div>
   <div class="bottom">
     <div class="tool"><div class="icon">⊘</div>Block</div>
@@ -38,7 +38,6 @@ body{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 </div>
 <script>
 const conversation = [
-{time:"7:04 PM"},
 ["cry_nowdiel8r","u awake"],
 ["im_ok_itsnotmyblood","yea"],
 ["cry_nowdiel8r","we still good for tonight"],
@@ -142,8 +141,35 @@ function appendMessage(username,text){
   chatLog.scrollTop=chatLog.scrollHeight;
 }
 
+/* Soft incoming-message tone for cry_nowdiel8r. Uses Web Audio, so no audio file is needed. */
+let audioCtx = null;
+function playIncomingTone(){
+  try {
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, now);
+    osc.frequency.exponentialRampToValueAtTime(660, now + 0.11);
+
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.045, now + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.19);
+  } catch(e) {}
+}
+
 /* Incoming messages appear in the transcript as received. */
 async function receiveMessage(username,text){
+  if(username === 'cry_nowdiel8r') playIncomingTone();
   appendMessage(username,text);
 }
 
@@ -174,41 +200,6 @@ function betweenMessageDelay(){
   return 900 + Math.random()*1500;
 }
 
-/* The visible chat clock begins at 7:04 PM and advances in actual real time. */
-const chatStartMinutes = (7 * 60) + 4;
-let clockStartedAt = 0;
-let lastLoggedMinute = 0;
-let clockTimer = null;
-
-function formatChatTime(totalMinutes){
-  totalMinutes = ((totalMinutes % 1440) + 1440) % 1440;
-  let hour24 = Math.floor(totalMinutes / 60);
-  const minute = totalMinutes % 60;
-  const suffix = hour24 >= 12 ? 'PM' : 'AM';
-  let hour12 = hour24 % 12;
-  if(hour12 === 0) hour12 = 12;
-  return hour12 + ':' + String(minute).padStart(2,'0') + ' ' + suffix;
-}
-
-function addTimeLog(label){
-  const el=document.createElement('div');
-  el.className='time';
-  el.textContent=label;
-  chatLog.appendChild(el);
-  chatLog.scrollTop=chatLog.scrollHeight;
-}
-
-function updateRealtimeClock(){
-  if(!clockStartedAt) return;
-  const elapsedMinute=Math.floor((Date.now()-clockStartedAt)/60000);
-  if(elapsedMinute > lastLoggedMinute){
-    for(let m=lastLoggedMinute+1;m<=elapsedMinute;m++){
-      addTimeLog(formatChatTime(chatStartMinutes+m));
-    }
-    lastLoggedMinute=elapsedMinute;
-  }
-}
-
 function addSystemMessage(text){
   const el=document.createElement('div');
   el.className='system-message';
@@ -224,10 +215,8 @@ async function finishConversation(){
   await wait(5200 + Math.random()*1500);
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
-  if(clockTimer) clearInterval(clockTimer);
-
-  /* Close the archive pop-out 5 seconds after both users are signed off. */
-  await wait(5000);
+  /* Close the archive pop-out 10 seconds after both users are signed off. */
+  await wait(10000);
 
   if(window.parent && window.parent !== window){
     window.parent.postMessage({type:'closeMessages'}, '*');
@@ -237,11 +226,6 @@ async function finishConversation(){
 }
 
 async function play(){
-  clockStartedAt=Date.now();
-  lastLoggedMinute=0;
-  clockTimer=setInterval(updateRealtimeClock,1000);
-
-  /* 7:04 PM is already visible the instant the window opens. */
   await wait(1400);
 
   for(let i=0;i<conversation.length;i++){
@@ -252,9 +236,6 @@ async function play(){
       continue;
     }
 
-    if(item.time){
-      continue;
-    }
 
     const username=item[0];
     const text=item[1];
