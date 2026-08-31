@@ -1239,6 +1239,25 @@ body {
     border: 0;
     background: transparent;
     transform-origin: left bottom;
+    position: relative;
+}
+.message-back-btn {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    height: 26px;
+    padding: 0 10px;
+    border: 1px solid #555;
+    background: linear-gradient(#2a2a2a,#0b0b0b);
+    color: #d0d0d0;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: inset 1px 1px 0 rgba(255,255,255,.12);
+}
+.message-back-btn:hover {
+    color: #fff;
+    border-color: #777;
 }
 .message-pop-shell.player-pop-in {
     animation: playerPopFromBottomLeft .72s cubic-bezier(.22,1,.36,1) both;
@@ -1641,6 +1660,7 @@ body {
 <!-- MESSAGE POP-OUT OVERLAY -->
 <div id="messageOverlay" class="message-overlay" onclick="backgroundCloseMessages(event)">
     <div id="messagePopShell" class="message-pop-shell">
+        <button class="message-back-btn" type="button" onclick="closeMessages()">← back</button>
         <iframe id="messageFrame" class="message-frame" src="about:blank" title="see-u-l8r-(IM)" allow="autoplay"></iframe>
     </div>
 </div>
