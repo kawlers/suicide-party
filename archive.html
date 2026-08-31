@@ -3362,11 +3362,16 @@ function openMessages() {
                 videoOverlay.classList.remove('active');
                 loadingScreen.style.display = 'none';
 
+                frame.onload = function () {
+                    overlay.classList.add('active');
+                    shell.classList.remove('player-pop-in');
+                    void shell.offsetWidth;
+                    shell.classList.add('player-pop-in');
+                    setTimeout(function () {
+                        if (frame.contentWindow) frame.contentWindow.postMessage({type:'startConversation'}, '*');
+                    }, 760);
+                };
                 frame.src = 'messages.html';
-                overlay.classList.add('active');
-                shell.classList.remove('player-pop-in');
-                void shell.offsetWidth;
-                shell.classList.add('player-pop-in');
             }, 90);
             return;
         }
