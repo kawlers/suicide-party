@@ -1231,7 +1231,7 @@ body {
 }
 .message-overlay.active {
     display: flex;
-    pointer-events: auto;
+    pointer-events: none;
 }
 .message-pop-shell {
     width: min(760px, 92vw);
@@ -1240,6 +1240,7 @@ body {
     background: transparent;
     transform-origin: left bottom;
     position: relative;
+    pointer-events: auto;
 }
 .message-back-btn {
     position: absolute;
@@ -1254,6 +1255,8 @@ body {
     font-size: 12px;
     cursor: pointer;
     box-shadow: inset 1px 1px 0 rgba(255,255,255,.12);
+    z-index: 20;
+    pointer-events: auto;
 }
 .message-back-btn:hover {
     color: #fff;
@@ -1280,6 +1283,9 @@ body {
     height: 100%;
     border: 0;
     background: transparent;
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
 }
 @media (max-width: 700px) {
     .message-pop-shell { width: 96vw; height: 92vh; }
@@ -1660,7 +1666,7 @@ body {
 <!-- MESSAGE POP-OUT OVERLAY -->
 <div id="messageOverlay" class="message-overlay" onclick="backgroundCloseMessages(event)">
     <div id="messagePopShell" class="message-pop-shell">
-        <button class="message-back-btn" type="button" onclick="closeMessages()">← back</button>
+        <button class="message-back-btn" type="button" onclick="closeMessages(false)">← back to files</button>
         <iframe id="messageFrame" class="message-frame" src="about:blank" title="see-u-l8r-(IM)" allow="autoplay"></iframe>
     </div>
 </div>
@@ -3421,7 +3427,9 @@ function closeMessages(animated = false) {
         setTimeout(function () {
             overlay.classList.remove('active');
             overlay.style.display = 'none';
+            overlay.style.pointerEvents = 'none';
             shell.classList.remove('player-pop-out');
+            frame.onload = null;
             frame.src = 'about:blank';
             document.body.style.pointerEvents = '';
         }, 720);
@@ -3430,8 +3438,10 @@ function closeMessages(animated = false) {
 
     overlay.classList.remove('active');
     overlay.style.display = 'none';
+    overlay.style.pointerEvents = 'none';
     shell.classList.remove('player-pop-in');
     shell.classList.remove('player-pop-out');
+    frame.onload = null;
     frame.src = 'about:blank';
     document.body.style.pointerEvents = '';
 }
