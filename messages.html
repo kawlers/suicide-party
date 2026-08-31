@@ -226,7 +226,7 @@ async function finishConversation(){
   await wait(5200 + Math.random()*1500);
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
-  /* Leave the signed-off conversation visible. The archive's Back button closes it. */
+  /* Leave the signed-off conversation visible until the window X is clicked. */
   return;
 }
 
