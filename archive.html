@@ -1544,6 +1544,27 @@ body {
 
         <div
             class="directory-file"
+            onclick="openMessages('sweet-dreams.html', 50, 'sweet-dreams-(IM)')"
+        >
+
+            <span class="file-icon">⌑</span>
+
+            <span class="file-name">
+
+                <span class="number">07</span>
+
+                sweet-dreams-(IM)
+
+            </span>
+
+        </div>
+
+
+
+        <!-- 08 -->
+
+        <div
+            class="directory-file"
             onclick="openVideo(
                 'sp_directorscut.mp4',
                 'corrupt',
@@ -1555,7 +1576,7 @@ body {
 
             <span class="file-name">
 
-                <span class="number">07</span>
+                <span class="number">08</span>
 
                 sp_directorscut.mp4
 
@@ -1565,7 +1586,7 @@ body {
 
 
 
-        <!-- 08 -->
+        <!-- 09 -->
 
         <div
             class="directory-file"
@@ -1580,7 +1601,7 @@ body {
 
             <span class="file-name">
 
-                <span class="number">08</span>
+                <span class="number">09</span>
 
                 957229577.mp4
 
@@ -1590,18 +1611,18 @@ body {
 
 
 
-        <!-- 09 -->
+        <!-- 10 -->
 
         <div
             class="directory-file"
-            onclick="openMessages()"
+            onclick="openMessages('messages.html', 20, 'see-u-l8r-(IM)')"
         >
 
             <span class="file-icon">⌑</span>
 
             <span class="file-name">
 
-                <span class="number">09</span>
+                <span class="number">10</span>
 
                 see-u-l8r-(IM)
 
@@ -1611,7 +1632,7 @@ body {
 
 
 
-        <!-- 10 -->
+        <!-- 11 -->
 
         <div
             class="directory-file"
@@ -1626,7 +1647,7 @@ body {
 
             <span class="file-name">
 
-                <span class="number">10</span>
+                <span class="number">11</span>
 
                 dont_say_a_word (1).mp4
 
@@ -3332,7 +3353,7 @@ document.addEventListener(
 /* =========================================================
    MESSAGE FILE POP-OUT
 ========================================================= */
-function openMessages() {
+function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle = 'see-u-l8r-(IM)') {
     const overlay = document.getElementById('messageOverlay');
     const shell = document.getElementById('messagePopShell');
     const frame = document.getElementById('messageFrame');
@@ -3343,7 +3364,7 @@ function openMessages() {
     const progress = document.getElementById('loadingProgress');
     const percent = document.getElementById('loadingPercent');
 
-    /* File 09 now uses the exact same 0–100 loading rhythm as file 01. */
+    /* IM files use the same 0–100 loading rhythm; loadSpeed controls how slowly the bar moves. */
     closeMessages();
     clearTimeout(loadingTimer);
 
@@ -3381,15 +3402,16 @@ function openMessages() {
                         if (frame.contentWindow) frame.contentWindow.postMessage({type:'startConversation'}, '*');
                     }, 760);
                 };
-                frame.src = 'messages.html';
+                frame.title = messageTitle;
+                frame.src = messageSrc;
             }, 90);
             return;
         }
 
-        loadingTimer = setTimeout(step, 20);
+        loadingTimer = setTimeout(step, loadSpeed);
     }
 
-    loadingTimer = setTimeout(step, 20);
+    loadingTimer = setTimeout(step, loadSpeed);
 }
 
 function closeMessages(animated = false) {
