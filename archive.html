@@ -3315,11 +3315,53 @@ function openMessages() {
     const shell = document.getElementById('messagePopShell');
     const frame = document.getElementById('messageFrame');
 
-    frame.src = 'messages.html';
-    overlay.classList.add('active');
-    shell.classList.remove('player-pop-in');
-    void shell.offsetWidth;
-    shell.classList.add('player-pop-in');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loadingText = document.getElementById('loadingText');
+    const progress = document.getElementById('loadingProgress');
+    const percent = document.getElementById('loadingPercent');
+
+    /* File 09 now uses the exact same 0–100 loading rhythm as file 01. */
+    closeMessages();
+    clearTimeout(loadingTimer);
+
+    videoContainer.style.display = 'none';
+    loadingScreen.style.display = 'flex';
+    loadingText.textContent = 'file found..';
+    progress.style.width = '0%';
+    percent.textContent = '0%';
+    videoOverlay.classList.add('active');
+
+    let value = 0;
+
+    function step() {
+        value++;
+        progress.style.width = value + '%';
+        percent.textContent = value + '%';
+        updateLoadingText(value, loadingText);
+
+        if (value >= 100) {
+            progress.style.width = '100%';
+            percent.textContent = '100%';
+            loadingText.textContent = 'opening file..';
+
+            setTimeout(function () {
+                videoOverlay.classList.remove('active');
+                loadingScreen.style.display = 'none';
+
+                frame.src = 'messages.html';
+                overlay.classList.add('active');
+                shell.classList.remove('player-pop-in');
+                void shell.offsetWidth;
+                shell.classList.add('player-pop-in');
+            }, 90);
+            return;
+        }
+
+        loadingTimer = setTimeout(step, 20);
+    }
+
+    loadingTimer = setTimeout(step, 20);
 }
 
 function closeMessages() {
