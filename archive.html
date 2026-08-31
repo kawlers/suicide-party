@@ -1226,9 +1226,13 @@ body {
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(0,0,0,.16);
+    background: rgba(0,0,0,.08);
+    pointer-events: none;
 }
-.message-overlay.active { display: flex; }
+.message-overlay.active {
+    display: flex;
+    pointer-events: auto;
+}
 .message-pop-shell {
     width: min(760px, 92vw);
     height: min(760px, 90vh);
@@ -3363,6 +3367,7 @@ function openMessages() {
                 loadingScreen.style.display = 'none';
 
                 frame.onload = function () {
+                    overlay.style.display = '';
                     overlay.classList.add('active');
                     shell.classList.remove('player-pop-in');
                     void shell.offsetWidth;
@@ -3395,16 +3400,20 @@ function closeMessages(animated = false) {
 
         setTimeout(function () {
             overlay.classList.remove('active');
+            overlay.style.display = 'none';
             shell.classList.remove('player-pop-out');
             frame.src = 'about:blank';
+            document.body.style.pointerEvents = '';
         }, 720);
         return;
     }
 
     overlay.classList.remove('active');
+    overlay.style.display = 'none';
     shell.classList.remove('player-pop-in');
     shell.classList.remove('player-pop-out');
     frame.src = 'about:blank';
+    document.body.style.pointerEvents = '';
 }
 
 
