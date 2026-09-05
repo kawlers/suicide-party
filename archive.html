@@ -3403,7 +3403,10 @@ function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle
                     }, 760);
                 };
                 frame.title = messageTitle;
-                frame.src = messageSrc;
+                /* Force a fresh request for each IM file so the browser/GitHub Pages
+                   cannot reuse the previously opened conversation in this iframe. */
+                const separator = messageSrc.includes('?') ? '&' : '?';
+                frame.src = messageSrc + separator + 'imcache=' + Date.now();
             }, 90);
             return;
         }
