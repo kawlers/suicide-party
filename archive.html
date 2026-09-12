@@ -1271,6 +1271,36 @@ body {
     .message-pop-shell { width: 96vw; height: 92vh; }
 }
 
+
+
+/* =========================================================
+   SUBTLE CURSOR LAG / GHOST
+   Occasionally leaves one delayed cursor behind for a split second.
+========================================================= */
+.cursor-lag-ghost {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 28px;
+    pointer-events: none;
+    z-index: 999999;
+    opacity: 0;
+    transform: translate(-100px, -100px);
+    transition: opacity 0.04s linear;
+    filter: contrast(1.18) drop-shadow(1px 1px 0 rgba(255,255,255,.12));
+}
+
+.cursor-lag-ghost.visible {
+    opacity: 0.94;
+}
+
+.cursor-lag-ghost svg {
+    display: block;
+    width: 20px;
+    height: 28px;
+}
+
 </style>
 
 </head>
@@ -3463,6 +3493,102 @@ function backgroundCloseMessages(event) {
     }
 }
 
+
+
+
+/* =========================================================
+   SUBTLE CURSOR LAG / GHOST
+   A delayed duplicate appears only occasionally so it feels
+   like the old computer/browser is briefly struggling.
+========================================================= */
+(function initCursorLagGhost() {
+    const ghost = document.createElement('div');
+    ghost.className = 'cursor-lag-ghost';
+    ghost.setAttribute('aria-hidden', 'true');
+    ghost.innerHTML = `
+        <svg viewBox="0 0 20 28" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M2 1 L2 21 L7.4 16.1 L11.1 25.4 L14.5 24.0 L10.8 14.8 L18.1 14.6 Z"
+                fill="#f1f1f1"
+                stroke="#111"
+                stroke-width="1.4"
+                stroke-linejoin="round"
+            />
+        </svg>`;
+    document.body.appendChild(ghost);
+
+    const history = [];
+    let lastMoveAt = 0;
+    let showing = false;
+    let nextGhostAt = performance.now() + randomBetween(650, 1400);
+
+    function randomBetween(min, max) {
+        return min + Math.random() * (max - min);
+    }
+
+    document.addEventListener('mousemove', function (event) {
+        const now = performance.now();
+        lastMoveAt = now;
+
+        history.push({
+            x: event.clientX,
+            y: event.clientY,
+            t: now
+        });
+
+        while (history.length && now - history[0].t > 700) {
+            history.shift();
+        }
+    }, { passive: true });
+
+    function findDelayedPoint(now) {
+        const lag = randomBetween(170, 340);
+        const target = now - lag;
+        let point = null;
+
+        for (let i = history.length - 1; i >= 0; i--) {
+            if (history[i].t <= target) {
+                point = history[i];
+                break;
+            }
+        }
+
+        return point;
+    }
+
+    function showGhost(point) {
+        if (!point || showing) return;
+
+        showing = true;
+        ghost.style.transform = `translate(${point.x}px, ${point.y}px)`;
+        ghost.classList.add('visible');
+
+        setTimeout(function () {
+            ghost.classList.remove('visible');
+
+            setTimeout(function () {
+                showing = false;
+                ghost.style.transform = 'translate(-100px, -100px)';
+            }, 90);
+        }, randomBetween(210, 360));
+    }
+
+    function tick(now) {
+        /* Only glitch while the mouse is actively being used. */
+        if (
+            now >= nextGhostAt &&
+            now - lastMoveAt < 420 &&
+            history.length > 2
+        ) {
+            showGhost(findDelayedPoint(now));
+            nextGhostAt = now + randomBetween(750, 1850);
+        }
+
+        requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+})();
 
 </script>
 
