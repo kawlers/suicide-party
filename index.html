@@ -415,6 +415,68 @@ html, body, body * {
     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxwYXRoIGQ9Ik0xMSAzaDV2MTBoMlY4aDR2Nmgydi00aDR2MTJsLTUgOEgxMWwtNy0xMXYtNWg0bDMgNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIi8+PC9zdmc+") 11 3, pointer !important;
 }
 
+
+
+/* =========================================================
+   MEDIUM DEGRADED DISPLAY TREATMENT
+   Visual-only: keeps layout, interactions, windows and media intact.
+========================================================= */
+html {
+    background: #000;
+}
+
+body {
+    -webkit-font-smoothing: none;
+    text-rendering: geometricPrecision;
+}
+
+/* Slightly roughen text/UI edges without blurring the layout. */
+body:not(.no-degrade) {
+    text-shadow: 0.35px 0 rgba(255,255,255,0.10), -0.35px 0 rgba(120,0,0,0.10);
+}
+
+/* Faint low-resolution digital texture. No VHS, scanlines, or film grain. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    pointer-events: none;
+    opacity: 0.105;
+    background-image:
+        repeating-linear-gradient(90deg,
+            rgba(255,255,255,0.030) 0,
+            rgba(255,255,255,0.030) 1px,
+            transparent 1px,
+            transparent 3px),
+        repeating-linear-gradient(0deg,
+            rgba(110,0,0,0.018) 0,
+            rgba(110,0,0,0.018) 1px,
+            transparent 1px,
+            transparent 4px);
+    mix-blend-mode: screen;
+}
+
+/* Slightly crush/age UI chrome while leaving actual videos alone. */
+.nav a,
+.tagline,
+.encrypt-panel,
+.page,
+.auth-box,
+.loading-screen,
+.corrupt-window,
+.qt-shell,
+.message-pop-shell,
+.desktop-window {
+    filter: contrast(1.045) saturate(0.93);
+}
+
+/* Keep video/image content itself from inheriting extra degradation. */
+video,
+iframe {
+    text-shadow: none;
+}
+
 </style>
 
 </head>
