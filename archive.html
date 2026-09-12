@@ -1347,6 +1347,39 @@ html, body, body * {
     }
 }
 
+
+/* =========================================================
+   DOWNSIZE-ONLY WINDOW RESIZING
+   Bottom-right handle; windows cannot exceed their original popup size.
+========================================================= */
+.desktop-resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    z-index: 50;
+    pointer-events: auto;
+    cursor: nwse-resize !important;
+}
+
+.desktop-resize-handle::before {
+    content: "";
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 9px;
+    height: 9px;
+    border-right: 1px solid rgba(255,255,255,.55);
+    border-bottom: 1px solid rgba(255,255,255,.55);
+    box-shadow: 3px 3px 0 -2px rgba(0,0,0,.8);
+}
+
+.desktop-message-window,
+.desktop-video-window {
+    overflow: visible;
+}
+
 </style>
 
 </head>
@@ -3364,6 +3397,115 @@ document.addEventListener(
 
 
 
+
+/* =========================================================
+   DOWNSIZE-ONLY RESIZE HELPERS
+========================================================= */
+function addResizeHandle(win) {
+    let handle = win.querySelector(':scope > .desktop-resize-handle');
+    if (handle) return handle;
+
+    handle = document.createElement('div');
+    handle.className = 'desktop-resize-handle';
+    handle.setAttribute('aria-hidden', 'true');
+    win.appendChild(handle);
+    return handle;
+}
+
+function makeMessageWindowResizable(win) {
+    const handle = addResizeHandle(win);
+    const rect = win.getBoundingClientRect();
+    const maxWidth = rect.width;
+    const maxHeight = rect.height;
+    const minWidth = Math.min(360, maxWidth);
+    const minHeight = Math.min(300, maxHeight);
+
+    win.dataset.resizeMaxWidth = maxWidth;
+    win.dataset.resizeMaxHeight = maxHeight;
+
+    handle.addEventListener('mousedown', function(event) {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        bringDesktopWindowToFront(win);
+
+        const startRect = win.getBoundingClientRect();
+        const startX = event.clientX;
+        const startY = event.clientY;
+
+        win.style.transform = 'none';
+        win.style.left = startRect.left + 'px';
+        win.style.top = startRect.top + 'px';
+
+        function move(moveEvent) {
+            const nextWidth = Math.max(minWidth, Math.min(maxWidth, startRect.width + (moveEvent.clientX - startX)));
+            const nextHeight = Math.max(minHeight, Math.min(maxHeight, startRect.height + (moveEvent.clientY - startY)));
+            win.style.width = nextWidth + 'px';
+            win.style.height = nextHeight + 'px';
+        }
+
+        function stop() {
+            document.removeEventListener('mousemove', move);
+            document.removeEventListener('mouseup', stop);
+        }
+
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+    });
+}
+
+function makeVideoWindowResizable(win, shell, stage) {
+    if (win.dataset.resizeReady === 'true') return;
+
+    const handle = addResizeHandle(win);
+    const shellRect = shell.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
+    const maxWidth = shellRect.width;
+    const stockStageHeight = stageRect.height;
+    const chromeHeight = Math.max(0, shellRect.height - stockStageHeight);
+    const stageRatio = stockStageHeight / maxWidth;
+    const minWidth = Math.min(280, maxWidth);
+
+    win.dataset.resizeReady = 'true';
+    win.dataset.resizeMaxWidth = maxWidth;
+
+    handle.addEventListener('mousedown', function(event) {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        bringDesktopWindowToFront(win);
+
+        const startWinRect = win.getBoundingClientRect();
+        const startWidth = shell.getBoundingClientRect().width;
+        const startX = event.clientX;
+
+        win.style.transform = 'none';
+        win.style.left = startWinRect.left + 'px';
+        win.style.top = startWinRect.top + 'px';
+
+        function move(moveEvent) {
+            const requestedWidth = startWidth + (moveEvent.clientX - startX);
+            const nextWidth = Math.max(minWidth, Math.min(maxWidth, requestedWidth));
+            const nextStageHeight = Math.max(124, Math.round(nextWidth * stageRatio));
+
+            shell.style.width = nextWidth + 'px';
+            stage.style.width = nextWidth + 'px';
+            stage.style.height = nextStageHeight + 'px';
+            win.style.width = nextWidth + 'px';
+            win.style.height = (nextStageHeight + chromeHeight) + 'px';
+            win.dataset.userResized = 'true';
+        }
+
+        function stop() {
+            document.removeEventListener('mousemove', move);
+            document.removeEventListener('mouseup', stop);
+        }
+
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+    });
+}
+
 /* =========================================================
    DRAGGABLE / STACKABLE DESKTOP WINDOWS
 ========================================================= */
@@ -3589,6 +3731,9 @@ function spawnDesktopVideoWindow(fileName) {
 
     player.addEventListener('loadedmetadata', function() {
         fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+        requestAnimationFrame(function() {
+            makeVideoWindowResizable(win, shell, stage);
+        });
     });
 
     window.addEventListener('resize', function resizeDesktopVideo() {
@@ -3596,7 +3741,9 @@ function spawnDesktopVideoWindow(fileName) {
             window.removeEventListener('resize', resizeDesktopVideo);
             return;
         }
-        fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+        if (win.dataset.userResized !== 'true') {
+            fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+        }
     });
 
     shell.classList.remove('player-pop-in');
@@ -3675,6 +3822,9 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
     layer.appendChild(win);
 
     placeDesktopWindow(win);
+    requestAnimationFrame(function() {
+        makeMessageWindowResizable(win);
+    });
 
     win.addEventListener('mousedown', function() {
         bringDesktopWindowToFront(win);
