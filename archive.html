@@ -1290,6 +1290,63 @@ html, body, body * {
     cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAl0lEQVR4nNXV0QrEIAxE0Unx/385femAiEURTcYLhX2QtjkNLAD4d6X0ZD249wIpEjoC7g53B4IldARYtISeAIuS0BVgpyX0BdgpiXsE2G6J+wTYLol0gTJ70MxGR6gwPFinK1BNzB9LE47SE/ib/Nt4mNlWCR2BzuQhpQsY5re73YX6HsulCxQEf/O2dIGV6dt/vrt34AXg+kkafpn1TwAAAABJRU5ErkJggg==") 0 0, default !important;
 }
 
+
+/* =========================================================
+   DESKTOP WINDOW MODE
+   Draggable + stackable QuickTime and AIM windows.
+   Existing loading/auth/file behavior stays intact.
+========================================================= */
+.desktop-window-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+}
+
+.desktop-window {
+    position: fixed;
+    pointer-events: auto;
+    user-select: none;
+}
+
+.desktop-video-window .qt-shell {
+    max-width: 94vw;
+}
+
+.desktop-video-window .qt-titlebar {
+    touch-action: none;
+}
+
+.desktop-video-element {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+.desktop-message-window {
+    width: min(760px, 92vw);
+    height: min(760px, 90vh);
+}
+
+.desktop-message-window .message-pop-shell {
+    width: 100%;
+    height: 100%;
+}
+
+.desktop-message-window .message-frame {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 700px) {
+    .desktop-message-window {
+        width: 96vw;
+        height: 92vh;
+    }
+}
+
 </style>
 
 </head>
@@ -1682,6 +1739,9 @@ html, body, body * {
 
 
 
+
+<!-- DRAGGABLE / STACKABLE DESKTOP WINDOWS -->
+<div id="desktopWindowLayer" class="desktop-window-layer"></div>
 
 <!-- MESSAGE POP-OUT OVERLAY -->
 <div id="messageOverlay" class="message-overlay" onclick="backgroundCloseMessages(event)">
@@ -2845,93 +2905,28 @@ function openVideo(
 
 function showVideo() {
 
-
     const loadingScreen =
         document.getElementById(
             "loadingScreen"
         );
 
+    const overlay =
+        document.getElementById(
+            "videoOverlay"
+        );
 
-    const revealPlayer =
-        function() {
+    loadingScreen.style.display =
+        "none";
 
+    videoContainer.style.display =
+        "none";
 
-            fitQuickTimeWindow();
+    overlay.classList.remove(
+        "active"
+    );
 
-
-            loadingScreen.style.display =
-                "none";
-
-
-            videoContainer.style.display =
-                "block";
-
-
-            /* =============================================
-               POP PLAYER FROM BOTTOM LEFT INTO CENTER
-            ============================================= */
-
-            qtShell.classList.remove(
-                "player-pop-in"
-            );
-
-
-            void qtShell.offsetWidth;
-
-
-            qtShell.classList.add(
-                "player-pop-in"
-            );
-
-
-            const playAttempt =
-                videoPlayer.play();
-
-
-            if (
-                playAttempt !==
-                undefined
-            ) {
-
-                playAttempt.catch(
-                    function() {}
-                );
-
-            }
-
-        };
-
-
-    setTimeout(
-        function() {
-
-
-            if (
-                videoPlayer.readyState >=
-                1
-                &&
-                videoPlayer.videoWidth >
-                0
-            ) {
-
-                revealPlayer();
-
-            }
-
-            else {
-
-                videoPlayer.addEventListener(
-                    "loadedmetadata",
-                    revealPlayer,
-                    {
-                        once: true
-                    }
-                );
-
-            }
-
-        },
-        120
+    spawnDesktopVideoWindow(
+        currentFileName
     );
 
 }
@@ -3370,21 +3365,262 @@ document.addEventListener(
 
 
 /* =========================================================
+   DRAGGABLE / STACKABLE DESKTOP WINDOWS
+========================================================= */
+
+let desktopZIndex = 1;
+let desktopCascade = 0;
+
+function getDesktopLayer() {
+    return document.getElementById('desktopWindowLayer');
+}
+
+function bringDesktopWindowToFront(win) {
+    desktopZIndex++;
+    win.style.zIndex = desktopZIndex;
+}
+
+function placeDesktopWindow(win) {
+    const offset = (desktopCascade % 7) * 22;
+    desktopCascade++;
+
+    win.style.left = 'calc(50% + ' + offset + 'px)';
+    win.style.top = 'calc(50% + ' + offset + 'px)';
+    win.style.transform = 'translate(-50%, -50%)';
+
+    bringDesktopWindowToFront(win);
+}
+
+function makeDesktopWindowDraggable(win, handle, ignoreSelector) {
+    if (!win || !handle) return;
+
+    handle.addEventListener('mousedown', function(event) {
+        if (event.button !== 0) return;
+        if (ignoreSelector && event.target.closest(ignoreSelector)) return;
+
+        event.preventDefault();
+        bringDesktopWindowToFront(win);
+
+        const rect = win.getBoundingClientRect();
+        const offsetX = event.clientX - rect.left;
+        const offsetY = event.clientY - rect.top;
+
+        win.style.transform = 'none';
+        win.style.left = rect.left + 'px';
+        win.style.top = rect.top + 'px';
+
+        function move(moveEvent) {
+            const currentRect = win.getBoundingClientRect();
+            const minLeft = Math.min(0, window.innerWidth - currentRect.width);
+            const maxLeft = Math.max(0, window.innerWidth - Math.min(80, currentRect.width));
+            const minTop = 0;
+            const maxTop = Math.max(0, window.innerHeight - Math.min(34, currentRect.height));
+
+            let nextLeft = moveEvent.clientX - offsetX;
+            let nextTop = moveEvent.clientY - offsetY;
+
+            nextLeft = Math.max(minLeft, Math.min(maxLeft, nextLeft));
+            nextTop = Math.max(minTop, Math.min(maxTop, nextTop));
+
+            win.style.left = nextLeft + 'px';
+            win.style.top = nextTop + 'px';
+        }
+
+        function stop() {
+            document.removeEventListener('mousemove', move);
+            document.removeEventListener('mouseup', stop);
+        }
+
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', stop);
+    });
+}
+
+function fitDesktopQuickTimeWindow(win, shell, stage, player, fileName) {
+    if (!player.videoWidth || !player.videoHeight) return;
+
+    const naturalWidth = player.videoWidth;
+    const naturalHeight = player.videoHeight;
+
+    const originalMaxWidth = Math.min(960, window.innerWidth * 0.90);
+    const originalMaxVideoHeight = Math.max(180, window.innerHeight - 135);
+
+    const normalScale = Math.min(
+        1,
+        originalMaxWidth / naturalWidth,
+        originalMaxVideoHeight / naturalHeight
+    );
+
+    let fittedWidth = Math.max(220, Math.round(naturalWidth * normalScale));
+    let fittedHeight = Math.max(124, Math.round(naturalHeight * normalScale));
+
+    if (fileName === '957229577.mp4') {
+        const doubledWidth = fittedWidth * 2;
+        const doubledHeight = fittedHeight * 2;
+        const fileEightMaxWidth = window.innerWidth * 0.94;
+        const fileEightMaxHeight = Math.max(180, window.innerHeight - 110);
+
+        const screenScale = Math.min(
+            1,
+            fileEightMaxWidth / doubledWidth,
+            fileEightMaxHeight / doubledHeight
+        );
+
+        fittedWidth = Math.round(doubledWidth * screenScale);
+        fittedHeight = Math.round(doubledHeight * screenScale);
+    }
+
+    shell.style.width = fittedWidth + 'px';
+    stage.style.width = fittedWidth + 'px';
+    stage.style.height = fittedHeight + 'px';
+}
+
+function spawnDesktopVideoWindow(fileName) {
+    const layer = getDesktopLayer();
+    const win = document.createElement('div');
+    win.className = 'desktop-window desktop-video-window';
+
+    win.innerHTML = `
+        <div class="qt-shell">
+            <div class="qt-titlebar">
+                <span class="qt-title-icon"></span>
+                <span class="desktop-qt-filename"></span>
+                <button class="qt-close" type="button" aria-label="close video"></button>
+            </div>
+            <div class="qt-stage">
+                <video class="desktop-video-element" preload="metadata" playsinline disablepictureinpicture></video>
+            </div>
+            <div class="qt-controls-wrap">
+                <div class="qt-progress-hit" aria-label="seek video">
+                    <div class="qt-progress-track">
+                        <div class="qt-progress-fill"></div>
+                    </div>
+                </div>
+                <div class="qt-controls">
+                    <div class="qt-volume-group">
+                        <input class="qt-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="volume">
+                    </div>
+                    <div class="qt-transport">
+                        <button class="qt-btn desktop-back" type="button" aria-label="rewind">◀◀</button>
+                        <button class="qt-btn play desktop-play" type="button" aria-label="play pause">▶</button>
+                        <button class="qt-btn desktop-forward" type="button" aria-label="fast forward">▶▶</button>
+                    </div>
+                    <div class="qt-export">
+                        <button class="qt-btn desktop-export" type="button" aria-label="open video in new window" title="open video">↗</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+    layer.appendChild(win);
+    placeDesktopWindow(win);
+
+    const shell = win.querySelector('.qt-shell');
+    const titlebar = win.querySelector('.qt-titlebar');
+    const closeButton = win.querySelector('.qt-close');
+    const fileLabel = win.querySelector('.desktop-qt-filename');
+    const stage = win.querySelector('.qt-stage');
+    const player = win.querySelector('.desktop-video-element');
+    const progressHit = win.querySelector('.qt-progress-hit');
+    const progressFill = win.querySelector('.qt-progress-fill');
+    const volume = win.querySelector('.qt-volume');
+    const back = win.querySelector('.desktop-back');
+    const play = win.querySelector('.desktop-play');
+    const forward = win.querySelector('.desktop-forward');
+    const exportButton = win.querySelector('.desktop-export');
+
+    fileLabel.textContent = fileName;
+    makeDesktopWindowDraggable(win, titlebar, '.qt-close');
+
+    win.addEventListener('mousedown', function() {
+        bringDesktopWindowToFront(win);
+    });
+
+    closeButton.addEventListener('click', function(event) {
+        event.stopPropagation();
+        player.pause();
+        win.remove();
+    });
+
+    function togglePlayback() {
+        if (player.paused || player.ended) {
+            const attempt = player.play();
+            if (attempt !== undefined) attempt.catch(function() {});
+        } else {
+            player.pause();
+        }
+    }
+
+    play.addEventListener('click', togglePlayback);
+    player.addEventListener('click', togglePlayback);
+
+    player.addEventListener('play', function() { play.textContent = '❚❚'; });
+    player.addEventListener('pause', function() { play.textContent = '▶'; });
+    player.addEventListener('ended', function() { play.textContent = '▶'; });
+
+    back.addEventListener('click', function() {
+        player.currentTime = Math.max(0, player.currentTime - 5);
+    });
+
+    forward.addEventListener('click', function() {
+        const duration = Number.isFinite(player.duration) ? player.duration : player.currentTime + 5;
+        player.currentTime = Math.min(duration, player.currentTime + 5);
+    });
+
+    volume.addEventListener('input', function() {
+        player.volume = Number(volume.value);
+    });
+
+    player.addEventListener('timeupdate', function() {
+        if (!Number.isFinite(player.duration) || player.duration <= 0) return;
+        progressFill.style.width = ((player.currentTime / player.duration) * 100) + '%';
+    });
+
+    progressHit.addEventListener('click', function(event) {
+        if (!Number.isFinite(player.duration) || player.duration <= 0) return;
+        const rect = progressHit.getBoundingClientRect();
+        const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+        player.currentTime = ratio * player.duration;
+    });
+
+    exportButton.addEventListener('click', function() {
+        window.open(fileName, '_blank');
+    });
+
+    player.addEventListener('loadedmetadata', function() {
+        fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+    });
+
+    window.addEventListener('resize', function resizeDesktopVideo() {
+        if (!document.body.contains(win)) {
+            window.removeEventListener('resize', resizeDesktopVideo);
+            return;
+        }
+        fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+    });
+
+    shell.classList.remove('player-pop-in');
+    void shell.offsetWidth;
+    shell.classList.add('player-pop-in');
+
+    player.src = fileName;
+    player.load();
+
+    const attempt = player.play();
+    if (attempt !== undefined) attempt.catch(function() {});
+}
+
+
+/* =========================================================
    MESSAGE FILE POP-OUT
 ========================================================= */
 function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle = 'see-u-l8r-(IM)') {
-    const overlay = document.getElementById('messageOverlay');
-    const shell = document.getElementById('messagePopShell');
-    const frame = document.getElementById('messageFrame');
-
     const videoOverlay = document.getElementById('videoOverlay');
     const loadingScreen = document.getElementById('loadingScreen');
     const loadingText = document.getElementById('loadingText');
     const progress = document.getElementById('loadingProgress');
     const percent = document.getElementById('loadingPercent');
 
-    /* IM files use the same 0–100 loading rhythm; loadSpeed controls how slowly the bar moves. */
-    closeMessages();
     clearTimeout(loadingTimer);
 
     videoContainer.style.display = 'none';
@@ -3407,25 +3643,10 @@ function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle
             percent.textContent = '100%';
             loadingText.textContent = 'opening file..';
 
-            setTimeout(function () {
+            setTimeout(function() {
                 videoOverlay.classList.remove('active');
                 loadingScreen.style.display = 'none';
-
-                frame.onload = function () {
-                    overlay.style.display = '';
-                    overlay.classList.add('active');
-                    shell.classList.remove('player-pop-in');
-                    void shell.offsetWidth;
-                    shell.classList.add('player-pop-in');
-                    setTimeout(function () {
-                        if (frame.contentWindow) frame.contentWindow.postMessage({type:'startConversation'}, '*');
-                    }, 760);
-                };
-                frame.title = messageTitle;
-                /* Force a fresh request for each IM file so the browser/GitHub Pages
-                   cannot reuse the previously opened conversation in this iframe. */
-                const separator = messageSrc.includes('?') ? '&' : '?';
-                frame.src = messageSrc + separator + 'imcache=' + Date.now();
+                spawnDesktopMessageWindow(messageSrc, messageTitle);
             }, 90);
             return;
         }
@@ -3436,51 +3657,114 @@ function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle
     loadingTimer = setTimeout(step, loadSpeed);
 }
 
-function closeMessages(animated = false) {
-    const overlay = document.getElementById('messageOverlay');
-    const shell = document.getElementById('messagePopShell');
-    const frame = document.getElementById('messageFrame');
+function spawnDesktopMessageWindow(messageSrc, messageTitle) {
+    const layer = getDesktopLayer();
+    const win = document.createElement('div');
+    win.className = 'desktop-window desktop-message-window';
 
-    if (animated) {
+    const shell = document.createElement('div');
+    shell.className = 'message-pop-shell';
+
+    const frame = document.createElement('iframe');
+    frame.className = 'message-frame';
+    frame.title = messageTitle;
+    frame.allow = 'autoplay';
+
+    shell.appendChild(frame);
+    win.appendChild(shell);
+    layer.appendChild(win);
+
+    placeDesktopWindow(win);
+
+    win.addEventListener('mousedown', function() {
+        bringDesktopWindowToFront(win);
+    });
+
+    frame.onload = function() {
         shell.classList.remove('player-pop-in');
-        shell.classList.remove('player-pop-out');
         void shell.offsetWidth;
-        shell.classList.add('player-pop-out');
+        shell.classList.add('player-pop-in');
 
-        setTimeout(function () {
-            overlay.classList.remove('active');
-            overlay.style.display = 'none';
-            overlay.style.pointerEvents = 'none';
-            shell.classList.remove('player-pop-out');
-            frame.onload = null;
-            frame.src = 'about:blank';
-            document.body.style.pointerEvents = '';
-        }, 720);
+        try {
+            const titlebar = frame.contentDocument.querySelector('.titlebar');
+            if (titlebar) {
+                makeDesktopWindowDraggable(win, titlebar, '.window-buttons');
+            }
+        } catch (error) {}
+
+        setTimeout(function() {
+            if (frame.contentWindow) {
+                frame.contentWindow.postMessage({type:'startConversation'}, '*');
+            }
+        }, 760);
+    };
+
+    const separator = messageSrc.includes('?') ? '&' : '?';
+    frame.src = messageSrc + separator + 'imcache=' + Date.now();
+}
+
+function closeMessages(animated = false) {
+    const windows = Array.from(document.querySelectorAll('.desktop-message-window'));
+    if (!windows.length) {
+        const legacyOverlay = document.getElementById('messageOverlay');
+        if (legacyOverlay) {
+            legacyOverlay.classList.remove('active');
+            legacyOverlay.style.display = 'none';
+        }
         return;
     }
 
-    overlay.classList.remove('active');
-    overlay.style.display = 'none';
-    overlay.style.pointerEvents = 'none';
+    const win = windows.reduce(function(top, item) {
+        return Number(item.style.zIndex || 0) > Number(top.style.zIndex || 0) ? item : top;
+    }, windows[0]);
+
+    if (!animated) {
+        win.remove();
+        return;
+    }
+
+    const shell = win.querySelector('.message-pop-shell');
     shell.classList.remove('player-pop-in');
     shell.classList.remove('player-pop-out');
-    frame.onload = null;
-    frame.src = 'about:blank';
-    document.body.style.pointerEvents = '';
+    void shell.offsetWidth;
+    shell.classList.add('player-pop-out');
+    setTimeout(function() { win.remove(); }, 720);
 }
 
-
 window.addEventListener('message', function(event) {
-    if (event.data && event.data.type === 'closeMessages') {
-        closeMessages(false);
+    if (!(event.data && event.data.type === 'closeMessages')) return;
+
+    const windows = document.querySelectorAll('.desktop-message-window');
+    for (const win of windows) {
+        const frame = win.querySelector('iframe');
+        if (frame && frame.contentWindow === event.source) {
+            win.remove();
+            return;
+        }
     }
+
+    closeMessages(false);
 });
 
 function backgroundCloseMessages(event) {
-    if (event.target === document.getElementById('messageOverlay')) {
-        closeMessages();
-    }
+    /* Desktop-mode AIM windows stay open until their own X is clicked. */
 }
+
+/* Escape closes whichever draggable desktop window is currently on top. */
+document.addEventListener('keydown', function(event) {
+    if (event.key !== 'Escape' || authOverlay.style.display !== 'none') return;
+
+    const windows = Array.from(document.querySelectorAll('.desktop-window'));
+    if (!windows.length) return;
+
+    const top = windows.reduce(function(a, b) {
+        return Number(a.style.zIndex || 0) > Number(b.style.zIndex || 0) ? a : b;
+    });
+
+    const player = top.querySelector('.desktop-video-element');
+    if (player) player.pause();
+    top.remove();
+});
 
 
 
