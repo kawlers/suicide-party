@@ -1380,6 +1380,155 @@ html, body, body * {
     to { transform: rotate(360deg); }
 }
 
+
+
+
+/* =========================================================
+   LOW-RES / RECOMPRESSED DIGITAL UI TREATMENT
+   Goal: 640x480 screenshot -> compressed -> enlarged.
+   Visual-only: layout, clicks, sounds, windows, auth, and media behavior stay intact.
+========================================================= */
+html {
+    background: #000;
+}
+
+body {
+    -webkit-font-smoothing: none;
+    text-rendering: optimizeSpeed;
+}
+
+/* Make UI tones feel more limited/quantized without touching page geometry. */
+.nav a,
+.tagline,
+.encrypt-panel,
+.page,
+.auth-box,
+.loading-screen,
+.corrupt-window,
+.qt-shell,
+.message-pop-shell,
+.desktop-window,
+.directory-file,
+.back {
+    filter:
+        contrast(1.28)
+        saturate(0.68)
+        brightness(0.94);
+}
+
+/* Slightly softened/chunky upscale feeling on text + thin UI edges. */
+.nav a,
+.tagline,
+.encrypt-title,
+.encrypt-code,
+.encrypt-status,
+.encrypt-bottom,
+.directory-file,
+.back,
+.auth-title,
+.auth-subtext,
+.auth-status,
+.auth-button,
+.loading-text,
+.loading-percent,
+.corrupt-header,
+.corrupt-title,
+.corrupt-message,
+.qt-titlebar {
+    text-shadow:
+         1px 0 rgba(255,255,255,.13),
+        -1px 0 rgba(105,0,0,.30),
+         0 1px rgba(255,255,255,.035);
+    filter: contrast(1.32) saturate(.72) blur(.14px);
+}
+
+/* Roughen thin rules/borders so they stop looking browser-perfect. */
+.directory-list,
+.directory-file,
+.encrypt-panel,
+.encrypt-code,
+.encrypt-bar,
+.auth-box,
+.auth-input,
+.auth-button,
+.loading-screen,
+.loading-bar,
+.corrupt-window,
+.qt-shell,
+.qt-titlebar,
+.qt-controls,
+.qt-progress-track {
+    image-rendering: pixelated;
+}
+
+/* 4px "digital cell" matrix plus tiny compression blocks.
+   No VHS noise, grain, or scanline bands. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483646;
+    pointer-events: none;
+    opacity: .34;
+    background-image:
+        linear-gradient(90deg,
+            rgba(255,255,255,.075) 0 1px,
+            transparent 1px 4px),
+        linear-gradient(0deg,
+            rgba(90,0,0,.060) 0 1px,
+            transparent 1px 4px),
+        repeating-linear-gradient(90deg,
+            transparent 0 11px,
+            rgba(255,255,255,.018) 11px 13px,
+            transparent 13px 21px),
+        repeating-linear-gradient(0deg,
+            transparent 0 9px,
+            rgba(70,0,0,.022) 9px 12px,
+            transparent 12px 19px);
+    background-size: 4px 4px, 4px 4px, 21px 19px, 21px 19px;
+    mix-blend-mode: screen;
+}
+
+/* Faint red/gray horizontal edge bleed like a repeatedly compressed screenshot. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2147483645;
+    pointer-events: none;
+    opacity: .20;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(110,0,0,.06) 0 2px,
+            transparent 2px 13px,
+            rgba(255,255,255,.025) 13px 14px,
+            transparent 14px 27px
+        );
+    background-size: 27px 100%;
+    mix-blend-mode: screen;
+}
+
+/* Slight ringing on bright/red edges. */
+.number,
+#route,
+.encrypt-code,
+.auth-strip,
+.loading-progress,
+.encrypt-progress {
+    filter: contrast(1.38) saturate(.78);
+    text-shadow:
+        1px 0 rgba(150,0,0,.40),
+       -1px 0 rgba(255,255,255,.08);
+}
+
+/* Keep moving footage itself from being blurred/filtered by the UI treatment. */
+video,
+iframe {
+    filter: none !important;
+    text-shadow: none !important;
+}
+
 </style>
 
 </head>
