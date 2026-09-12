@@ -417,127 +417,84 @@ html, body, body * {
 
 
 /* =========================================================
-   EARLY-2000s INTERNET DISPLAY TREATMENT
-   Built to feel like an old web page on a 1024x768-era PC:
-   hard type, limited grays, 1px bevels, light dithering.
-   No scanlines, VHS, grain, fade, or decorative glitch lines.
+   INDEX — AUTHENTIC EARLY-2000s WEB PASS
+   No global degradation/filter/texture.
+   The old feeling comes from period UI details themselves.
 ========================================================= */
 
-html,
-body {
-    background: #000 !important;
-}
-
-/* Older browser/system rendering feel. */
+/* Harder old-browser text rendering, while preserving the existing layout. */
 body {
     -webkit-font-smoothing: none;
     text-rendering: optimizeSpeed;
 }
 
-/* Keep the existing typography/layout, but make type less "retina clean." */
-.nav a,
+/* ENTER behaves more like a primitive old web link/button.
+   Existing dimensions/position/navigation are untouched. */
+.nav a {
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    text-decoration: none;
+    outline: none;
+}
+
+.nav a:focus {
+    outline: 1px dotted #777;
+    outline-offset: 3px;
+}
+
+.nav a:active {
+    transform: translate(1px, 1px);
+}
+
+/* Old tiny utility-copy treatment rather than modern polished microcopy. */
 .tagline,
-.encrypt-title,
-.encrypt-code,
-.encrypt-status,
-.encrypt-bottom,
-.back,
-.directory-file,
-.auth-title,
-.auth-subtext,
-.auth-status,
-.auth-button,
-.loading-text,
-.loading-percent,
-.corrupt-header,
-.corrupt-title,
-.corrupt-message,
-.qt-titlebar {
-    text-shadow:
-        1px 0 0 rgba(0,0,0,.95),
-        0 1px 0 rgba(0,0,0,.90);
-}
-
-/* 2000s 1px UI bevels: tiny highlight + shadow, not glossy modern shadows. */
-.encrypt-panel,
-.auth-box,
-.loading-screen,
-.corrupt-window,
-.qt-shell,
-.qt-controls,
-.auth-button,
-.corrupt-button {
-    box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,.055),
-        inset -1px -1px 0 rgba(0,0,0,.95),
-        1px 1px 0 rgba(35,35,35,.45);
-}
-
-/* Make directory separators and thin rules feel rasterized rather than perfect. */
-.directory-list,
-.directory-file,
-.encrypt-code,
-.encrypt-bar,
-.loading-bar,
-.qt-progress-track {
-    border-color: #202020;
-}
-
-/* Slightly quantized old-monitor palette while preserving true black/red. */
-.tagline,
-.back,
-.directory-file,
-.auth-subtext,
-.auth-status,
-.loading-text,
-.loading-percent,
 .encrypt-status,
 .encrypt-bottom {
-    filter: contrast(1.10);
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    letter-spacing: 0;
 }
 
-/* Reds stay strong, like old low-color web graphics. */
-.number,
-#route,
+/* Give the encryption/loading UI a simple 1px-era interface edge.
+   No glow, blur, grain, scanlines, or screen overlay. */
+.encrypt-panel {
+    box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,.07),
+        inset -1px -1px 0 #000;
+}
+
 .encrypt-code,
-.encrypt-progress,
-.loading-progress,
-.auth-strip {
-    filter: contrast(1.18) saturate(1.08);
-}
-
-/* Tiny checker/dither pattern — the kind of texture old web graphics and
-   low-color monitors produced. No horizontal bands or scanlines. */
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 2147483646;
-    pointer-events: none;
-    opacity: .12;
-    background-image:
-        linear-gradient(45deg, rgba(255,255,255,.055) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(255,255,255,.035) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(90,0,0,.055) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(90,0,0,.035) 75%);
-    background-size: 4px 4px;
-    background-position: 0 0, 0 2px, 2px -2px, -2px 0;
-}
-
-/* Slight hardening of small UI icons/controls. */
-.file-icon,
-.qt-title-icon,
-.qt-close,
-.loader-symbol,
-.desktop-buffer-spinner {
+.encrypt-bar {
     image-rendering: pixelated;
 }
 
-/* Preserve the actual footage and AIM iframe content. */
+/* Period-style tiny status marker. Added visually without changing navigation. */
+.tagline::before {
+    content: "[online]  ";
+    color: #666;
+    font-family: Tahoma, Verdana, Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0;
+    text-transform: lowercase;
+}
+
+/* A deliberately primitive compatibility note, like an old personal/archive site. */
+body::after {
+    content: "best viewed 1024x768";
+    position: fixed;
+    right: 9px;
+    bottom: 7px;
+    z-index: 5;
+    pointer-events: none;
+    color: #303030;
+    font: 9px/1 Tahoma, Verdana, Arial, sans-serif;
+    letter-spacing: 0;
+    text-transform: lowercase;
+}
+
+/* Keep the logo/media itself clean. Low-res character comes from UI details,
+   not from putting a filter over the entire page. */
 video,
-iframe {
-    filter: none !important;
-    text-shadow: none !important;
+img {
+    image-rendering: auto;
 }
 
 </style>
