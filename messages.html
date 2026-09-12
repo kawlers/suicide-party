@@ -223,6 +223,36 @@ function betweenMessageDelay(){
   return 900 + Math.random()*1500;
 }
 
+function playSignOffTone() {
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  if (!AudioCtx) return;
+  if (!window._imAudioContext) window._imAudioContext = new AudioCtx();
+  const ctx = window._imAudioContext;
+  if (ctx.state === 'suspended') ctx.resume().catch(function() {});
+
+  const now = ctx.currentTime;
+  [620, 390].forEach(function(freq, index) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+    const start = now + (index * 0.105);
+
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    filter.type = 'lowpass';
+    filter.frequency.value = 1900;
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(0.032, start + 0.008);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.095);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(start);
+    osc.stop(start + 0.11);
+  });
+}
+
 function addSystemMessage(text){
   const el=document.createElement('div');
   el.className='system-message';
@@ -233,9 +263,11 @@ function addSystemMessage(text){
 
 async function finishConversation(){
   await wait(4300 + Math.random()*1200);
+  playSignOffTone();
   addSystemMessage('cry_nowdiel8r has signed off.');
 
   await wait(5200 + Math.random()*1500);
+  playSignOffTone();
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
   /* Leave the signed-off conversation visible until the window X is clicked. */
