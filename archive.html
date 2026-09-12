@@ -2055,140 +2055,29 @@ html, body, body * {
 <script>
 
 /* =========================================================
-   2000s / LOW-BIT UI SOUNDS
+   MOUSE CLICK SOUND — USER-SUPPLIED FILE ONLY
 ========================================================= */
-let siteAudioContext = null;
-let activeBufferNoise = null;
+const mouseClickSoundFile = "Mouse Click Sound Effect (1).mp3";
 
-function getSiteAudioContext() {
-    if (!siteAudioContext) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return null;
-        siteAudioContext = new AudioCtx();
-    }
-    if (siteAudioContext.state === "suspended") {
-        siteAudioContext.resume().catch(function() {});
-    }
-    return siteAudioContext;
+function playMouseClickSound() {
+    try {
+        const click = new Audio(mouseClickSoundFile);
+        click.preload = "auto";
+        click.volume = 0.55;
+        click.play().catch(function() {});
+    } catch (error) {}
 }
 
-function playUIClick(soft = false) {
-    const ctx = getSiteAudioContext();
-    if (!ctx) return;
-    const now = ctx.currentTime;
-
-    /* Old Windows-style dry mechanical UI click: tiny broadband snap + hollow tick. */
-    const sampleRate = 11025;
-    const frames = Math.floor(sampleRate * 0.032);
-    const clickBuffer = ctx.createBuffer(1, frames, sampleRate);
-    const data = clickBuffer.getChannelData(0);
-    for (let i = 0; i < frames; i++) {
-        const env = Math.pow(1 - (i / frames), 5);
-        data[i] = ((Math.random() * 2) - 1) * env * (soft ? 0.38 : 0.58);
-    }
-
-    const source = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const gain = ctx.createGain();
-    source.buffer = clickBuffer;
-    filter.type = "bandpass";
-    filter.frequency.value = soft ? 1450 : 1750;
-    filter.Q.value = 0.8;
-    gain.gain.value = soft ? 0.16 : 0.22;
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    source.start(now);
-
-    const tick = ctx.createOscillator();
-    const tickGain = ctx.createGain();
-    tick.type = "square";
-    tick.frequency.setValueAtTime(soft ? 310 : 360, now);
-    tick.frequency.exponentialRampToValueAtTime(soft ? 220 : 245, now + 0.018);
-    tickGain.gain.setValueAtTime(soft ? 0.012 : 0.018, now);
-    tickGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.028);
-    tick.connect(tickGain);
-    tickGain.connect(ctx.destination);
-    tick.start(now);
-    tick.stop(now + 0.03);
-}
-
-function startBufferNoise() {
-    stopBufferNoise();
-    const ctx = getSiteAudioContext();
-    if (!ctx) return;
-
-    /* Noticeable low-bit startup burst, then a thicker but quieter looping computer churn. */
-    const now = ctx.currentTime;
-    const sampleRate = 11025;
-
-    const burstFrames = Math.floor(sampleRate * 0.16);
-    const burstBuffer = ctx.createBuffer(1, burstFrames, sampleRate);
-    const burstData = burstBuffer.getChannelData(0);
-    let burstHeld = 0;
-    for (let i = 0; i < burstFrames; i++) {
-        if (i % 4 === 0) burstHeld = Math.round(((Math.random() * 2) - 1) * 5) / 5;
-        const env = 1 - (i / burstFrames);
-        burstData[i] = burstHeld * env * 0.34;
-    }
-    const burst = ctx.createBufferSource();
-    const burstFilter = ctx.createBiquadFilter();
-    const burstGain = ctx.createGain();
-    burst.buffer = burstBuffer;
-    burstFilter.type = "bandpass";
-    burstFilter.frequency.value = 980;
-    burstFilter.Q.value = 0.55;
-    burstGain.gain.value = 0.24;
-    burst.connect(burstFilter);
-    burstFilter.connect(burstGain);
-    burstGain.connect(ctx.destination);
-    burst.start(now);
-
-    const seconds = 0.34;
-    const frameCount = Math.floor(sampleRate * seconds);
-    const buffer = ctx.createBuffer(1, frameCount, sampleRate);
-    const data = buffer.getChannelData(0);
-    let held = 0;
-    for (let i = 0; i < frameCount; i++) {
-        if (i % 5 === 0) held = Math.round(((Math.random() * 2) - 1) * 6) / 6;
-        data[i] = held * 0.22;
-    }
-
-    const source = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const gain = ctx.createGain();
-    source.buffer = buffer;
-    source.loop = true;
-    filter.type = "bandpass";
-    filter.frequency.value = 1050;
-    filter.Q.value = 0.65;
-    gain.gain.setValueAtTime(0.085, now);
-    gain.gain.linearRampToValueAtTime(0.065, now + 0.28);
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    source.start(now + 0.045);
-    activeBufferNoise = { source, gain };
-}
-
-function stopBufferNoise() {
-    if (!activeBufferNoise) return;
-    try { activeBufferNoise.source.stop(); } catch (error) {}
-    try { activeBufferNoise.source.disconnect(); } catch (error) {}
-    try { activeBufferNoise.gain.disconnect(); } catch (error) {}
-    activeBufferNoise = null;
-}
-
+/* Play only for actual clickable controls — no generated UI/buffer sounds. */
 document.addEventListener("pointerdown", function(event) {
-    if (event.target.closest(".directory-file:not(.empty)")) {
-        playUIClick(false);
-        return;
-    }
-    if (event.target.closest("button, input[type='range'], .qt-progress-hit")) {
-        playUIClick(true);
+    const clickable = event.target.closest(
+        ".directory-file:not(.empty), button, a, input[type='range'], .qt-progress-hit, video"
+    );
+
+    if (clickable) {
+        playMouseClickSound();
     }
 });
-
 
 
 /* =========================================================
@@ -3730,7 +3619,6 @@ function spawnDesktopVideoWindow(fileName) {
     closeButton.addEventListener('click', function(event) {
         event.stopPropagation();
         player.pause();
-        stopBufferNoise();
         win.remove();
     });
 
@@ -3826,15 +3714,12 @@ function spawnDesktopVideoWindow(fileName) {
         /* Recenter one final time at the exact stock position, then play. */
         resetDesktopWindowPosition(win);
         bufferOverlay.style.display = 'none';
-        stopBufferNoise();
 
         const attempt = player.play();
         if (attempt !== undefined) attempt.catch(function() {});
     }
 
     if (useBufferStart) {
-        startBufferNoise();
-
         shell.addEventListener('animationend', function popInFinished(event) {
             if (event.animationName !== 'playerPopFromBottomLeft') return;
             shell.removeEventListener('animationend', popInFinished);
