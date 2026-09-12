@@ -184,109 +184,6 @@ body {
 
 
 /* =========================================================
-   2000s / LOW-BIT UI SOUNDS
-========================================================= */
-let siteAudioContext = null;
-let activeBufferNoise = null;
-
-function getSiteAudioContext() {
-    if (!siteAudioContext) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return null;
-        siteAudioContext = new AudioCtx();
-    }
-    if (siteAudioContext.state === 'suspended') {
-        siteAudioContext.resume().catch(function() {});
-    }
-    return siteAudioContext;
-}
-
-function playUIClick(soft = false) {
-    const ctx = getSiteAudioContext();
-    if (!ctx) return;
-
-    const now = ctx.currentTime;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    const filter = ctx.createBiquadFilter();
-
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(soft ? 760 : 920, now);
-    osc.frequency.exponentialRampToValueAtTime(soft ? 430 : 520, now + 0.028);
-
-    filter.type = 'lowpass';
-    filter.frequency.value = soft ? 2100 : 2700;
-
-    gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(soft ? 0.018 : 0.027, now + 0.002);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045);
-
-    osc.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.05);
-}
-
-function startBufferNoise() {
-    stopBufferNoise();
-    const ctx = getSiteAudioContext();
-    if (!ctx) return;
-
-    const sampleRate = 11025;
-    const seconds = 0.42;
-    const frameCount = Math.floor(sampleRate * seconds);
-    const buffer = ctx.createBuffer(1, frameCount, sampleRate);
-    const data = buffer.getChannelData(0);
-    let held = 0;
-
-    for (let i = 0; i < frameCount; i++) {
-        if (i % 7 === 0) {
-            held = Math.round(((Math.random() * 2) - 1) * 7) / 7;
-        }
-        data[i] = held * 0.12;
-    }
-
-    const source = ctx.createBufferSource();
-    const filter = ctx.createBiquadFilter();
-    const gain = ctx.createGain();
-
-    source.buffer = buffer;
-    source.loop = true;
-    filter.type = 'bandpass';
-    filter.frequency.value = 1150;
-    filter.Q.value = 0.7;
-    gain.gain.value = 0.055;
-
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    source.start();
-
-    activeBufferNoise = { source, gain };
-}
-
-function stopBufferNoise() {
-    if (!activeBufferNoise) return;
-    try { activeBufferNoise.source.stop(); } catch (error) {}
-    try { activeBufferNoise.source.disconnect(); } catch (error) {}
-    try { activeBufferNoise.gain.disconnect(); } catch (error) {}
-    activeBufferNoise = null;
-}
-
-/* File rows get the firmer click. Player / window controls get a softer click. */
-document.addEventListener('pointerdown', function(event) {
-    if (event.target.closest('.directory-file:not(.empty)')) {
-        playUIClick(false);
-        return;
-    }
-
-    if (event.target.closest('button, input[type="range"], .qt-progress-hit')) {
-        playUIClick(true);
-    }
-});
-
-/* =========================================================
    AUTHORIZATION
 ========================================================= */
 
@@ -2156,6 +2053,100 @@ html, body, body * {
 
 
 <script>
+
+/* =========================================================
+   2000s / LOW-BIT UI SOUNDS
+========================================================= */
+let siteAudioContext = null;
+let activeBufferNoise = null;
+
+function getSiteAudioContext() {
+    if (!siteAudioContext) {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return null;
+        siteAudioContext = new AudioCtx();
+    }
+    if (siteAudioContext.state === "suspended") {
+        siteAudioContext.resume().catch(function() {});
+    }
+    return siteAudioContext;
+}
+
+function playUIClick(soft = false) {
+    const ctx = getSiteAudioContext();
+    if (!ctx) return;
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    const filter = ctx.createBiquadFilter();
+
+    osc.type = "square";
+    osc.frequency.setValueAtTime(soft ? 760 : 920, now);
+    osc.frequency.exponentialRampToValueAtTime(soft ? 430 : 520, now + 0.028);
+    filter.type = "lowpass";
+    filter.frequency.value = soft ? 2100 : 2700;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(soft ? 0.018 : 0.027, now + 0.002);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.045);
+
+    osc.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.05);
+}
+
+function startBufferNoise() {
+    stopBufferNoise();
+    const ctx = getSiteAudioContext();
+    if (!ctx) return;
+
+    const sampleRate = 11025;
+    const seconds = 0.42;
+    const frameCount = Math.floor(sampleRate * seconds);
+    const buffer = ctx.createBuffer(1, frameCount, sampleRate);
+    const data = buffer.getChannelData(0);
+    let held = 0;
+
+    for (let i = 0; i < frameCount; i++) {
+        if (i % 7 === 0) held = Math.round(((Math.random() * 2) - 1) * 7) / 7;
+        data[i] = held * 0.12;
+    }
+
+    const source = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+    source.buffer = buffer;
+    source.loop = true;
+    filter.type = "bandpass";
+    filter.frequency.value = 1150;
+    filter.Q.value = 0.7;
+    gain.gain.value = 0.055;
+    source.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    source.start();
+    activeBufferNoise = { source, gain };
+}
+
+function stopBufferNoise() {
+    if (!activeBufferNoise) return;
+    try { activeBufferNoise.source.stop(); } catch (error) {}
+    try { activeBufferNoise.source.disconnect(); } catch (error) {}
+    try { activeBufferNoise.gain.disconnect(); } catch (error) {}
+    activeBufferNoise = null;
+}
+
+document.addEventListener("pointerdown", function(event) {
+    if (event.target.closest(".directory-file:not(.empty)")) {
+        playUIClick(false);
+        return;
+    }
+    if (event.target.closest("button, input[type='range'], .qt-progress-hit")) {
+        playUIClick(true);
+    }
+});
+
 
 
 /* =========================================================
