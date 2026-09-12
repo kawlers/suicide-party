@@ -3491,7 +3491,12 @@ function fitDesktopQuickTimeWindow(win, shell, stage, player, fileName) {
     }
 
     shell.style.width = fittedWidth + 'px';
-    stage.style.width = fittedWidth + 'px';
+
+    /* Match the stage to the shell's INNER content width.
+       Because .qt-shell uses border-box with a 1px border on both sides,
+       giving the stage the same raw pixel width makes it protrude 2px on
+       the right. 100% uses the shell content box, keeping both edges flush. */
+    stage.style.width = '100%';
     stage.style.height = fittedHeight + 'px';
 }
 
