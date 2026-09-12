@@ -3369,7 +3369,6 @@ document.addEventListener(
 ========================================================= */
 
 let desktopZIndex = 1;
-let desktopCascade = 0;
 
 function getDesktopLayer() {
     return document.getElementById('desktopWindowLayer');
@@ -3381,11 +3380,13 @@ function bringDesktopWindowToFront(win) {
 }
 
 function placeDesktopWindow(win) {
-    const offset = (desktopCascade % 7) * 22;
-    desktopCascade++;
-
-    win.style.left = 'calc(50% + ' + offset + 'px)';
-    win.style.top = 'calc(50% + ' + offset + 'px)';
+    /*
+       Every newly opened window starts from the original default
+       centered position. Dragging only affects that live instance,
+       so closing and reopening a file always resets its position.
+    */
+    win.style.left = '50%';
+    win.style.top = '50%';
     win.style.transform = 'translate(-50%, -50%)';
 
     bringDesktopWindowToFront(win);
