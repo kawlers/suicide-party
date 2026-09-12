@@ -3668,13 +3668,25 @@ function spawnDesktopVideoWindow(fileName) {
     player.load();
     player.pause();
 
+    /* Only files 01, 05, 09, and 10 use the buffer-during-pop start. */
+    const useBufferStart = [
+        'purge-xtra2k25.mp4',
+        'sp_005.mp4',
+        '957229577.mp4',
+        'dont_say_a_word (1).mp4'
+    ].includes(fileName);
+
+    if (!useBufferStart) {
+        bufferOverlay.style.display = 'none';
+    }
+
     let popPlaybackStarted = false;
 
     function startPlaybackAfterPop() {
         if (popPlaybackStarted || !document.body.contains(win)) return;
         popPlaybackStarted = true;
 
-        /* Recenter one final time at the exact stock position, then reveal/play. */
+        /* Recenter one final time at the exact stock position, then play. */
         resetDesktopWindowPosition(win);
         bufferOverlay.style.display = 'none';
 
@@ -3682,14 +3694,20 @@ function spawnDesktopVideoWindow(fileName) {
         if (attempt !== undefined) attempt.catch(function() {});
     }
 
-    shell.addEventListener('animationend', function popInFinished(event) {
-        if (event.animationName !== 'playerPopFromBottomLeft') return;
-        shell.removeEventListener('animationend', popInFinished);
-        startPlaybackAfterPop();
-    });
+    if (useBufferStart) {
+        shell.addEventListener('animationend', function popInFinished(event) {
+            if (event.animationName !== 'playerPopFromBottomLeft') return;
+            shell.removeEventListener('animationend', popInFinished);
+            startPlaybackAfterPop();
+        });
 
-    /* Fallback in case animationend is skipped by the browser. */
-    setTimeout(startPlaybackAfterPop, 850);
+        /* Fallback in case animationend is skipped by the browser. */
+        setTimeout(startPlaybackAfterPop, 850);
+    } else {
+        /* Other videos keep the original behavior: no buffer-start treatment. */
+        const attempt = player.play();
+        if (attempt !== undefined) attempt.catch(function() {});
+    }
 }
 
 
