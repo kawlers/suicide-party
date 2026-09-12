@@ -2056,31 +2056,71 @@ html, body, body * {
 
 /* =========================================================
    MOUSE CLICK SOUND — USER-SUPPLIED FILE ONLY
+   ZERO-DELAY WEB AUDIO VERSION
 ========================================================= */
-const mouseClickSoundFile = "Mouse Click Sound Effect (1).mp3";
+const mouseClickSoundFile = "mouse-click-instant.wav";
 
-/* Preload a tiny pool so the click begins immediately on pointer-down. */
-const mouseClickPool = Array.from({ length: 3 }, function() {
-    const audio = new Audio(mouseClickSoundFile);
-    audio.preload = "auto";
-    audio.volume = 0.55;
-    audio.load();
-    return audio;
-});
+let mouseClickAudioContext = null;
+let mouseClickBuffer = null;
 
-let mouseClickPoolIndex = 0;
-
-function playMouseClickSound() {
+async function preloadMouseClickSound() {
     try {
-        const click = mouseClickPool[mouseClickPoolIndex];
-        mouseClickPoolIndex = (mouseClickPoolIndex + 1) % mouseClickPool.length;
-        click.pause();
-        click.currentTime = 0;
-        click.play().catch(function() {});
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+            return;
+        }
+
+        if (!mouseClickAudioContext) {
+            mouseClickAudioContext = new AudioContextClass();
+        }
+
+        const response = await fetch(mouseClickSoundFile, { cache: "force-cache" });
+        const arrayBuffer = await response.arrayBuffer();
+        mouseClickBuffer = await mouseClickAudioContext.decodeAudioData(arrayBuffer);
     } catch (error) {}
 }
 
-/* Play only for actual clickable controls — no generated UI/buffer sounds. */
+preloadMouseClickSound();
+
+function playMouseClickSound() {
+    try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+        if (!AudioContextClass) {
+            return;
+        }
+
+        if (!mouseClickAudioContext) {
+            mouseClickAudioContext = new AudioContextClass();
+        }
+
+        const playBuffer = function() {
+            if (!mouseClickBuffer) {
+                return;
+            }
+
+            const source = mouseClickAudioContext.createBufferSource();
+            const gain = mouseClickAudioContext.createGain();
+
+            source.buffer = mouseClickBuffer;
+            gain.gain.value = 0.55;
+
+            source.connect(gain);
+            gain.connect(mouseClickAudioContext.destination);
+
+            source.start(0);
+        };
+
+        if (mouseClickAudioContext.state === "suspended") {
+            mouseClickAudioContext.resume().then(playBuffer).catch(function() {});
+        } else {
+            playBuffer();
+        }
+    } catch (error) {}
+}
+
+/* Fire on the initial press, not the later click event. */
 document.addEventListener("pointerdown", function(event) {
     const clickable = event.target.closest(
         ".directory-file:not(.empty), button, a, input[type='range'], .qt-progress-hit, video"
@@ -2089,7 +2129,7 @@ document.addEventListener("pointerdown", function(event) {
     if (clickable) {
         playMouseClickSound();
     }
-});
+}, { passive: true });
 
 
 /* =========================================================
