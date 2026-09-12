@@ -1381,50 +1381,33 @@ html, body, body * {
 }
 
 
-
-
 /* =========================================================
-   LOW-RES / RECOMPRESSED DIGITAL UI TREATMENT
-   Goal: 640x480 screenshot -> compressed -> enlarged.
-   Visual-only: layout, clicks, sounds, windows, auth, and media behavior stay intact.
+   EARLY-2000s INTERNET DISPLAY TREATMENT
+   Built to feel like an old web page on a 1024x768-era PC:
+   hard type, limited grays, 1px bevels, light dithering.
+   No scanlines, VHS, grain, fade, or decorative glitch lines.
 ========================================================= */
-html {
-    background: #000;
+
+html,
+body {
+    background: #000 !important;
 }
 
+/* Older browser/system rendering feel. */
 body {
     -webkit-font-smoothing: none;
     text-rendering: optimizeSpeed;
 }
 
-/* Make UI tones feel more limited/quantized without touching page geometry. */
-.nav a,
-.tagline,
-.encrypt-panel,
-.page,
-.auth-box,
-.loading-screen,
-.corrupt-window,
-.qt-shell,
-.message-pop-shell,
-.desktop-window,
-.directory-file,
-.back {
-    filter:
-        contrast(1.28)
-        saturate(0.68)
-        brightness(0.94);
-}
-
-/* Slightly softened/chunky upscale feeling on text + thin UI edges. */
+/* Keep the existing typography/layout, but make type less "retina clean." */
 .nav a,
 .tagline,
 .encrypt-title,
 .encrypt-code,
 .encrypt-status,
 .encrypt-bottom,
-.directory-file,
 .back,
+.directory-file,
 .auth-title,
 .auth-subtext,
 .auth-status,
@@ -1436,93 +1419,86 @@ body {
 .corrupt-message,
 .qt-titlebar {
     text-shadow:
-         1px 0 rgba(255,255,255,.13),
-        -1px 0 rgba(105,0,0,.30),
-         0 1px rgba(255,255,255,.035);
-    filter: contrast(1.32) saturate(.72) blur(.14px);
+        1px 0 0 rgba(0,0,0,.95),
+        0 1px 0 rgba(0,0,0,.90);
 }
 
-/* Roughen thin rules/borders so they stop looking browser-perfect. */
-.directory-list,
-.directory-file,
+/* 2000s 1px UI bevels: tiny highlight + shadow, not glossy modern shadows. */
 .encrypt-panel,
-.encrypt-code,
-.encrypt-bar,
 .auth-box,
-.auth-input,
-.auth-button,
 .loading-screen,
-.loading-bar,
 .corrupt-window,
 .qt-shell,
-.qt-titlebar,
 .qt-controls,
-.qt-progress-track {
-    image-rendering: pixelated;
+.auth-button,
+.corrupt-button {
+    box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,.055),
+        inset -1px -1px 0 rgba(0,0,0,.95),
+        1px 1px 0 rgba(35,35,35,.45);
 }
 
-/* 4px "digital cell" matrix plus tiny compression blocks.
-   No VHS noise, grain, or scanline bands. */
+/* Make directory separators and thin rules feel rasterized rather than perfect. */
+.directory-list,
+.directory-file,
+.encrypt-code,
+.encrypt-bar,
+.loading-bar,
+.qt-progress-track {
+    border-color: #202020;
+}
+
+/* Slightly quantized old-monitor palette while preserving true black/red. */
+.tagline,
+.back,
+.directory-file,
+.auth-subtext,
+.auth-status,
+.loading-text,
+.loading-percent,
+.encrypt-status,
+.encrypt-bottom {
+    filter: contrast(1.10);
+}
+
+/* Reds stay strong, like old low-color web graphics. */
+.number,
+#route,
+.encrypt-code,
+.encrypt-progress,
+.loading-progress,
+.auth-strip {
+    filter: contrast(1.18) saturate(1.08);
+}
+
+/* Tiny checker/dither pattern — the kind of texture old web graphics and
+   low-color monitors produced. No horizontal bands or scanlines. */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 2147483646;
     pointer-events: none;
-    opacity: .34;
+    opacity: .12;
     background-image:
-        linear-gradient(90deg,
-            rgba(255,255,255,.075) 0 1px,
-            transparent 1px 4px),
-        linear-gradient(0deg,
-            rgba(90,0,0,.060) 0 1px,
-            transparent 1px 4px),
-        repeating-linear-gradient(90deg,
-            transparent 0 11px,
-            rgba(255,255,255,.018) 11px 13px,
-            transparent 13px 21px),
-        repeating-linear-gradient(0deg,
-            transparent 0 9px,
-            rgba(70,0,0,.022) 9px 12px,
-            transparent 12px 19px);
-    background-size: 4px 4px, 4px 4px, 21px 19px, 21px 19px;
-    mix-blend-mode: screen;
+        linear-gradient(45deg, rgba(255,255,255,.055) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.035) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(90,0,0,.055) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(90,0,0,.035) 75%);
+    background-size: 4px 4px;
+    background-position: 0 0, 0 2px, 2px -2px, -2px 0;
 }
 
-/* Faint red/gray horizontal edge bleed like a repeatedly compressed screenshot. */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 2147483645;
-    pointer-events: none;
-    opacity: .20;
-    background:
-        repeating-linear-gradient(
-            90deg,
-            rgba(110,0,0,.06) 0 2px,
-            transparent 2px 13px,
-            rgba(255,255,255,.025) 13px 14px,
-            transparent 14px 27px
-        );
-    background-size: 27px 100%;
-    mix-blend-mode: screen;
+/* Slight hardening of small UI icons/controls. */
+.file-icon,
+.qt-title-icon,
+.qt-close,
+.loader-symbol,
+.desktop-buffer-spinner {
+    image-rendering: pixelated;
 }
 
-/* Slight ringing on bright/red edges. */
-.number,
-#route,
-.encrypt-code,
-.auth-strip,
-.loading-progress,
-.encrypt-progress {
-    filter: contrast(1.38) saturate(.78);
-    text-shadow:
-        1px 0 rgba(150,0,0,.40),
-       -1px 0 rgba(255,255,255,.08);
-}
-
-/* Keep moving footage itself from being blurred/filtered by the UI treatment. */
+/* Preserve the actual footage and AIM iframe content. */
 video,
 iframe {
     filter: none !important;
