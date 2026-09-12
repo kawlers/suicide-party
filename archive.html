@@ -2579,9 +2579,11 @@ function fitQuickTimeWindow() {
         "px";
 
 
+    /* Keep the video stage locked to the QuickTime shell's inner width.
+       The shell has a 1px border on both sides, so assigning the same
+       pixel width to both made the stage stick out 2px on the right. */
     qtStage.style.width =
-        fittedWidth +
-        "px";
+        "100%";
 
 
     qtStage.style.height =
