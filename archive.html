@@ -1327,11 +1327,16 @@ html, body, body * {
 
 .desktop-video-buffer {
     position: absolute;
-    inset: 0;
+    /* Slight overscan prevents a 1px video/stage seam from peeking through
+       on certain source sizes while the pop-out buffer is visible. */
+    inset: -2px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #000;
+    border: 0;
+    outline: 0;
+    box-shadow: none;
     z-index: 5;
     pointer-events: none;
 }
