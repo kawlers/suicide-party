@@ -3379,11 +3379,28 @@ function bringDesktopWindowToFront(win) {
     win.style.zIndex = desktopZIndex;
 }
 
+function resetDesktopWindowPosition(win) {
+    if (!win || !document.body.contains(win)) return;
+
+    /*
+       Hard-center from the window's REAL rendered size.
+       Using pixel coordinates here prevents any previous drag offset,
+       transform, animation, or reopened-window drift from accumulating.
+    */
+    win.style.transform = 'none';
+
+    const rect = win.getBoundingClientRect();
+    const left = Math.max(0, Math.round((window.innerWidth - rect.width) / 2));
+    const top = Math.max(0, Math.round((window.innerHeight - rect.height) / 2));
+
+    win.style.left = left + 'px';
+    win.style.top = top + 'px';
+}
+
 function placeDesktopWindow(win) {
     /*
-       Every newly opened window starts from the original default
-       centered position. Dragging only affects that live instance,
-       so closing and reopening a file always resets its position.
+       Start centered immediately, then each window is hard-recentered
+       again after its real size/content has loaded.
     */
     win.style.left = '50%';
     win.style.top = '50%';
@@ -3590,6 +3607,12 @@ function spawnDesktopVideoWindow(fileName) {
 
     player.addEventListener('loadedmetadata', function() {
         fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
+
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                resetDesktopWindowPosition(win);
+            });
+        });
     });
 
     window.addEventListener('resize', function resizeDesktopVideo() {
@@ -3686,6 +3709,13 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
         void shell.offsetWidth;
         shell.classList.add('player-pop-in');
 
+        /* Always restore the exact stock centered position on reopen. */
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                resetDesktopWindowPosition(win);
+            });
+        });
+
         try {
             const titlebar = frame.contentDocument.querySelector('.titlebar');
             if (titlebar) {
@@ -3694,6 +3724,8 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
         } catch (error) {}
 
         setTimeout(function() {
+            resetDesktopWindowPosition(win);
+
             if (frame.contentWindow) {
                 frame.contentWindow.postMessage({type:'startConversation'}, '*');
             }
