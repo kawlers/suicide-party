@@ -1350,29 +1350,40 @@ html, body, body * {
 
 /* =========================================================
    DOWNSIZE-ONLY WINDOW RESIZING
-   Bottom-right handle; windows cannot exceed their original popup size.
+   Hold + drag the bottom-right grip smoothly.
+   Windows can shrink, but never grow past their original popup size.
 ========================================================= */
 .desktop-resize-handle {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 18px;
-    height: 18px;
-    z-index: 50;
+    width: 24px;
+    height: 24px;
+    z-index: 999;
     pointer-events: auto;
+    touch-action: none;
+    user-select: none;
     cursor: nwse-resize !important;
 }
 
 .desktop-resize-handle::before {
     content: "";
     position: absolute;
-    right: 3px;
-    bottom: 3px;
-    width: 9px;
-    height: 9px;
-    border-right: 1px solid rgba(255,255,255,.55);
-    border-bottom: 1px solid rgba(255,255,255,.55);
-    box-shadow: 3px 3px 0 -2px rgba(0,0,0,.8);
+    right: 4px;
+    bottom: 4px;
+    width: 11px;
+    height: 11px;
+    border-right: 2px solid rgba(255,255,255,.72);
+    border-bottom: 2px solid rgba(255,255,255,.72);
+    box-shadow:
+        3px 3px 0 -2px rgba(0,0,0,.9),
+        inset -3px -3px 0 -2px rgba(255,255,255,.28);
+}
+
+.desktop-window.is-resizing,
+.desktop-window.is-resizing * {
+    cursor: nwse-resize !important;
+    user-select: none !important;
 }
 
 .desktop-message-window,
@@ -3413,6 +3424,8 @@ function addResizeHandle(win) {
 }
 
 function makeMessageWindowResizable(win) {
+    if (win.dataset.resizeReady === 'true') return;
+
     const handle = addResizeHandle(win);
     const rect = win.getBoundingClientRect();
     const maxWidth = rect.width;
@@ -3420,11 +3433,13 @@ function makeMessageWindowResizable(win) {
     const minWidth = Math.min(360, maxWidth);
     const minHeight = Math.min(300, maxHeight);
 
+    win.dataset.resizeReady = 'true';
     win.dataset.resizeMaxWidth = maxWidth;
     win.dataset.resizeMaxHeight = maxHeight;
 
-    handle.addEventListener('mousedown', function(event) {
+    handle.addEventListener('pointerdown', function(event) {
         if (event.button !== 0) return;
+
         event.preventDefault();
         event.stopPropagation();
         bringDesktopWindowToFront(win);
@@ -3432,25 +3447,51 @@ function makeMessageWindowResizable(win) {
         const startRect = win.getBoundingClientRect();
         const startX = event.clientX;
         const startY = event.clientY;
+        const pointerId = event.pointerId;
 
         win.style.transform = 'none';
         win.style.left = startRect.left + 'px';
         win.style.top = startRect.top + 'px';
+        win.style.width = startRect.width + 'px';
+        win.style.height = startRect.height + 'px';
+        win.classList.add('is-resizing');
+
+        try { handle.setPointerCapture(pointerId); } catch (error) {}
 
         function move(moveEvent) {
-            const nextWidth = Math.max(minWidth, Math.min(maxWidth, startRect.width + (moveEvent.clientX - startX)));
-            const nextHeight = Math.max(minHeight, Math.min(maxHeight, startRect.height + (moveEvent.clientY - startY)));
+            if (moveEvent.pointerId !== pointerId) return;
+
+            const deltaX = moveEvent.clientX - startX;
+            const deltaY = moveEvent.clientY - startY;
+
+            const nextWidth = Math.max(
+                minWidth,
+                Math.min(maxWidth, startRect.width + deltaX)
+            );
+
+            const nextHeight = Math.max(
+                minHeight,
+                Math.min(maxHeight, startRect.height + deltaY)
+            );
+
             win.style.width = nextWidth + 'px';
             win.style.height = nextHeight + 'px';
         }
 
-        function stop() {
-            document.removeEventListener('mousemove', move);
-            document.removeEventListener('mouseup', stop);
+        function stop(stopEvent) {
+            if (stopEvent.pointerId !== pointerId) return;
+
+            win.classList.remove('is-resizing');
+            handle.removeEventListener('pointermove', move);
+            handle.removeEventListener('pointerup', stop);
+            handle.removeEventListener('pointercancel', stop);
+
+            try { handle.releasePointerCapture(pointerId); } catch (error) {}
         }
 
-        document.addEventListener('mousemove', move);
-        document.addEventListener('mouseup', stop);
+        handle.addEventListener('pointermove', move);
+        handle.addEventListener('pointerup', stop);
+        handle.addEventListener('pointercancel', stop);
     });
 }
 
@@ -3469,8 +3510,9 @@ function makeVideoWindowResizable(win, shell, stage) {
     win.dataset.resizeReady = 'true';
     win.dataset.resizeMaxWidth = maxWidth;
 
-    handle.addEventListener('mousedown', function(event) {
+    handle.addEventListener('pointerdown', function(event) {
         if (event.button !== 0) return;
+
         event.preventDefault();
         event.stopPropagation();
         bringDesktopWindowToFront(win);
@@ -3478,12 +3520,18 @@ function makeVideoWindowResizable(win, shell, stage) {
         const startWinRect = win.getBoundingClientRect();
         const startWidth = shell.getBoundingClientRect().width;
         const startX = event.clientX;
+        const pointerId = event.pointerId;
 
         win.style.transform = 'none';
         win.style.left = startWinRect.left + 'px';
         win.style.top = startWinRect.top + 'px';
+        win.classList.add('is-resizing');
+
+        try { handle.setPointerCapture(pointerId); } catch (error) {}
 
         function move(moveEvent) {
+            if (moveEvent.pointerId !== pointerId) return;
+
             const requestedWidth = startWidth + (moveEvent.clientX - startX);
             const nextWidth = Math.max(minWidth, Math.min(maxWidth, requestedWidth));
             const nextStageHeight = Math.max(124, Math.round(nextWidth * stageRatio));
@@ -3496,13 +3544,20 @@ function makeVideoWindowResizable(win, shell, stage) {
             win.dataset.userResized = 'true';
         }
 
-        function stop() {
-            document.removeEventListener('mousemove', move);
-            document.removeEventListener('mouseup', stop);
+        function stop(stopEvent) {
+            if (stopEvent.pointerId !== pointerId) return;
+
+            win.classList.remove('is-resizing');
+            handle.removeEventListener('pointermove', move);
+            handle.removeEventListener('pointerup', stop);
+            handle.removeEventListener('pointercancel', stop);
+
+            try { handle.releasePointerCapture(pointerId); } catch (error) {}
         }
 
-        document.addEventListener('mousemove', move);
-        document.addEventListener('mouseup', stop);
+        handle.addEventListener('pointermove', move);
+        handle.addEventListener('pointerup', stop);
+        handle.addEventListener('pointercancel', stop);
     });
 }
 
