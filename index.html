@@ -49,7 +49,7 @@ body {
 
 
 /* =========================================
-   VIDEO LOGO
+   LOGO
 ========================================= */
 
 .logo {
@@ -60,8 +60,6 @@ body {
     display: block;
 
     margin-bottom: 0;
-
-    object-fit: contain;
 }
 
 
@@ -74,12 +72,12 @@ body {
     flex-direction: column;
     align-items: center;
 
-    transform: translateY(-170px);
+    transform: translateY(-250px);
 }
 
 
 /* =========================================
-   ENTER
+   NAVIGATION
 ========================================= */
 
 .nav {
@@ -95,9 +93,6 @@ body {
     color: #ddd;
 
     text-decoration: none;
-
-    font-family: "Courier New", monospace;
-    font-weight: normal;
 
     font-size: 18px;
     letter-spacing: 3px;
@@ -148,49 +143,13 @@ body {
     text-align: center;
 }
 
-
-/* =========================================
-   SESSION ID
-========================================= */
-
-#sessionID {
-    color: #777;
-
-    letter-spacing: 0.5px;
-}
-
-
-/* =========================================
-   CHANGING ROUTE
-========================================= */
-
 #route {
     color: #b00000;
 }
 
 
 /* =========================================
-   UNKNOWN CLIENT
-========================================= */
-
-#unknownClient {
-    color: #b00000;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition:
-        opacity 0.5s ease;
-}
-
-#unknownClient.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-/* =========================================
-   ENCRYPTION OVERLAY
+   ENCRYPTION SCREEN
 ========================================= */
 
 .encrypt-overlay {
@@ -248,7 +207,7 @@ body {
 
 
 /* =========================================
-   ENCRYPTION HEADER
+   HEADER
 ========================================= */
 
 .encrypt-title {
@@ -264,18 +223,15 @@ body {
 
 
 /* =========================================
-   SCRAMBLING / KYSORDIETRYIN
+   ENCRYPTION CODE
 ========================================= */
 
 .encrypt-code {
     color: #b00000;
 
-    font-family: "Courier New", monospace;
-    font-weight: normal;
-
     font-size: clamp(22px, 4vw, 46px);
 
-    letter-spacing: 3px;
+    letter-spacing: 5px;
 
     word-break: break-all;
 
@@ -296,7 +252,7 @@ body {
 
 
 /* =========================================
-   ENCRYPTION STATUS
+   STATUS
 ========================================= */
 
 .encrypt-status {
@@ -333,13 +289,12 @@ body {
 
     background: #8d0000;
 
-    transition:
-        width 0.06s linear;
+    transition: width 0.06s linear;
 }
 
 
 /* =========================================
-   BOTTOM STATUS
+   BOTTOM TEXT
 ========================================= */
 
 .encrypt-bottom {
@@ -369,7 +324,7 @@ body {
     }
 
     .text-area {
-        transform: translateY(-80px);
+        transform: translateY(-135px);
     }
 
     .nav a {
@@ -382,24 +337,31 @@ body {
 
     .encrypt-panel {
         width: 92vw;
-
         padding: 25px;
     }
 
     .encrypt-code {
         min-height: 90px;
-
         letter-spacing: 3px;
-
-        font-size: clamp(
-            20px,
-            6vw,
-            34px
-        );
     }
 
 }
 
+
+
+/* =========================================================
+   CUSTOM 2000s CURSORS
+   Matches archive.html: classic pixel arrow normally, old-school hand over clickable items.
+========================================================= */
+html, body, body * {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAl0lEQVR4nNXV0QrEIAxE0Unx/385femAiEURTcYLhX2QtjkNLAD4d6X0ZD249wIpEjoC7g53B4IldARYtISeAIuS0BVgpyX0BdgpiXsE2G6J+wTYLol0gTJ70MxGR6gwPFinK1BNzB9LE47SE/ib/Nt4mNlWCR2BzuQhpQsY5re73YX6HsulCxQEf/O2dIGV6dt/vrt34AXg+kkafpn1TwAAAABJRU5ErkJggg==") 0 0, default !important;
+}
+
+a, a *,
+button, button *,
+[onclick], [onclick] * {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxwYXRoIGQ9Ik0xMSAzaDV2MTBoMlY4aDR2Nmgydi00aDR2MTJsLTUgOEgxMWwtNy0xMXYtNWg0bDMgNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIi8+PC9zdmc+") 11 3, pointer !important;
+}
 </style>
 
 </head>
@@ -415,95 +377,65 @@ body {
 <div class="home">
 
 
-    <!-- =====================================
-         LOOPING VIDEO LOGO
-    ====================================== -->
+    <!-- LOGO -->
 
-    <video
+    <img
         class="logo"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        disablepictureinpicture
-        aria-label="suicide party"
+        src="suicide-party-logo.png"
+        alt="suicide party"
     >
-
-        <source
-            src="SS logo homepage_1final.mp4"
-            type="video/mp4"
-        >
-
-    </video>
 
 
     <div class="text-area">
 
 
-        <!-- ENTER -->
+        <!-- NAVIGATION -->
 
         <div class="nav">
 
-            <a
-                href="#"
-                onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY'); return false;"
-            >
-                ENTER
+
+            <a onclick="openEncryptedPage('archive.html', 'FILE DIRECTORY')">
+                files
             </a>
+
+
+            <a onclick="openEncryptedPage('audio.html', 'AUDIO DIRECTORY')">
+                audio files
+            </a>
+
 
         </div>
 
 
-        <!-- =================================
-             CONNECTION INFORMATION
-        ================================== -->
+        <!-- TRACKING TEXT -->
 
         <div class="tagline">
-
 
             <div>
                 your connection has been logged.
             </div>
 
-
             <div>
-
-                session ID:
-
-                <span id="sessionID">
-                    ------------
-                </span>
-
+                session ID: [unbound]
             </div>
 
-
             <div>
-
                 route:
-
                 <span id="route">
                     192.168.---.---
                 </span>
-
             </div>
 
-
             <div>
-
                 time:
-
                 <span id="time">
                     --:--:-- --
                 </span>
-
             </div>
 
-
-            <div id="unknownClient">
+            <div>
                 unknown client
             </div>
-
 
         </div>
 
@@ -528,10 +460,14 @@ body {
     <div class="encrypt-panel">
 
 
+        <!-- TITLE -->
+
         <div class="encrypt-title">
             establishing channel
         </div>
 
+
+        <!-- CODE -->
 
         <div
             id="encryptCode"
@@ -540,6 +476,8 @@ body {
             0000000000000
         </div>
 
+
+        <!-- STATUS -->
 
         <div class="encrypt-status">
 
@@ -554,6 +492,8 @@ body {
         </div>
 
 
+        <!-- PROGRESS BAR -->
+
         <div class="encrypt-bar">
 
             <div
@@ -563,6 +503,8 @@ body {
 
         </div>
 
+
+        <!-- BOTTOM -->
 
         <div
             id="encryptBottom"
@@ -583,7 +525,7 @@ body {
 
 
 /* =========================================
-   CLOCK
+   CURRENT LOCAL 12-HOUR TIME
 ========================================= */
 
 function updateClock() {
@@ -599,19 +541,13 @@ function updateClock() {
     const minutes =
         String(
             now.getMinutes()
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2, "0");
 
 
     const seconds =
         String(
             now.getSeconds()
-        ).padStart(
-            2,
-            "0"
-        );
+        ).padStart(2, "0");
 
 
     const ampm =
@@ -630,32 +566,24 @@ function updateClock() {
         : 12;
 
 
-    const timeElement =
-        document.getElementById(
-            "time"
-        );
+    document.getElementById(
+        "time"
+    ).textContent =
 
-
-    if (timeElement) {
-
-        timeElement.textContent =
-
-            hours +
-            ":" +
-            minutes +
-            ":" +
-            seconds +
-            " " +
-            ampm;
-
-    }
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds +
+        " " +
+        ampm;
 
 }
 
 
 
 /* =========================================
-   FAKE CHANGING ROUTE
+   FAKE CHANGING IP
 ========================================= */
 
 function updateRoute() {
@@ -684,144 +612,33 @@ function updateRoute() {
         );
 
 
-    const routeElement =
-        document.getElementById(
-            "route"
-        );
+    document.getElementById(
+        "route"
+    ).textContent =
 
-
-    if (routeElement) {
-
-        routeElement.textContent =
-
-            part1 + "." +
-            part2 + "." +
-            part3 + "." +
-            part4;
-
-    }
+        part1 + "." +
+        part2 + "." +
+        part3 + "." +
+        part4;
 
 }
 
 
 
 /* =========================================
-   RANDOM SESSION ID
-   NO DASHES
-========================================= */
-
-function createSessionID() {
-
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-
-    let sessionID =
-        "";
-
-
-    for (
-        let character = 0;
-        character < 12;
-        character++
-    ) {
-
-
-        const randomIndex =
-
-            Math.floor(
-                Math.random()
-                *
-                characters.length
-            );
-
-
-        sessionID +=
-            characters[
-                randomIndex
-            ];
-
-    }
-
-
-    const sessionElement =
-        document.getElementById(
-            "sessionID"
-        );
-
-
-    if (sessionElement) {
-
-        sessionElement.textContent =
-            sessionID;
-
-    }
-
-}
-
-
-
-/* =========================================
-   UNKNOWN CLIENT
-========================================= */
-
-function revealUnknownClient() {
-
-    const unknownClient =
-        document.getElementById(
-            "unknownClient"
-        );
-
-
-    if (unknownClient) {
-
-        unknownClient.classList.add(
-            "visible"
-        );
-
-    }
-
-}
-
-
-
-/* =========================================
-   INITIALIZE HOMEPAGE
+   START CLOCK + ROUTE
 ========================================= */
 
 updateClock();
 
 updateRoute();
 
-createSessionID();
-
-
-
-/* =========================================
-   UNKNOWN CLIENT DELAY
-========================================= */
-
-setTimeout(
-    revealUnknownClient,
-    1500
-);
-
-
-
-/* =========================================
-   CLOCK UPDATE
-========================================= */
 
 setInterval(
     updateClock,
     1000
 );
 
-
-
-/* =========================================
-   ROUTE UPDATE
-========================================= */
 
 setInterval(
     updateRoute,
@@ -831,7 +648,7 @@ setInterval(
 
 
 /* =========================================
-   RANDOM ENCRYPTION CHARACTER
+   RANDOM LETTER / NUMBER
 ========================================= */
 
 function randomCharacter() {
@@ -840,17 +657,14 @@ function randomCharacter() {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 
-    const randomIndex =
+    return characters[
 
         Math.floor(
             Math.random()
             *
             characters.length
-        );
+        )
 
-
-    return characters[
-        randomIndex
     ];
 
 }
@@ -858,12 +672,19 @@ function randomCharacter() {
 
 
 /* =========================================
-   BUILD REVEAL
+   BUILD ENCRYPTION CODE
+
+   0 - 39%:
+   COMPLETELY SCRAMBLED
+
+   40 - 100%:
+   KYSORDIETRYIN REVEALS
 ========================================= */
 
 function makeRevealCode(
     progressValue
 ) {
+
 
     const finalWord =
         "KYSORDIETRYIN";
@@ -873,10 +694,20 @@ function makeRevealCode(
         0;
 
 
+
+    /* =====================================
+       START REVEAL AT 40%
+    ===================================== */
+
     if (
         progressValue >= 40
     ) {
 
+
+        /*
+           CONVERT 40 - 100%
+           INTO 0 - 1
+        */
 
         const revealProgress =
 
@@ -886,6 +717,12 @@ function makeRevealCode(
             /
             60;
 
+
+
+        /*
+           CALCULATE HOW MANY LETTERS
+           ARE NOW PERMANENTLY REVEALED
+        */
 
         lockedLetters =
 
@@ -897,12 +734,19 @@ function makeRevealCode(
 
             );
 
+
     }
+
 
 
     let output =
         "";
 
+
+
+    /* =====================================
+       BUILD THE 13 CHARACTER STRING
+    ===================================== */
 
     for (
         let i = 0;
@@ -911,22 +755,36 @@ function makeRevealCode(
     ) {
 
 
+        /* =================================
+           REVEALED CHARACTER
+        ================================= */
+
         if (
             i < lockedLetters
         ) {
 
+
             output +=
                 finalWord[i];
+
 
         }
 
 
+        /* =================================
+           UNREVEALED CHARACTER
+           KEEPS SCRAMBLING
+        ================================= */
+
         else {
+
 
             output +=
                 randomCharacter();
 
+
         }
+
 
     }
 
@@ -938,7 +796,7 @@ function makeRevealCode(
 
 
 /* =========================================
-   OPEN ARCHIVE
+   OPEN FILES OR AUDIO
 ========================================= */
 
 function openEncryptedPage(
@@ -985,7 +843,7 @@ function openEncryptedPage(
 
 
     /* =====================================
-       RESET
+       RESET EVERYTHING
     ===================================== */
 
     progress.style.width =
@@ -997,9 +855,7 @@ function openEncryptedPage(
 
 
     code.textContent =
-        makeRevealCode(
-            0
-        );
+        makeRevealCode(0);
 
 
     status.textContent =
@@ -1013,13 +869,21 @@ function openEncryptedPage(
 
 
     /* =====================================
-       SHOW OVERLAY
+       SHOW ENCRYPTION SCREEN
     ===================================== */
 
     overlay.classList.add(
         "active"
     );
 
+
+
+    /*
+       CURRENT PROGRESS IS STORED
+       SEPARATELY SO THE SCRAMBLING
+       CODE KNOWS HOW MANY LETTERS
+       SHOULD BE REVEALED
+    */
 
     let currentProgress =
         0;
@@ -1028,156 +892,204 @@ function openEncryptedPage(
 
     /* =====================================
        FAST SCRAMBLING
+
+       RANDOM CHARACTERS CHANGE
+       EVERY 35 MILLISECONDS
     ===================================== */
 
     const codeInterval =
 
-        setInterval(
-            function() {
+        setInterval(function() {
 
 
-                code.textContent =
-                    makeRevealCode(
-                        currentProgress
-                    );
+            code.textContent =
+                makeRevealCode(
+                    currentProgress
+                );
 
 
-            },
-            35
-        );
+        }, 35);
 
 
 
     /* =====================================
-       2 SECOND INITIAL WAIT
+       WAIT 2 SECONDS BEFORE
+       PROGRESS BAR STARTS
     ===================================== */
 
-    setTimeout(
-        function() {
+    setTimeout(function() {
 
 
-            let value =
-                0;
-
-
-            const progressInterval =
-
-                setInterval(
-                    function() {
-
-
-                        value++;
-
-
-                        currentProgress =
-                            value;
-
-
-                        progress.style.width =
-                            value + "%";
-
-
-                        percent.textContent =
-                            value + "%";
+        let value =
+            0;
 
 
 
-                        if (
-                            value < 25
-                        ) {
+        /* =================================
+           PROGRESS
+        ================================= */
 
-                            status.textContent =
-                                "negotiating key...";
+        const progressInterval =
 
-                        }
-
-
-                        else if (
-                            value < 50
-                        ) {
-
-                            status.textContent =
-                                "searching for path...";
-
-                        }
+            setInterval(function() {
 
 
-                        else if (
-                            value < 75
-                        ) {
-
-                            status.textContent =
-                                "binding client...";
-
-                        }
+                value++;
 
 
-                        else {
+                currentProgress =
+                    value;
 
-                            status.textContent =
-                                "path found...";
 
-                        }
+                progress.style.width =
+                    value + "%";
+
+
+                percent.textContent =
+                    value + "%";
 
 
 
-                        if (
-                            value >= 100
-                        ) {
+                /* =================================
+                   0 - 24%
+                ================================= */
+
+                if (
+                    value < 25
+                ) {
 
 
-                            clearInterval(
-                                progressInterval
-                            );
+                    status.textContent =
+                        "negotiating key...";
 
 
-                            clearInterval(
-                                codeInterval
-                            );
+                }
 
 
-                            progress.style.width =
-                                "100%";
+
+                /* =================================
+                   25 - 49%
+                ================================= */
+
+                else if (
+                    value < 50
+                ) {
 
 
-                            percent.textContent =
-                                "100%";
+                    status.textContent =
+                        "searching for path...";
 
 
-                            code.textContent =
-                                "KYSORDIETRYIN";
+                }
 
 
-                            status.textContent =
-                                "path found...";
+
+                /* =================================
+                   50 - 74%
+                ================================= */
+
+                else if (
+                    value < 75
+                ) {
 
 
-                            bottom.textContent =
-                                directoryName +
-                                " / channel established";
+                    status.textContent =
+                        "binding client...";
 
 
-                            setTimeout(
-                                function() {
+                }
 
 
-                                    window.location.href =
-                                        destination;
+
+                /* =================================
+                   75 - 100%
+                ================================= */
+
+                else {
 
 
-                                },
-                                2000
-                            );
+                    status.textContent =
+                        "path found...";
 
-                        }
 
-                    },
-                    40
-                );
+                }
 
-        },
-        2000
-    );
+
+
+                /* =================================
+                   COMPLETE
+                ================================= */
+
+                if (
+                    value >= 100
+                ) {
+
+
+                    /* STOP PROGRESS */
+
+                    clearInterval(
+                        progressInterval
+                    );
+
+
+                    /* STOP SCRAMBLING */
+
+                    clearInterval(
+                        codeInterval
+                    );
+
+
+                    /* FORCE 100% */
+
+                    progress.style.width =
+                        "100%";
+
+
+                    percent.textContent =
+                        "100%";
+
+
+                    /* =================================
+                       FINAL REVEAL
+                    ================================= */
+
+                    code.textContent =
+                        "KYSORDIETRYIN";
+
+
+                    status.textContent =
+                        "path found...";
+
+
+                    bottom.textContent =
+                        directoryName +
+                        " / channel established";
+
+
+
+                    /* =================================
+                       HOLD FINAL WORD
+                       FOR 2 FULL SECONDS
+                    ================================= */
+
+                    setTimeout(function() {
+
+
+                        window.location.href =
+                            destination;
+
+
+                    }, 2000);
+
+
+                }
+
+
+            }, 40);
+
+
+    }, 2000);
+
 
 }
 
