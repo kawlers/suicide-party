@@ -2059,11 +2059,23 @@ html, body, body * {
 ========================================================= */
 const mouseClickSoundFile = "Mouse Click Sound Effect (1).mp3";
 
+/* Preload a tiny pool so the click begins immediately on pointer-down. */
+const mouseClickPool = Array.from({ length: 3 }, function() {
+    const audio = new Audio(mouseClickSoundFile);
+    audio.preload = "auto";
+    audio.volume = 0.55;
+    audio.load();
+    return audio;
+});
+
+let mouseClickPoolIndex = 0;
+
 function playMouseClickSound() {
     try {
-        const click = new Audio(mouseClickSoundFile);
-        click.preload = "auto";
-        click.volume = 0.55;
+        const click = mouseClickPool[mouseClickPoolIndex];
+        mouseClickPoolIndex = (mouseClickPoolIndex + 1) % mouseClickPool.length;
+        click.pause();
+        click.currentTime = 0;
         click.play().catch(function() {});
     } catch (error) {}
 }
