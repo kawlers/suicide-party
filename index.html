@@ -598,6 +598,71 @@ html, body, body * {
 
 
 /* =========================================
+   MOUSE CLICK SOUND — INSTANT WAV
+========================================= */
+const mouseClickSoundFile = "mouse-click-instant.wav";
+
+let mouseClickAudioContext = null;
+let mouseClickBuffer = null;
+
+async function preloadMouseClickSound() {
+    try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        if (!mouseClickAudioContext) {
+            mouseClickAudioContext = new AudioContextClass();
+        }
+
+        const response = await fetch(mouseClickSoundFile, { cache: "force-cache" });
+        const arrayBuffer = await response.arrayBuffer();
+        mouseClickBuffer = await mouseClickAudioContext.decodeAudioData(arrayBuffer);
+    } catch (error) {}
+}
+
+preloadMouseClickSound();
+
+function playMouseClickSound() {
+    try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        if (!mouseClickAudioContext) {
+            mouseClickAudioContext = new AudioContextClass();
+        }
+
+        const playBuffer = function() {
+            if (!mouseClickBuffer) return;
+
+            const source = mouseClickAudioContext.createBufferSource();
+            const gain = mouseClickAudioContext.createGain();
+
+            source.buffer = mouseClickBuffer;
+            gain.gain.value = 0.55;
+
+            source.connect(gain);
+            gain.connect(mouseClickAudioContext.destination);
+            source.start(0);
+        };
+
+        if (mouseClickAudioContext.state === "suspended") {
+            mouseClickAudioContext.resume().then(playBuffer).catch(function() {});
+        } else {
+            playBuffer();
+        }
+    } catch (error) {}
+}
+
+/* ENTER fires on the physical press so it matches the archive click timing. */
+document.addEventListener("pointerdown", function(event) {
+    const clickable = event.target.closest(".nav a");
+    if (clickable) {
+        playMouseClickSound();
+    }
+}, { passive: true });
+
+
+/* =========================================
    CLOCK
 ========================================= */
 
