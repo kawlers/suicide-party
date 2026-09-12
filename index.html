@@ -418,8 +418,8 @@ html, body, body * {
 
 
 /* =========================================================
-   MEDIUM DEGRADED DISPLAY TREATMENT
-   Visual-only: keeps layout, interactions, windows and media intact.
+   STRONGER DEGRADED DIGITAL DISPLAY TREATMENT
+   Visual-only: no layout, interaction, cursor, sound, or media behavior changes.
 ========================================================= */
 html {
     background: #000;
@@ -428,36 +428,37 @@ html {
 body {
     -webkit-font-smoothing: none;
     text-rendering: geometricPrecision;
+    filter: contrast(1.09) saturate(0.86);
 }
 
-/* Slightly roughen text/UI edges without blurring the layout. */
+/* Rougher low-resolution text edges / slight digital color separation. */
 body:not(.no-degrade) {
-    text-shadow: 0.35px 0 rgba(255,255,255,0.10), -0.35px 0 rgba(120,0,0,0.10);
+    text-shadow:
+        0.65px 0 rgba(255,255,255,0.14),
+       -0.75px 0 rgba(125,0,0,0.24);
 }
 
-/* Faint low-resolution digital texture. No VHS, scanlines, or film grain. */
+/* Coarse digital pixel/dither texture — intentionally NOT VHS/film/scanlines. */
 body::after {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 2147483646;
     pointer-events: none;
-    opacity: 0.105;
+    opacity: 0.22;
     background-image:
-        repeating-linear-gradient(90deg,
-            rgba(255,255,255,0.030) 0,
-            rgba(255,255,255,0.030) 1px,
-            transparent 1px,
-            transparent 3px),
-        repeating-linear-gradient(0deg,
-            rgba(110,0,0,0.018) 0,
-            rgba(110,0,0,0.018) 1px,
+        linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(120,0,0,.040) 1px, transparent 1px),
+        repeating-linear-gradient(135deg,
+            rgba(255,255,255,.018) 0px,
+            rgba(255,255,255,.018) 1px,
             transparent 1px,
             transparent 4px);
+    background-size: 4px 4px, 4px 4px, 7px 7px;
     mix-blend-mode: screen;
 }
 
-/* Slightly crush/age UI chrome while leaving actual videos alone. */
+/* Crunch the site chrome a little harder without resizing or moving anything. */
 .nav a,
 .tagline,
 .encrypt-panel,
@@ -467,11 +468,29 @@ body::after {
 .corrupt-window,
 .qt-shell,
 .message-pop-shell,
-.desktop-window {
-    filter: contrast(1.045) saturate(0.93);
+.desktop-window,
+.directory-file,
+.back {
+    filter: contrast(1.12) saturate(0.82);
 }
 
-/* Keep video/image content itself from inheriting extra degradation. */
+/* Tiny edge ghosting on the main UI, like imperfect low-res digital scaling. */
+.directory-file,
+.auth-title,
+.auth-subtext,
+.auth-status,
+.loading-text,
+.loading-percent,
+.encrypt-title,
+.encrypt-code,
+.encrypt-status,
+.encrypt-bottom {
+    text-shadow:
+        1px 0 rgba(255,255,255,.08),
+       -1px 0 rgba(120,0,0,.18);
+}
+
+/* Keep actual moving footage clean from the added texture/filter treatment. */
 video,
 iframe {
     text-shadow: none;
