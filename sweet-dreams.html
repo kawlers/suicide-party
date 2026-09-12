@@ -198,11 +198,9 @@ function addSystemMessage(text){
 
 async function finishConversation(){
   await wait(4000);
-  playSignOffTone();
   addSystemMessage('cry_nowdiel8r has signed off.');
 
   await wait(4000);
-  playSignOffTone();
   addSystemMessage('im_ok_itsnotmyblood has signed off.');
 
   /* Leave the signed-off conversation visible until the window X is clicked. */
