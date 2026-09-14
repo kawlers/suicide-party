@@ -1765,6 +1765,30 @@ html, body, body * {
         </div>
 
 
+        <!-- 12 -->
+
+        <div
+            class="directory-file"
+            onclick="openVideo(
+                'i_liek_drugz.mp4',
+                'stall30',
+                20
+            )"
+        >
+
+            <span class="file-icon">⌑</span>
+
+            <span class="file-name">
+
+                <span class="number">12</span>
+
+                i_liek_drugz.mp4
+
+            </span>
+
+        </div>
+
+
     </div>
 
 </div>
@@ -2925,6 +2949,50 @@ function openVideo(
 
 
         /* =================================================
+           FILE 12 — STALL AT 30% FOR 4 SECONDS
+        ================================================= */
+
+        if (
+            loadMode ===
+            "stall30"
+            &&
+            value ===
+            30
+            &&
+            stallUsed ===
+            false
+        ) {
+
+            stallUsed =
+                true;
+
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            stallTimer =
+                setTimeout(
+                    function() {
+
+                        updateLoadingText(
+                            value,
+                            loadingText
+                        );
+
+
+                        scheduleNextStep();
+                    },
+                    4000
+                );
+
+
+            return;
+
+        }
+
+
+        /* =================================================
            FILE 08 — STALL AT 82%
         ================================================= */
 
@@ -3752,12 +3820,13 @@ function spawnDesktopVideoWindow(fileName) {
     player.load();
     player.pause();
 
-    /* Only files 01, 05, 09, and 10 use the buffer-during-pop start. */
+    /* Only files 01, 05, 09, 10, and 12 use the buffer-during-pop start. */
     const useBufferStart = [
         'purge-xtra2k25.mp4',
         'sp_005.mp4',
         '957229577.mp4',
-        'dont_say_a_word (1).mp4'
+        'dont_say_a_word (1).mp4',
+        'i_liek_drugz.mp4'
     ].includes(fileName);
 
     if (!useBufferStart) {
