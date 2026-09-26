@@ -1081,17 +1081,6 @@ body {
 }
 
 
-/* =========================================================
-   EXPORT
-========================================================= */
-
-.qt-export {
-    min-width: 28px;
-
-    display: flex;
-
-    justify-content: flex-end;
-}
 
 
 /* =========================================================
@@ -2011,26 +2000,6 @@ html, body, body * {
                             </button>
 
                         </div>
-
-
-
-                        <!-- EXPORT -->
-
-                        <div class="qt-export">
-
-                            <button
-                                id="qtExport"
-                                class="qt-btn"
-                                type="button"
-                                aria-label="open video in new window"
-                                title="open video"
-                            >
-                                ↗
-                            </button>
-
-                        </div>
-
-
                     </div>
 
                 </div>
@@ -2512,12 +2481,6 @@ const qtProgressFill =
     document.getElementById(
         "qtProgressFill"
     );
-
-const qtExport =
-    document.getElementById(
-        "qtExport"
-    );
-
 
 /* =========================================================
    LOADING TEXT
@@ -3386,30 +3349,6 @@ qtProgressHit.addEventListener(
 );
 
 
-/* =========================================================
-   EXPORT
-========================================================= */
-
-qtExport.addEventListener(
-    "click",
-    function() {
-
-        if (
-            !currentFileName
-        ) {
-
-            return;
-
-        }
-
-
-        window.open(
-            currentFileName,
-            "_blank"
-        );
-
-    }
-);
 
 
 /* =========================================================
@@ -3716,9 +3655,6 @@ function spawnDesktopVideoWindow(fileName) {
                         <button class="qt-btn play desktop-play" type="button" aria-label="play pause">▶</button>
                         <button class="qt-btn desktop-forward" type="button" aria-label="fast forward">▶▶</button>
                     </div>
-                    <div class="qt-export">
-                        <button class="qt-btn desktop-export" type="button" aria-label="open video in new window" title="open video">↗</button>
-                    </div>
                 </div>
             </div>
         </div>`;
@@ -3739,7 +3675,6 @@ function spawnDesktopVideoWindow(fileName) {
     const back = win.querySelector('.desktop-back');
     const play = win.querySelector('.desktop-play');
     const forward = win.querySelector('.desktop-forward');
-    const exportButton = win.querySelector('.desktop-export');
 
     fileLabel.textContent = fileName;
     makeDesktopWindowDraggable(win, titlebar, '.qt-close');
@@ -3793,10 +3728,6 @@ function spawnDesktopVideoWindow(fileName) {
         const rect = progressHit.getBoundingClientRect();
         const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
         player.currentTime = ratio * player.duration;
-    });
-
-    exportButton.addEventListener('click', function() {
-        window.open(fileName, '_blank');
     });
 
     player.addEventListener('loadedmetadata', function() {
