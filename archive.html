@@ -997,1035 +997,12 @@ body {
     align-items: center;
 
     min-width: 102px;
-}
-
-
-/*
-   ONLY VOLUME BAR.
-   SIDE SYMBOLS REMOVED.
-*/
-
-.qt-volume {
-    width: 82px;
-    height: 12px;
-
-    margin: 0;
-
-    accent-color: #cfcfcf;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   TRANSPORT
-========================================================= */
-
-.qt-transport {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    gap: 7px;
-}
-
-.qt-btn {
-    width: 31px;
-    height: 24px;
-
-    padding: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    color: #eee;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    font-size: 15px;
-
-    line-height: 1;
-
-    border: 0;
-
-    background: transparent;
-
-    text-shadow:
-        0 -1px 0 #000;
-
-    cursor: pointer;
-}
-
-.qt-btn:hover {
-    color: #fff;
-
-    filter:
-        brightness(1.25);
-}
-
-.qt-btn.play {
-    font-size: 21px;
-}
-
-
-/* =========================================================
-   EXPORT
-========================================================= */
-
-.qt-export {
-    min-width: 28px;
-
-    display: flex;
-
-    justify-content: flex-end;
-}
-
-
-/* =========================================================
-   SEEK BAR
-========================================================= */
-
-.qt-progress-hit {
-    position: absolute;
-
-    left: 8px;
-    right: 8px;
-
-    top: -3px;
-
-    height: 6px;
-
-    cursor: pointer;
-}
-
-.qt-progress-track {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-
-    top: 2px;
-
-    height: 2px;
-
-    background: #202020;
-}
-
-.qt-progress-fill {
-    width: 0%;
-
-    height: 100%;
-
-    background: #9b9b9b;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 700px) {
-
-    .page {
-        width: 90%;
-
-        padding-top: 28px;
-    }
-
-    .directory-header {
-        margin-top: 35px;
-
-        margin-bottom: 0;
-
-        justify-content: flex-end;
-    }
-
-    .directory-logo-video {
-        width: 175px;
-
-        max-width: 60vw;
-
-        transform: translateY(-48px);
-
-        margin-bottom: -48px;
-    }
-
-    .directory-list {
-        margin-top: 6px;
-    }
-
-    .directory-file {
-        font-size: 11px;
-
-        gap: 8px;
-    }
-
-    .number {
-        width: 24px;
-
-        margin-right: 4px;
-    }
-
-    .auth-content {
-        padding: 26px 22px 22px;
-    }
-
-    .qt-titlebar {
-        height: 22px;
-
-        font-size: 10px;
-    }
-
-    .qt-controls-wrap {
-        height: 44px;
-    }
-
-    .qt-controls {
-        top: 6px;
-
-        height: 32px;
-
-        width: calc(100% - 18px);
-
-        padding: 0 7px;
-    }
-
-    .qt-volume-group {
-        min-width: 82px;
-    }
-
-    .qt-volume {
-        width: 62px;
-    }
-
-    .qt-transport {
-        gap: 2px;
-    }
-
-    .qt-btn {
-        width: 27px;
-    }
-
-}
-
-
-
-/* MESSAGE FILE POP-OUT */
-.message-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9998;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,.08);
-    pointer-events: none;
-}
-.message-overlay.active {
-    display: flex;
-    pointer-events: none;
-}
-.message-pop-shell {
-    width: min(760px, 92vw);
-    height: min(760px, 90vh);
-    border: 0;
-    background: transparent;
-    transform-origin: left bottom;
-    position: relative;
-    pointer-events: auto;
-}
-.message-pop-shell.player-pop-in {
-    animation: playerPopFromBottomLeft .72s cubic-bezier(.22,1,.36,1) both;
-}
-.message-pop-shell.player-pop-out {
-    animation: messagePopToBottomLeft .72s cubic-bezier(.55,0,.78,0) both;
-}
-@keyframes messagePopToBottomLeft {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-42vw, 38vh) scale(.34);
-    }
-}
-.message-frame {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    background: transparent;
-    position: relative;
-    z-index: 1;
-    pointer-events: auto;
-}
-@media (max-width: 700px) {
-    .message-pop-shell { width: 96vw; height: 92vh; }
-}
-
-
-
-
-/* AUTHORIZATION: hide mouse pointer */
-.auth-overlay,
-.auth-overlay * {
-    cursor: none !important;
-}
-
-/* =========================================================
-   CUSTOM 2000s CURSORS
-   Classic mockup-style Windows arrow normally; old-school hand over clickable files.
-========================================================= */
-html, body, body * {
-    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAl0lEQVR4nNXV0QrEIAxE0Unx/385femAiEURTcYLhX2QtjkNLAD4d6X0ZD249wIpEjoC7g53B4IldARYtISeAIuS0BVgpyX0BdgpiXsE2G6J+wTYLol0gTJ70MxGR6gwPFinK1BNzB9LE47SE/ib/Nt4mNlWCR2BzuQhpQsY5re73YX6HsulCxQEf/O2dIGV6dt/vrt34AXg+kkafpn1TwAAAABJRU5ErkJggg==") 0 0, default !important;
-}
-
-.directory-file:not(.empty),
-.directory-file:not(.empty) * {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxwYXRoIGQ9Ik0xMSAzaDV2MTBoMlY4aDR2Nmgydi00aDR2MTJsLTUgOEgxMWwtNy0xMXYtNWg0bDMgNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIi8+PC9zdmc+") 11 3, pointer !important;
-}
-
-.directory-file.empty {
-    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAl0lEQVR4nNXV0QrEIAxE0Unx/385femAiEURTcYLhX2QtjkNLAD4d6X0ZD249wIpEjoC7g53B4IldARYtISeAIuS0BVgpyX0BdgpiXsE2G6J+wTYLol0gTJ70MxGR6gwPFinK1BNzB9LE47SE/ib/Nt4mNlWCR2BzuQhpQsY5re73YX6HsulCxQEf/O2dIGV6dt/vrt34AXg+kkafpn1TwAAAABJRU5ErkJggg==") 0 0, default !important;
-}
-
-
-/* =========================================================
-   DESKTOP WINDOW MODE
-   Draggable + stackable QuickTime and AIM windows.
-   Existing loading/auth/file behavior stays intact.
-========================================================= */
-.desktop-window-layer {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    pointer-events: none;
-}
-
-.desktop-window {
-    position: fixed;
-    pointer-events: auto;
-    user-select: none;
-}
-
-.desktop-video-window .qt-shell {
-    max-width: 94vw;
-}
-
-.desktop-video-window .qt-titlebar {
-    touch-action: none;
-}
-
-.desktop-video-element {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #000;
-}
-
-.desktop-message-window {
-    width: min(760px, 92vw);
-    height: min(760px, 90vh);
-}
-
-.desktop-message-window .message-pop-shell {
-    width: 100%;
-    height: 100%;
-}
-
-.desktop-message-window .message-frame {
-    width: 100%;
-    height: 100%;
-}
-
-@media (max-width: 700px) {
-    .desktop-message-window {
-        width: 96vw;
-        height: 92vh;
-    }
-}
-
-
-/* VIDEO POP-IN BUFFER START */
-.desktop-buffer-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.desktop-buffer-spinner {
-    width: 22px;
-    height: 22px;
-    border: 2px solid #333;
-    border-top-color: #aaa;
-    border-radius: 50%;
-    animation: desktopBufferSpin .65s linear infinite;
-}
-
-@keyframes desktopBufferSpin {
-    to { transform: rotate(360deg); }
-}
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<!-- ======================================================
-     AUTHORIZATION
-====================================================== -->
-
-<div
-    id="authOverlay"
-    class="auth-overlay"
->
-
-    <div
-        id="authBox"
-        class="auth-box"
-    >
-
-        <div class="auth-strip"></div>
-
-        <div class="auth-content">
-
-            <div class="auth-title">
-                password protected
-            </div>
-
-            <div class="auth-subtext">
-                protected directory / password required
-            </div>
-
-
-            <div class="auth-input-wrap">
-
-                <input
-                    id="passwordInput"
-                    class="auth-input"
-                    type="password"
-                    autocomplete="off"
-                    spellcheck="false"
-                    maxlength="20"
-                    aria-label="password"
-                >
-
-                <div
-                    id="fakeCursor"
-                    class="fake-cursor"
-                ></div>
-
-            </div>
-
-
-            <div class="auth-bottom">
-
-                <div
-                    id="authStatus"
-                    class="auth-status"
-                ></div>
-
-
-                <button
-                    id="authButton"
-                    class="auth-button"
-                    onclick="submitPassword()"
-                >
-                    submit
-                </button>
-
-            </div>
-
-
-            <div
-                id="authLoader"
-                class="auth-loader"
-            >
-
-                <div class="loader-symbol"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-
-<!-- ======================================================
-     ARCHIVE
-====================================================== -->
-
-<div class="page">
-
-
-    <a
-        class="back"
-        href="index.html"
-    >
-        ← back
-    </a>
-
-
-    <div class="directory-header">
-
-        <video
-            class="directory-logo-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-            disablepictureinpicture
-            aria-label="files"
-        >
-
-            <source
-                src="filesbloodfinallll.mp4"
-                type="video/mp4"
-            >
-
-        </video>
-
-    </div>
-
-
-
-    <div class="directory-list">
-
-
-        <!-- 01 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'purge-xtra2k25.mp4',
-                'normal',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">01</span>
-
-                purge-xtra2k25.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 02 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'scenebitch-lcut.mp4',
-                'normal',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">02</span>
-
-                scenebitch-lcut.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 03 -->
-
-        <div class="directory-file empty">
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">03</span>
-
-                ------
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 04 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'untitled_04.mp4',
-                'normal',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">04</span>
-
-                untitled_04.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 05 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'sp_005.mp4',
-                'normal',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">05</span>
-
-                sp_005.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 06 -->
-
-        <div class="directory-file empty">
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">06</span>
-
-                ------
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 07 -->
-
-        <div
-            class="directory-file"
-            onclick="openMessages('messages.html', 20, 'see-u-l8r-(IM)')"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">07</span>
-
-                see-u-l8r-(IM)
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 08 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'sp_directorscut.mp4',
-                'corrupt',
-                23
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">08</span>
-
-                sp_directorscut.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 09 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                '957229577.mp4',
-                'stall82',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">09</span>
-
-                957229577.mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 10 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'dont_say_a_word (1).mp4',
-                'normal',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">10</span>
-
-                dont_say_a_word (1).mp4
-
-            </span>
-
-        </div>
-
-
-
-        <!-- 11 -->
-
-        <div
-            class="directory-file"
-            onclick="openMessages('sweet-dreams.html', 50, 'sweet-dreams-(IM)')"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">11</span>
-
-                sweet-dreams-(IM)
-
-            </span>
-
-        </div>
-
-
-        <!-- 12 -->
-
-        <div
-            class="directory-file"
-            onclick="openVideo(
-                'i_lie_k_drugz.mp4',
-                'stall30',
-                20
-            )"
-        >
-
-            <span class="file-icon">⌑</span>
-
-            <span class="file-name">
-
-                <span class="number">12</span>
-
-                i_lie_k_drugz.mp4
-
-            </span>
-
-        </div>
-
-
-    </div>
-
-</div>
-
-
-
-
-
-<!-- DRAGGABLE / STACKABLE DESKTOP WINDOWS -->
-<div id="desktopWindowLayer" class="desktop-window-layer"></div>
-
-<!-- MESSAGE POP-OUT OVERLAY -->
-<div id="messageOverlay" class="message-overlay" onclick="backgroundCloseMessages(event)">
-    <div id="messagePopShell" class="message-pop-shell">
-        <iframe id="messageFrame" class="message-frame" src="about:blank" title="see-u-l8r-(IM)" allow="autoplay"></iframe>
-    </div>
-</div>
-
-
-<!-- ======================================================
-     VIDEO OVERLAY
-====================================================== -->
-
-<div
-    id="videoOverlay"
-    class="video-overlay"
-    onclick="backgroundClose(event)"
->
-
-    <div
-        class="video-window"
-        id="videoWindow"
-    >
-
-
-        <!-- LOADING -->
-
-        <div
-            id="loadingScreen"
-            class="loading-screen"
-        >
-
-            <div
-                id="loadingText"
-                class="loading-text"
-            >
-                file found..
-            </div>
-
-
-            <div class="loading-bar">
-
-                <div
-                    id="loadingProgress"
-                    class="loading-progress"
-                ></div>
-
-            </div>
-
-
-            <div
-                id="loadingPercent"
-                class="loading-percent"
-            >
-                0%
-            </div>
-
-        </div>
-
-
-
-        <!-- QUICKTIME PLAYER -->
-
-        <div
-            id="videoContainer"
-            class="video-container"
-        >
-
-            <div
-                id="qtShell"
-                class="qt-shell"
-            >
-
-
-                <!-- TITLE BAR -->
-
-                <div class="qt-titlebar">
-
-                    <span
-                        class="qt-title-icon"
-                    ></span>
-
-
-                    <span id="qtFileName">
-                        video.mp4
-                    </span>
-
-
-                    <button
-                        class="qt-close"
-                        type="button"
-                        aria-label="close video"
-                        onclick="closeVideo()"
-                    ></button>
-
-                </div>
-
-
-
-                <!-- VIDEO -->
-
-                <div
-                    id="qtStage"
-                    class="qt-stage"
-                >
-
-                    <video
-                        id="videoPlayer"
-                        preload="metadata"
-                        playsinline
-                        disablepictureinpicture
-                    >
-
-                        <source
-                            id="videoSource"
-                            src=""
-                            type="video/mp4"
-                        >
-
-                    </video>
-
-                </div>
-
-
-
-                <!-- CONTROLS -->
-
-                <div class="qt-controls-wrap">
-
-
-                    <div
-                        id="qtProgressHit"
-                        class="qt-progress-hit"
-                        aria-label="seek video"
-                    >
-
-                        <div
-                            class="qt-progress-track"
-                        >
-
-                            <div
-                                id="qtProgressFill"
-                                class="qt-progress-fill"
-                            ></div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="qt-controls">
-
-
-                        <!-- VOLUME BAR ONLY -->
-
-                        <div class="qt-volume-group">
-
-                            <input
-                                id="qtVolume"
-                                class="qt-volume"
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.01"
-                                value="1"
-                                aria-label="volume"
-                            >
-
-                        </div>
-
-
-
-                        <!-- PLAYBACK -->
-
-                        <div class="qt-transport">
-
-                            <button
-                                id="qtBack"
-                                class="qt-btn"
-                                type="button"
-                                aria-label="rewind"
-                            >
-                                ◀◀
-                            </button>
-
-
-                            <button
-                                id="qtPlay"
-                                class="qt-btn play"
-                                type="button"
-                                aria-label="play pause"
-                            >
-                                ▶
-                            </button>
-
-
-                            <button
-                                id="qtForward"
-                                class="qt-btn"
+}                             
+    class="qt-btn"
                                 type="button"
                                 aria-label="fast forward"
                             >
                                 ▶▶
-                            </button>
-
-                        </div>
-
-
-
-                        <!-- EXPORT -->
-
-                        <div class="qt-export">
-
-                            <button
-                                id="qtExport"
-                                class="qt-btn"
-                                type="button"
-                                aria-label="open video in new window"
-                                title="open video"
-                            >
-                                ↗
                             </button>
 
                         </div>
@@ -2094,6 +1071,7 @@ html, body, body * {
    MOUSE CLICK SOUND — USER-SUPPLIED FILE ONLY
    ZERO-DELAY WEB AUDIO VERSION
 ========================================================= */
+
 const mouseClickSoundFile = "mouse-click-instant.wav";
 
 let mouseClickAudioContext = null;
@@ -2157,6 +1135,7 @@ function playMouseClickSound() {
 }
 
 /* Fire on the initial press, not the later click event. */
+
 document.addEventListener("pointerdown", function(event) {
     const clickable = event.target.closest(
         ".directory-file:not(.empty), button, a, input[type='range'], .qt-progress-hit, video"
@@ -2513,11 +1492,6 @@ const qtProgressFill =
         "qtProgressFill"
     );
 
-const qtExport =
-    document.getElementById(
-        "qtExport"
-    );
-
 
 /* =========================================================
    LOADING TEXT
@@ -2721,6 +1695,7 @@ function fitQuickTimeWindow() {
     /* Keep the video stage locked to the QuickTime shell's inner width.
        The shell has a 1px border on both sides, so assigning the same
        pixel width to both made the stage stick out 2px on the right. */
+
     qtStage.style.width =
         "100%";
 
@@ -2864,41 +1839,12 @@ function openVideo(
         0;
 
 
-    let stallUsed =
+    let hasStalled =
         false;
 
 
-    let corruptAt =
-        null;
+    function step() {
 
-
-    if (
-        loadMode === "corrupt"
-    ) {
-
-        corruptAt =
-            Math.floor(
-                Math.random() *
-                47
-            )
-            +
-            38;
-
-    }
-
-
-    function scheduleNextStep() {
-
-        loadingTimer =
-            setTimeout(
-                loadingStep,
-                loadSpeed
-            );
-
-    }
-
-
-    function loadingStep() {
 
         value++;
 
@@ -2919,118 +1865,27 @@ function openVideo(
         );
 
 
-        /* =================================================
-           FILE 07 — CORRUPT
-        ================================================= */
+        /*
+           FILE 09 STALLS AT 82%
+        */
 
         if (
-            loadMode ===
-            "corrupt"
+            loadMode === "stall82"
             &&
-            value >=
-            corruptAt
+            value === 82
+            &&
+            !hasStalled
         ) {
 
-            loadingText.textContent =
-                "buffering..";
-
-
-            errorTimer =
-                setTimeout(
-                    function() {
-
-                        corruptOverlay.classList.add(
-                            "active"
-                        );
-
-                    },
-                    750
-                );
-
-
-            return;
-
-        }
-
-
-        /* =================================================
-           FILE 12 — STALL AT 30% FOR 4 SECONDS
-        ================================================= */
-
-        if (
-            loadMode ===
-            "stall30"
-            &&
-            value ===
-            30
-            &&
-            stallUsed ===
-            false
-        ) {
-
-            stallUsed =
+            hasStalled =
                 true;
-
-
-            loadingText.textContent =
-                "buffering..";
 
 
             stallTimer =
                 setTimeout(
                     function() {
 
-                        updateLoadingText(
-                            value,
-                            loadingText
-                        );
-
-
-                        scheduleNextStep();
-                    },
-                    4000
-                );
-
-
-            return;
-
-        }
-
-
-        /* =================================================
-           FILE 08 — STALL AT 82%
-        ================================================= */
-
-        if (
-            loadMode ===
-            "stall82"
-            &&
-            value ===
-            82
-            &&
-            stallUsed ===
-            false
-        ) {
-
-            stallUsed =
-                true;
-
-
-            loadingText.textContent =
-                "buffering..";
-
-
-            stallTimer =
-                setTimeout(
-                    function() {
-
-                        updateLoadingText(
-                            value,
-                            loadingText
-                        );
-
-
-                        scheduleNextStep();
+                        step();
 
                     },
                     2000
@@ -3042,16 +1897,40 @@ function openVideo(
         }
 
 
-        /* =================================================
-           FINISH
-        ================================================= */
+        /*
+           FILE 12 STALLS AT 30% FOR 4 SECONDS
+        */
 
         if (
-            value >=
-            100
+            loadMode === "stall30"
             &&
-            loadMode !==
-            "corrupt"
+            value === 30
+            &&
+            !hasStalled
+        ) {
+
+            hasStalled =
+                true;
+
+
+            stallTimer =
+                setTimeout(
+                    function() {
+
+                        step();
+
+                    },
+                    4000
+                );
+
+
+            return;
+
+        }
+
+
+        if (
+            value >= 100
         ) {
 
             progress.style.width =
@@ -3066,7 +1945,59 @@ function openVideo(
                 "opening file..";
 
 
-            showVideo();
+            setTimeout(
+                function() {
+
+                    if (
+                        loadMode === "corrupt"
+                    ) {
+
+                        loadingScreen.style.display =
+                            "none";
+
+
+                        videoContainer.style.display =
+                            "block";
+
+
+                        corruptOverlay.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                    else {
+
+                        loadingScreen.style.display =
+                            "none";
+
+
+                        videoContainer.style.display =
+                            "block";
+
+
+                        qtShell.classList.remove(
+                            "player-pop-in"
+                        );
+
+
+                        void qtShell.offsetWidth;
+
+
+                        qtShell.classList.add(
+                            "player-pop-in"
+                        );
+
+
+                        videoPlayer.play().catch(
+                            function() {}
+                        );
+
+                    }
+
+                },
+                90
+            );
 
 
             return;
@@ -3074,62 +2005,37 @@ function openVideo(
         }
 
 
-        scheduleNextStep();
+        loadingTimer =
+            setTimeout(
+                step,
+                loadSpeed
+            );
 
     }
 
 
-    scheduleNextStep();
+    loadingTimer =
+        setTimeout(
+            step,
+            loadSpeed
+        );
 
 }
 
 
 /* =========================================================
-   SHOW VIDEO
-========================================================= */
-
-function showVideo() {
-
-    const loadingScreen =
-        document.getElementById(
-            "loadingScreen"
-        );
-
-    const overlay =
-        document.getElementById(
-            "videoOverlay"
-        );
-
-    loadingScreen.style.display =
-        "none";
-
-    videoContainer.style.display =
-        "none";
-
-    overlay.classList.remove(
-        "active"
-    );
-
-    spawnDesktopVideoWindow(
-        currentFileName
-    );
-
-}
-
-
-/* =========================================================
-   METADATA
+   VIDEO METADATA / SIZING
 ========================================================= */
 
 videoPlayer.addEventListener(
     "loadedmetadata",
-    fitQuickTimeWindow
+    function() {
+
+        fitQuickTimeWindow();
+
+    }
 );
 
-
-/* =========================================================
-   BROWSER RESIZE
-========================================================= */
 
 window.addEventListener(
     "resize",
@@ -3154,27 +2060,15 @@ window.addEventListener(
 
 function toggleVideoPlayback() {
 
-
     if (
         videoPlayer.paused
         ||
         videoPlayer.ended
     ) {
 
-        const playAttempt =
-            videoPlayer.play();
-
-
-        if (
-            playAttempt !==
-            undefined
-        ) {
-
-            playAttempt.catch(
-                function() {}
-            );
-
-        }
+        videoPlayer.play().catch(
+            function() {}
+        );
 
     }
 
@@ -3233,7 +2127,7 @@ videoPlayer.addEventListener(
 
 
 /* =========================================================
-   REWIND
+   REWIND / FAST FORWARD
 ========================================================= */
 
 qtBack.addEventListener(
@@ -3251,28 +2145,27 @@ qtBack.addEventListener(
 );
 
 
-/* =========================================================
-   FAST FORWARD
-========================================================= */
-
 qtForward.addEventListener(
     "click",
     function() {
 
-        if (
+        const duration =
             Number.isFinite(
                 videoPlayer.duration
             )
-        ) {
+            ?
+            videoPlayer.duration
+            :
+            videoPlayer.currentTime +
+            5;
 
-            videoPlayer.currentTime =
-                Math.min(
-                    videoPlayer.duration,
-                    videoPlayer.currentTime +
-                    5
-                );
 
-        }
+        videoPlayer.currentTime =
+            Math.min(
+                duration,
+                videoPlayer.currentTime +
+                5
+            );
 
     }
 );
@@ -3291,11 +2184,6 @@ qtVolume.addEventListener(
                 qtVolume.value
             );
 
-
-        videoPlayer.muted =
-            videoPlayer.volume ===
-            0;
-
     }
 );
 
@@ -3309,49 +2197,45 @@ videoPlayer.addEventListener(
     function() {
 
         if (
-            Number.isFinite(
+            !Number.isFinite(
                 videoPlayer.duration
             )
-            &&
-            videoPlayer.duration >
-            0
+            ||
+            videoPlayer.duration <= 0
         ) {
 
-            const amount =
-                (
-                    videoPlayer.currentTime /
-                    videoPlayer.duration
-                )
-                *
-                100;
-
-
-            qtProgressFill.style.width =
-                amount +
-                "%";
+            return;
 
         }
+
+
+        const percentage =
+            (
+                videoPlayer.currentTime /
+                videoPlayer.duration
+            )
+            *
+            100;
+
+
+        qtProgressFill.style.width =
+            percentage +
+            "%";
 
     }
 );
 
 
-/* =========================================================
-   SEEK
-========================================================= */
-
 qtProgressHit.addEventListener(
     "click",
     function(event) {
-
 
         if (
             !Number.isFinite(
                 videoPlayer.duration
             )
             ||
-            videoPlayer.duration <=
-            0
+            videoPlayer.duration <= 0
         ) {
 
             return;
@@ -3381,32 +2265,6 @@ qtProgressHit.addEventListener(
         videoPlayer.currentTime =
             ratio *
             videoPlayer.duration;
-
-    }
-);
-
-
-/* =========================================================
-   EXPORT
-========================================================= */
-
-qtExport.addEventListener(
-    "click",
-    function() {
-
-        if (
-            !currentFileName
-        ) {
-
-            return;
-
-        }
-
-
-        window.open(
-            currentFileName,
-            "_blank"
-        );
 
     }
 );
@@ -3547,8 +2405,6 @@ document.addEventListener(
 );
 
 
-
-
 /* =========================================================
    DRAGGABLE / STACKABLE DESKTOP WINDOWS
 ========================================================= */
@@ -3572,6 +2428,7 @@ function resetDesktopWindowPosition(win) {
        Using pixel coordinates here prevents any previous drag offset,
        transform, animation, or reopened-window drift from accumulating.
     */
+
     win.style.transform = 'none';
 
     const rect = win.getBoundingClientRect();
@@ -3583,10 +2440,12 @@ function resetDesktopWindowPosition(win) {
 }
 
 function placeDesktopWindow(win) {
+
     /*
        Start centered immediately, then each window is hard-recentered
        again after its real size/content has loaded.
     */
+
     win.style.left = '50%';
     win.style.top = '50%';
     win.style.transform = 'translate(-50%, -50%)';
@@ -3679,11 +2538,11 @@ function fitDesktopQuickTimeWindow(win, shell, stage, player, fileName) {
        Because .qt-shell uses border-box with a 1px border on both sides,
        giving the stage the same raw pixel width makes it protrude 2px on
        the right. 100% uses the shell content box, keeping both edges flush. */
+
     stage.style.width = '100%';
     stage.style.height = fittedHeight + 'px';
 }
-
-function spawnDesktopVideoWindow(fileName) {
+    function spawnDesktopVideoWindow(fileName) {
     const layer = getDesktopLayer();
     const win = document.createElement('div');
     win.className = 'desktop-window desktop-video-window';
@@ -3716,9 +2575,6 @@ function spawnDesktopVideoWindow(fileName) {
                         <button class="qt-btn play desktop-play" type="button" aria-label="play pause">▶</button>
                         <button class="qt-btn desktop-forward" type="button" aria-label="fast forward">▶▶</button>
                     </div>
-                    <div class="qt-export">
-                        <button class="qt-btn desktop-export" type="button" aria-label="open video in new window" title="open video">↗</button>
-                    </div>
                 </div>
             </div>
         </div>`;
@@ -3739,7 +2595,6 @@ function spawnDesktopVideoWindow(fileName) {
     const back = win.querySelector('.desktop-back');
     const play = win.querySelector('.desktop-play');
     const forward = win.querySelector('.desktop-forward');
-    const exportButton = win.querySelector('.desktop-export');
 
     fileLabel.textContent = fileName;
     makeDesktopWindowDraggable(win, titlebar, '.qt-close');
@@ -3793,10 +2648,6 @@ function spawnDesktopVideoWindow(fileName) {
         const rect = progressHit.getBoundingClientRect();
         const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
         player.currentTime = ratio * player.duration;
-    });
-
-    exportButton.addEventListener('click', function() {
-        window.open(fileName, '_blank');
     });
 
     player.addEventListener('loadedmetadata', function() {
@@ -3872,6 +2723,7 @@ function spawnDesktopVideoWindow(fileName) {
 /* =========================================================
    MESSAGE FILE POP-OUT
 ========================================================= */
+
 function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle = 'see-u-l8r-(IM)') {
     const videoOverlay = document.getElementById('videoOverlay');
     const loadingScreen = document.getElementById('loadingScreen');
@@ -3906,6 +2758,7 @@ function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle
                 loadingScreen.style.display = 'none';
                 spawnDesktopMessageWindow(messageSrc, messageTitle);
             }, 90);
+
             return;
         }
 
@@ -3915,9 +2768,11 @@ function openMessages(messageSrc = 'messages.html', loadSpeed = 20, messageTitle
     loadingTimer = setTimeout(step, loadSpeed);
 }
 
+
 function spawnDesktopMessageWindow(messageSrc, messageTitle) {
     const layer = getDesktopLayer();
     const win = document.createElement('div');
+
     win.className = 'desktop-window desktop-message-window';
 
     const shell = document.createElement('div');
@@ -3940,7 +2795,9 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
 
     frame.onload = function() {
         shell.classList.remove('player-pop-in');
+
         void shell.offsetWidth;
+
         shell.classList.add('player-pop-in');
 
         /* Always restore the exact stock centered position on reopen. */
@@ -3952,6 +2809,7 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
 
         try {
             const titlebar = frame.contentDocument.querySelector('.titlebar');
+
             if (titlebar) {
                 makeDesktopWindowDraggable(win, titlebar, '.window-buttons');
             }
@@ -3961,28 +2819,47 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
             resetDesktopWindowPosition(win);
 
             if (frame.contentWindow) {
-                frame.contentWindow.postMessage({type:'startConversation'}, '*');
+                frame.contentWindow.postMessage(
+                    {type:'startConversation'},
+                    '*'
+                );
             }
         }, 760);
     };
 
     const separator = messageSrc.includes('?') ? '&' : '?';
-    frame.src = messageSrc + separator + 'imcache=' + Date.now();
+
+    frame.src =
+        messageSrc +
+        separator +
+        'imcache=' +
+        Date.now();
 }
 
+
 function closeMessages(animated = false) {
-    const windows = Array.from(document.querySelectorAll('.desktop-message-window'));
+    const windows =
+        Array.from(
+            document.querySelectorAll('.desktop-message-window')
+        );
+
     if (!windows.length) {
-        const legacyOverlay = document.getElementById('messageOverlay');
+        const legacyOverlay =
+            document.getElementById('messageOverlay');
+
         if (legacyOverlay) {
             legacyOverlay.classList.remove('active');
             legacyOverlay.style.display = 'none';
         }
+
         return;
     }
 
     const win = windows.reduce(function(top, item) {
-        return Number(item.style.zIndex || 0) > Number(top.style.zIndex || 0) ? item : top;
+        return Number(item.style.zIndex || 0) >
+            Number(top.style.zIndex || 0)
+            ? item
+            : top;
     }, windows[0]);
 
     if (!animated) {
@@ -3990,21 +2867,37 @@ function closeMessages(animated = false) {
         return;
     }
 
-    const shell = win.querySelector('.message-pop-shell');
+    const shell =
+        win.querySelector('.message-pop-shell');
+
     shell.classList.remove('player-pop-in');
     shell.classList.remove('player-pop-out');
+
     void shell.offsetWidth;
+
     shell.classList.add('player-pop-out');
-    setTimeout(function() { win.remove(); }, 720);
+
+    setTimeout(function() {
+        win.remove();
+    }, 720);
 }
 
-window.addEventListener('message', function(event) {
-    if (!(event.data && event.data.type === 'closeMessages')) return;
 
-    const windows = document.querySelectorAll('.desktop-message-window');
+window.addEventListener('message', function(event) {
+    if (!(event.data && event.data.type === 'closeMessages')) {
+        return;
+    }
+
+    const windows =
+        document.querySelectorAll('.desktop-message-window');
+
     for (const win of windows) {
         const frame = win.querySelector('iframe');
-        if (frame && frame.contentWindow === event.source) {
+
+        if (
+            frame &&
+            frame.contentWindow === event.source
+        ) {
             win.remove();
             return;
         }
@@ -4013,31 +2906,50 @@ window.addEventListener('message', function(event) {
     closeMessages(false);
 });
 
+
 function backgroundCloseMessages(event) {
     /* Desktop-mode AIM windows stay open until their own X is clicked. */
 }
 
-/* Escape closes whichever draggable desktop window is currently on top. */
-document.addEventListener('keydown', function(event) {
-    if (event.key !== 'Escape' || authOverlay.style.display !== 'none') return;
 
-    const windows = Array.from(document.querySelectorAll('.desktop-window'));
-    if (!windows.length) return;
+/* Escape closes whichever draggable desktop window is currently on top. */
+
+document.addEventListener('keydown', function(event) {
+    if (
+        event.key !== 'Escape' ||
+        authOverlay.style.display !== 'none'
+    ) {
+        return;
+    }
+
+    const windows =
+        Array.from(
+            document.querySelectorAll('.desktop-window')
+        );
+
+    if (!windows.length) {
+        return;
+    }
 
     const top = windows.reduce(function(a, b) {
-        return Number(a.style.zIndex || 0) > Number(b.style.zIndex || 0) ? a : b;
+        return Number(a.style.zIndex || 0) >
+            Number(b.style.zIndex || 0)
+            ? a
+            : b;
     });
 
-    const player = top.querySelector('.desktop-video-element');
-    if (player) player.pause();
+    const player =
+        top.querySelector('.desktop-video-element');
+
+    if (player) {
+        player.pause();
+    }
+
     top.remove();
 });
-
-
-
-
 
 </script>
 
 </body>
 </html>
+        
