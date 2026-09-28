@@ -536,59 +536,48 @@ body {
 ========================================================= */
 
 .loading-screen {
-    width: min(720px, 90vw);
-
-    height: 180px;
-
+    width: min(370px, calc(100vw - 30px));
+    height: auto;
+    min-height: 0;
     display: flex;
-
     flex-direction: column;
-
-    justify-content: center;
-
-    padding: 30px;
-
-    background: #000;
-
-    border: 1px solid #292929;
+    padding: 0;
+    background: #080808;
+    border: 1px solid #454545;
+    box-shadow: 0 12px 45px #000b;
+    color: #c6c6c6;
+    font-family: monospace;
+    font-size: 12px;
 }
-
+.loading-screen::before {
+    content: "opening file";
+    display: block;
+    padding: 11px 14px;
+    border-bottom: 1px solid #303030;
+    color: #bbb;
+}
 .loading-text {
-    color: #777;
-
-    font-size: 11px;
-
-    margin-bottom: 15px;
+    color: #c6c6c6;
+    font-size: 12px;
+    margin: 18px 15px 0;
 }
-
 .loading-bar {
-    width: 100%;
-
-    height: 2px;
-
-    background: #181818;
-
+    height: 4px;
+    margin: 15px 15px 0;
+    background: #242424;
     overflow: hidden;
 }
-
 .loading-progress {
     width: 0%;
-
     height: 100%;
-
-    background: #a00000;
+    background: #9d1010;
 }
-
 .loading-percent {
-    margin-top: 10px;
-
-    color: #555;
-
-    font-size: 10px;
-
+    margin: 7px 15px 18px;
+    color: #a33;
+    font-size: 11px;
     text-align: right;
 }
-
 
 /* =========================================================
    CORRUPT WINDOW
@@ -3743,6 +3732,8 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
             </div>
         </div>`;
 
+    /* Avoid displaying the temporary 640px player before metadata determines its final size. */
+    win.style.visibility = 'hidden';
     layer.appendChild(win);
     placeDesktopWindow(win);
     file13WatchOpenedWindow(win, fileName);
@@ -3830,12 +3821,16 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
     player.addEventListener('loadedmetadata', function() {
         fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
-
-        requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-                resetDesktopWindowPosition(win);
-            });
-        });
+        resetDesktopWindowPosition(win);
+        /* Start the existing pop-in only after the final video dimensions are applied. */
+        shell.classList.remove('player-pop-in');
+        void shell.offsetWidth;
+        shell.classList.add('player-pop-in');
+        win.style.visibility = 'visible';
+        if (!useBufferStart && !startPaused) {
+            const attempt = player.play();
+            if (attempt !== undefined) attempt.catch(function() {});
+        }
     });
 
     window.addEventListener('resize', function resizeDesktopVideo() {
@@ -3845,10 +3840,6 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
         }
         fitDesktopQuickTimeWindow(win, shell, stage, player, fileName);
     });
-
-    shell.classList.remove('player-pop-in');
-    void shell.offsetWidth;
-    shell.classList.add('player-pop-in');
 
     player.src = fileName;
     player.load();
@@ -3870,7 +3861,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     let popPlaybackStarted = false;
 
     function startPlaybackAfterPop() {
-        if (popPlaybackStarted || !document.body.contains(win)) return;
+        if (popPlaybackStarted || !document.body.contains(win) || !player.videoWidth) return;
         popPlaybackStarted = true;
 
         /* Recenter one final time at the exact stock position, then play. */
@@ -3890,10 +3881,6 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
         /* Fallback in case animationend is skipped by the browser. */
         setTimeout(startPlaybackAfterPop, 850);
-    } else if (!startPaused) {
-        /* Other videos keep the original behavior: no buffer-start treatment. */
-        const attempt = player.play();
-        if (attempt !== undefined) attempt.catch(function() {});
     }
 }
 
