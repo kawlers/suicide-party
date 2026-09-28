@@ -1388,6 +1388,27 @@ html, body, body * {
 .file13-note-body { padding: 15px 13px; line-height: 1.7; }
 .file13-note-sub { color: #888; margin-top: 5px; }
 
+
+/* Hidden file recovery: no numbered row, no glitch effect. */
+.file13-notification { width:min(325px,calc(100vw - 30px)); height:auto; min-height:0; padding:15px; }
+.file13-note-title { text-transform:lowercase; }
+.file13-note-body { line-height:1.65; }
+.file13-note-sub { margin-top:8px; color:#858585; font-size:11px; }
+.file13-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:16px; }
+.file13-actions button { cursor:pointer; color:#b8b8b8; background:#111; border:1px solid #444; padding:7px 12px; font:inherit; font-size:11px; }
+.file13-actions button.file13-primary { background:#230606; border-color:#720000; color:#df5555; }
+.file13-actions button:hover { border-color:#b33333; }
+.file13-recovery-window { position:fixed; z-index:26000; width:min(370px,calc(100vw - 30px)); top:50%; left:50%; transform:translate(-50%,-50%); background:#080808; color:#c6c6c6; border:1px solid #454545; box-shadow:0 12px 45px #000b; font-family:monospace; font-size:12px; }
+.file13-recovery-title { padding:11px 14px; border-bottom:1px solid #303030; color:#bbb; }
+.file13-recovery-title span { float:right; color:#666; font-size:10px; }
+.file13-recovery-content { padding:18px 15px; }
+.file13-recovery-track { height:4px; background:#242424; margin-top:15px; }
+.file13-recovery-fill { width:0; height:100%; background:#9d1010; transition:width .4s linear; }
+.file13-recovery-percent { margin-top:7px; color:#a33; text-align:right; font-size:11px; }
+.file13-recovery-choice { margin-top:16px; border-top:1px solid #303030; padding-top:14px; line-height:1.6; }
+.file13-recovery-choice[hidden] { display:none !important; }
+.file13-warning { color:#c33; margin-bottom:8px; font-size:11px; }
+
 </style>
 
 </head>
@@ -3637,7 +3658,7 @@ function fitDesktopQuickTimeWindow(win, shell, stage, player, fileName) {
     stage.style.height = fittedHeight + 'px';
 }
 
-function spawnDesktopVideoWindow(fileName) {
+function spawnDesktopVideoWindow(fileName, startPaused = false) {
     const layer = getDesktopLayer();
     const win = document.createElement('div');
     win.className = 'desktop-window desktop-video-window';
@@ -3773,7 +3794,7 @@ function spawnDesktopVideoWindow(fileName) {
     player.pause();
 
     /* Only files 01, 05, 09, 10, and 12 use the buffer-during-pop start. */
-    const useBufferStart = [
+    const useBufferStart = !startPaused && [
         'purge-xtra2k25.mp4',
         'sp_005.mp4',
         '957229577.mp4',
@@ -3808,7 +3829,7 @@ function spawnDesktopVideoWindow(fileName) {
 
         /* Fallback in case animationend is skipped by the browser. */
         setTimeout(startPlaybackAfterPop, 850);
-    } else {
+    } else if (!startPaused) {
         /* Other videos keep the original behavior: no buffer-start treatment. */
         const attempt = player.play();
         if (attempt !== undefined) attempt.catch(function() {});
@@ -3995,7 +4016,13 @@ document.addEventListener('keydown', function(event) {
 const file13VideoName = 'VID00006.mp4';
 const file13ProgressKey = 'sp_file13_opened_v1';
 const file13SeenKey = 'sp_file13_seen_v1';
-const file13Required = 12;
+// Automatically require every currently populated directory entry.
+// With 03 and 06 blank this is 10; once filled it becomes 12.
+function file13RequiredEntries() {
+    return Array.from(document.querySelectorAll('.directory-list .directory-file'))
+        .filter(row => !row.classList.contains('empty') && !!row.dataset.spSource)
+        .map(row => row.dataset.spNumber);
+}
 let file13FinalEntry = null;
 let file13Started = false;
 let file13LastWindow = null;
@@ -4045,25 +4072,67 @@ function file13BeginSequence() {
     file13Started = true;
     try { sessionStorage.setItem(file13SeenKey, 'true'); } catch (error) {}
     file13FinalEntry = null;
-    // A quiet interval after the visitor closes the twelfth file.
+    setTimeout(file13ShowNotice, 3000);
+}
+function file13ShowNotice() {
+    const note = document.createElement('div');
+    note.className = 'file13-notification';
+    note.setAttribute('role', 'dialog');
+    note.setAttribute('aria-label', 'Unindexed file detected');
+    note.innerHTML = '<div class="file13-note-title">directory notice</div>' +
+      '<div class="file13-note-body">unindexed file detected.' +
+      '<div class="file13-note-sub">1 item found outside directory listing.</div>' +
+      '<div class="file13-note-sub">attempt recovery?</div>' +
+      '<div class="file13-actions"><button type="button" data-action="ignore">ignore</button>' +
+      '<button type="button" class="file13-primary" data-action="recover">recover file</button></div></div>';
+    document.body.appendChild(note);
+    note.querySelector('[data-action="ignore"]').addEventListener('click', function() { note.remove(); });
+    note.querySelector('[data-action="recover"]').addEventListener('click', function() {
+        note.remove(); file13ShowRecovery();
+    });
+}
+function file13ShowRecovery() {
+    const win = document.createElement('div');
+    win.className = 'file13-recovery-window';
+    win.setAttribute('role', 'dialog');
+    win.setAttribute('aria-label', 'File recovery');
+    win.innerHTML = '<div class="file13-recovery-title">file recovery <span>PROCESS 013</span></div>' +
+      '<div class="file13-recovery-content"><div class="file13-recovery-status">locating unindexed item...</div>' +
+      '<div class="file13-recovery-track"><div class="file13-recovery-fill"></div></div>' +
+      '<div class="file13-recovery-percent">0%</div>' +
+      '<div class="file13-recovery-choice" hidden><div class="file13-warning">RECOVERY INTERRUPTED</div>' +
+      '<div>file is not associated with this directory.</div>' +
+      '<div class="file13-note-sub">continue opening recovered item?</div>' +
+      '<div class="file13-actions"><button type="button" data-action="cancel">cancel</button>' +
+      '<button type="button" class="file13-primary" data-action="continue">continue</button></div></div></div>';
+    document.body.appendChild(win);
+    const status = win.querySelector('.file13-recovery-status');
+    const fill = win.querySelector('.file13-recovery-fill');
+    const percent = win.querySelector('.file13-recovery-percent');
+    const choice = win.querySelector('.file13-recovery-choice');
+    let cancelled = false;
+    function advance(value, message) {
+        if (cancelled || !win.isConnected) return;
+        fill.style.width = value + '%'; percent.textContent = value + '%'; status.textContent = message;
+    }
+    setTimeout(function() { advance(28, 'locating unindexed item...'); }, 450);
+    setTimeout(function() { advance(57, 'reading file data...'); }, 1150);
+    setTimeout(function() { advance(72, 'verifying file integrity...'); }, 2050);
     setTimeout(function() {
-        const note = document.createElement('div');
-        note.className = 'file13-notification';
-        note.setAttribute('role', 'status');
-        note.innerHTML = '<div class="file13-note-title">system notification</div>' +
-            '<div class="file13-note-body"><div>unindexed file detected.</div>' +
-            '<div class="file13-note-sub" id="file13NoteSub">1 item found outside directory.</div></div>';
-        document.body.appendChild(note);
+        if (cancelled || !win.isConnected) return;
+        status.textContent = 'recovery interrupted.'; choice.hidden = false;
+    }, 2800);
+    win.querySelector('[data-action="cancel"]').addEventListener('click', function() {
+        cancelled = true; win.remove();
+    });
+    win.querySelector('[data-action="continue"]').addEventListener('click', function() {
+        choice.hidden = true; advance(82, 'resuming recovery...');
+        setTimeout(function() { advance(100, 'recovery complete.'); }, 1100);
         setTimeout(function() {
-            const sub = document.getElementById('file13NoteSub');
-            if (sub) sub.textContent = 'attempting to recover item...';
-        }, 1800);
-        setTimeout(function() {
-            note.remove();
-            // Keep the familiar draggable QuickTime player open after playback ends.
-            setTimeout(function() { spawnDesktopVideoWindow(file13VideoName); }, 3000);
-        }, 5000);
-    }, 3000);
+            if (cancelled || !win.isConnected) return;
+            win.remove(); spawnDesktopVideoWindow(file13VideoName, true);
+        }, 2000);
+    });
 }
 
 // Use the directory's displayed number, not a filename guess. This also
@@ -4078,10 +4147,11 @@ document.querySelectorAll('.directory-list .directory-file').forEach(function(ro
     if (match) row.dataset.spSource = match[1];
     row.addEventListener('click', function() {
         if (row.classList.contains('empty') || !row.dataset.spSource || file13HasPlayed() || file13Started) return;
-        const progress = file13ReadProgress();
+        const required = file13RequiredEntries();
+        const progress = file13ReadProgress().filter(number => required.includes(number));
         if (!progress.includes(id)) progress.push(id);
         file13SaveProgress(progress);
-        if (progress.length === file13Required) {
+        if (required.every(number => progress.includes(number))) {
             file13FinalEntry = id;
             // The corrupt file has no desktop window. Its close button calls
             // file13LastFileClosed directly; other entries wait for their own X.
