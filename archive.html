@@ -1443,88 +1443,20 @@ html, body, body * {
 
 
 
-/* Icon-only archive grid: filenames below icons, no numbering or dividing lines. */
-.directory-list {
-    display:grid;
-    grid-template-columns:repeat(5,minmax(0,1fr));
-    gap:64px 22px;
-    margin-top:10px;
-    padding:44px 0 28px;
-    border:0 !important;
-}
-.directory-file {
-    min-width:0;
-    min-height:136px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-start;
-    gap:13px;
-    padding:5px 2px !important;
-    border:0 !important;
-    background:transparent !important;
-    text-align:center;
-    color:#d4d4d4;
-    font-size:12px;
-    box-shadow:none !important;
-    transition:color .18s ease;
-}
-.directory-file::before {
-    content:"";
-    display:block;
-    width:58px;
-    height:66px;
-    flex:0 0 66px;
-    background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2072%22%3E%3Cpath%20d%3D%22M13%204H40L52%2016V67H13Z%22%20fill%3D%22%23111%22%20stroke%3D%22%23b9b9b9%22%20stroke-width%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M40%204V16H52%22%20fill%3D%22none%22%20stroke%3D%22%23b9b9b9%22%20stroke-width%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M21%2024H43M21%2030H43M21%2036H38%22%20stroke%3D%22%23858585%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E') center/contain no-repeat;
-    filter:none;
-    transition:filter .2s ease;
-}
+/* Windows 98-inspired pixel file grid; no row rules or numbering. */
+.directory-list { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:58px 22px; margin-top:10px; padding:44px 0 28px; border:0 !important; }
+.directory-file { min-width:0; min-height:136px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:12px; padding:5px 2px !important; border:0 !important; background:transparent !important; text-align:center; color:#d4d4d4; font-size:12px; box-shadow:none !important; transition:color .15s ease; }
+.directory-file::before { content:""; display:block; width:55px; height:66px; flex:0 0 66px; background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2056%22%20shape-rendering%3D%22crispEdges%22%3E%3Cpath%20fill%3D%22%23292929%22%20d%3D%22M7%203h25v4h4v4h4v4h2v38H7z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M9%205h22v12h9v34H9z%22%2F%3E%3Cpath%20fill%3D%22%23b7b7b7%22%20d%3D%22M11%207h18v12h9v30H11z%22%2F%3E%3Cpath%20fill%3D%22%23777777%22%20d%3D%22M31%207v10h8z%22%2F%3E%3Cpath%20fill%3D%22%23bdbdbd%22%20d%3D%22M7%203h25v2H9v46h31V17h2v36H7z%20M32%205h2v2h2v2h2v2h2v2h2v4H31V5z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M14%2025h21v2H14zm0%205h21v2H14zm0%205h17v2H14z%22%2F%3E%3C%2Fsvg%3E') center/contain no-repeat; image-rendering:pixelated; filter:none !important; transition:none; }
 .directory-file .number { display:none !important; }
-.directory-file .file-name {
-    display:block;
-    width:100%;
-    min-height:0;
-    padding:0 !important;
-    margin:0 !important;
-    border:0 !important;
-    background:none !important;
-    color:inherit;
-    white-space:normal;
-    overflow-wrap:anywhere;
-    line-height:1.45;
-    text-decoration:none !important;
-    box-shadow:none !important;
-    transition:color .18s ease,text-shadow .18s ease;
-}
-.directory-file:not(.empty):hover {
-    color:#f02020 !important;
-    background:transparent !important;
-}
-.directory-file:not(.empty):hover::before {
-    filter:brightness(0) saturate(100%) invert(17%) sepia(100%) saturate(6700%) hue-rotate(355deg) brightness(105%)
-           drop-shadow(0 0 5px rgba(235,0,0,.8))
-           drop-shadow(0 0 10px rgba(215,0,0,.55));
-}
-.directory-file:not(.empty):hover .file-name {
-    color:#f02020 !important;
-    text-shadow:0 0 5px rgba(220,0,0,.7),0 0 11px rgba(190,0,0,.3);
-    border:0 !important;
-}
+.directory-file .file-name { display:block; width:100%; min-height:0; padding:0 !important; margin:0 !important; border:0 !important; background:none !important; color:inherit; white-space:normal; overflow-wrap:anywhere; line-height:1.45; text-decoration:none !important; box-shadow:none !important; text-shadow:none !important; }
+.directory-file:not(.empty):hover { color:#a90000 !important; background:transparent !important; }
+.directory-file:not(.empty):hover::before { background-image:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2056%22%20shape-rendering%3D%22crispEdges%22%3E%3Cpath%20fill%3D%22%23230000%22%20d%3D%22M7%203h25v4h4v4h4v4h2v38H7z%22%2F%3E%3Cpath%20fill%3D%22%23d00000%22%20d%3D%22M9%205h22v12h9v34H9z%22%2F%3E%3Cpath%20fill%3D%22%23790000%22%20d%3D%22M11%207h18v12h9v30H11z%22%2F%3E%3Cpath%20fill%3D%22%234a0000%22%20d%3D%22M31%207v10h8z%22%2F%3E%3Cpath%20fill%3D%22%23a90000%22%20d%3D%22M7%203h25v2H9v46h31V17h2v36H7z%20M32%205h2v2h2v2h2v2h2v2h2v4H31V5z%22%2F%3E%3Cpath%20fill%3D%22%23d00000%22%20d%3D%22M14%2025h21v2H14zm0%205h21v2H14zm0%205h17v2H14z%22%2F%3E%3C%2Fsvg%3E'); filter:none !important; }
+.directory-file:not(.empty):hover .file-name { color:#a90000 !important; text-shadow:none !important; border:0 !important; }
 .directory-file.empty::before { opacity:.27; }
-.directory-file.empty,.directory-file.empty:hover {
-    color:#555 !important;
-    background:transparent !important;
-    padding:5px 2px !important;
-}
+.directory-file.empty,.directory-file.empty:hover { color:#555 !important; background:transparent !important; padding:5px 2px !important; }
 .directory-file.empty .file-name { color:#555 !important; border:0 !important; }
-@media(max-width:780px) {
-    .directory-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 16px; }
-}
-@media(max-width:480px) {
-    .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; }
-    .directory-file { font-size:11px; min-height:125px; }
-    .directory-file::before { width:48px; height:58px; flex-basis:58px; }
-}
+@media(max-width:780px) { .directory-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 16px; } }
+@media(max-width:480px) { .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; } .directory-file { font-size:11px; min-height:125px; } .directory-file::before { width:48px; height:58px; flex-basis:58px; } }
 </style>
 
 </head>
