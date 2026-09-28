@@ -1442,95 +1442,89 @@ html, body, body * {
 .file13-warning { color:#c33; margin-bottom:8px; font-size:11px; }
 
 
-/* =========================================================
-   EXPERIMENTAL ICON GRID — directory layout only.
-   Existing file actions, popups, auth and hidden-file logic are untouched.
-========================================================= */
+
+/* Icon-only archive grid: filenames below icons, no numbering or dividing lines. */
 .directory-list {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    column-gap: 20px;
-    row-gap: 52px;
-    margin-top: 8px;
-    padding: 42px 0 20px;
-    border-top: 1px solid #292929;
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:64px 22px;
+    margin-top:10px;
+    padding:44px 0 28px;
+    border:0 !important;
 }
 .directory-file {
-    min-width: 0;
-    min-height: 177px;
-    padding: 8px 3px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 0;
-    background: transparent;
-    text-align: center;
-    font-size: 12px;
-    transition: color .18s ease, background .18s ease;
+    min-width:0;
+    min-height:136px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    gap:13px;
+    padding:5px 2px !important;
+    border:0 !important;
+    background:transparent !important;
+    text-align:center;
+    color:#d4d4d4;
+    font-size:12px;
+    box-shadow:none !important;
+    transition:color .18s ease;
 }
 .directory-file::before {
-    content: "";
-    display: block;
-    width: 58px;
-    height: 74px;
-    flex: 0 0 74px;
-    background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2076%22%3E%3Cpath%20d%3D%22M9%202H42L56%2016V74H9Z%22%20fill%3D%22%23a3a3a3%22%20stroke%3D%22%23e2e2e2%22%20stroke-width%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M42%202V16H56%22%20fill%3D%22%23e1e1e1%22%20stroke%3D%22%23555%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M16%2027H48M16%2034H48M16%2041H44M16%2048H48M16%2055H39M16%2062H45%22%20stroke%3D%22%23363636%22%20stroke-width%3D%222.7%22%2F%3E%3C%2Fsvg%3E') center / contain no-repeat;
-    filter: drop-shadow(0 0 2px rgba(255,255,255,.12));
-    transition: filter .18s ease;
+    content:"";
+    display:block;
+    width:58px;
+    height:66px;
+    flex:0 0 66px;
+    background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2072%22%3E%3Cpath%20d%3D%22M13%204H40L52%2016V67H13Z%22%20fill%3D%22%23111%22%20stroke%3D%22%23b9b9b9%22%20stroke-width%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M40%204V16H52%22%20fill%3D%22none%22%20stroke%3D%22%23b9b9b9%22%20stroke-width%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M21%2024H43M21%2030H43M21%2036H38%22%20stroke%3D%22%23858585%22%20stroke-width%3D%221.6%22%2F%3E%3C%2Fsvg%3E') center/contain no-repeat;
+    filter:none;
+    transition:filter .2s ease;
 }
+.directory-file .number { display:none !important; }
 .directory-file .file-name {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 100%;
-    white-space: normal;
-    overflow-wrap: anywhere;
-    line-height: 1.35;
-    min-height: 44px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #454545;
-    transition: color .18s ease, border-color .18s ease, text-shadow .18s ease;
+    display:block;
+    width:100%;
+    min-height:0;
+    padding:0 !important;
+    margin:0 !important;
+    border:0 !important;
+    background:none !important;
+    color:inherit;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    line-height:1.45;
+    text-decoration:none !important;
+    box-shadow:none !important;
+    transition:color .18s ease,text-shadow .18s ease;
 }
-.directory-file .number {
-    width: auto;
-    margin: 0;
-    color: #d00000;
-    font-size: 13px;
-}
-.directory-file:hover {
-    padding-left: 3px;
-    background: transparent;
-    color: #f4f4f4;
+.directory-file:not(.empty):hover {
+    color:#f02020 !important;
+    background:transparent !important;
 }
 .directory-file:not(.empty):hover::before {
-    filter: brightness(.8) sepia(1) saturate(8) hue-rotate(305deg)
-            drop-shadow(0 0 5px #bd1010) drop-shadow(0 0 13px rgba(185,0,0,.5));
+    filter:brightness(0) saturate(100%) invert(17%) sepia(100%) saturate(6700%) hue-rotate(355deg) brightness(105%)
+           drop-shadow(0 0 5px rgba(235,0,0,.8))
+           drop-shadow(0 0 10px rgba(215,0,0,.55));
 }
 .directory-file:not(.empty):hover .file-name {
-    color: #ff4444;
-    border-color: #b00000;
-    text-shadow: 0 0 8px rgba(210,0,0,.5);
+    color:#f02020 !important;
+    text-shadow:0 0 5px rgba(220,0,0,.7),0 0 11px rgba(190,0,0,.3);
+    border:0 !important;
 }
-.directory-file.empty::before { opacity: .32; filter: grayscale(1); }
-.directory-file.empty:hover {
-    padding-left: 3px;
-    background: transparent;
-    color: #333;
+.directory-file.empty::before { opacity:.27; }
+.directory-file.empty,.directory-file.empty:hover {
+    color:#555 !important;
+    background:transparent !important;
+    padding:5px 2px !important;
 }
-.directory-file.empty .file-name { border-color: #282828; }
-.directory-file.empty .number { color: #650000; }
-@media (max-width: 780px) {
-    .directory-list { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px 14px; }
+.directory-file.empty .file-name { color:#555 !important; border:0 !important; }
+@media(max-width:780px) {
+    .directory-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 16px; }
 }
-@media (max-width: 480px) {
-    .directory-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 12px; padding-top: 28px; }
-    .directory-file { min-height: 158px; font-size: 11px; }
-    .directory-file::before { width: 48px; height: 62px; flex-basis: 62px; }
+@media(max-width:480px) {
+    .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; }
+    .directory-file { font-size:11px; min-height:125px; }
+    .directory-file::before { width:48px; height:58px; flex-basis:58px; }
 }
-
 </style>
 
 </head>
