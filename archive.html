@@ -1236,8 +1236,15 @@ body {
     position: relative;
     pointer-events: auto;
 }
+/* IM-only opening: show its existing title bar first, then unfold the window.
+   Video players retain their original bottom-left pop-in. */
+@keyframes imTitlebarUnfold {
+    0%, 19% { clip-path: inset(0 0 95% 0); opacity: 1; }
+    72% { clip-path: inset(0 0 0 0); opacity: 1; }
+    100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
 .message-pop-shell.player-pop-in {
-    animation: playerPopFromBottomLeft .72s cubic-bezier(.22,1,.36,1) both;
+    animation: imTitlebarUnfold .72s cubic-bezier(.22,1,.36,1) both;
 }
 .message-pop-shell.player-pop-out {
     animation: messagePopToBottomLeft .72s cubic-bezier(.55,0,.78,0) both;
