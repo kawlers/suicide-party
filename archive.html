@@ -1374,6 +1374,20 @@ html, body, body * {
     to { transform: rotate(360deg); }
 }
 
+
+/* Hidden thirteenth file: understated, five-second system notification. */
+.file13-notification {
+    position: fixed; right: 22px; bottom: 22px; z-index: 19000;
+    width: min(350px, calc(100vw - 32px));
+    background: #080808; border: 1px solid #555;
+    color: #ddd; font: 11px "Courier New", monospace;
+    box-shadow: 0 8px 26px rgba(0,0,0,.8);
+    pointer-events: none;
+}
+.file13-note-title { padding: 6px 9px; background: #b7b7b7; color: #171717; font-weight: bold; }
+.file13-note-body { padding: 15px 13px; line-height: 1.7; }
+.file13-note-sub { color: #888; margin-top: 5px; }
+
 </style>
 
 </head>
@@ -3356,6 +3370,7 @@ qtProgressHit.addEventListener(
 ========================================================= */
 
 function closeCorruptFile() {
+    file13LastFileClosed("08");
 
     corruptOverlay.classList.remove(
         "active"
@@ -3661,6 +3676,7 @@ function spawnDesktopVideoWindow(fileName) {
 
     layer.appendChild(win);
     placeDesktopWindow(win);
+    file13WatchOpenedWindow(win, fileName);
 
     const shell = win.querySelector('.qt-shell');
     const titlebar = win.querySelector('.qt-titlebar');
@@ -3864,6 +3880,7 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
     layer.appendChild(win);
 
     placeDesktopWindow(win);
+    file13WatchOpenedWindow(win, messageSrc);
 
     win.addEventListener('mousedown', function() {
         bringDesktopWindowToFront(win);
@@ -3967,6 +3984,110 @@ document.addEventListener('keydown', function(event) {
 
 
 
+
+
+/* =========================================================
+   UNINDEXED FILE / HIDDEN THIRTEENTH VIDEO
+   All twelve actual file entries must be accessible and opened.
+   The two currently blank slots do not count until they are filled.
+   A visit means one browser-tab session.
+========================================================= */
+const file13VideoName = 'VID00006.mp4';
+const file13ProgressKey = 'sp_file13_opened_v1';
+const file13SeenKey = 'sp_file13_seen_v1';
+const file13Required = 12;
+let file13FinalEntry = null;
+let file13Started = false;
+let file13LastWindow = null;
+let file13LastWindowObserver = null;
+
+function file13ReadProgress() {
+    try {
+        const value = JSON.parse(sessionStorage.getItem(file13ProgressKey) || '[]');
+        return Array.isArray(value) ? value.filter(x => /^(0[1-9]|1[0-2])$/.test(x)) : [];
+    } catch (error) { return []; }
+}
+
+function file13HasPlayed() {
+    try { return sessionStorage.getItem(file13SeenKey) === 'true'; }
+    catch (error) { return file13Started; }
+}
+
+function file13SaveProgress(progress) {
+    try { sessionStorage.setItem(file13ProgressKey, JSON.stringify(progress)); }
+    catch (error) {}
+}
+
+function file13LastFileClosed(number) {
+    if (file13FinalEntry !== number || file13Started || file13HasPlayed()) return;
+    file13BeginSequence();
+}
+
+function file13WatchOpenedWindow(win, sourceName) {
+    if (!file13FinalEntry || file13Started || file13HasPlayed()) return;
+    const row = document.querySelector('.directory-file[data-sp-number="' + file13FinalEntry + '"]');
+    if (!row) return;
+    const expected = row.dataset.spSource;
+    if (expected !== sourceName) return;
+    file13LastWindow = win;
+    if (file13LastWindowObserver) file13LastWindowObserver.disconnect();
+    file13LastWindowObserver = new MutationObserver(function() {
+        if (file13LastWindow && !file13LastWindow.isConnected) {
+            file13LastWindowObserver.disconnect();
+            file13LastFileClosed(file13FinalEntry);
+        }
+    });
+    file13LastWindowObserver.observe(document.getElementById('desktopWindowLayer'), {childList:true});
+}
+
+function file13BeginSequence() {
+    if (file13Started || file13HasPlayed()) return;
+    file13Started = true;
+    try { sessionStorage.setItem(file13SeenKey, 'true'); } catch (error) {}
+    file13FinalEntry = null;
+    // A quiet interval after the visitor closes the twelfth file.
+    setTimeout(function() {
+        const note = document.createElement('div');
+        note.className = 'file13-notification';
+        note.setAttribute('role', 'status');
+        note.innerHTML = '<div class="file13-note-title">system notification</div>' +
+            '<div class="file13-note-body"><div>unindexed file detected.</div>' +
+            '<div class="file13-note-sub" id="file13NoteSub">1 item found outside directory.</div></div>';
+        document.body.appendChild(note);
+        setTimeout(function() {
+            const sub = document.getElementById('file13NoteSub');
+            if (sub) sub.textContent = 'attempting to recover item...';
+        }, 1800);
+        setTimeout(function() {
+            note.remove();
+            // Keep the familiar draggable QuickTime player open after playback ends.
+            setTimeout(function() { spawnDesktopVideoWindow(file13VideoName); }, 3000);
+        }, 5000);
+    }, 3000);
+}
+
+// Use the directory's displayed number, not a filename guess. This also
+// supports filling slots 03 and 06 later without changing the tracker.
+document.querySelectorAll('.directory-list .directory-file').forEach(function(row) {
+    const number = row.querySelector('.number');
+    if (!number) return;
+    const id = number.textContent.trim();
+    row.dataset.spNumber = id;
+    const onclick = row.getAttribute('onclick') || '';
+    const match = onclick.match(/(?:openVideo|openMessages)\(\s*['"]([^'"]+)['"]/);
+    if (match) row.dataset.spSource = match[1];
+    row.addEventListener('click', function() {
+        if (row.classList.contains('empty') || !row.dataset.spSource || file13HasPlayed() || file13Started) return;
+        const progress = file13ReadProgress();
+        if (!progress.includes(id)) progress.push(id);
+        file13SaveProgress(progress);
+        if (progress.length === file13Required) {
+            file13FinalEntry = id;
+            // The corrupt file has no desktop window. Its close button calls
+            // file13LastFileClosed directly; other entries wait for their own X.
+        }
+    });
+});
 
 </script>
 
