@@ -1382,12 +1382,42 @@ html, body, body * {
     background: #080808; border: 1px solid #555;
     color: #ddd; font: 11px "Courier New", monospace;
     box-shadow: 0 8px 26px rgba(0,0,0,.8);
-    pointer-events: none;
+    pointer-events: auto;
 }
 .file13-note-title { padding: 6px 9px; background: #b7b7b7; color: #171717; font-weight: bold; }
 .file13-note-body { padding: 15px 13px; line-height: 1.7; }
 .file13-note-sub { color: #888; margin-top: 5px; }
 
+
+/* Native-desktop-style pop-in, with a subtle close animation. */
+@keyframes file13NoticeIn {
+    from { opacity:0; transform:translateY(24px) scale(.94); }
+    to { opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes file13NoticeOut {
+    to { opacity:0; transform:translateY(16px) scale(.96); }
+}
+@keyframes file13RecoveryIn {
+    from { opacity:0; transform:translate(-50%, -45%) scale(.91); }
+    to { opacity:1; transform:translate(-50%, -50%) scale(1); }
+}
+@keyframes file13RecoveryOut {
+    to { opacity:0; transform:translate(-50%, -46%) scale(.95); }
+}
+.file13-notification {
+    pointer-events:auto !important;
+    animation:file13NoticeIn .38s cubic-bezier(.16,1,.3,1) both;
+    transform-origin:bottom right;
+}
+.file13-notification.file13-closing { animation:file13NoticeOut .2s ease-in both; pointer-events:none !important; }
+.file13-recovery-window { animation:file13RecoveryIn .42s cubic-bezier(.16,1,.3,1) both; transform-origin:center; pointer-events:auto; }
+.file13-recovery-window.file13-closing { animation:file13RecoveryOut .2s ease-in both; pointer-events:none; }
+.file13-actions button { cursor:pointer !important; pointer-events:auto; }
+.file13-actions button:hover { background:#252525; color:#fff; }
+.file13-actions button.file13-primary:hover { background:#390909; color:#ff7777; }
+@media (prefers-reduced-motion:reduce) {
+    .file13-notification,.file13-recovery-window { animation:none !important; }
+}
 
 /* Hidden file recovery: no numbered row, no glitch effect. */
 .file13-notification { width:min(325px,calc(100vw - 30px)); height:auto; min-height:0; padding:15px; }
@@ -4086,9 +4116,13 @@ function file13ShowNotice() {
       '<div class="file13-actions"><button type="button" data-action="ignore">ignore</button>' +
       '<button type="button" class="file13-primary" data-action="recover">recover file</button></div></div>';
     document.body.appendChild(note);
-    note.querySelector('[data-action="ignore"]').addEventListener('click', function() { note.remove(); });
+    function closeNotice(next) {
+        note.classList.add('file13-closing');
+        setTimeout(function() { note.remove(); if (next) next(); }, 200);
+    }
+    note.querySelector('[data-action="ignore"]').addEventListener('click', function() { closeNotice(); });
     note.querySelector('[data-action="recover"]').addEventListener('click', function() {
-        note.remove(); file13ShowRecovery();
+        closeNotice(file13ShowRecovery);
     });
 }
 function file13ShowRecovery() {
@@ -4123,14 +4157,20 @@ function file13ShowRecovery() {
         status.textContent = 'recovery interrupted.'; choice.hidden = false;
     }, 2800);
     win.querySelector('[data-action="cancel"]').addEventListener('click', function() {
-        cancelled = true; win.remove();
+        cancelled = true;
+        win.classList.add('file13-closing');
+        setTimeout(function() { win.remove(); }, 200);
     });
     win.querySelector('[data-action="continue"]').addEventListener('click', function() {
         choice.hidden = true; advance(82, 'resuming recovery...');
         setTimeout(function() { advance(100, 'recovery complete.'); }, 1100);
         setTimeout(function() {
             if (cancelled || !win.isConnected) return;
-            win.remove(); spawnDesktopVideoWindow(file13VideoName, true);
+            win.classList.add('file13-closing');
+            setTimeout(function() {
+                win.remove();
+                spawnDesktopVideoWindow(file13VideoName, true);
+            }, 200);
         }, 2000);
     });
 }
