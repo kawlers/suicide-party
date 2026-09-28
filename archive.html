@@ -192,7 +192,7 @@ body {
 
     inset: 0;
 
-    background: rgba(0, 0, 0, 0.96);
+    background: #000;
 
     display: flex;
     align-items: center;
@@ -1457,10 +1457,13 @@ html, body, body * {
 
 
 
+/* Keep the directory completely concealed until successful authorization finishes. */
+body.auth-locked .page { visibility: hidden !important; }
+
 /* Windows 98-inspired pixel file grid; no row rules or numbering. */
 .directory-list { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:58px 22px; margin-top:10px; padding:44px 0 28px; border:0 !important; }
 .directory-file { min-width:0; min-height:136px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:8px; padding:5px 2px !important; border:0 !important; background:transparent !important; text-align:center; color:#d4d4d4; font-size:12px; box-shadow:none !important; transition:color .15s ease; }
-.directory-file::before { content:""; display:block; width:50px; height:60px; flex:0 0 60px; background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2056%22%20shape-rendering%3D%22crispEdges%22%3E%3Cpath%20fill%3D%22%23292929%22%20d%3D%22M7%203h25v4h4v4h4v4h2v38H7z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M9%205h22v12h9v34H9z%22%2F%3E%3Cpath%20fill%3D%22%23b7b7b7%22%20d%3D%22M11%207h18v12h9v30H11z%22%2F%3E%3Cpath%20fill%3D%22%23777777%22%20d%3D%22M31%207v10h8z%22%2F%3E%3Cpath%20fill%3D%22%23bdbdbd%22%20d%3D%22M7%203h25v2H9v46h31V17h2v36H7z%20M32%205h2v2h2v2h2v2h2v2h2v4H31V5z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M14%2025h21v2H14zm0%205h21v2H14zm0%205h17v2H14z%22%2F%3E%3C%2Fsvg%3E') center/contain no-repeat; image-rendering:pixelated; filter:none !important; transition:none; }
+.directory-file::before { content:""; display:block; width:40px; height:48px; flex:0 0 48px; background:url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2056%22%20shape-rendering%3D%22crispEdges%22%3E%3Cpath%20fill%3D%22%23292929%22%20d%3D%22M7%203h25v4h4v4h4v4h2v38H7z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M9%205h22v12h9v34H9z%22%2F%3E%3Cpath%20fill%3D%22%23b7b7b7%22%20d%3D%22M11%207h18v12h9v30H11z%22%2F%3E%3Cpath%20fill%3D%22%23777777%22%20d%3D%22M31%207v10h8z%22%2F%3E%3Cpath%20fill%3D%22%23bdbdbd%22%20d%3D%22M7%203h25v2H9v46h31V17h2v36H7z%20M32%205h2v2h2v2h2v2h2v2h2v4H31V5z%22%2F%3E%3Cpath%20fill%3D%22%23f0f0f0%22%20d%3D%22M14%2025h21v2H14zm0%205h21v2H14zm0%205h17v2H14z%22%2F%3E%3C%2Fsvg%3E') center/contain no-repeat; image-rendering:pixelated; filter:none !important; transition:none; }
 .directory-file .number { display:none !important; }
 .directory-file .file-name { display:block; width:100%; min-height:0; padding:0 !important; margin:0 !important; border:0 !important; background:none !important; color:inherit; white-space:normal; overflow-wrap:anywhere; line-height:1.45; text-decoration:none !important; box-shadow:none !important; text-shadow:none !important; }
 .directory-file:not(.empty):hover { color:#a90000 !important; background:transparent !important; }
@@ -1470,13 +1473,13 @@ html, body, body * {
 .directory-file.empty,.directory-file.empty:hover { color:#555 !important; background:transparent !important; padding:5px 2px !important; }
 .directory-file.empty .file-name { color:#555 !important; border:0 !important; }
 @media(max-width:780px) { .directory-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 16px; } }
-@media(max-width:480px) { .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; } .directory-file { font-size:11px; min-height:125px; } .directory-file::before { width:44px; height:53px; flex-basis:53px; } }
+@media(max-width:480px) { .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; } .directory-file { font-size:11px; min-height:125px; } .directory-file::before { width:36px; height:43px; flex-basis:43px; } }
 </style>
 
 </head>
 
 
-<body>
+<body class="auth-locked">
 
 
 <!-- ======================================================
@@ -2427,6 +2430,8 @@ function submitPassword() {
 
                 authOverlay.style.display =
                     "none";
+
+                document.body.classList.remove("auth-locked");
 
             },
             2000
