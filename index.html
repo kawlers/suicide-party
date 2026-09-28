@@ -232,7 +232,7 @@ body {
 
     padding: 42px;
 
-    transform: scale(0.96);
+    transform: scale(1.296);
 
     opacity: 0;
 
@@ -242,7 +242,7 @@ body {
 }
 
 .encrypt-overlay.active .encrypt-panel {
-    transform: scale(1);
+    transform: scale(1.35);
     opacity: 1;
 }
 
@@ -501,6 +501,11 @@ html, body, body * {
 }
 
 
+
+@media (max-width: 620px) {
+    .encrypt-panel { transform: scale(0.96) !important; }
+    .encrypt-overlay.active .encrypt-panel { transform: scale(1) !important; }
+}
 
 /* Keep the homepage fully concealed while the entry/channel popup is active.
    Only the overlay is visible until navigation to the archive completes. */
