@@ -1475,36 +1475,14 @@ body.auth-locked .page { visibility: hidden !important; }
 @media(max-width:780px) { .directory-list { grid-template-columns:repeat(3,minmax(0,1fr)); gap:38px 16px; } }
 @media(max-width:480px) { .directory-list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:30px 12px; padding-top:26px; } .directory-file { font-size:11px; min-height:125px; } .directory-file::before { width:36px; height:43px; flex-basis:43px; } }
 
-/* Archive dialogs use the homepage KYSORDIETRYIN panel as the visual reference:
-   same 900px/88vw outer box, 42px content inset, near-black fill and thin border.
-   Existing JS, animation keyframes, progress durations and audio are untouched. */
-.auth-box, .loading-screen, .corrupt-window, .file13-recovery-window, .file13-notification {
-    width: min(900px, 88vw) !important;
-    max-width: 88vw !important;
+/* Exact rendered width of the homepage KYSORDIETRYIN loader.
+   Its final CSS override is 430px / viewport minus 30px, NOT the earlier
+   overridden 900px declaration. Keep all original dialog interiors intact. */
+.auth-box, .loading-screen, .corrupt-window,
+.file13-notification, .file13-recovery-window {
+    width: min(430px, calc(100vw - 30px)) !important;
+    max-width: calc(100vw - 30px) !important;
     box-sizing: border-box;
-    background: #020202;
-    border: 1px solid #252525;
-    box-shadow: none;
-}
-.auth-content { padding: 42px !important; }
-.loading-screen { padding: 0 42px 42px !important; }
-.loading-screen::before { margin: 0 -42px 28px; padding: 16px 42px; }
-.loading-text { margin: 0 0 20px !important; }
-.loading-bar { height: 6px; margin: 0 !important; }
-.corrupt-window { padding: 42px !important; }
-.file13-recovery-window { padding: 0 42px 42px !important; }
-.file13-notification { padding: 0 42px 30px !important; }
-.file13-note-title { margin: 0 -42px 24px; padding: 16px 42px; }
-.file13-note-body { padding: 0 !important; }
-.file13-recovery-track { height: 6px; }
-@media(max-width:520px) {
-  .auth-content { padding: 24px !important; }
-  .loading-screen { padding: 0 24px 24px !important; }
-  .loading-screen::before { margin: 0 -24px 20px; padding: 14px 24px; }
-  .corrupt-window { padding: 24px !important; }
-  .file13-recovery-window { padding: 0 24px 24px !important; }
-  .file13-notification { padding: 0 24px 24px !important; }
-  .file13-note-title { margin: 0 -24px 20px; padding: 14px 24px; }
 }
 </style>
 
