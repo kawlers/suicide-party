@@ -500,6 +500,17 @@ html, body, body * {
     cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIiBzaGFwZS1yZW5kZXJpbmc9ImNyaXNwRWRnZXMiPjxwYXRoIGQ9Ik0xMSAzaDV2MTBoMlY4aDR2Nmgydi00aDR2MTJsLTUgOEgxMWwtNy0xMXYtNWg0bDMgNHoiIGZpbGw9IiNmZmYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIi8+PC9zdmc+") 11 3, pointer !important;
 }
 
+
+
+/* Keep the homepage fully concealed while the entry/channel popup is active.
+   Only the overlay is visible until navigation to the archive completes. */
+body:has(.encrypt-overlay.active) .home {
+    visibility: hidden;
+}
+.encrypt-overlay.active {
+    background: #000 !important;
+}
+
 </style>
 
 </head>
