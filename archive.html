@@ -1239,12 +1239,16 @@ body {
 /* IM-only opening: show its existing title bar first, then unfold the window.
    Video players retain their original bottom-left pop-in. */
 @keyframes imTitlebarUnfold {
-    0%, 19% { clip-path: inset(0 0 95% 0); opacity: 1; }
-    72% { clip-path: inset(0 0 0 0); opacity: 1; }
+    /* Keep the title bar stationary before revealing the body downward. */
+    0%   { clip-path: inset(0 0 calc(100% - 39px) 0); opacity: 0; }
+    9%   { clip-path: inset(0 0 calc(100% - 39px) 0); opacity: 1; }
+    30%  { clip-path: inset(0 0 calc(100% - 39px) 0); opacity: 1; }
+    52%  { clip-path: inset(0 0 57% 0); opacity: 1; }
+    83%  { clip-path: inset(0 0 0 0); opacity: 1; }
     100% { clip-path: inset(0 0 0 0); opacity: 1; }
 }
 .message-pop-shell.player-pop-in {
-    animation: imTitlebarUnfold .72s cubic-bezier(.22,1,.36,1) both;
+    animation: imTitlebarUnfold 1.8s cubic-bezier(.45,0,.22,1) both;
 }
 .message-pop-shell.player-pop-out {
     animation: messagePopToBottomLeft .72s cubic-bezier(.55,0,.78,0) both;
@@ -3984,7 +3988,7 @@ function spawnDesktopMessageWindow(messageSrc, messageTitle) {
             if (frame.contentWindow) {
                 frame.contentWindow.postMessage({type:'startConversation'}, '*');
             }
-        }, 760);
+        }, 1850);
     };
 
     const separator = messageSrc.includes('?') ? '&' : '?';
