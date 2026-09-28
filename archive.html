@@ -1441,6 +1441,96 @@ html, body, body * {
 .file13-recovery-choice[hidden] { display:none !important; }
 .file13-warning { color:#c33; margin-bottom:8px; font-size:11px; }
 
+
+/* =========================================================
+   EXPERIMENTAL ICON GRID — directory layout only.
+   Existing file actions, popups, auth and hidden-file logic are untouched.
+========================================================= */
+.directory-list {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 52px;
+    margin-top: 8px;
+    padding: 42px 0 20px;
+    border-top: 1px solid #292929;
+}
+.directory-file {
+    min-width: 0;
+    min-height: 177px;
+    padding: 8px 3px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 0;
+    background: transparent;
+    text-align: center;
+    font-size: 12px;
+    transition: color .18s ease, background .18s ease;
+}
+.directory-file::before {
+    content: "";
+    display: block;
+    width: 58px;
+    height: 74px;
+    flex: 0 0 74px;
+    background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2076%22%3E%3Cpath%20d%3D%22M9%202H42L56%2016V74H9Z%22%20fill%3D%22%23a3a3a3%22%20stroke%3D%22%23e2e2e2%22%20stroke-width%3D%221.4%22%2F%3E%3Cpath%20d%3D%22M42%202V16H56%22%20fill%3D%22%23e1e1e1%22%20stroke%3D%22%23555%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M16%2027H48M16%2034H48M16%2041H44M16%2048H48M16%2055H39M16%2062H45%22%20stroke%3D%22%23363636%22%20stroke-width%3D%222.7%22%2F%3E%3C%2Fsvg%3E') center / contain no-repeat;
+    filter: drop-shadow(0 0 2px rgba(255,255,255,.12));
+    transition: filter .18s ease;
+}
+.directory-file .file-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.35;
+    min-height: 44px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #454545;
+    transition: color .18s ease, border-color .18s ease, text-shadow .18s ease;
+}
+.directory-file .number {
+    width: auto;
+    margin: 0;
+    color: #d00000;
+    font-size: 13px;
+}
+.directory-file:hover {
+    padding-left: 3px;
+    background: transparent;
+    color: #f4f4f4;
+}
+.directory-file:not(.empty):hover::before {
+    filter: brightness(.8) sepia(1) saturate(8) hue-rotate(305deg)
+            drop-shadow(0 0 5px #bd1010) drop-shadow(0 0 13px rgba(185,0,0,.5));
+}
+.directory-file:not(.empty):hover .file-name {
+    color: #ff4444;
+    border-color: #b00000;
+    text-shadow: 0 0 8px rgba(210,0,0,.5);
+}
+.directory-file.empty::before { opacity: .32; filter: grayscale(1); }
+.directory-file.empty:hover {
+    padding-left: 3px;
+    background: transparent;
+    color: #333;
+}
+.directory-file.empty .file-name { border-color: #282828; }
+.directory-file.empty .number { color: #650000; }
+@media (max-width: 780px) {
+    .directory-list { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 28px 14px; }
+}
+@media (max-width: 480px) {
+    .directory-list { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px 12px; padding-top: 28px; }
+    .directory-file { min-height: 158px; font-size: 11px; }
+    .directory-file::before { width: 48px; height: 62px; flex-basis: 62px; }
+}
+
 </style>
 
 </head>
