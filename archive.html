@@ -1669,15 +1669,20 @@ body.auth-locked .page { visibility: hidden !important; }
 
         <!-- 03 -->
 
-        <div class="directory-file empty">
-
-           
+        <div
+            class="directory-file"
+            onclick="openVideo(
+                'the_devil_wears_prada-x.mp4',
+                'stutter35',
+                20
+            )"
+        >
 
             <span class="file-name">
 
                 <span class="number">03</span>
 
-                ------
+                the_devil_wears_prada-x.mp4
 
             </span>
 
@@ -2943,6 +2948,18 @@ function openVideo(
         false;
 
 
+    let stutterIndex =
+        0;
+
+
+    const stutterPoints =
+        [18, 43, 67, 86];
+
+
+    const stutterDurations =
+        [650, 850, 900, 1100];
+
+
     let corruptAt =
         null;
 
@@ -3020,6 +3037,58 @@ function openVideo(
 
                     },
                     750
+                );
+
+
+            return;
+
+        }
+
+
+        /* =================================================
+           FILE 03 — SHORT BUFFER STUTTERS, 3.5 SEC TOTAL
+        ================================================= */
+
+        if (
+            loadMode ===
+            "stutter35"
+            &&
+            stutterIndex <
+            stutterPoints.length
+            &&
+            value ===
+            stutterPoints[
+                stutterIndex
+            ]
+        ) {
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            const stutterDelay =
+                stutterDurations[
+                    stutterIndex
+                ];
+
+
+            stutterIndex++;
+
+
+            stallTimer =
+                setTimeout(
+                    function() {
+
+                        updateLoadingText(
+                            value,
+                            loadingText
+                        );
+
+
+                        scheduleNextStep();
+
+                    },
+                    stutterDelay
                 );
 
 
