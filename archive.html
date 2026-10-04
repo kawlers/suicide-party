@@ -1745,7 +1745,7 @@ body.auth-locked .page { visibility: hidden !important; }
         <div
             class="directory-file"
             onclick="openVideo(
-                'Recording_10-03_ 16203976.mp4',
+                'recording_10-03_ 16203976.mp4',
                 'slowstart',
                 65
             )"
@@ -1755,7 +1755,7 @@ body.auth-locked .page { visibility: hidden !important; }
 
                 <span class="number">06</span>
 
-                Recording_10-03_ 16203976.mp4
+                recording_10-03_ 16203976.mp4
 
             </span>
 
@@ -3917,11 +3917,15 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
     fileLabel.textContent = fileName;
     const isRecoveredVideo = fileName === 'VID00006.mp4';
+    const isFinalBtsVideo = fileName === 'recording_10-03_ 16203976.mp4';
     const recoveredEnd = 68; // 1:08, exclusive to the recovered video.
-    function enforceRecoveredEnd() {
-        if (!isRecoveredVideo || player.currentTime < recoveredEnd) return;
+    const finalBtsEnd = 25; // 0:25, exclusive to the final visible BTS video.
+    const customEnd = isRecoveredVideo ? recoveredEnd : (isFinalBtsVideo ? finalBtsEnd : null);
+
+    function enforceCustomEnd() {
+        if (customEnd === null || player.currentTime < customEnd) return;
         player.pause();
-        if (Math.abs(player.currentTime - recoveredEnd) > 0.05) player.currentTime = recoveredEnd;
+        if (Math.abs(player.currentTime - customEnd) > 0.05) player.currentTime = customEnd;
         play.textContent = '▶';
     }
     makeDesktopWindowDraggable(win, titlebar, '.qt-close');
@@ -3938,7 +3942,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
     function togglePlayback() {
         if (player.paused || player.ended) {
-            if (isRecoveredVideo && player.currentTime >= recoveredEnd - 0.05) player.currentTime = 0;
+            if (customEnd !== null && player.currentTime >= customEnd - 0.05) player.currentTime = 0;
             const attempt = player.play();
             if (attempt !== undefined) attempt.catch(function() {});
         } else {
@@ -3959,8 +3963,8 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
     forward.addEventListener('click', function() {
         const duration = Number.isFinite(player.duration) ? player.duration : player.currentTime + 5;
-        player.currentTime = Math.min(isRecoveredVideo ? recoveredEnd : duration, player.currentTime + 5);
-        enforceRecoveredEnd();
+        player.currentTime = Math.min(customEnd !== null ? customEnd : duration, player.currentTime + 5);
+        enforceCustomEnd();
     });
 
     volume.addEventListener('input', function() {
@@ -3968,18 +3972,18 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     });
 
     player.addEventListener('timeupdate', function() {
-        enforceRecoveredEnd();
+        enforceCustomEnd();
         if (!Number.isFinite(player.duration) || player.duration <= 0) return;
-        const visibleDuration = isRecoveredVideo ? Math.min(recoveredEnd, player.duration) : player.duration;
+        const visibleDuration = customEnd !== null ? Math.min(customEnd, player.duration) : player.duration;
         progressFill.style.width = (Math.min(player.currentTime, visibleDuration) / visibleDuration * 100) + '%';
     });
-    if (isRecoveredVideo) player.addEventListener('seeking', enforceRecoveredEnd);
+    if (customEnd !== null) player.addEventListener('seeking', enforceCustomEnd);
 
     progressHit.addEventListener('click', function(event) {
         if (!Number.isFinite(player.duration) || player.duration <= 0) return;
         const rect = progressHit.getBoundingClientRect();
         const ratio = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-        player.currentTime = ratio * (isRecoveredVideo ? Math.min(recoveredEnd, player.duration) : player.duration);
+        player.currentTime = ratio * (customEnd !== null ? Math.min(customEnd, player.duration) : player.duration);
     });
 
     player.addEventListener('loadedmetadata', function() {
@@ -4011,7 +4015,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     /* Selected files use the buffer-during-pop start, including the final BTS file. */
     const useBufferStart = !startPaused && [
         'purge-xtra2k25.mp4',
-        'Recording_10-03_ 16203976.mp4',
+        'recording_10-03_ 16203976.mp4',
         'sp_005.mp4',
         '957229577.mp4',
         'dont_say_a_word (1).mp4',
@@ -4393,3 +4397,4 @@ document.querySelectorAll('.directory-list .directory-file').forEach(function(ro
 
 </body>
 </html>
+
