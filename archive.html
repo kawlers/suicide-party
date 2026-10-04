@@ -1745,7 +1745,7 @@ body.auth-locked .page { visibility: hidden !important; }
         <div
             class="directory-file"
             onclick="openVideo(
-                'recording_10-03_ 16203976.mp4',
+                'Recording_10-03_ 16203976.mp4',
                 'slowstart',
                 65
             )"
@@ -3917,7 +3917,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
 
     fileLabel.textContent = fileName;
     const isRecoveredVideo = fileName === 'VID00006.mp4';
-    const isFinalBtsVideo = fileName === 'recording_10-03_ 16203976.mp4';
+    const isFinalBtsVideo = fileName === 'Recording_10-03_ 16203976.mp4';
     const recoveredEnd = 68; // 1:08, exclusive to the recovered video.
     const finalBtsEnd = 25; // 0:25, exclusive to the final visible BTS video.
     const customEnd = isRecoveredVideo ? recoveredEnd : (isFinalBtsVideo ? finalBtsEnd : null);
@@ -4397,4 +4397,3 @@ document.querySelectorAll('.directory-list .directory-file').forEach(function(ro
 
 </body>
 </html>
-
