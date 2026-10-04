@@ -1674,7 +1674,7 @@ body.auth-locked .page { visibility: hidden !important; }
             onclick="openVideo(
                 'the_devil_wears_prada-x.mp4',
                 'stutter35',
-                20
+                45
             )"
         >
 
@@ -1742,15 +1742,20 @@ body.auth-locked .page { visibility: hidden !important; }
 
         <!-- 06 -->
 
-        <div class="directory-file empty">
-
-           
+        <div
+            class="directory-file"
+            onclick="openVideo(
+                'Recording_10-03_ 16203976.mp4',
+                'slowstart',
+                65
+            )"
+        >
 
             <span class="file-name">
 
                 <span class="number">06</span>
 
-                ------
+                Recording_10-03_ 16203976.mp4
 
             </span>
 
@@ -2948,16 +2953,20 @@ function openVideo(
         false;
 
 
+    let startBufferUsed =
+        false;
+
+
     let stutterIndex =
         0;
 
 
     const stutterPoints =
-        [18, 43, 67, 86];
+        [16, 38, 62, 84];
 
 
     const stutterDurations =
-        [650, 850, 900, 1100];
+        [1000, 1000, 1000, 1000];
 
 
     let corruptAt =
@@ -3046,7 +3055,52 @@ function openVideo(
 
 
         /* =================================================
-           FILE 03 — SHORT BUFFER STUTTERS, 3.5 SEC TOTAL
+           FILE 06 — SLOW LOAD + BUFFER AT START
+        ================================================= */
+
+        if (
+            loadMode ===
+            "slowstart"
+            &&
+            value ===
+            1
+            &&
+            startBufferUsed ===
+            false
+        ) {
+
+            startBufferUsed =
+                true;
+
+
+            loadingText.textContent =
+                "buffering..";
+
+
+            stallTimer =
+                setTimeout(
+                    function() {
+
+                        updateLoadingText(
+                            value,
+                            loadingText
+                        );
+
+
+                        scheduleNextStep();
+
+                    },
+                    3000
+                );
+
+
+            return;
+
+        }
+
+
+        /* =================================================
+           FILE 03 — SLOW LOAD + 4 EVEN BUFFER STUTTERS
         ================================================= */
 
         if (
@@ -3954,9 +4008,10 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     player.load();
     player.pause();
 
-    /* Only files 01, 05, 09, 10, and 12 use the buffer-during-pop start. */
+    /* Selected files use the buffer-during-pop start, including the final BTS file. */
     const useBufferStart = !startPaused && [
         'purge-xtra2k25.mp4',
+        'Recording_10-03_ 16203976.mp4',
         'sp_005.mp4',
         '957229577.mp4',
         'dont_say_a_word (1).mp4',
