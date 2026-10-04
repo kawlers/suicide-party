@@ -3915,7 +3915,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     const play = win.querySelector('.desktop-play');
     const forward = win.querySelector('.desktop-forward');
 
-    fileLabel.textContent = fileName;
+    fileLabel.textContent = fileName === 'Recording_10-03_ 16203976.mp4' ? 'recording_10-03_ 16203976.mp4' : fileName;
     const isRecoveredVideo = fileName === 'VID00006.mp4';
     const isFinalBtsVideo = fileName === 'Recording_10-03_ 16203976.mp4';
     const recoveredEnd = 68; // 1:08, exclusive to the recovered video.
@@ -4015,7 +4015,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     /* Selected files use the buffer-during-pop start, including the final BTS file. */
     const useBufferStart = !startPaused && [
         'purge-xtra2k25.mp4',
-        'recording_10-03_ 16203976.mp4',
+        'Recording_10-03_ 16203976.mp4',
         'sp_005.mp4',
         '957229577.mp4',
         'dont_say_a_word (1).mp4',
