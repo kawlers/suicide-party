@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1486,6 +1487,9 @@ body.auth-locked .page { visibility: hidden !important; }
     max-width: calc(100vw - 30px) !important;
     box-sizing: border-box;
 }
+
+/* Render playback controls as SVG instead of platform emoji. */
+.qt-btn svg { display:block; width:25px; height:20px; flex-shrink:0; }
 </style>
 
 </head>
@@ -2097,9 +2101,7 @@ body.auth-locked .page { visibility: hidden !important; }
                                 class="qt-btn"
                                 type="button"
                                 aria-label="rewind"
-                            >
-                                ◀◀
-                            </button>
+                            ><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M15 5 5 12l10 7V5Zm12 0-10 7 10 7V5Z"/></svg></button>
 
 
                             <button
@@ -2107,9 +2109,7 @@ body.auth-locked .page { visibility: hidden !important; }
                                 class="qt-btn play"
                                 type="button"
                                 aria-label="play pause"
-                            >
-                                ▶
-                            </button>
+                            ><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 3v18l15-9L10 3Z"/></svg></button>
 
 
                             <button
@@ -2117,9 +2117,7 @@ body.auth-locked .page { visibility: hidden !important; }
                                 class="qt-btn"
                                 type="button"
                                 aria-label="fast forward"
-                            >
-                                ▶▶
-                            </button>
+                            ><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m5 5 10 7-10 7V5Zm12 0 10 7-10 7V5Z"/></svg></button>
 
                         </div>
                     </div>
@@ -2180,6 +2178,13 @@ body.auth-locked .page { visibility: hidden !important; }
 
 
 <script>
+const QUICKTIME_ICONS = {
+  back: `<svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M15 5 5 12l10 7V5Zm12 0-10 7 10 7V5Z"/></svg>`,
+  play: `<svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 3v18l15-9L10 3Z"/></svg>`,
+  pause: `<svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9 4h5v16H9zm9 0h5v16h-5z"/></svg>`,
+  forward: `<svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m5 5 10 7-10 7V5Zm12 0 10 7-10 7V5Z"/></svg>`
+};
+
 
 /* =========================================================
    MOUSE CLICK SOUND — USER-SUPPLIED FILE ONLY
@@ -2885,8 +2890,7 @@ function openVideo(
         "0%";
 
 
-    qtPlay.textContent =
-        "▶";
+    qtPlay.innerHTML = QUICKTIME_ICONS.play;
 
 
     videoPlayer.pause();
@@ -3403,8 +3407,7 @@ videoPlayer.addEventListener(
     "play",
     function() {
 
-        qtPlay.textContent =
-            "❚❚";
+        qtPlay.innerHTML = QUICKTIME_ICONS.pause;
 
     }
 );
@@ -3414,8 +3417,7 @@ videoPlayer.addEventListener(
     "pause",
     function() {
 
-        qtPlay.textContent =
-            "▶";
+        qtPlay.innerHTML = QUICKTIME_ICONS.play;
 
     }
 );
@@ -3425,8 +3427,7 @@ videoPlayer.addEventListener(
     "ended",
     function() {
 
-        qtPlay.textContent =
-            "▶";
+        qtPlay.innerHTML = QUICKTIME_ICONS.play;
 
     }
 );
@@ -3646,8 +3647,7 @@ function closeVideo() {
         "0%";
 
 
-    qtPlay.textContent =
-        "▶";
+    qtPlay.innerHTML = QUICKTIME_ICONS.play;
 
 
     videoContainer.style.display =
@@ -3889,9 +3889,9 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
                         <input class="qt-volume" type="range" min="0" max="1" step="0.01" value="1" aria-label="volume">
                     </div>
                     <div class="qt-transport">
-                        <button class="qt-btn desktop-back" type="button" aria-label="rewind">◀◀</button>
-                        <button class="qt-btn play desktop-play" type="button" aria-label="play pause">▶</button>
-                        <button class="qt-btn desktop-forward" type="button" aria-label="fast forward">▶▶</button>
+                        <button class="qt-btn desktop-back" type="button" aria-label="rewind"><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M15 5 5 12l10 7V5Zm12 0-10 7 10 7V5Z"/></svg></button>
+                        <button class="qt-btn play desktop-play" type="button" aria-label="play pause"><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 3v18l15-9L10 3Z"/></svg></button>
+                        <button class="qt-btn desktop-forward" type="button" aria-label="fast forward"><svg viewBox="0 0 32 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="m5 5 10 7-10 7V5Zm12 0 10 7-10 7V5Z"/></svg></button>
                     </div>
                 </div>
             </div>
@@ -3928,7 +3928,7 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
         if (customEnd === null || player.currentTime < customEnd) return;
         player.pause();
         if (Math.abs(player.currentTime - customEnd) > 0.05) player.currentTime = customEnd;
-        play.textContent = '▶';
+        play.innerHTML = QUICKTIME_ICONS.play;
     }
     makeDesktopWindowDraggable(win, titlebar, '.qt-close');
 
@@ -3955,9 +3955,9 @@ function spawnDesktopVideoWindow(fileName, startPaused = false) {
     play.addEventListener('click', togglePlayback);
     player.addEventListener('click', togglePlayback);
 
-    player.addEventListener('play', function() { play.textContent = '❚❚'; });
-    player.addEventListener('pause', function() { play.textContent = '▶'; });
-    player.addEventListener('ended', function() { play.textContent = '▶'; });
+    player.addEventListener('play', function() { play.innerHTML = QUICKTIME_ICONS.pause; });
+    player.addEventListener('pause', function() { play.innerHTML = QUICKTIME_ICONS.play; });
+    player.addEventListener('ended', function() { play.innerHTML = QUICKTIME_ICONS.play; });
 
     back.addEventListener('click', function() {
         player.currentTime = Math.max(0, player.currentTime - 5);
